@@ -32,12 +32,25 @@ namespace GYM
             {
                 MessageBox.Show("Не все поля заполнены!");
             }
-             else
-                 {
+            else
+            {
+                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
+                                                                      from [сотрудник] 
+                                                                      where пароль=@st1 ", con1);
+                sss1.Parameters.AddWithValue("st1", textBox5.Text);
+                sss1.ExecuteNonQuery();
+                if (sss1.ExecuteScalar() != null)
+                {
+                    con1.Close();
+                    MessageBox.Show("Такой пароль существует"); return;
+                }
+                else
+                {
                     this.DialogResult = DialogResult.OK;
+                }
             }
         }
-
         private void AddEmployee_Load(object sender, EventArgs e)
         {
             this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
@@ -194,6 +207,17 @@ namespace GYM
          //   this.зарплата_сотрудникаTableAdapter.Update(this.dS_Money.Зарплата_сотрудника);
          //   this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
 
+        }
+
+        private void AddEmployee_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        //    e.CloseReason = false
+        }
+
+        private void AddEmployee_FormClosing(object sender, FormClosingEventArgs e)
+        {
+         //   e.CloseReason. = false;
         }
     }
 }

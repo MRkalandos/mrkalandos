@@ -302,7 +302,7 @@
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.Orange;
+            this.panel7.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel7.Controls.Add(this.button10);
             this.panel7.Controls.Add(this.textBox3);
             this.panel7.Controls.Add(this.label6);
@@ -372,7 +372,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.Orange;
+            this.panel6.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel6.Controls.Add(this.textBox5);
             this.panel6.Controls.Add(this.button9);
             this.panel6.Controls.Add(this.label9);
@@ -466,7 +466,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.Orange;
+            this.panel5.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.button6);
             this.panel5.Controls.Add(this.label3);
@@ -481,6 +481,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(17, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(162, 13);
@@ -532,7 +533,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.Orange;
+            this.panel4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.textBox2);
             this.panel4.Location = new System.Drawing.Point(9, 19);
@@ -543,7 +544,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Orange;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(26, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 13);

@@ -325,6 +325,8 @@
             this.MinimizeBox = false;
             this.Name = "AddEmployee";
             this.Text = "AddEmployee";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddEmployee_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddEmployee_FormClosed);
             this.Load += new System.EventHandler(this.AddEmployee_Load);
             this.Shown += new System.EventHandler(this.AddEmployee_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();

@@ -112,24 +112,27 @@ namespace GYM
             if (ObjEmployeeAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                    id = Convert.ToString(Convert.ToInt32(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value) + 1);
-                    con.Open();
-                    OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Сотрудник]
+                   
+
+                        dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+                        id = Convert.ToString(Convert.ToInt32(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value) + 1);
+                        con.Open();
+                        OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Сотрудник]
                                                         ( Фамилия, Имя, Отчество, Должность,Телефон, Дата,Пароль,Фото,Идзарплата)
                                                         VALUES(@st1,@st2,@st3,@st4,@st5,@st6,@st7,@st8,@st9)", con);
-                    sss.Parameters.AddWithValue("st1", ObjEmployeeAdd.textBox1.Text);
-                    sss.Parameters.AddWithValue("st2", ObjEmployeeAdd.textBox2.Text);
-                    sss.Parameters.AddWithValue("st3", ObjEmployeeAdd.textBox3.Text);
-                    sss.Parameters.AddWithValue("st4", ObjEmployeeAdd.textBox4.Text);
-                    sss.Parameters.AddWithValue("st5", ObjEmployeeAdd.maskedTextBox1.Text);
-                    sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeAdd.dateTimePicker1.Text));
-                    sss.Parameters.AddWithValue("st7", Convert.ToInt16(ObjEmployeeAdd.textBox5.Text));
-                    sss.Parameters.AddWithValue("st8", ObjEmployeeAdd.textBox6.Text);
-                    sss.Parameters.AddWithValue("st9", Convert.ToInt16(ObjEmployeeAdd.comboBox1.SelectedValue.ToString()));
-                    sss.ExecuteNonQuery();
-                    con.Close();
-                    upd();
+                        sss.Parameters.AddWithValue("st1", ObjEmployeeAdd.textBox1.Text);
+                        sss.Parameters.AddWithValue("st2", ObjEmployeeAdd.textBox2.Text);
+                        sss.Parameters.AddWithValue("st3", ObjEmployeeAdd.textBox3.Text);
+                        sss.Parameters.AddWithValue("st4", ObjEmployeeAdd.textBox4.Text);
+                        sss.Parameters.AddWithValue("st5", ObjEmployeeAdd.maskedTextBox1.Text);
+                        sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeAdd.dateTimePicker1.Text));
+                        sss.Parameters.AddWithValue("st7", Convert.ToInt16(ObjEmployeeAdd.textBox5.Text));
+                        sss.Parameters.AddWithValue("st8", ObjEmployeeAdd.textBox6.Text);
+                        sss.Parameters.AddWithValue("st9", Convert.ToInt16(ObjEmployeeAdd.comboBox1.SelectedValue.ToString()));
+                        sss.ExecuteNonQuery();
+                        con.Close();
+                        upd();
+                    
                 }
                 catch (Exception ex)
                 {
