@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -46,14 +47,28 @@ namespace GYM
         private void button1_Click(object sender, EventArgs e)
         {
             HeadForm HF = new HeadForm();
-            if ((textBox1.Text == "") )
-              
+            if ((textBox1.Text == ""))
+
             {
                 MessageBox.Show("Не все поля заполнены!");
             }
             else
             {
-                this.DialogResult = DialogResult.OK;
+                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
+                                                                      from [зарплата_сотрудника] 
+                                                                      where зарплата=@st1 ", con1);
+                sss1.Parameters.AddWithValue("st1", textBox1.Text);
+                sss1.ExecuteNonQuery();
+                if (sss1.ExecuteScalar() != null)
+                {
+                    con1.Close();
+                    MessageBox.Show("Запись существует");
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
             }
         }
     }

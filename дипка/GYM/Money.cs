@@ -60,19 +60,7 @@ namespace GYM
             if (ObjMoneyAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
-                   con1.Open();  OleDbCommand sss1 = new OleDbCommand(@"select *  
-                                                                      from [зарплата_сотрудника] 
-                                                                      where зарплата=@st1 ", con1);
-                    sss1.Parameters.AddWithValue("st1", ObjMoneyAdd.textBox1.Text);
-                    sss1.ExecuteNonQuery(); 
-                    if (sss1.ExecuteScalar() != null)
-                    {
-                        con1.Close();
-                        MessageBox.Show("Запись существует"); 
-                    }
-                    else
-                    {
+                 
                         id = Convert.ToString(Convert.ToInt32(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value) + 1);
                         con.Open();
                         OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Зарплата_сотрудника]
@@ -82,7 +70,7 @@ namespace GYM
                         sss.ExecuteNonQuery();
                         con.Close();
                         upd();
-                    }
+                    
                 }
                 catch (Exception ex)
                 {

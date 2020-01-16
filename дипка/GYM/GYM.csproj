@@ -91,7 +91,6 @@
     <Compile Include="AddMoney.Designer.cs">
       <DependentUpon>AddMoney.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClassEmployee.cs" />
     <Compile Include="DSEmployee.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
