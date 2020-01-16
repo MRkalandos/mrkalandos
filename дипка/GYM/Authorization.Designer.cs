@@ -50,7 +50,8 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(82, 62);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.PasswordChar = '*';
+            this.textBox2.Size = new System.Drawing.Size(108, 20);
             this.textBox2.TabIndex = 1;
             // 
             // label1
@@ -89,14 +90,14 @@
             "Тренер"});
             this.comboBox1.Location = new System.Drawing.Point(82, 27);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.Size = new System.Drawing.Size(108, 21);
             this.comboBox1.TabIndex = 5;
             // 
             // Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(219, 132);
+            this.ClientSize = new System.Drawing.Size(235, 132);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);

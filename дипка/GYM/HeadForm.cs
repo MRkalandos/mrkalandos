@@ -758,9 +758,15 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                 ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
         }
-    }
-    } 
 
+        private void HeadForm_Shown(object sender, EventArgs e)
+        {
+           
+                }
+
+                }
+            }
+        
 
 
 

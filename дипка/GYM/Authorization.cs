@@ -21,14 +21,7 @@ namespace GYM
         public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
         private void Form1_Load(object sender, EventArgs e)
         {
-            //     OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
-            //   con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
-            //                                                           from [зарплата_сотрудника] 
-            //                                                         where зарплата=@st1 ", con1);
-            /// sss1.Parameters.AddWithValue("st1", textBox1.Text);
-            // sss1.ExecuteNonQuery();
-            // if (sss1.ExecuteScalar() != null)
-            //{
+            comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,6 +57,11 @@ namespace GYM
                         MessageBox.Show("Вход выполнен:Тренер");
                         HeadForm Head = new HeadForm();
                         Head.Show();
+                        Head.tabControl2.Visible = false;
+                        Head.tabControl3.Visible = false;
+                        Head.tabControl1.SelectedTab = Head.tabPage5;
+                        Head.pictureBox2.Visible = true;
+                        Head.pictureBox3.Visible = true;
                         con.Close(); 
                     }
                     else

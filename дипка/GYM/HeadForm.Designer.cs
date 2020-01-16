@@ -97,6 +97,15 @@
             this.ribbonButton8 = new System.Windows.Forms.RibbonButton();
             this.ribbonButton9 = new System.Windows.Forms.RibbonButton();
             this.ribbonButton10 = new System.Windows.Forms.RibbonButton();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -117,12 +126,19 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -133,12 +149,13 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tabControl2);
+            this.tabPage1.Controls.Add(this.pictureBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1362, 727);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Пользователи";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabControl2
@@ -709,12 +726,14 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.tabControl3);
+            this.tabPage2.Controls.Add(this.pictureBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1362, 727);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Абонемент";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // ribbonButton1
@@ -783,6 +802,101 @@
             this.ribbonButton10.Name = "ribbonButton10";
             this.ribbonButton10.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton10.SmallImage")));
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.tabControl4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1362, 727);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "Тренировки";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPage6);
+            this.tabControl3.Controls.Add(this.tabPage7);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(3, 3);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(1356, 721);
+            this.tabControl3.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1348, 695);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "tabPage6";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(192, 74);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "tabPage7";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabControl4
+            // 
+            this.tabControl4.Controls.Add(this.tabPage8);
+            this.tabControl4.Controls.Add(this.tabPage9);
+            this.tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl4.Location = new System.Drawing.Point(3, 3);
+            this.tabControl4.Name = "tabControl4";
+            this.tabControl4.SelectedIndex = 0;
+            this.tabControl4.Size = new System.Drawing.Size(1356, 721);
+            this.tabControl4.TabIndex = 0;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(1348, 695);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "tabPage8";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(1348, 695);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "tabPage9";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1356, 721);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(1356, 721);
+            this.pictureBox3.TabIndex = 4;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
+            // 
             // HeadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -795,6 +909,7 @@
             this.Text = "Главная форма";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HeadForm_Load);
+            this.Shown += new System.EventHandler(this.HeadForm_Shown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -820,78 +935,92 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
-        private System.Windows.Forms.RibbonButton ribbonButton2;
-        private System.Windows.Forms.RibbonPanel ribbonPanel1;
-        private System.Windows.Forms.RibbonTextBox ribbonTextBox1;
-        private System.Windows.Forms.RibbonButton ribbonButton8;
-        private System.Windows.Forms.RibbonButton ribbonButton9;
-        private System.Windows.Forms.RibbonTab ribbonTab1;
-        private System.Windows.Forms.RibbonPanel ribbonPanel2;
-        private System.Windows.Forms.RibbonCheckBox ribbonCheckBox1;
-        private System.Windows.Forms.RibbonButton ribbonButton3;
-        private System.Windows.Forms.RibbonButton ribbonButton10;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button button16;
+        public System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabControl tabControl2;
+        public System.Windows.Forms.TabPage tabPage3;
+        public System.Windows.Forms.Panel panel3;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.Button button4;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button button3;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.TabPage tabPage4;
+        public System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.Button button5;
+        public System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.Panel panel4;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.Button button6;
+        public System.Windows.Forms.Panel panel5;
+        public System.Windows.Forms.DateTimePicker dateTimePicker2;
+        public System.Windows.Forms.DateTimePicker dateTimePicker1;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.Panel panel6;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Button button7;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.Button button9;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Panel panel7;
+        public System.Windows.Forms.Button button10;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        public System.Windows.Forms.GroupBox groupBox5;
+        public System.Windows.Forms.Button button8;
+        public System.Windows.Forms.Button button12;
+        public System.Windows.Forms.Button button11;
+        public System.Windows.Forms.Button button13;
+        public System.Windows.Forms.Button button14;
+        public System.Windows.Forms.RibbonButton ribbonButton1;
+        public System.Windows.Forms.RibbonButton ribbonButton2;
+        public System.Windows.Forms.RibbonPanel ribbonPanel1;
+        public System.Windows.Forms.RibbonTextBox ribbonTextBox1;
+        public System.Windows.Forms.RibbonButton ribbonButton8;
+        public System.Windows.Forms.RibbonButton ribbonButton9;
+        public System.Windows.Forms.RibbonTab ribbonTab1;
+        public System.Windows.Forms.RibbonPanel ribbonPanel2;
+        public System.Windows.Forms.RibbonCheckBox ribbonCheckBox1;
+        public System.Windows.Forms.RibbonButton ribbonButton3;
+        public System.Windows.Forms.RibbonButton ribbonButton10;
+        public System.Windows.Forms.GroupBox groupBox6;
+        public System.Windows.Forms.Button button16;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        public System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage9;
+        public System.Windows.Forms.TabControl tabControl4;
+        public System.Windows.Forms.TabPage tabPage8;
+        public System.Windows.Forms.TabPage tabPage5;
+        public System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.PictureBox pictureBox3;
     }
 }
