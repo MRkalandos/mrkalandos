@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Word = Microsoft.Office.Interop.Word;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
@@ -15,13 +14,12 @@ using System.Windows.Forms;
 
 namespace GYM
 {
-    public partial class HeadForm : Form
+    public partial class HeadForm : MetroFramework.Forms.MetroForm
     {
         public HeadForm()
         {
             InitializeComponent();
         }
-        private DS_Money.Зарплата_сотрудникаDataTable dta1 { get; set; }
         public int rez = 0;
         public string id;
         public DataTable dt;
@@ -30,26 +28,43 @@ namespace GYM
         public OleDbDataAdapter sda;
 
         public void upd()
-          {
-            sda = new OleDbDataAdapter(@"SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Сотрудник.Фото, Зарплата_сотрудника.Зарплата  
+        {
+            sda = new OleDbDataAdapter(@"SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Сотрудник.Фото, Зарплата_сотрудника.Зарплата, сотрудник.идзарплата  
                                         FROM Зарплата_сотрудника 
                                         INNER JOIN Сотрудник 
                                         ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата;", con);
-            
             dt = new DataTable();
             sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-            panel3.Visible = true;
-            groupBox1.Enabled = true;
-            groupBox2.Enabled = true;
-            groupBox3.Enabled = true;
-            groupBox4.Enabled = true;
-            groupBox5.Enabled = true;
-            groupBox6.Enabled = true;
-            dataGridView1.Columns[8].Visible = false;
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Select();
-            dataGridView1.AllowUserToAddRows = false;
+            metroGrid1.DataSource = dt;
+            metroTile3.Visible = true;
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox8.Text = "";
+            metroTextBox6.Text = "";
+            metroTextBox7.Text = "";
+            metroTabControl3.Enabled = true;
+            metroTabControl4.Enabled = true;
+            metroTabControl5.Enabled = true;
+            metroTabControl6.Enabled = true;
+            metroTabControl5.Enabled = true;
+            metroTabControl7.Enabled = true;
+            metroTabControl8.Enabled = true;
+            metroTile10.Enabled = true;
+            metroTile16.Enabled = true;
+            metroTabControl8.Enabled = true;
+            metroTabControl7.Enabled = true;
+            metroTabControl8.Enabled = true;
+            metroTile11.Enabled = true;
+            metroTile16.Enabled = true;
+            metroTile14.Enabled = true;
+            metroTile15.Enabled = true;
+            metroGrid1.Columns[8].Visible = false;
+            metroGrid1.Columns[0].Visible = false;
+            metroGrid1.Columns[10].Visible = false;
+            metroGrid1.Select();
+            metroGrid1.AllowUserToAddRows = false;
         }
 
         public void updfilename()
@@ -61,17 +76,20 @@ namespace GYM
                                        ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата;", con);
             dt = new DataTable();
             sda.Fill(dt);
-            dataGridView1.DataSource = dt;
+            metroGrid1.DataSource = dt;
         }
 
-        private void HeadForm_Load(object sender, EventArgs e)
+        private void HeadeForm_Load(object sender, EventArgs e)
         {
+
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "dS_Money.Зарплата_сотрудника". При необходимости она может быть перемещена или удалена.
+            this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
             try
             {
                 upd();
             }
-              catch
-             {
+            catch
+            {
                 MessageBox.Show("Файл базы данных не найден укажите новый путь", "Файл БД не найден");
                 OpenFileDialog openFileDialog1 = new OpenFileDialog() { Filter = "Файл БД (*.mdb)|*.mdb" };
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -97,42 +115,91 @@ namespace GYM
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void metroPanel1_Paint(object sender, PaintEventArgs e)
         {
-            AddEmployee ObjEmployeeAdd = new AddEmployee();
+        }
+
+        private void metroPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void metroLabel4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroTile18_Click(object sender, EventArgs e)
+        {
+            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECt сотрудник.идсотрудник, Сотрудник.Фамилия,Сотрудник.Имя,Сотрудник.отчество,Сотрудник.Дата,Сотрудник.Должность,Сотрудник.Телефон, '(' & Зарплата_сотрудника.Зарплата & ')' AS Зарплата ,сотрудник.фото
+                                                                         FROM Зарплата_сотрудника 
+                                                                         INNER JOIN Сотрудник 
+                                                                         ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата 
+                                                                         UNION 
+                                                                         SELECT 'Средняя:','', '','','','','', Avg(Зарплата_сотрудника.Зарплата) AS Средняя,'' 
+                                                                         FROM Зарплата_сотрудника INNER JOIN Сотрудник 
+                                                                         ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата "), conn);
+            adapter.Fill(ds);
+            metroGrid1.DataSource = ds.Tables[0];
+            conn.Close();
+            EnableOFF();
+            metroGrid1.Columns[0].Visible = false;
+            metroGrid1.Columns[8].Visible = false;
+            metroTabControl3.Enabled = false;
+        }
+
+        private void metroTile4_Click(object sender, EventArgs e)
+        {
+            MOD_Employee ObjEmployeeAdd = new MOD_Employee();
             ObjEmployeeAdd.textBox1.Text = "";
             ObjEmployeeAdd.textBox2.Text = "";
             ObjEmployeeAdd.textBox3.Text = "";
             ObjEmployeeAdd.maskedTextBox1.Text = "";
-            ObjEmployeeAdd.dateTimePicker1.Text = null;
-            ObjEmployeeAdd.textBox6.Text = "";
-            ObjEmployeeAdd.textBox5.Text = "";
+            ObjEmployeeAdd.metroDateTime1.Text = null;
+            ObjEmployeeAdd.metroTextBox6.Text = "";
+            ObjEmployeeAdd.metroTextBox5.Text = "";
             ObjEmployeeAdd.Text = "Добавить сотрудника";
-            ObjEmployeeAdd.button1.Text = "Добавить";
+            ObjEmployeeAdd.metroTile1.Text = "Добавить";
+
+            ObjEmployeeAdd.metroComboBox1.DataSource = bindingSource1;
+            ObjEmployeeAdd.metroComboBox1.ValueMember = "Идзарплата";
+            ObjEmployeeAdd.metroComboBox1.DisplayMember ="Зарплата";
             if (ObjEmployeeAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-                   
-
-                        dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                        id = Convert.ToString(Convert.ToInt32(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value) + 1);
-                        con.Open();
-                        OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Сотрудник]
+                    metroGrid1.Sort(metroGrid1.Columns[1], ListSortDirection.Ascending);
+                    id = Convert.ToString(Convert.ToInt32(metroGrid1.Rows[metroGrid1.RowCount - 1].Cells[0].Value) + 1);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Сотрудник]
                                                         ( Фамилия, Имя, Отчество, Должность,Телефон, Дата,Пароль,Фото,Идзарплата)
                                                         VALUES(@st1,@st2,@st3,@st4,@st5,@st6,@st7,@st8,@st9)", con);
-                        sss.Parameters.AddWithValue("st1", ObjEmployeeAdd.textBox1.Text);
-                        sss.Parameters.AddWithValue("st2", ObjEmployeeAdd.textBox2.Text);
-                        sss.Parameters.AddWithValue("st3", ObjEmployeeAdd.textBox3.Text);
-                        sss.Parameters.AddWithValue("st4", ObjEmployeeAdd.textBox4.Text);
-                        sss.Parameters.AddWithValue("st5", ObjEmployeeAdd.maskedTextBox1.Text);
-                        sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeAdd.dateTimePicker1.Text));
-                        sss.Parameters.AddWithValue("st7", Convert.ToInt16(ObjEmployeeAdd.textBox5.Text));
-                        sss.Parameters.AddWithValue("st8", ObjEmployeeAdd.textBox6.Text);
-                        sss.Parameters.AddWithValue("st9", Convert.ToInt16(ObjEmployeeAdd.comboBox1.SelectedValue.ToString()));
-                        sss.ExecuteNonQuery();
-                        con.Close();
-                        upd();
-                    
+                    sss.Parameters.AddWithValue("st1", ObjEmployeeAdd.textBox1.Text);
+                    sss.Parameters.AddWithValue("st2", ObjEmployeeAdd.textBox2.Text);
+                    sss.Parameters.AddWithValue("st3", ObjEmployeeAdd.textBox3.Text);
+                    sss.Parameters.AddWithValue("st4", ObjEmployeeAdd.metroTextBox4.Text);
+                    sss.Parameters.AddWithValue("st5", ObjEmployeeAdd.maskedTextBox1.Text);
+                    sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeAdd.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st7", Convert.ToInt16(ObjEmployeeAdd.metroTextBox5.Text));
+                    sss.Parameters.AddWithValue("st8", ObjEmployeeAdd.metroTextBox6.Text);
+                    sss.Parameters.AddWithValue("st9", Convert.ToInt16(ObjEmployeeAdd.metroComboBox1.SelectedValue.ToString()));
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    upd();
+
                 }
                 catch (Exception ex)
                 {
@@ -140,60 +207,71 @@ namespace GYM
                 }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void metroTile5_Click(object sender, EventArgs e)
         {
-              AddEmployee ObjEmployeeUpdate = new AddEmployee();
-              //  int t = 0;
-              //t = Convert.ToInt32(dataGridView1.CurrentRow.Cells[10].Value);
-              //  //   DELETE FROM сотрудник WHERE идсотрудник = " + rez + "", con
-              //  string s = "SELECT  идЗарплата  FROM зарплата_сотрудника WHERE идЗарплата =" + t + "";
-              //  sda = new OleDbDataAdapter(s, con);
-              //  dt = new DataTable();
-              //  sda.Fill(dt);
-                ObjEmployeeUpdate.Text = "Редактировать сотрудника";
-                ObjEmployeeUpdate.button1.Text = "Редактировать";
-                rez = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-                ObjEmployeeUpdate.textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-                ObjEmployeeUpdate.textBox2.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value);
-                ObjEmployeeUpdate.textBox3.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value);
-                ObjEmployeeUpdate.textBox4.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[4].Value);
-                ObjEmployeeUpdate.maskedTextBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[5].Value);
-                ObjEmployeeUpdate.dateTimePicker1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[6].Value);
-                ObjEmployeeUpdate.textBox5.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[7].Value);
-                ObjEmployeeUpdate.textBox6.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[8].Value);
-                 //  ObjEmployeeUpdate.comboBox1.ValueMember = Convert.ToString( dt);
-                ObjEmployeeUpdate.comboBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[9].Value);
-                if (ObjEmployeeUpdate.ShowDialog() == DialogResult.OK)
-                    try
-                    {
-                        dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                        con.Open();
-                        OleDbCommand sss = new OleDbCommand("update Сотрудник set Фамилия=@st1, Имя=@st2, Отчество=@st3, Должность=@st4,Телефон=@st5, Дата=@st6,Пароль=@st7,Фото=@st8,Идзарплата=@st9 where идсотрудник=" + rez + "", con);
-                        sss.Parameters.AddWithValue("st1", ObjEmployeeUpdate.textBox1.Text);
-                        sss.Parameters.AddWithValue("st2", ObjEmployeeUpdate.textBox2.Text);
-                        sss.Parameters.AddWithValue("st3", ObjEmployeeUpdate.textBox3.Text);
-                        sss.Parameters.AddWithValue("st4", ObjEmployeeUpdate.textBox4.Text);
-                        sss.Parameters.AddWithValue("st5", ObjEmployeeUpdate.maskedTextBox1.Text);
-                        sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeUpdate.dateTimePicker1.Text));
-                        sss.Parameters.AddWithValue("st7", Convert.ToInt32(ObjEmployeeUpdate.textBox5.Text));
-                        sss.Parameters.AddWithValue("st8", ObjEmployeeUpdate.textBox6.Text);
-                        sss.Parameters.AddWithValue("st9", Convert.ToInt32(ObjEmployeeUpdate.comboBox1.SelectedValue.ToString()));
-                        sss.ExecuteNonQuery();
-                        con.Close();
-                        upd();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+            MOD_Employee ObjEmployeeUpdate = new MOD_Employee();
+
+            ObjEmployeeUpdate.Text = "Редактировать сотрудника";
+            ObjEmployeeUpdate.metroTile1.Text = "Редактировать";
+            rez = Convert.ToInt32(metroGrid1.CurrentRow.Cells[0].Value);
+            ObjEmployeeUpdate.textBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[1].Value);
+            ObjEmployeeUpdate.textBox2.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[2].Value);
+            ObjEmployeeUpdate.textBox3.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[3].Value);
+            ObjEmployeeUpdate.metroTextBox4.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[4].Value);
+            ObjEmployeeUpdate.maskedTextBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[5].Value);
+            ObjEmployeeUpdate.metroDateTime1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[6].Value);
+            ObjEmployeeUpdate.metroTextBox5.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[7].Value);
+            ObjEmployeeUpdate.metroTextBox6.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[8].Value);
+            //  ObjEmployeeUpdate.comboBox1.ValueMember = Convert.ToString( dt);
+            OleDbConnection con2 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+
+            con2.Open();
+            OleDbCommand cmd = new OleDbCommand("select идзарплата,зарплата from зарплата_сотрудника", con2);
+            ObjEmployeeUpdate.metroComboBox1.DisplayMember = "Зарплата";
+            OleDbDataReader reader = cmd.ExecuteReader();
+
+            Dictionary<int, int> list = new Dictionary<int, int>();
+            while (reader.Read())
+            {
+                list.Add((int)reader[0], (int)reader[1]);
+            }
+            reader.Close();
+            cmd.ExecuteNonQuery();
+            ObjEmployeeUpdate.metroComboBox1.DataSource = list.ToList();
+            ObjEmployeeUpdate.metroComboBox1.DisplayMember = "Value";
+            ObjEmployeeUpdate.metroComboBox1.ValueMember = "Key";
+            ObjEmployeeUpdate.metroComboBox1.SelectedValue = metroGrid1.CurrentRow.Cells[10].Value;
+            if (ObjEmployeeUpdate.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    metroGrid1.Sort(metroGrid1.Columns[1], ListSortDirection.Ascending);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand("update Сотрудник set Фамилия=@st1, Имя=@st2, Отчество=@st3, Должность=@st4,Телефон=@st5, Дата=@st6,Пароль=@st7,Фото=@st8,Идзарплата=@st9 where идсотрудник=" + rez + "", con);
+                    sss.Parameters.AddWithValue("st1", ObjEmployeeUpdate.textBox1.Text);
+                    sss.Parameters.AddWithValue("st2", ObjEmployeeUpdate.textBox2.Text);
+                    sss.Parameters.AddWithValue("st3", ObjEmployeeUpdate.textBox3.Text);
+                    sss.Parameters.AddWithValue("st4", ObjEmployeeUpdate.metroTextBox4.Text);
+                    sss.Parameters.AddWithValue("st5", ObjEmployeeUpdate.maskedTextBox1.Text);
+                    sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeUpdate.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st7", Convert.ToInt32(ObjEmployeeUpdate.metroTextBox5.Text));
+                    sss.Parameters.AddWithValue("st8", ObjEmployeeUpdate.metroTextBox6.Text);
+                    sss.Parameters.AddWithValue("st9", Convert.ToInt32(ObjEmployeeUpdate.metroComboBox1.SelectedValue));
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    upd();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void metroTile6_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите Удалить?", "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation))
             {
                 con.Open();
-                rez = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+                rez = Convert.ToInt32(metroGrid1.CurrentRow.Cells[0].Value);
                 OleDbCommand sss = new OleDbCommand(@"DELETE FROM сотрудник 
                                                     WHERE идсотрудник=" + rez + "", con);
                 sss.ExecuteNonQuery();
@@ -202,13 +280,7 @@ namespace GYM
             }
         }
 
-        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[8].Value);
-            pictureBox1.Load(Application.StartupPath + @"\model\" + textBox1.Text);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void metroTile8_Click(object sender, EventArgs e)
         {
             new System.Threading.Thread(delegate (object obj)
             {
@@ -233,17 +305,77 @@ namespace GYM
             ExcelApp.Cells[1, 9] = "Фото";
             ExcelApp.Cells[1, 10] = "Зарплата";
             {
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                for (int i = 0; i < metroGrid1.Rows.Count; i++)
                 {
-                    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+                    for (int j = 0; j < metroGrid1.ColumnCount; j++)
                     {
-                        ExcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value;
+                        ExcelApp.Cells[i + 2, j + 1] = metroGrid1.Rows[i].Cells[j].Value;
                     }
                 }
                 ExcelApp.Visible = true;
                 ExcelApp.UserControl = true;
             }
         }
+
+        private void metroTile9_Click(object sender, EventArgs e)
+        {
+            new System.Threading.Thread(delegate (object obj)
+            {
+                MessageBox.Show("Выполняется формирование отчета, это займёт около 10 секунд");
+            }).Start();
+            //Переключение активности кнопки
+            var setButtonEnabled = new Action<bool>(enabled => metroTile9.Enabled = enabled);
+            //Дективация кнопки
+            setButtonEnabled(false);
+            //По завершении экспорта вызываем переключение активности кнопки
+            WordExporter.ExportCompleted += () =>
+            {
+                //Поскольку это действие выполняется в другом потоке, то используем InvokeRequired
+                if (InvokeRequired)
+                    BeginInvoke(setButtonEnabled, true);
+                else
+                    setButtonEnabled(true);
+            };
+            //Начинаем экспорт
+            WordExporter.Export(metroGrid1, Path.GetFullPath("exported.doc"));
+        }
+
+        private void metroTextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            metroTabControl5.Enabled = false;
+           metroTile11.Enabled = false;
+            metroTabControl7.Enabled = false;
+            metroTabControl8.Enabled = false;
+            metroTile16.Enabled = false;
+            metroTile3.Visible = true;
+            string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
+                       FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата 
+                       WHERE[Фамилия] LIKE '%" + textBox2.Text + "%'";
+            sda = new OleDbDataAdapter(s, con);
+            dt = new DataTable();
+            sda.Fill(dt);
+            metroGrid1.DataSource = dt;
+
+            if (metroGrid1.RowCount == 0)
+            {
+                MessageBox.Show("Таких нет");
+                textBox2.Text = "";
+                upd();
+            }
+        }
+
+        public void EnableOFF()
+        {
+            metroTabControl3.Enabled = false;
+            metroTabControl4.Enabled = false;
+            metroTabControl5.Enabled = false;
+            metroTabControl6.Enabled = false;
+            metroTabControl7.Enabled = false;
+            metroTabControl8.Enabled = false;
+            metroTile3.Visible = false;
+        }
+
+
         public static class WordExporter
         {
             /// <summary>
@@ -255,11 +387,11 @@ namespace GYM
             private static string _fileName;//путь к файлу
             private static dynamic _wdTable;//Таблица в документе
             private static dynamic _wdDoc;//Документ
-            /// <summary>
-            /// Экспорт содержимого DataGridView в Word
-            /// </summary>
-            /// <param name="dgv">Экспортируемый DataGridView</param>
-            /// <param name="filename">Имя файла</param>
+                                          /// <summary>
+                                          /// Экспорт содержимого DataGridView в Word
+                                          /// </summary>
+                                          /// <param name="dgv">Экспортируемый DataGridView</param>
+                                          /// <param name="filename">Имя файла</param>
             public static void Export(DataGridView dgv, string filename)
             {
                 //Сохраняем ссылки на объекты
@@ -268,8 +400,8 @@ namespace GYM
                 //Создаём новое приложение Word
                 _wdApp = Activator.CreateInstance(Type.GetTypeFromProgID("Word.Application"));
                 _wdApp.Visible = true;//Показываем
-                    //Поток, в котором будет проводиться экспорт
-                    var exportthread = new Thread(ExporterDelegate);
+                                      //Поток, в котором будет проводиться экспорт
+                var exportthread = new Thread(ExporterDelegate);
                 //Начинаем экспорт
                 exportthread.Start();
             }
@@ -357,92 +489,49 @@ namespace GYM
                 }
             }
         }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            new System.Threading.Thread(delegate (object obj)
-            {
-                MessageBox.Show("Выполняется формирование отчета, это займёт около 10 секунд");
-            }).Start();
-            //Переключение активности кнопки
-            var setButtonEnabled = new Action<bool>(enabled => button5.Enabled = enabled);
-            //Дективация кнопки
-            setButtonEnabled(false);
-            //По завершении экспорта вызываем переключение активности кнопки
-            WordExporter.ExportCompleted += () =>
-            {
-                //Поскольку это действие выполняется в другом потоке, то используем InvokeRequired
-                if (InvokeRequired)
-                    BeginInvoke(setButtonEnabled, true);
-                else
-                    setButtonEnabled(true);
-            };
-            //Начинаем экспорт
-            WordExporter.Export(dataGridView1, Path.GetFullPath("exported.doc"));
-        }
 
-        private void textBox2_KeyUp(object sender, KeyEventArgs e)
+        private void metroButton1_Click(object sender, EventArgs e)
         {
-            panel3.Visible = true;
-            string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
-                       FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата 
-                       WHERE[Фамилия] LIKE '%" + textBox2.Text + "%'";
-            sda = new OleDbDataAdapter(s, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-            dataGridView1.DataSource = dt;
-            if (dataGridView1.RowCount == 0)
-            {
-                MessageBox.Show("Таких нет");
-                textBox2.Text = "";
-                upd();
-            }
-        }
-        public void EnabledOFF()
-        {
-           // panel3.Visible = false;
-            groupBox2.Enabled = false;
-            groupBox3.Enabled = false;
-            groupBox4.Enabled = false;
-            groupBox5.Enabled = false;
-            groupBox6.Enabled = false;
-        }
-
-        private void button6_Click_2(object sender, EventArgs e)
-        {
-            panel3.Visible = true;
+            metroTile3.Visible = true;
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
-            string date1 = dateTimePicker1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
-            string date2 = dateTimePicker2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
-            if (Convert.ToDateTime(dateTimePicker1.Text) < Convert.ToDateTime(dateTimePicker2.Text))
+            string date1 = metroDateTime1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            string date2 = metroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            if (Convert.ToDateTime(metroDateTime1.Text) < Convert.ToDateTime(metroDateTime2.Text))
             {
                 OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
 FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
 WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn);
 
 
-                                                                              
+
                 adapter.Fill(ds);
-                dataGridView1.DataSource = ds.Tables[0];
+                metroGrid1.DataSource = ds.Tables[0];
                 conn.Close();
-                EnabledOFF();
-             }
-               else
-              {
+                metroTabControl5.Enabled = false;
+                metroTabControl7.Enabled = false;
+                metroTabControl8.Enabled = false;
+                metroTile10.Enabled = false;
+                metroTile16.Enabled = false;
+                metroTabControl8.Enabled = false;
+                //EnableOFF();
+            }
+            else
+            {
                 MessageBox.Show("Начальный период не может быть больше конечного", "Ошибка диапазона");
                 upd();
-               }
-                 }
+            }
+        }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroTextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
             if (!(blockCifr >= 'А' && blockCifr <= 'я'))
             {
                 if (e.KeyChar != (char)Keys.Back)
-               
+
                 {
                     e.Handled = true;
                     DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -450,16 +539,128 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void metroTextBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox8_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox2_Click(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text.Length == 1)
                 ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-                ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void metroTextBox3_Click(object sender, EventArgs e)
         {
-             if (textBox4.Text == "")
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void metroTextBox4_Click(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void metroTextBox5_Click(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void metroTextBox8_Click(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Text == "")
             {
                 MessageBox.Show("Не введены данные");
             }
@@ -469,56 +670,72 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                 string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
                            FROM Зарплата_сотрудника 
                            INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата 
-                           WHERE Фамилия='" + textBox4.Text + "'";
+                           WHERE Фамилия='" + textBox3.Text + "'";
                 sda = new OleDbDataAdapter(s, con);
                 dt = new DataTable();
                 sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns[8].Visible = false;
-                dataGridView1.Columns[0].Visible = false;
-                EnabledOFF();
-                if (dataGridView1.RowCount == 0)
+                metroGrid1.DataSource = dt;
+                metroGrid1.Columns[8].Visible = false;
+                metroGrid1.Columns[0].Visible = false;
+                metroTabControl5.Enabled = false;
+                metroTabControl6.Enabled = false;
+                metroTile14.Enabled = false;
+                metroTile15.Enabled = false;
+                metroTabControl8.Enabled = false;
+                metroTile3.Visible = true;
+
+                if (metroGrid1.RowCount == 0)
                 {
                     MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
                     upd();
-                    panel3.Visible = true;
+                    
                 }
-                    textBox4.Text = "";
+                metroGrid1.Text = "";
             }
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void metroButton4_Click(object sender, EventArgs e)
         {
-            if (textBox5.Text == "")
+            if (textBox4.Text == "")
             {
                 MessageBox.Show("Не введены данные");
             }
             else
             {
-               // panel3.Visible = false;
+                // panel3.Visible = false;
                 string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
                            FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
-                           WHERE Имя='" + textBox5.Text + "'";
+                           WHERE Имя='" + textBox4.Text + "'";
                 sda = new OleDbDataAdapter(s, con);
                 dt = new DataTable();
                 sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                EnabledOFF();
-                dataGridView1.Columns[8].Visible = false;
-                dataGridView1.Columns[0].Visible = false;
-                if (dataGridView1.RowCount == 0)
+                metroGrid1.DataSource = dt;
+               // EnableOFF();
+                metroGrid1.Columns[8].Visible = false;
+                metroGrid1.Columns[0].Visible = false;
+
+                metroTabControl5.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTile14.Enabled = false;
+                metroTile15.Enabled = false;
+                metroTabControl8.Enabled = false;
+                metroTile3.Visible = true;
+
+
+                if (metroGrid1.RowCount == 0)
                 {
                     MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
-                    upd(); panel3.Visible = true;
+                    upd();
+                    metroTile3.Visible = true;
                 }
-                   textBox5.Text = "";
+                textBox4.Text = "";
             }
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void metroButton5_Click(object sender, EventArgs e)
         {
-            panel3.Visible = true;
-            if ((textBox3.Text == "") || (textBox6.Text == ""))
+            metroTile3.Visible = true;
+            if ((textBox5.Text == "") || (textBox8.Text == ""))
             {
                 MessageBox.Show("Не введены данные");
             }
@@ -526,73 +743,67 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
             {
                 string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
                            FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
-                           WHERE Фамилия='" + textBox6.Text + "' and Имя='" + textBox3.Text + "'";
+                           WHERE Фамилия='" + textBox5.Text + "' and Имя='" + textBox8.Text + "'";
                 sda = new OleDbDataAdapter(s, con);
                 dt = new DataTable();
                 sda.Fill(dt);
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns[8].Visible = false;
-                dataGridView1.Columns[0].Visible = false;
-                EnabledOFF();
-                if (dataGridView1.RowCount == 0)
+                metroGrid1.DataSource = dt;
+                metroGrid1.Columns[8].Visible = false;
+               // metroGrid1.Columns[0].Visible = false;
+
+                metroTabControl4.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTile14.Enabled = false;
+                metroTile15.Enabled = false;
+                metroTabControl8.Enabled = false;
+                metroTile3.Visible = true;
+
+               // EnableOFF();
+                if (metroGrid1.RowCount == 0)
                 {
                     MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
                     upd();
                 }
-                textBox6.Text = "";
-                textBox3.Text = "";
+                textBox5.Text = "";
+                textBox8.Text = "";
             }
         }
 
-        private void contextMenuStrip1_Opening_1(object sender, CancelEventArgs e)
+        private void сброситьФильтрToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (ToolStripMenuItem item in contextMenuStrip1.Items)
-                Sub(item, cms_click);
+            upd();
         }
 
-            private void Sub(ToolStripMenuItem item, EventHandler eventHandler)
+        private void metroGrid1_SelectionChanged(object sender, EventArgs e)
         {
-            item.Click += eventHandler;
-            //Подменю
-            foreach (ToolStripMenuItem subItem in item.DropDownItems)
-                Sub(subItem, eventHandler);
-        }
-
-        void cms_click(object sender, EventArgs e)
-        {
-            upd(); 
-        }
-
-       private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow != null)
+            if (metroGrid1.CurrentRow != null)
             {
-                textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[8].Value);
-                pictureBox1.Load(Application.StartupPath + @"\model\" + textBox1.Text);
+               pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                metroTextBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[8].Value);
+                pictureBox1.Load(Application.StartupPath + @"\model\" + metroTextBox1.Text);
             }
         }
 
-        private void button8_Click_1(object sender, EventArgs e)
+        private void metroTile12_Click(object sender, EventArgs e)
         {
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
-                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@" select Фамилия, Имя, Отчество, Должность, Телефон, Дата,Пароль,Идзарплата ,Фото
+            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@" select Фамилия, Имя, Отчество, Должность, Телефон, Дата,Пароль,Идзарплата ,Фото
                                                                               FROM сотрудник 
                                                                               WHERE (сотрудник.[Дата] Is Not Null) 
                                                                               AND ((DateDiff('y',Date(),DateAdd('yyyy',DateDiff('yyyy',[Дата],Date()),[Дата])) 
                                                                               Between 0 And 31))"), conn);
-                adapter.Fill(ds);
-                dataGridView1.DataSource = ds.Tables[0];
-                conn.Close();
-                EnabledOFF();
-              groupBox1.Enabled = false;
-            }
+            adapter.Fill(ds);
+            metroGrid1.DataSource = ds.Tables[0];
+            conn.Close();
+            EnableOFF();
+          
+        }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void metroTile17_Click(object sender, EventArgs e)
         {
-         
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
@@ -604,40 +815,17 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                                                                          GROUP BY Сотрудник.Фамилия , Сотрудник.Имя , Сотрудник.Отчество, Сотрудник.Должность,Сотрудник.Телефон,Сотрудник.Дата,Сотрудник.Пароль, Сотрудник.Идсотрудник,сотрудник.фото  
                                                                          ORDER BY Count(Продажа_абонемента.Идпродажа) desc;"), conn);
             adapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+           metroGrid1.DataSource = ds.Tables[0];
             conn.Close();
-            EnabledOFF();
-            groupBox1.Enabled = false;
+            EnableOFF();
+            metroTabControl3.Enabled = false;
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void metroTile19_Click(object sender, EventArgs e)
         {
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
-            conn.Open();                                                                                                
-            DataSet ds = new DataSet();
-           OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECt сотрудник.идсотрудник, Сотрудник.Фамилия,Сотрудник.Имя,Сотрудник.отчество,Сотрудник.Дата,Сотрудник.Должность,Сотрудник.Телефон, '(' & Зарплата_сотрудника.Зарплата & ')' AS Зарплата ,сотрудник.фото
-                                                                         FROM Зарплата_сотрудника 
-                                                                         INNER JOIN Сотрудник 
-                                                                         ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата 
-                                                                         UNION 
-                                                                         SELECT 'Средняя:','', '','','','','', Avg(Зарплата_сотрудника.Зарплата) AS Средняя,'' 
-                                                                         FROM Зарплата_сотрудника INNER JOIN Сотрудник 
-                                                                         ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата "), conn);
-            adapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-            conn.Close();
-            EnabledOFF();
-            dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[8].Visible = false;
-            groupBox1.Enabled = false;
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
-            OleDbConnection conn = new OleDbConnection(conString);
-            conn.Open();                                                                                              
+            conn.Open();
             DataSet ds = new DataSet();
             OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Абонемент.Название AS Абонемент, Сотрудник.Фамилия  & Сотрудник.Имя AS [Реализовавший сотрудник], Спортсмен.Фамилия  & Спортсмен.Имя AS Спортсмен, Продажа_абонемента.Дата_начала as Начало,  Продажа_абонемента.Дата_окончания as Конец,сотрудник.фото,сотрудник.фото,сотрудник.фото,сотрудник.фото 
                                                                           FROM Спортсмен 
@@ -646,130 +834,37 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                                                                           ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник) 
                                                                           ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен;"), conn);
             adapter.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[8].Visible = false;
-            dataGridView1.Columns[7].Visible = false;
-            dataGridView1.Columns[6].Visible = false;
-            dataGridView1.Columns[5].Visible = false;
+            metroGrid1.DataSource = ds.Tables[0];
+            metroGrid1.Columns[8].Visible = false;
+            metroGrid1.Columns[7].Visible = false;
+            metroGrid1.Columns[6].Visible = false;
+            metroGrid1.Columns[5].Visible = false;
 
             conn.Close();
-            EnabledOFF();
-            groupBox1.Enabled = false;
+            EnableOFF();
+            metroTabControl3.Enabled = false;
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void metroTile7_Click(object sender, EventArgs e)
         {
-            Report rep = new Report();
-            rep.Show();
-            rep.reportViewer1.Visible = true;
-        }
-
-        private void button16_Click(object sender, EventArgs e)
-        {
-
             Money main2 = new Money();
-         //   this.Opacity = 0.6; // прозрачность формы
-          //  main2.Owner = this; // для доступа к главной форме из других
+            //   this.Opacity = 0.6; // прозрачность формы
+            //  main2.Owner = this; // для доступа к главной форме из других
             main2.ShowDialog();
-
-
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroButton2_Click(object sender, EventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char)Keys.Back)
-
-                {
-                    e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            metroTile10.Enabled = false;
+            metroTile11.Enabled = false;
+            metroTabControl5.Enabled = false;
+            metroTabControl7.Enabled = false;
+            metroTabControl8.Enabled = false;
         }
 
-        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char)Keys.Back)
 
-                {
-                    e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
-
-        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char)Keys.Back)
-
-                {
-                    e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char)Keys.Back)
-
-                {
-                    e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-            if (((TextBox)sender).Text.Length == 1)
-                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-            if (((TextBox)sender).Text.Length == 1)
-                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-            if (((TextBox)sender).Text.Length == 1)
-                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            if (((TextBox)sender).Text.Length == 1)
-                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
-        }
-
-        private void HeadForm_Shown(object sender, EventArgs e)
-        {
-           
-                }
-
-                }
-            }
-        
-
-
-
-
-
-
+    }
+}

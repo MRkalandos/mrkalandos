@@ -2,33 +2,41 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.OleDb;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using System.Data.OleDb;
+using System.IO;
 
 namespace GYM
 {
-    public partial class AddEmployee : Form
+    public partial class MOD_Employee : MetroForm
     {
-        public AddEmployee()
+        public MOD_Employee()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void MOD_Employee_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
         {
             HeadForm HF = new HeadForm();
             if ((textBox1.Text == "") ||
                 (textBox2.Text == "") ||
                 (textBox3.Text == "") ||
-                (textBox4.Text == "") ||
+                
                 (maskedTextBox1.Text == "") ||
-                (textBox5.Text == "") ||
-                (comboBox1.Text == ""))
+                (metroTextBox4.Text == "") ||
+                (metroTextBox5.Text == "") ||
+                (metroTextBox6.Text == "") ||
+                (metroComboBox1.Text == ""))
             {
                 MessageBox.Show("Не все поля заполнены!");
             }
@@ -38,7 +46,7 @@ namespace GYM
                 con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
                                                                       from [сотрудник] 
                                                                       where пароль=@st1 ", con1);
-                sss1.Parameters.AddWithValue("st1", textBox5.Text);
+                sss1.Parameters.AddWithValue("st1", metroTextBox5.Text);
                 sss1.ExecuteNonQuery();
                 if (sss1.ExecuteScalar() != null)
                 {
@@ -51,44 +59,36 @@ namespace GYM
                 }
             }
         }
-        private void AddEmployee_Load(object sender, EventArgs e)
-        {
-            this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
 
-            //  this.ForeColor = System.Drawing.Color.Green;
-            //this.COLO = System.Drawing.Color.Green;
-        }
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void metroButton1_Click(object sender, EventArgs e)
         {
             OpenFileDialog filedialog = new OpenFileDialog();
-            filedialog.Filter = "JPG (*.jpg)|*.jpg|PNG (*.png)|*.png"; 
+            filedialog.Filter = "JPG (*.jpg)|*.jpg|PNG (*.png)|*.png";
             if (filedialog.ShowDialog() == DialogResult.OK)
             {
                 string fileName = filedialog.SafeFileName;
                 string sourcePath = filedialog.FileName;
                 string targetPath = @"model";
                 if (!Directory.Exists(targetPath)) //Если папки нет...
-                Directory.CreateDirectory(targetPath); //...создадим ее
+                    Directory.CreateDirectory(targetPath); //...создадим ее
                 string destFile = Path.Combine(targetPath, fileName);
-               // File.Copy(sourcePath, destFile, true);
-                 textBox6.Text= Path.GetFileName(fileName);// то добавляем
+                // File.Copy(sourcePath, destFile, true);
+                metroTextBox6.Text = Path.GetFileName(fileName);// то добавляем
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void metroTile2_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Выйти без сохранения изменений?", "Подтверждение выхода", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation))
             {
                 Close();
             }
-            }
+        }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я' ))
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
             {
                 if (e.KeyChar != (char)Keys.Back)
                 {
@@ -98,10 +98,10 @@ namespace GYM
             }
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroTextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я' ))
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
             {
                 if (e.KeyChar != (char)Keys.Back)
                 {
@@ -111,23 +111,10 @@ namespace GYM
             }
         }
 
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroTextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я' ))
-            {
-                if (e.KeyChar != (char)Keys.Back)
-                {
-                    e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я' || blockCifr <= ' '))
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
             {
                 if (e.KeyChar != (char)Keys.Back)
                 {
@@ -140,7 +127,7 @@ namespace GYM
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9' || blockCifr <= '+'))
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
             {
                 if (e.KeyChar != (char)Keys.Back)
                 {
@@ -150,10 +137,10 @@ namespace GYM
             }
         }
 
-        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroTextBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9' ))
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
             {
                 if (e.KeyChar != (char)Keys.Back)
                 {
@@ -163,61 +150,31 @@ namespace GYM
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void metroTextBox1_Click(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text.Length == 1)
-            ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void metroTextBox2_Click(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text.Length == 1)
-            ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void metroTextBox3_Click(object sender, EventArgs e)
         {
             if (((TextBox)sender).Text.Length == 1)
-            ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
             ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void metroButton2_Click(object sender, EventArgs e)
         {
             Money money = new Money();
             money.ShowDialog();
-        }
-
-        private void AddEmployee_Shown(object sender, EventArgs e)
-        {
-            HeadForm head = new HeadForm();
-            head.upd();
-        }
-
-        private void comboBox1_Click(object sender, EventArgs e)
-        {
-            this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
-            //    bindingSource1.
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-         //   this.зарплата_сотрудникаTableAdapter.Update(this.dS_Money.Зарплата_сотрудника);
-         //   this.зарплата_сотрудникаTableAdapter.Fill(this.dS_Money.Зарплата_сотрудника);
-
-        }
-
-        private void AddEmployee_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        //    e.CloseReason = false
-        }
-
-        private void AddEmployee_FormClosing(object sender, FormClosingEventArgs e)
-        {
-         //   e.CloseReason. = false;
         }
     }
 }

@@ -30,997 +30,1263 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HeadForm));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button16 = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
-            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonTextBox1 = new System.Windows.Forms.RibbonTextBox();
-            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonCheckBox1 = new System.Windows.Forms.RibbonCheckBox();
-            this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton8 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton9 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton10 = new System.Windows.Forms.RibbonButton();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.metroTabControl2 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabControl4 = new System.Windows.Forms.TabControl();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.metroTabControl8 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.metroTile19 = new MetroFramework.Controls.MetroTile();
+            this.metroTile18 = new MetroFramework.Controls.MetroTile();
+            this.metroTile17 = new MetroFramework.Controls.MetroTile();
+            this.metroTile12 = new MetroFramework.Controls.MetroTile();
+            this.metroTabControl7 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.metroTile15 = new MetroFramework.Controls.MetroTile();
+            this.metroButton5 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel15 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
+            this.metroTile14 = new MetroFramework.Controls.MetroTile();
+            this.metroButton4 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.metroTile13 = new MetroFramework.Controls.MetroTile();
+            this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroTabControl6 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.metroTile16 = new MetroFramework.Controls.MetroTile();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.metroTextBox7 = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTile11 = new MetroFramework.Controls.MetroTile();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroDateTime2 = new MetroFramework.Controls.MetroDateTime();
+            this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroTile10 = new MetroFramework.Controls.MetroTile();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroTabControl5 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.tabControl1.SuspendLayout();
+            this.metroTile9 = new MetroFramework.Controls.MetroTile();
+            this.metroTile8 = new MetroFramework.Controls.MetroTile();
+            this.metroTabControl4 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.metroTile7 = new MetroFramework.Controls.MetroTile();
+            this.metroTabControl3 = new MetroFramework.Controls.MetroTabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.metroTile6 = new MetroFramework.Controls.MetroTile();
+            this.metroTile5 = new MetroFramework.Controls.MetroTile();
+            this.metroTile4 = new MetroFramework.Controls.MetroTile();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.сброситьФильтрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dS_Money = new GYM.DS_Money();
+            this.зарплата_сотрудникаTableAdapter = new GYM.DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter();
+            this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.metroTile3 = new MetroFramework.Controls.MetroTile();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.metroTabControl2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.metroTile2.SuspendLayout();
+            this.metroTile1.SuspendLayout();
+            this.metroTabControl8.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.metroTabControl7.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.metroTile15.SuspendLayout();
+            this.metroTile14.SuspendLayout();
+            this.metroTile13.SuspendLayout();
+            this.metroTabControl6.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.metroTile16.SuspendLayout();
+            this.metroTile11.SuspendLayout();
+            this.metroTile10.SuspendLayout();
+            this.metroTabControl5.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.metroTabControl4.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.metroTabControl3.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.metroContextMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_Money)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
+            this.metroTile3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabControl3.SuspendLayout();
-            this.tabControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // metroTabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1370, 753);
-            this.tabControl1.TabIndex = 11;
+            this.metroTabControl1.Controls.Add(this.tabPage1);
+            this.metroTabControl1.Controls.Add(this.tabPage2);
+            this.metroTabControl1.Controls.Add(this.tabPage3);
+            this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
+            this.metroTabControl1.Name = "metroTabControl1";
+            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.Size = new System.Drawing.Size(1346, 708);
+            this.metroTabControl1.TabIndex = 0;
+            this.metroTabControl1.UseSelectable = true;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.tabControl2);
-            this.tabPage1.Controls.Add(this.pictureBox2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Controls.Add(this.metroTabControl2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1362, 727);
+            this.tabPage1.Size = new System.Drawing.Size(1338, 666);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Пользователи";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 3);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1356, 721);
-            this.tabControl2.TabIndex = 1;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.panel3);
-            this.tabPage3.Controls.Add(this.panel2);
-            this.tabPage3.Controls.Add(this.panel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1348, 695);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "Сотрудники";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(936, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(409, 382);
-            this.panel3.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(103, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(409, 382);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.MediumOrchid;
-            this.panel2.Controls.Add(this.groupBox6);
-            this.panel2.Controls.Add(this.groupBox5);
-            this.panel2.Controls.Add(this.groupBox4);
-            this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 385);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1342, 307);
-            this.panel2.TabIndex = 1;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox6.Controls.Add(this.button16);
-            this.groupBox6.Location = new System.Drawing.Point(12, 15);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(150, 276);
-            this.groupBox6.TabIndex = 8;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Зарплата";
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button16.Location = new System.Drawing.Point(6, 29);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(138, 35);
-            this.button16.TabIndex = 0;
-            this.button16.Text = "Зарплата";
-            this.button16.UseVisualStyleBackColor = false;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox5.Controls.Add(this.button13);
-            this.groupBox5.Controls.Add(this.button11);
-            this.groupBox5.Controls.Add(this.button8);
-            this.groupBox5.Controls.Add(this.button12);
-            this.groupBox5.Location = new System.Drawing.Point(1117, 15);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(212, 276);
-            this.groupBox5.TabIndex = 7;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Запросы";
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button13.Location = new System.Drawing.Point(6, 154);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(201, 35);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Проданные абонементы";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button11.Location = new System.Drawing.Point(6, 113);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(201, 35);
-            this.button11.TabIndex = 2;
-            this.button11.Text = "Средняя зарплата";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button8.Location = new System.Drawing.Point(6, 31);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(201, 35);
-            this.button8.TabIndex = 0;
-            this.button8.Text = "Дни рождения в ближайщие 30 дней";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button12.Location = new System.Drawing.Point(6, 72);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(201, 35);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "Лучший сотрудник";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox4.Controls.Add(this.panel7);
-            this.groupBox4.Controls.Add(this.panel6);
-            this.groupBox4.Location = new System.Drawing.Point(859, 15);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(243, 276);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Поиск данных";
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel7.Controls.Add(this.button10);
-            this.panel7.Controls.Add(this.textBox3);
-            this.panel7.Controls.Add(this.label6);
-            this.panel7.Controls.Add(this.textBox6);
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Controls.Add(this.label10);
-            this.panel7.Location = new System.Drawing.Point(9, 122);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(228, 90);
-            this.panel7.TabIndex = 5;
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button10.Location = new System.Drawing.Point(60, 52);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(165, 28);
-            this.button10.TabIndex = 16;
-            this.button10.Text = "Поиск по фамилии и имени";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(163, 26);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(62, 20);
-            this.textBox3.TabIndex = 15;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(129, 33);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Имя:";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(61, 26);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(62, 20);
-            this.textBox6.TabIndex = 11;
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
-            this.textBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(71, 6);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Поиск в таблице";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 33);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Фамилия:";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel6.Controls.Add(this.textBox5);
-            this.panel6.Controls.Add(this.button9);
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.textBox4);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.button7);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Location = new System.Drawing.Point(9, 19);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(228, 97);
-            this.panel6.TabIndex = 4;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(63, 58);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 15;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox5_KeyPress);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button9.Location = new System.Drawing.Point(168, 55);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(57, 23);
-            this.button9.TabIndex = 12;
-            this.button9.Text = "Поиск";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(30, 65);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Имя:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(63, 27);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 11;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(71, 6);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Поиск в таблице";
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button7.Location = new System.Drawing.Point(168, 24);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(57, 23);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Поиск";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 33);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Фамилия:";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox3.Controls.Add(this.panel5);
-            this.groupBox3.Controls.Add(this.panel4);
-            this.groupBox3.Location = new System.Drawing.Point(638, 15);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(206, 276);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Фильтрация данных";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.button6);
-            this.panel5.Controls.Add(this.label3);
-            this.panel5.Controls.Add(this.label2);
-            this.panel5.Controls.Add(this.dateTimePicker2);
-            this.panel5.Controls.Add(this.dateTimePicker1);
-            this.panel5.Location = new System.Drawing.Point(9, 85);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(188, 119);
-            this.panel5.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(17, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Фильтрация по диапозону дат";
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button6.Location = new System.Drawing.Point(20, 82);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(159, 23);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Поиск";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click_2);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "До:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "От:";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(29, 56);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(150, 20);
-            this.dateTimePicker2.TabIndex = 7;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(29, 25);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 20);
-            this.dateTimePicker1.TabIndex = 6;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.textBox2);
-            this.panel4.Location = new System.Drawing.Point(9, 19);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(188, 60);
-            this.panel4.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(26, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Фильтрация по фамилии";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(7, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
-            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox2.Controls.Add(this.button14);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Location = new System.Drawing.Point(408, 15);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(215, 276);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Формирование отчетов";
-            // 
-            // button14
-            // 
-            this.button14.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button14.Location = new System.Drawing.Point(6, 113);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(201, 35);
-            this.button14.TabIndex = 2;
-            this.button14.Text = "Отчет по сотудникам";
-            this.button14.UseVisualStyleBackColor = false;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button5.Location = new System.Drawing.Point(6, 70);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(201, 35);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Отчет Word";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button4.Location = new System.Drawing.Point(6, 29);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(201, 35);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Отчет Excel";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.Goldenrod;
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(178, 15);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 276);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Модификация данных";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button1.Location = new System.Drawing.Point(6, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(201, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Добавить";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button3.Location = new System.Drawing.Point(6, 110);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(201, 35);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Удалить";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button2.Location = new System.Drawing.Point(6, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(201, 35);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Редактировать";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1342, 689);
-            this.panel1.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.PaleGreen;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.GridColor = System.Drawing.Color.SeaGreen;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(943, 689);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.contextMenuStrip1.ShowCheckMargin = true;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 26);
-            this.contextMenuStrip1.Text = "Меню";
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening_1);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
-            this.toolStripMenuItem1.Text = "Сброс фильтра";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1348, 695);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "tabPage2";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.tabControl3);
-            this.tabPage2.Controls.Add(this.pictureBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1362, 727);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Абонемент";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            // 
-            // ribbonButton2
-            // 
-            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
-            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
-            this.ribbonButton2.Name = "ribbonButton2";
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            // 
-            // ribbonPanel1
-            // 
-            this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Text = null;
-            // 
-            // ribbonTextBox1
-            // 
-            this.ribbonTextBox1.Name = "ribbonTextBox1";
-            this.ribbonTextBox1.TextBoxText = "";
-            // 
-            // ribbonTab1
-            // 
-            this.ribbonTab1.Name = "ribbonTab1";
-            this.ribbonTab1.Text = null;
-            // 
-            // ribbonPanel2
-            // 
-            this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = null;
-            // 
-            // ribbonCheckBox1
-            // 
-            this.ribbonCheckBox1.Name = "ribbonCheckBox1";
-            // 
-            // ribbonButton3
-            // 
-            this.ribbonButton3.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.Image")));
-            this.ribbonButton3.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.LargeImage")));
-            this.ribbonButton3.Name = "ribbonButton3";
-            this.ribbonButton3.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton3.SmallImage")));
-            // 
-            // ribbonButton8
-            // 
-            this.ribbonButton8.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.Image")));
-            this.ribbonButton8.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.LargeImage")));
-            this.ribbonButton8.Name = "ribbonButton8";
-            this.ribbonButton8.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.SmallImage")));
-            // 
-            // ribbonButton9
-            // 
-            this.ribbonButton9.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton9.Image")));
-            this.ribbonButton9.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton9.LargeImage")));
-            this.ribbonButton9.Name = "ribbonButton9";
-            this.ribbonButton9.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton9.SmallImage")));
-            // 
-            // ribbonButton10
-            // 
-            this.ribbonButton10.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton10.Image")));
-            this.ribbonButton10.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton10.LargeImage")));
-            this.ribbonButton10.Name = "ribbonButton10";
-            this.ribbonButton10.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton10.SmallImage")));
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.tabControl4);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1362, 727);
-            this.tabPage5.TabIndex = 2;
-            this.tabPage5.Text = "Тренировки";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabControl3
-            // 
-            this.tabControl3.Controls.Add(this.tabPage6);
-            this.tabControl3.Controls.Add(this.tabPage7);
-            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl3.Location = new System.Drawing.Point(3, 3);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(1356, 721);
-            this.tabControl3.TabIndex = 0;
+            // metroTabControl2
+            // 
+            this.metroTabControl2.Controls.Add(this.tabPage6);
+            this.metroTabControl2.Controls.Add(this.tabPage4);
+            this.metroTabControl2.Controls.Add(this.tabPage5);
+            this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroTabControl2.Location = new System.Drawing.Point(0, 0);
+            this.metroTabControl2.Name = "metroTabControl2";
+            this.metroTabControl2.SelectedIndex = 0;
+            this.metroTabControl2.Size = new System.Drawing.Size(1338, 666);
+            this.metroTabControl2.TabIndex = 0;
+            this.metroTabControl2.UseSelectable = true;
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.BackColor = System.Drawing.Color.White;
+            this.tabPage6.Controls.Add(this.metroTile3);
+            this.tabPage6.Controls.Add(this.metroTile2);
+            this.tabPage6.Controls.Add(this.metroTile1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 38);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1348, 695);
-            this.tabPage6.TabIndex = 0;
-            this.tabPage6.Text = "tabPage6";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Size = new System.Drawing.Size(1330, 624);
+            this.tabPage6.TabIndex = 3;
+            this.tabPage6.Text = "Сотрудники";
             // 
-            // tabPage7
+            // metroTile2
             // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(192, 74);
-            this.tabPage7.TabIndex = 1;
-            this.tabPage7.Text = "tabPage7";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Controls.Add(this.metroGrid1);
+            this.metroTile2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.metroTile2.Location = new System.Drawing.Point(0, 0);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(1023, 247);
+            this.metroTile2.TabIndex = 1;
+            this.metroTile2.UseSelectable = true;
             // 
-            // tabControl4
+            // metroTile1
             // 
-            this.tabControl4.Controls.Add(this.tabPage8);
-            this.tabControl4.Controls.Add(this.tabPage9);
-            this.tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl4.Location = new System.Drawing.Point(3, 3);
-            this.tabControl4.Name = "tabControl4";
-            this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(1356, 721);
-            this.tabControl4.TabIndex = 0;
+            this.metroTile1.ActiveControl = null;
+            this.metroTile1.Controls.Add(this.metroTabControl8);
+            this.metroTile1.Controls.Add(this.metroTabControl7);
+            this.metroTile1.Controls.Add(this.metroTabControl6);
+            this.metroTile1.Controls.Add(this.metroTabControl5);
+            this.metroTile1.Controls.Add(this.metroTabControl4);
+            this.metroTile1.Controls.Add(this.metroTabControl3);
+            this.metroTile1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.metroTile1.Location = new System.Drawing.Point(0, 247);
+            this.metroTile1.Name = "metroTile1";
+            this.metroTile1.Size = new System.Drawing.Size(1330, 377);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTile1.TabIndex = 0;
+            this.metroTile1.UseSelectable = true;
             // 
-            // tabPage8
+            // metroTabControl8
             // 
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1348, 695);
-            this.tabPage8.TabIndex = 0;
-            this.tabPage8.Text = "tabPage8";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.metroTabControl8.Controls.Add(this.tabPage12);
+            this.metroTabControl8.Location = new System.Drawing.Point(1088, 14);
+            this.metroTabControl8.Name = "metroTabControl8";
+            this.metroTabControl8.SelectedIndex = 0;
+            this.metroTabControl8.Size = new System.Drawing.Size(196, 356);
+            this.metroTabControl8.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl8.TabIndex = 5;
+            this.metroTabControl8.UseSelectable = true;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Controls.Add(this.metroTile19);
+            this.tabPage12.Controls.Add(this.metroTile18);
+            this.tabPage12.Controls.Add(this.metroTile17);
+            this.tabPage12.Controls.Add(this.metroTile12);
+            this.tabPage12.Location = new System.Drawing.Point(4, 38);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(188, 314);
+            this.tabPage12.TabIndex = 0;
+            this.tabPage12.Text = "Запросы";
+            // 
+            // metroTile19
+            // 
+            this.metroTile19.ActiveControl = null;
+            this.metroTile19.Location = new System.Drawing.Point(11, 172);
+            this.metroTile19.Name = "metroTile19";
+            this.metroTile19.Size = new System.Drawing.Size(165, 54);
+            this.metroTile19.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile19.TabIndex = 3;
+            this.metroTile19.Text = "Проданные \r\nабонементы";
+            this.metroTile19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile19.UseSelectable = true;
+            this.metroTile19.Click += new System.EventHandler(this.metroTile19_Click);
+            // 
+            // metroTile18
+            // 
+            this.metroTile18.ActiveControl = null;
+            this.metroTile18.Location = new System.Drawing.Point(11, 124);
+            this.metroTile18.Name = "metroTile18";
+            this.metroTile18.Size = new System.Drawing.Size(165, 37);
+            this.metroTile18.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile18.TabIndex = 2;
+            this.metroTile18.Text = "Средняя зарплата";
+            this.metroTile18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile18.UseSelectable = true;
+            this.metroTile18.Click += new System.EventHandler(this.metroTile18_Click);
+            // 
+            // metroTile17
+            // 
+            this.metroTile17.ActiveControl = null;
+            this.metroTile17.Location = new System.Drawing.Point(11, 78);
+            this.metroTile17.Name = "metroTile17";
+            this.metroTile17.Size = new System.Drawing.Size(165, 37);
+            this.metroTile17.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile17.TabIndex = 1;
+            this.metroTile17.Text = "Лучший сотрудник";
+            this.metroTile17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile17.UseSelectable = true;
+            this.metroTile17.Click += new System.EventHandler(this.metroTile17_Click);
+            // 
+            // metroTile12
+            // 
+            this.metroTile12.ActiveControl = null;
+            this.metroTile12.Location = new System.Drawing.Point(11, 13);
+            this.metroTile12.Name = "metroTile12";
+            this.metroTile12.Size = new System.Drawing.Size(165, 55);
+            this.metroTile12.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile12.TabIndex = 0;
+            this.metroTile12.Text = "Дни рождения в \r\nближайщие 30 дней";
+            this.metroTile12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile12.UseSelectable = true;
+            this.metroTile12.Click += new System.EventHandler(this.metroTile12_Click);
+            // 
+            // metroTabControl7
+            // 
+            this.metroTabControl7.Controls.Add(this.tabPage11);
+            this.metroTabControl7.Location = new System.Drawing.Point(842, 12);
+            this.metroTabControl7.Name = "metroTabControl7";
+            this.metroTabControl7.SelectedIndex = 0;
+            this.metroTabControl7.Size = new System.Drawing.Size(231, 356);
+            this.metroTabControl7.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl7.TabIndex = 4;
+            this.metroTabControl7.UseSelectable = true;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.metroTile15);
+            this.tabPage11.Controls.Add(this.metroTile14);
+            this.tabPage11.Controls.Add(this.metroTile13);
+            this.tabPage11.Location = new System.Drawing.Point(4, 38);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(223, 314);
+            this.tabPage11.TabIndex = 0;
+            this.tabPage11.Text = "Поиск данных";
+            // 
+            // metroTile15
+            // 
+            this.metroTile15.ActiveControl = null;
+            this.metroTile15.Controls.Add(this.textBox8);
+            this.metroTile15.Controls.Add(this.textBox5);
+            this.metroTile15.Controls.Add(this.metroButton5);
+            this.metroTile15.Controls.Add(this.metroLabel15);
+            this.metroTile15.Controls.Add(this.metroLabel10);
+            this.metroTile15.Controls.Add(this.metroLabel11);
+            this.metroTile15.Location = new System.Drawing.Point(11, 192);
+            this.metroTile15.Name = "metroTile15";
+            this.metroTile15.Size = new System.Drawing.Size(200, 115);
+            this.metroTile15.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile15.TabIndex = 2;
+            this.metroTile15.UseSelectable = true;
+            // 
+            // metroButton5
+            // 
+            this.metroButton5.BackColor = System.Drawing.Color.Crimson;
+            this.metroButton5.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton5.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton5.ForeColor = System.Drawing.Color.White;
+            this.metroButton5.Highlight = true;
+            this.metroButton5.Location = new System.Drawing.Point(60, 83);
+            this.metroButton5.Name = "metroButton5";
+            this.metroButton5.Size = new System.Drawing.Size(86, 25);
+            this.metroButton5.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton5.TabIndex = 8;
+            this.metroButton5.Text = "Поиск";
+            this.metroButton5.UseCustomBackColor = true;
+            this.metroButton5.UseCustomForeColor = true;
+            this.metroButton5.UseSelectable = true;
+            this.metroButton5.Click += new System.EventHandler(this.metroButton5_Click);
+            // 
+            // metroLabel15
+            // 
+            this.metroLabel15.AutoSize = true;
+            this.metroLabel15.BackColor = System.Drawing.Color.Black;
+            this.metroLabel15.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel15.Location = new System.Drawing.Point(37, 61);
+            this.metroLabel15.Name = "metroLabel15";
+            this.metroLabel15.Size = new System.Drawing.Size(38, 19);
+            this.metroLabel15.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel15.TabIndex = 6;
+            this.metroLabel15.Text = "Имя:";
+            this.metroLabel15.UseCustomForeColor = true;
+            this.metroLabel15.UseStyleColors = true;
+            this.metroLabel15.UseWaitCursor = true;
+            // 
+            // metroLabel10
+            // 
+            this.metroLabel10.AutoSize = true;
+            this.metroLabel10.BackColor = System.Drawing.Color.Black;
+            this.metroLabel10.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel10.Location = new System.Drawing.Point(8, 28);
+            this.metroLabel10.Name = "metroLabel10";
+            this.metroLabel10.Size = new System.Drawing.Size(68, 19);
+            this.metroLabel10.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel10.TabIndex = 5;
+            this.metroLabel10.Text = "Фамилия:";
+            this.metroLabel10.UseCustomForeColor = true;
+            this.metroLabel10.UseStyleColors = true;
+            this.metroLabel10.UseWaitCursor = true;
+            // 
+            // metroLabel11
+            // 
+            this.metroLabel11.AutoSize = true;
+            this.metroLabel11.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel11.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel11.Location = new System.Drawing.Point(7, 0);
+            this.metroLabel11.Name = "metroLabel11";
+            this.metroLabel11.Size = new System.Drawing.Size(185, 19);
+            this.metroLabel11.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel11.TabIndex = 2;
+            this.metroLabel11.Text = "Поиск по фамилии и имени:";
+            this.metroLabel11.UseCustomForeColor = true;
+            // 
+            // metroTile14
+            // 
+            this.metroTile14.ActiveControl = null;
+            this.metroTile14.Controls.Add(this.textBox4);
+            this.metroTile14.Controls.Add(this.metroButton4);
+            this.metroTile14.Controls.Add(this.metroLabel8);
+            this.metroTile14.Controls.Add(this.metroLabel9);
+            this.metroTile14.Location = new System.Drawing.Point(11, 102);
+            this.metroTile14.Name = "metroTile14";
+            this.metroTile14.Size = new System.Drawing.Size(200, 83);
+            this.metroTile14.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile14.TabIndex = 1;
+            this.metroTile14.UseSelectable = true;
+            // 
+            // metroButton4
+            // 
+            this.metroButton4.BackColor = System.Drawing.Color.Crimson;
+            this.metroButton4.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton4.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton4.ForeColor = System.Drawing.Color.White;
+            this.metroButton4.Highlight = true;
+            this.metroButton4.Location = new System.Drawing.Point(60, 53);
+            this.metroButton4.Name = "metroButton4";
+            this.metroButton4.Size = new System.Drawing.Size(86, 25);
+            this.metroButton4.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton4.TabIndex = 6;
+            this.metroButton4.Text = "Поиск";
+            this.metroButton4.UseCustomBackColor = true;
+            this.metroButton4.UseCustomForeColor = true;
+            this.metroButton4.UseSelectable = true;
+            this.metroButton4.Click += new System.EventHandler(this.metroButton4_Click);
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.BackColor = System.Drawing.Color.Black;
+            this.metroLabel8.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel8.Location = new System.Drawing.Point(37, 28);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(38, 19);
+            this.metroLabel8.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel8.TabIndex = 5;
+            this.metroLabel8.Text = "Имя:";
+            this.metroLabel8.UseCustomForeColor = true;
+            this.metroLabel8.UseStyleColors = true;
+            this.metroLabel8.UseWaitCursor = true;
+            this.metroLabel8.Click += new System.EventHandler(this.metroLabel8_Click);
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel9.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel9.Location = new System.Drawing.Point(38, 0);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(113, 19);
+            this.metroLabel9.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel9.TabIndex = 2;
+            this.metroLabel9.Text = "Поиск по имени:";
+            this.metroLabel9.UseCustomForeColor = true;
+            // 
+            // metroTile13
+            // 
+            this.metroTile13.ActiveControl = null;
+            this.metroTile13.Controls.Add(this.textBox3);
+            this.metroTile13.Controls.Add(this.metroButton3);
+            this.metroTile13.Controls.Add(this.metroLabel7);
+            this.metroTile13.Controls.Add(this.metroLabel6);
+            this.metroTile13.Location = new System.Drawing.Point(10, 8);
+            this.metroTile13.Name = "metroTile13";
+            this.metroTile13.Size = new System.Drawing.Size(200, 86);
+            this.metroTile13.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile13.TabIndex = 0;
+            this.metroTile13.UseSelectable = true;
+            // 
+            // metroButton3
+            // 
+            this.metroButton3.BackColor = System.Drawing.Color.Crimson;
+            this.metroButton3.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton3.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton3.ForeColor = System.Drawing.Color.White;
+            this.metroButton3.Highlight = true;
+            this.metroButton3.Location = new System.Drawing.Point(60, 53);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(86, 25);
+            this.metroButton3.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton3.TabIndex = 6;
+            this.metroButton3.Text = "Поиск";
+            this.metroButton3.UseCustomBackColor = true;
+            this.metroButton3.UseCustomForeColor = true;
+            this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.BackColor = System.Drawing.Color.Black;
+            this.metroLabel7.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel7.Location = new System.Drawing.Point(8, 28);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(68, 19);
+            this.metroLabel7.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel7.TabIndex = 5;
+            this.metroLabel7.Text = "Фамилия:";
+            this.metroLabel7.UseCustomForeColor = true;
+            this.metroLabel7.UseStyleColors = true;
+            this.metroLabel7.UseWaitCursor = true;
+            this.metroLabel7.Click += new System.EventHandler(this.metroLabel7_Click);
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel6.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel6.Location = new System.Drawing.Point(34, 1);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(129, 19);
+            this.metroLabel6.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel6.TabIndex = 2;
+            this.metroLabel6.Text = "Поиск по фамилии:";
+            this.metroLabel6.UseCustomForeColor = true;
+            // 
+            // metroTabControl6
+            // 
+            this.metroTabControl6.Controls.Add(this.tabPage10);
+            this.metroTabControl6.Location = new System.Drawing.Point(597, 12);
+            this.metroTabControl6.Name = "metroTabControl6";
+            this.metroTabControl6.SelectedIndex = 0;
+            this.metroTabControl6.Size = new System.Drawing.Size(230, 356);
+            this.metroTabControl6.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl6.TabIndex = 3;
+            this.metroTabControl6.UseSelectable = true;
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.metroTile16);
+            this.tabPage10.Controls.Add(this.metroTile11);
+            this.tabPage10.Controls.Add(this.metroTile10);
+            this.tabPage10.Location = new System.Drawing.Point(4, 38);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(222, 314);
+            this.tabPage10.TabIndex = 0;
+            this.tabPage10.Text = "Фильтрация данных";
+            // 
+            // metroTile16
+            // 
+            this.metroTile16.ActiveControl = null;
+            this.metroTile16.Controls.Add(this.metroButton2);
+            this.metroTile16.Controls.Add(this.metroTextBox7);
+            this.metroTile16.Controls.Add(this.metroLabel14);
+            this.metroTile16.Controls.Add(this.metroLabel12);
+            this.metroTile16.Controls.Add(this.metroLabel13);
+            this.metroTile16.Controls.Add(this.metroTextBox6);
+            this.metroTile16.Location = new System.Drawing.Point(11, 215);
+            this.metroTile16.Name = "metroTile16";
+            this.metroTile16.Size = new System.Drawing.Size(200, 91);
+            this.metroTile16.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile16.TabIndex = 2;
+            this.metroTile16.UseSelectable = true;
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.BackColor = System.Drawing.Color.Crimson;
+            this.metroButton2.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton2.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton2.ForeColor = System.Drawing.Color.White;
+            this.metroButton2.Highlight = true;
+            this.metroButton2.Location = new System.Drawing.Point(60, 59);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(86, 25);
+            this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton2.TabIndex = 7;
+            this.metroButton2.Text = "Фильтрация";
+            this.metroButton2.UseCustomBackColor = true;
+            this.metroButton2.UseCustomForeColor = true;
+            this.metroButton2.UseMnemonic = false;
+            this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            // 
+            // metroTextBox7
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox7.CustomButton.Image = null;
+            this.metroTextBox7.CustomButton.Location = new System.Drawing.Point(29, 1);
+            this.metroTextBox7.CustomButton.Name = "";
+            this.metroTextBox7.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox7.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox7.CustomButton.TabIndex = 1;
+            this.metroTextBox7.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox7.CustomButton.UseSelectable = true;
+            this.metroTextBox7.CustomButton.Visible = false;
+            this.metroTextBox7.Lines = new string[0];
+            this.metroTextBox7.Location = new System.Drawing.Point(134, 26);
+            this.metroTextBox7.MaxLength = 32767;
+            this.metroTextBox7.Name = "metroTextBox7";
+            this.metroTextBox7.PasswordChar = '\0';
+            this.metroTextBox7.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox7.SelectedText = "";
+            this.metroTextBox7.SelectionLength = 0;
+            this.metroTextBox7.SelectionStart = 0;
+            this.metroTextBox7.ShortcutsEnabled = true;
+            this.metroTextBox7.Size = new System.Drawing.Size(51, 23);
+            this.metroTextBox7.TabIndex = 6;
+            this.metroTextBox7.UseSelectable = true;
+            this.metroTextBox7.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox7.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroTextBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox7_KeyPress);
+            // 
+            // metroLabel14
+            // 
+            this.metroLabel14.AutoSize = true;
+            this.metroLabel14.BackColor = System.Drawing.Color.Black;
+            this.metroLabel14.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel14.Location = new System.Drawing.Point(99, 31);
+            this.metroLabel14.Name = "metroLabel14";
+            this.metroLabel14.Size = new System.Drawing.Size(29, 19);
+            this.metroLabel14.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel14.TabIndex = 5;
+            this.metroLabel14.Text = "До:";
+            this.metroLabel14.UseCustomForeColor = true;
+            this.metroLabel14.UseStyleColors = true;
+            this.metroLabel14.UseWaitCursor = true;
+            // 
+            // metroLabel12
+            // 
+            this.metroLabel12.AutoSize = true;
+            this.metroLabel12.BackColor = System.Drawing.Color.Black;
+            this.metroLabel12.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel12.Location = new System.Drawing.Point(8, 31);
+            this.metroLabel12.Name = "metroLabel12";
+            this.metroLabel12.Size = new System.Drawing.Size(28, 19);
+            this.metroLabel12.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel12.TabIndex = 4;
+            this.metroLabel12.Text = "От:";
+            this.metroLabel12.UseCustomForeColor = true;
+            this.metroLabel12.UseStyleColors = true;
+            this.metroLabel12.UseWaitCursor = true;
+            // 
+            // metroLabel13
+            // 
+            this.metroLabel13.AutoSize = true;
+            this.metroLabel13.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel13.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel13.Location = new System.Drawing.Point(21, 1);
+            this.metroLabel13.Name = "metroLabel13";
+            this.metroLabel13.Size = new System.Drawing.Size(164, 19);
+            this.metroLabel13.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel13.TabIndex = 1;
+            this.metroLabel13.Text = "Фильтрация по зарплате:";
+            this.metroLabel13.UseCustomForeColor = true;
+            // 
+            // metroTextBox6
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox6.CustomButton.Image = null;
+            this.metroTextBox6.CustomButton.Location = new System.Drawing.Point(29, 1);
+            this.metroTextBox6.CustomButton.Name = "";
+            this.metroTextBox6.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox6.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox6.CustomButton.TabIndex = 1;
+            this.metroTextBox6.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox6.CustomButton.UseSelectable = true;
+            this.metroTextBox6.CustomButton.Visible = false;
+            this.metroTextBox6.Lines = new string[0];
+            this.metroTextBox6.Location = new System.Drawing.Point(41, 27);
+            this.metroTextBox6.MaxLength = 32767;
+            this.metroTextBox6.Name = "metroTextBox6";
+            this.metroTextBox6.PasswordChar = '\0';
+            this.metroTextBox6.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox6.SelectedText = "";
+            this.metroTextBox6.SelectionLength = 0;
+            this.metroTextBox6.SelectionStart = 0;
+            this.metroTextBox6.ShortcutsEnabled = true;
+            this.metroTextBox6.Size = new System.Drawing.Size(51, 23);
+            this.metroTextBox6.TabIndex = 0;
+            this.metroTextBox6.UseSelectable = true;
+            this.metroTextBox6.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox6.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroTextBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox6_KeyPress);
+            // 
+            // metroTile11
+            // 
+            this.metroTile11.ActiveControl = null;
+            this.metroTile11.Controls.Add(this.metroButton1);
+            this.metroTile11.Controls.Add(this.metroLabel4);
+            this.metroTile11.Controls.Add(this.metroLabel3);
+            this.metroTile11.Controls.Add(this.metroDateTime2);
+            this.metroTile11.Controls.Add(this.metroDateTime1);
+            this.metroTile11.Controls.Add(this.metroLabel2);
+            this.metroTile11.Location = new System.Drawing.Point(11, 77);
+            this.metroTile11.Name = "metroTile11";
+            this.metroTile11.Size = new System.Drawing.Size(200, 127);
+            this.metroTile11.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile11.TabIndex = 1;
+            this.metroTile11.UseSelectable = true;
+            // 
+            // metroButton1
+            // 
+            this.metroButton1.BackColor = System.Drawing.Color.Crimson;
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton1.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            this.metroButton1.ForeColor = System.Drawing.Color.White;
+            this.metroButton1.Highlight = true;
+            this.metroButton1.Location = new System.Drawing.Point(60, 95);
+            this.metroButton1.Name = "metroButton1";
+            this.metroButton1.Size = new System.Drawing.Size(86, 25);
+            this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroButton1.TabIndex = 5;
+            this.metroButton1.Text = "Фильтрация";
+            this.metroButton1.UseCustomBackColor = true;
+            this.metroButton1.UseCustomForeColor = true;
+            this.metroButton1.UseMnemonic = false;
+            this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(8, 69);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(29, 19);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel4.TabIndex = 4;
+            this.metroLabel4.Text = "До:";
+            this.metroLabel4.UseCustomForeColor = true;
+            this.metroLabel4.Click += new System.EventHandler(this.metroLabel4_Click);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.BackColor = System.Drawing.Color.Black;
+            this.metroLabel3.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel3.Location = new System.Drawing.Point(10, 34);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(28, 19);
+            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel3.TabIndex = 3;
+            this.metroLabel3.Text = "От:";
+            this.metroLabel3.UseCustomForeColor = true;
+            this.metroLabel3.UseStyleColors = true;
+            this.metroLabel3.UseWaitCursor = true;
+            // 
+            // metroDateTime2
+            // 
+            this.metroDateTime2.Location = new System.Drawing.Point(44, 59);
+            this.metroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
+            this.metroDateTime2.Name = "metroDateTime2";
+            this.metroDateTime2.Size = new System.Drawing.Size(143, 29);
+            this.metroDateTime2.TabIndex = 2;
+            // 
+            // metroDateTime1
+            // 
+            this.metroDateTime1.Location = new System.Drawing.Point(44, 24);
+            this.metroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
+            this.metroDateTime1.Name = "metroDateTime1";
+            this.metroDateTime1.Size = new System.Drawing.Size(143, 29);
+            this.metroDateTime1.TabIndex = 1;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(2, 1);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(198, 19);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel2.TabIndex = 0;
+            this.metroLabel2.Text = "Фильтрация по диапозону дат:";
+            this.metroLabel2.UseCustomForeColor = true;
+            // 
+            // metroTile10
+            // 
+            this.metroTile10.ActiveControl = null;
+            this.metroTile10.Controls.Add(this.textBox2);
+            this.metroTile10.Controls.Add(this.metroLabel5);
+            this.metroTile10.Controls.Add(this.metroLabel1);
+            this.metroTile10.Location = new System.Drawing.Point(11, 10);
+            this.metroTile10.Name = "metroTile10";
+            this.metroTile10.Size = new System.Drawing.Size(200, 56);
+            this.metroTile10.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroTile10.TabIndex = 0;
+            this.metroTile10.UseSelectable = true;
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.BackColor = System.Drawing.Color.Black;
+            this.metroLabel5.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel5.Location = new System.Drawing.Point(8, 31);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(68, 19);
+            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel5.TabIndex = 4;
+            this.metroLabel5.Text = "Фамилия:";
+            this.metroLabel5.UseCustomForeColor = true;
+            this.metroLabel5.UseStyleColors = true;
+            this.metroLabel5.UseWaitCursor = true;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.metroLabel1.ForeColor = System.Drawing.Color.Black;
+            this.metroLabel1.Location = new System.Drawing.Point(4, 2);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(193, 19);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Pink;
+            this.metroLabel1.TabIndex = 1;
+            this.metroLabel1.Text = "Фильтрация по первой букве:";
+            this.metroLabel1.UseCustomForeColor = true;
+            // 
+            // metroTabControl5
+            // 
+            this.metroTabControl5.Controls.Add(this.tabPage9);
+            this.metroTabControl5.Location = new System.Drawing.Point(378, 12);
+            this.metroTabControl5.Name = "metroTabControl5";
+            this.metroTabControl5.SelectedIndex = 0;
+            this.metroTabControl5.Size = new System.Drawing.Size(205, 356);
+            this.metroTabControl5.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl5.TabIndex = 2;
+            this.metroTabControl5.UseSelectable = true;
             // 
             // tabPage9
             // 
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Controls.Add(this.metroTile9);
+            this.tabPage9.Controls.Add(this.metroTile8);
+            this.tabPage9.Location = new System.Drawing.Point(4, 38);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1348, 695);
-            this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "tabPage9";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.tabPage9.Size = new System.Drawing.Size(197, 314);
+            this.tabPage9.TabIndex = 0;
+            this.tabPage9.Text = "Формирование отчетов";
             // 
-            // pictureBox2
+            // metroTile9
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(1356, 721);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
+            this.metroTile9.ActiveControl = null;
+            this.metroTile9.Location = new System.Drawing.Point(12, 63);
+            this.metroTile9.Name = "metroTile9";
+            this.metroTile9.Size = new System.Drawing.Size(173, 39);
+            this.metroTile9.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile9.TabIndex = 1;
+            this.metroTile9.Text = "Отчет в Word";
+            this.metroTile9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile9.UseSelectable = true;
+            this.metroTile9.Click += new System.EventHandler(this.metroTile9_Click);
             // 
-            // pictureBox3
+            // metroTile8
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(1356, 721);
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
+            this.metroTile8.ActiveControl = null;
+            this.metroTile8.Location = new System.Drawing.Point(13, 13);
+            this.metroTile8.Name = "metroTile8";
+            this.metroTile8.Size = new System.Drawing.Size(173, 39);
+            this.metroTile8.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile8.TabIndex = 0;
+            this.metroTile8.Text = "Отчет в Excel";
+            this.metroTile8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile8.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile8.TileImage")));
+            this.metroTile8.UseSelectable = true;
+            this.metroTile8.Click += new System.EventHandler(this.metroTile8_Click);
+            // 
+            // metroTabControl4
+            // 
+            this.metroTabControl4.Controls.Add(this.tabPage8);
+            this.metroTabControl4.Location = new System.Drawing.Point(13, 12);
+            this.metroTabControl4.Name = "metroTabControl4";
+            this.metroTabControl4.SelectedIndex = 0;
+            this.metroTabControl4.Size = new System.Drawing.Size(131, 356);
+            this.metroTabControl4.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl4.TabIndex = 1;
+            this.metroTabControl4.UseSelectable = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.metroTile7);
+            this.tabPage8.Location = new System.Drawing.Point(4, 38);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(123, 314);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "Зарплата";
+            // 
+            // metroTile7
+            // 
+            this.metroTile7.ActiveControl = null;
+            this.metroTile7.Location = new System.Drawing.Point(9, 13);
+            this.metroTile7.Name = "metroTile7";
+            this.metroTile7.Size = new System.Drawing.Size(107, 39);
+            this.metroTile7.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile7.TabIndex = 0;
+            this.metroTile7.Text = "Зарплата";
+            this.metroTile7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile7.UseSelectable = true;
+            this.metroTile7.Click += new System.EventHandler(this.metroTile7_Click);
+            // 
+            // metroTabControl3
+            // 
+            this.metroTabControl3.Controls.Add(this.tabPage7);
+            this.metroTabControl3.Location = new System.Drawing.Point(157, 12);
+            this.metroTabControl3.Name = "metroTabControl3";
+            this.metroTabControl3.SelectedIndex = 0;
+            this.metroTabControl3.Size = new System.Drawing.Size(207, 356);
+            this.metroTabControl3.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTabControl3.TabIndex = 0;
+            this.metroTabControl3.UseSelectable = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.metroTile6);
+            this.tabPage7.Controls.Add(this.metroTile5);
+            this.tabPage7.Controls.Add(this.metroTile4);
+            this.tabPage7.Location = new System.Drawing.Point(4, 38);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(199, 314);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "Модификация данных";
+            // 
+            // metroTile6
+            // 
+            this.metroTile6.ActiveControl = null;
+            this.metroTile6.Location = new System.Drawing.Point(13, 115);
+            this.metroTile6.Name = "metroTile6";
+            this.metroTile6.Size = new System.Drawing.Size(173, 39);
+            this.metroTile6.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile6.TabIndex = 2;
+            this.metroTile6.Text = "Удалить запись";
+            this.metroTile6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile6.TileImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.metroTile6.UseSelectable = true;
+            this.metroTile6.Click += new System.EventHandler(this.metroTile6_Click);
+            // 
+            // metroTile5
+            // 
+            this.metroTile5.ActiveControl = null;
+            this.metroTile5.Location = new System.Drawing.Point(13, 64);
+            this.metroTile5.Name = "metroTile5";
+            this.metroTile5.Size = new System.Drawing.Size(173, 39);
+            this.metroTile5.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile5.TabIndex = 1;
+            this.metroTile5.Text = "Редактировать запись";
+            this.metroTile5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile5.TileImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.metroTile5.UseSelectable = true;
+            this.metroTile5.Click += new System.EventHandler(this.metroTile5_Click);
+            // 
+            // metroTile4
+            // 
+            this.metroTile4.ActiveControl = null;
+            this.metroTile4.Location = new System.Drawing.Point(13, 13);
+            this.metroTile4.Name = "metroTile4";
+            this.metroTile4.Size = new System.Drawing.Size(173, 39);
+            this.metroTile4.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile4.TabIndex = 0;
+            this.metroTile4.Text = "Добавить запись";
+            this.metroTile4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile4.TileImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.metroTile4.UseSelectable = true;
+            this.metroTile4.Click += new System.EventHandler(this.metroTile4_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 38);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1330, 624);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "Тренера";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 38);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1330, 624);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "Спортсмены";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 38);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1338, 666);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Абонемент";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 38);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1338, 666);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Сотрудники";
+            // 
+            // metroContextMenu1
+            // 
+            this.metroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сброситьФильтрToolStripMenuItem});
+            this.metroContextMenu1.Name = "metroContextMenu1";
+            this.metroContextMenu1.Size = new System.Drawing.Size(172, 26);
+            // 
+            // сброситьФильтрToolStripMenuItem
+            // 
+            this.сброситьФильтрToolStripMenuItem.Name = "сброситьФильтрToolStripMenuItem";
+            this.сброситьФильтрToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.сброситьФильтрToolStripMenuItem.Text = "Сбросить фильтр";
+            this.сброситьФильтрToolStripMenuItem.Click += new System.EventHandler(this.сброситьФильтрToolStripMenuItem_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(81, 26);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 5;
+            this.textBox2.TextChanged += new System.EventHandler(this.metroTextBox2_Click);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox2_KeyPress);
+            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.metroTextBox2_KeyUp);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(81, 26);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 7;
+            this.textBox3.TextChanged += new System.EventHandler(this.metroTextBox3_Click);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox3_KeyPress);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(81, 26);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 7;
+            this.textBox4.TextChanged += new System.EventHandler(this.metroTextBox4_Click);
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox4_KeyPress);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(81, 26);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 9;
+            this.textBox5.TextChanged += new System.EventHandler(this.metroTextBox4_Click);
+            this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox5_KeyPress);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(81, 59);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 20);
+            this.textBox8.TabIndex = 10;
+            this.textBox8.TextChanged += new System.EventHandler(this.metroTextBox4_Click);
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "Зарплата_сотрудника";
+            this.bindingSource1.DataSource = this.dS_Money;
+            // 
+            // dS_Money
+            // 
+            this.dS_Money.DataSetName = "DS_Money";
+            this.dS_Money.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // зарплата_сотрудникаTableAdapter
+            // 
+            this.зарплата_сотрудникаTableAdapter.ClearBeforeFill = true;
+            // 
+            // metroGrid1
+            // 
+            this.metroGrid1.AllowUserToResizeRows = false;
+            this.metroGrid1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(65)))), ((int)(((byte)(153)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(73)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.metroGrid1.ContextMenuStrip = this.metroContextMenu1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(73)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.metroGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroGrid1.EnableHeadersVisualStyles = false;
+            this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.metroGrid1.Location = new System.Drawing.Point(0, 0);
+            this.metroGrid1.Name = "metroGrid1";
+            this.metroGrid1.ReadOnly = true;
+            this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(65)))), ((int)(((byte)(153)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(73)))), ((int)(((byte)(173)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.metroGrid1.Size = new System.Drawing.Size(1023, 247);
+            this.metroGrid1.Style = MetroFramework.MetroColorStyle.Purple;
+            this.metroGrid1.TabIndex = 0;
+            this.metroGrid1.SelectionChanged += new System.EventHandler(this.metroGrid1_SelectionChanged);
+            // 
+            // metroTextBox1
+            // 
+            // 
+            // 
+            // 
+            this.metroTextBox1.CustomButton.Image = null;
+            this.metroTextBox1.CustomButton.Location = new System.Drawing.Point(72, 1);
+            this.metroTextBox1.CustomButton.Name = "";
+            this.metroTextBox1.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.metroTextBox1.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTextBox1.CustomButton.TabIndex = 1;
+            this.metroTextBox1.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.metroTextBox1.CustomButton.UseSelectable = true;
+            this.metroTextBox1.CustomButton.Visible = false;
+            this.metroTextBox1.Lines = new string[] {
+        "metroTextBox1"};
+            this.metroTextBox1.Location = new System.Drawing.Point(47, 184);
+            this.metroTextBox1.MaxLength = 32767;
+            this.metroTextBox1.Name = "metroTextBox1";
+            this.metroTextBox1.PasswordChar = '\0';
+            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.metroTextBox1.SelectedText = "";
+            this.metroTextBox1.SelectionLength = 0;
+            this.metroTextBox1.SelectionStart = 0;
+            this.metroTextBox1.ShortcutsEnabled = true;
+            this.metroTextBox1.Size = new System.Drawing.Size(94, 23);
+            this.metroTextBox1.TabIndex = 1;
+            this.metroTextBox1.Text = "metroTextBox1";
+            this.metroTextBox1.UseSelectable = true;
+            this.metroTextBox1.Visible = false;
+            this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroTile3
+            // 
+            this.metroTile3.ActiveControl = null;
+            this.metroTile3.Controls.Add(this.pictureBox1);
+            this.metroTile3.Controls.Add(this.metroTextBox1);
+            this.metroTile3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.metroTile3.Location = new System.Drawing.Point(1029, 0);
+            this.metroTile3.Name = "metroTile3";
+            this.metroTile3.Size = new System.Drawing.Size(301, 247);
+            this.metroTile3.TabIndex = 2;
+            this.metroTile3.UseSelectable = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(301, 247);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // HeadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 753);
-            this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.metroTabControl1);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HeadForm";
             this.Text = "Главная форма";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.HeadForm_Load);
-            this.Shown += new System.EventHandler(this.HeadForm_Shown);
-            this.tabControl1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.HeadeForm_Load);
+            this.metroTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.metroTabControl2.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.metroTile2.ResumeLayout(false);
+            this.metroTile1.ResumeLayout(false);
+            this.metroTabControl8.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.metroTabControl7.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.metroTile15.ResumeLayout(false);
+            this.metroTile15.PerformLayout();
+            this.metroTile14.ResumeLayout(false);
+            this.metroTile14.PerformLayout();
+            this.metroTile13.ResumeLayout(false);
+            this.metroTile13.PerformLayout();
+            this.metroTabControl6.ResumeLayout(false);
+            this.tabPage10.ResumeLayout(false);
+            this.metroTile16.ResumeLayout(false);
+            this.metroTile16.PerformLayout();
+            this.metroTile11.ResumeLayout(false);
+            this.metroTile11.PerformLayout();
+            this.metroTile10.ResumeLayout(false);
+            this.metroTile10.PerformLayout();
+            this.metroTabControl5.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.metroTabControl4.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.metroTabControl3.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.metroContextMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_Money)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
+            this.metroTile3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabControl3.ResumeLayout(false);
-            this.tabControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        public System.Windows.Forms.DataGridView dataGridView1;
-        public System.Windows.Forms.TabControl tabControl1;
-        public System.Windows.Forms.TabPage tabPage1;
-        public System.Windows.Forms.TabControl tabControl2;
-        public System.Windows.Forms.TabPage tabPage3;
-        public System.Windows.Forms.Panel panel3;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.Button button4;
-        public System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.Button button3;
-        public System.Windows.Forms.Button button2;
-        public System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.TabPage tabPage4;
-        public System.Windows.Forms.TabPage tabPage2;
-        public System.Windows.Forms.Button button5;
-        public System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.Panel panel4;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox textBox2;
-        public System.Windows.Forms.Button button6;
-        public System.Windows.Forms.Panel panel5;
-        public System.Windows.Forms.DateTimePicker dateTimePicker2;
-        public System.Windows.Forms.DateTimePicker dateTimePicker1;
-        public System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.GroupBox groupBox4;
-        public System.Windows.Forms.Panel panel6;
-        public System.Windows.Forms.Label label5;
-        public System.Windows.Forms.Button button7;
-        public System.Windows.Forms.Label label7;
-        public System.Windows.Forms.TextBox textBox4;
-        public System.Windows.Forms.TextBox textBox5;
-        public System.Windows.Forms.Button button9;
-        public System.Windows.Forms.Label label9;
-        public System.Windows.Forms.Panel panel7;
-        public System.Windows.Forms.Button button10;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.Label label6;
-        public System.Windows.Forms.TextBox textBox6;
-        public System.Windows.Forms.Label label8;
-        public System.Windows.Forms.Label label10;
-        public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        public System.Windows.Forms.GroupBox groupBox5;
-        public System.Windows.Forms.Button button8;
-        public System.Windows.Forms.Button button12;
-        public System.Windows.Forms.Button button11;
-        public System.Windows.Forms.Button button13;
-        public System.Windows.Forms.Button button14;
-        public System.Windows.Forms.RibbonButton ribbonButton1;
-        public System.Windows.Forms.RibbonButton ribbonButton2;
-        public System.Windows.Forms.RibbonPanel ribbonPanel1;
-        public System.Windows.Forms.RibbonTextBox ribbonTextBox1;
-        public System.Windows.Forms.RibbonButton ribbonButton8;
-        public System.Windows.Forms.RibbonButton ribbonButton9;
-        public System.Windows.Forms.RibbonTab ribbonTab1;
-        public System.Windows.Forms.RibbonPanel ribbonPanel2;
-        public System.Windows.Forms.RibbonCheckBox ribbonCheckBox1;
-        public System.Windows.Forms.RibbonButton ribbonButton3;
-        public System.Windows.Forms.RibbonButton ribbonButton10;
-        public System.Windows.Forms.GroupBox groupBox6;
-        public System.Windows.Forms.Button button16;
+
+        private MetroFramework.Controls.MetroTabControl metroTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private MetroFramework.Controls.MetroTabControl metroTabControl2;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.TabPage tabPage7;
-        public System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private MetroFramework.Controls.MetroTile metroTile2;
+        private MetroFramework.Controls.MetroTile metroTile1;
+        private MetroFramework.Controls.MetroTabControl metroTabControl7;
+        private System.Windows.Forms.TabPage tabPage11;
+        private MetroFramework.Controls.MetroTile metroTile15;
+        private MetroFramework.Controls.MetroLabel metroLabel10;
+        private MetroFramework.Controls.MetroLabel metroLabel11;
+        private MetroFramework.Controls.MetroTile metroTile14;
+        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
+        private MetroFramework.Controls.MetroTile metroTile13;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
+        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroTabControl metroTabControl6;
+        private System.Windows.Forms.TabPage tabPage10;
+        private MetroFramework.Controls.MetroTile metroTile16;
+        private MetroFramework.Controls.MetroTextBox metroTextBox7;
+        private MetroFramework.Controls.MetroLabel metroLabel14;
+        private MetroFramework.Controls.MetroLabel metroLabel12;
+        private MetroFramework.Controls.MetroLabel metroLabel13;
+        private MetroFramework.Controls.MetroTextBox metroTextBox6;
+        private MetroFramework.Controls.MetroTile metroTile11;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroDateTime metroDateTime2;
+        private MetroFramework.Controls.MetroDateTime metroDateTime1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroTile metroTile10;
+        private MetroFramework.Controls.MetroLabel metroLabel5;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroTabControl metroTabControl5;
         private System.Windows.Forms.TabPage tabPage9;
-        public System.Windows.Forms.TabControl tabControl4;
-        public System.Windows.Forms.TabPage tabPage8;
-        public System.Windows.Forms.TabPage tabPage5;
-        public System.Windows.Forms.PictureBox pictureBox2;
-        public System.Windows.Forms.PictureBox pictureBox3;
+        private MetroFramework.Controls.MetroTile metroTile9;
+        private MetroFramework.Controls.MetroTile metroTile8;
+        private MetroFramework.Controls.MetroTabControl metroTabControl4;
+        private System.Windows.Forms.TabPage tabPage8;
+        private MetroFramework.Controls.MetroTile metroTile7;
+        private MetroFramework.Controls.MetroTabControl metroTabControl3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private MetroFramework.Controls.MetroTile metroTile6;
+        private MetroFramework.Controls.MetroTile metroTile5;
+        private MetroFramework.Controls.MetroTile metroTile4;
+        private MetroFramework.Controls.MetroLabel metroLabel15;
+        private MetroFramework.Controls.MetroButton metroButton5;
+        private MetroFramework.Controls.MetroButton metroButton4;
+        private MetroFramework.Controls.MetroButton metroButton3;
+        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroTabControl metroTabControl8;
+        private System.Windows.Forms.TabPage tabPage12;
+        private MetroFramework.Controls.MetroTile metroTile12;
+        private MetroFramework.Controls.MetroTile metroTile17;
+        private MetroFramework.Controls.MetroTile metroTile18;
+        private MetroFramework.Controls.MetroTile metroTile19;
+        private MetroFramework.Controls.MetroContextMenu metroContextMenu1;
+        private System.Windows.Forms.ToolStripMenuItem сброситьФильтрToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private DS_Money dS_Money;
+        private DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter зарплата_сотрудникаTableAdapter;
+        private MetroFramework.Controls.MetroGrid metroGrid1;
+        private MetroFramework.Controls.MetroTile metroTile3;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Controls.MetroTextBox metroTextBox1;
     }
 }
