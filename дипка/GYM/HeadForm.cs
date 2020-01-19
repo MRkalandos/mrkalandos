@@ -160,6 +160,14 @@ namespace GYM
             metroGrid1.Columns[0].Visible = false;
             metroGrid1.Columns[8].Visible = false;
             metroTabControl3.Enabled = false;
+            if (metroGrid1.RowCount == 0)
+            {
+                MessageBox.Show("Запрос не дал результатов", "Запрос пуст");
+                upd();
+
+            }
+
+
         }
 
         private void metroTile4_Click(object sender, EventArgs e)
@@ -358,7 +366,7 @@ namespace GYM
 
             if (metroGrid1.RowCount == 0)
             {
-                MessageBox.Show("Таких нет");
+                MessageBox.Show("Запись не найдена","Сотрудника не найдено");
                 textBox2.Text = "";
                 upd();
             }
@@ -374,8 +382,7 @@ namespace GYM
             metroTabControl8.Enabled = false;
             metroTile3.Visible = false;
         }
-
-
+        
         public static class WordExporter
         {
             /// <summary>
@@ -504,9 +511,6 @@ namespace GYM
                 OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
 FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
 WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn);
-
-
-
                 adapter.Fill(ds);
                 metroGrid1.DataSource = ds.Tables[0];
                 conn.Close();
@@ -517,7 +521,15 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                 metroTile16.Enabled = false;
                 metroTabControl8.Enabled = false;
                 //EnableOFF();
-            }
+                if (metroGrid1.RowCount == 0)
+                {
+                    MessageBox.Show("Запись не найдена", "Сотрудника не найдено");
+                    upd();
+
+                }
+                //metroGrid1.Text = "";
+            
+        }
             else
             {
                 MessageBox.Show("Начальный период не может быть больше конечного", "Ошибка диапазона");
@@ -556,7 +568,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
         private void metroTextBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
             char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
             {
                 if (e.KeyChar != (char)Keys.Back)
 
@@ -686,7 +698,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
                 if (metroGrid1.RowCount == 0)
                 {
-                    MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
+                    MessageBox.Show("Таких сотрудников не найдено", "Сотрудника не найдено");
                     upd();
                     
                 }
@@ -724,7 +736,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
                 if (metroGrid1.RowCount == 0)
                 {
-                    MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
+                    MessageBox.Show("Таких сотрудников не найдено", "Сотрудника не найдено");
                     upd();
                     metroTile3.Visible = true;
                 }
@@ -741,7 +753,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
             }
             else
             {
-                string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
+                    string s = @"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
                            FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
                            WHERE Фамилия='" + textBox5.Text + "' and Имя='" + textBox8.Text + "'";
                 sda = new OleDbDataAdapter(s, con);
@@ -758,11 +770,12 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
                 metroTabControl8.Enabled = false;
                 metroTile3.Visible = true;
 
-               // EnableOFF();
+                // EnableOFF();
                 if (metroGrid1.RowCount == 0)
                 {
-                    MessageBox.Show("Таких сотрудников не найдено, Сотрудника не найдено");
+                    MessageBox.Show("Таких сотрудников не найдено", "Сотрудника не найдено");
                     upd();
+
                 }
                 textBox5.Text = "";
                 textBox8.Text = "";
@@ -799,7 +812,13 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
             metroGrid1.DataSource = ds.Tables[0];
             conn.Close();
             EnableOFF();
-          
+            if (metroGrid1.RowCount == 0)
+            {
+                MessageBox.Show("Запрос не дал результатов", "Запрос пуст");
+                upd();
+
+            }
+
         }
 
         private void metroTile17_Click(object sender, EventArgs e)
@@ -843,6 +862,12 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
             conn.Close();
             EnableOFF();
             metroTabControl3.Enabled = false;
+            if (metroGrid1.RowCount == 0)
+            {
+                MessageBox.Show("Запрос не дал результатов", "Запрос пуст");
+                upd();
+
+            }
         }
 
         private void metroTile7_Click(object sender, EventArgs e)
@@ -855,16 +880,60 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-            metroTile10.Enabled = false;
-            metroTile11.Enabled = false;
-            metroTabControl5.Enabled = false;
-            metroTabControl7.Enabled = false;
-            metroTabControl8.Enabled = false;
+            metroTile3.Visible = true;
+            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+                if (Convert.ToInt32(metroTextBox6.Text) < Convert.ToInt32(metroTextBox7.Text))
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
+FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата where зарплата_сотрудника.зарплата between {0} and {1}", metroTextBox6.Text, metroTextBox7.Text), conn);
+                adapter.Fill(ds);
+                metroGrid1.DataSource = ds.Tables[0];
+                conn.Close();
+                metroTile10.Enabled = false;
+                metroTile11.Enabled = false;
+                metroTabControl5.Enabled = false;
+                metroTabControl7.Enabled = false;
+                metroTabControl8.Enabled = false;
+
+                if (metroGrid1.RowCount == 0)
+                {
+                    MessageBox.Show("Запись не найдена", "Сотрудника не найдено");
+                    upd();
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Начальная зарплата не может быть больше конечной", "Ошибка диапазона");
+                upd();
+            }
+
+
+            
         }
 
         private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+        }
+
+        private void metroTile14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void metroTile21_Click(object sender, EventArgs e)
+        {
+            Send_Mail send = new Send_Mail();
+            send.ShowDialog();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace GYM
                 (metroTextBox6.Text == "") ||
                 (metroComboBox1.Text == ""))
             {
-                MessageBox.Show("Не все поля заполнены!");
+                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace GYM
                 if (sss1.ExecuteScalar() != null)
                 {
                     con1.Close();
-                    MessageBox.Show("Такой пароль существует"); return;
+                    MetroFramework.MetroMessageBox.Show(this, "\nТакой пароль уже существует", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace GYM
 
         private void metroTile2_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Выйти без сохранения изменений?", "Подтверждение выхода", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation))
+            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены что хотите выйти без сохранения", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 Close();
             }
@@ -106,7 +106,7 @@ namespace GYM
                 if (e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace GYM
                 if (e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace GYM
                 if (e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace GYM
                 if (e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

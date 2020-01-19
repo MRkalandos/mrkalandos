@@ -1,6 +1,6 @@
 ﻿namespace GYM
 {
-    partial class AddMoney
+    partial class MOD_Money
     {
         /// <summary>
         /// Required designer variable.
@@ -28,37 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new MetroFramework.Controls.MetroTile();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button1.Location = new System.Drawing.Point(73, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.MediumOrchid;
-            this.button2.Location = new System.Drawing.Point(73, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Выход";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(73, 24);
+            this.textBox1.Location = new System.Drawing.Point(140, 71);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(105, 20);
             this.textBox1.TabIndex = 2;
@@ -67,38 +45,63 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 27);
+            this.label1.Location = new System.Drawing.Point(76, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Зарплата:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // AddMoney
+            // button1
+            // 
+            this.button1.ActiveControl = null;
+            this.button1.Location = new System.Drawing.Point(123, 102);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 36);
+            this.button1.Style = MetroFramework.MetroColorStyle.Red;
+            this.button1.TabIndex = 4;
+            this.button1.Text = "ffffffffff";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button1.UseSelectable = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // metroTile2
+            // 
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Location = new System.Drawing.Point(123, 145);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(118, 37);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile2.TabIndex = 5;
+            this.metroTile2.Text = "Выход";
+            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile2.UseSelectable = true;
+            this.metroTile2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // MOD_Money
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Goldenrod;
-            this.ClientSize = new System.Drawing.Size(231, 126);
+            this.ClientSize = new System.Drawing.Size(339, 190);
             this.ControlBox = false;
+            this.Controls.Add(this.metroTile2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddMoney";
+            this.Name = "MOD_Money";
             this.Text = "Добавить зарплату";
+            this.Load += new System.EventHandler(this.AddMoney_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.Button button2;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.Label label1;
+        public MetroFramework.Controls.MetroTile button1;
+        public MetroFramework.Controls.MetroTile metroTile2;
     }
 }

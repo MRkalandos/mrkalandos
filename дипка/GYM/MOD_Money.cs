@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MetroFramework.Forms;
 using System.Windows.Forms;
 
 namespace GYM
 {
-    public partial class AddMoney : Form
+    public partial class MOD_Money : MetroForm
     {
-        public AddMoney()
+        public MOD_Money()
         {
             InitializeComponent();
         }
@@ -25,7 +22,7 @@ namespace GYM
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Выйти без сохранения изменений?", "Подтверждение выхода", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation))
+            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены что хотите выйти без сохранения", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
             {
                 Close();
             }
@@ -39,7 +36,7 @@ namespace GYM
                 if (e.KeyChar != (char)Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -50,7 +47,7 @@ namespace GYM
             if ((textBox1.Text == ""))
 
             {
-                MessageBox.Show("Не все поля заполнены!");
+                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -63,13 +60,18 @@ namespace GYM
                 if (sss1.ExecuteScalar() != null)
                 {
                     con1.Close();
-                    MessageBox.Show("Запись существует");
+                    MetroFramework.MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     this.DialogResult = DialogResult.OK;
                 }
             }
+        }
+
+        private void AddMoney_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

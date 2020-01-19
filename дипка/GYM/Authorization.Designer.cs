@@ -28,21 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Authorization));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dS_Money = new GYM.DS_Money();
-            this.dSMoneyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.зарплатасотрудникаBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.зарплата_сотрудникаTableAdapter = new GYM.DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter();
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Money)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSMoneyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.зарплатасотрудникаBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
+            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,39 +56,6 @@
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Пароль:";
-            // 
-            // dS_Money
-            // 
-            this.dS_Money.DataSetName = "DS_Money";
-            this.dS_Money.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dSMoneyBindingSource
-            // 
-            this.dSMoneyBindingSource.DataSource = this.dS_Money;
-            this.dSMoneyBindingSource.Position = 0;
-            // 
-            // зарплатасотрудникаBindingSource
-            // 
-            this.зарплатасотрудникаBindingSource.DataMember = "Зарплата_сотрудника";
-            this.зарплатасотрудникаBindingSource.DataSource = this.dSMoneyBindingSource;
-            // 
-            // зарплата_сотрудникаTableAdapter
-            // 
-            this.зарплата_сотрудникаTableAdapter.ClearBeforeFill = true;
-            // 
-            // metroTile1
-            // 
-            this.metroTile1.ActiveControl = null;
-            this.metroTile1.CausesValidation = false;
-            this.metroTile1.Location = new System.Drawing.Point(85, 155);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(66, 35);
-            this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTile1.TabIndex = 6;
-            this.metroTile1.Text = "Вход";
-            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile1.UseSelectable = true;
-            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
             // metroComboBox1
             // 
@@ -139,20 +100,51 @@
             this.metroTextBox1.UseSelectable = true;
             this.metroTextBox1.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.metroTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox1_KeyPress);
             // 
-            // metroStyleManager1
+            // metroTile1
             // 
-            this.metroStyleManager1.Owner = this;
-            this.metroStyleManager1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile1.AccessibleDescription = "";
+            this.metroTile1.ActiveControl = null;
+            this.metroTile1.Location = new System.Drawing.Point(75, 147);
+            this.metroTile1.Name = "metroTile1";
+            this.metroTile1.Size = new System.Drawing.Size(75, 36);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile1.TabIndex = 9;
+            this.metroTile1.Text = "Вход";
+            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "Горячая клавиш Enter");
+            this.metroTile1.UseSelectable = true;
+            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Default;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Default;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(183, 154);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Authorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 203);
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(222, 192);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.metroTile1);
             this.Controls.Add(this.metroTextBox1);
             this.Controls.Add(this.metroComboBox1);
-            this.Controls.Add(this.metroTile1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -160,12 +152,11 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Authorization";
+            this.Opacity = 0.9D;
             this.Text = "Авторизация";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dS_Money)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dSMoneyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.зарплатасотрудникаBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Authorization_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,13 +166,10 @@
       //  private System.Windows.Forms.RibbonOrbMenuItem ribbonOrbMenuItem1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.BindingSource dSMoneyBindingSource;
-        private DS_Money dS_Money;
-        private System.Windows.Forms.BindingSource зарплатасотрудникаBindingSource;
-        private DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter зарплата_сотрудникаTableAdapter;
-        private MetroFramework.Controls.MetroTile metroTile1;
         private MetroFramework.Controls.MetroComboBox metroComboBox1;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private MetroFramework.Components.MetroStyleManager metroStyleManager1;
+        private MetroFramework.Controls.MetroTile metroTile1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

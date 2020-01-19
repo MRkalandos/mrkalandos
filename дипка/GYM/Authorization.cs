@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-
 
 namespace GYM
 {
@@ -19,41 +11,22 @@ namespace GYM
         public Authorization()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
         public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
         private void Form1_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            
-           // this.Style = MetroFramework.MetroColorStyle.Red;
-            // this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             metroComboBox1.SelectedIndex = 0;
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroButton1_Click(object sender, EventArgs e)
-        {
-            //    MessageBox.Show(this, "Your message here.", "Title Here", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
-        }
-
-        private void metroPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
             if ((metroTextBox1.Text == ""))
 
             {
-                MessageBox.Show("Заполните поле пароль,Поле пустое");
+                MetroFramework.MetroMessageBox.Show(this, "\nЗаполните поле пароль", "Поле пустое", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
             else
             {
@@ -67,14 +40,16 @@ namespace GYM
                         Auth.Parameters.AddWithValue("пароль", metroTextBox1.Text);
                         if (Auth.ExecuteScalar() != null)
                         {
-                            MessageBox.Show("Вход выполнен:Администратор");
+                            MetroFramework.MetroMessageBox.Show(this, "\nВход выполнен: Администратор", "Вход в систему", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           
                             HeadForm Head = new HeadForm();
                             Head.Show();
                             con.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Не верный пользователь или пароль");
+                            MetroFramework.MetroMessageBox.Show(this, "\nНе верный Пароль", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                             con.Close();
                         }
                         break;
@@ -85,7 +60,7 @@ namespace GYM
                         Auth1.Parameters.AddWithValue("пароль", metroTextBox1.Text);
                         if (Auth1.ExecuteScalar() != null)
                         {
-                            MessageBox.Show("Вход выполнен:Тренер");
+                            MetroFramework.MetroMessageBox.Show(this, "\nВход выполнен:Тренер", "Вход в систему", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             HeadForm Head = new HeadForm();
                             Head.Show();
                             //Head.tabControl2.Visible = false;
@@ -97,14 +72,41 @@ namespace GYM
                         }
                         else
                         {
-                            MessageBox.Show("Не верный пользователь или пароль");
+                            MetroFramework.MetroMessageBox.Show(this, "\nНе верный Пароль", "Ошибка входа", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             con.Close();
                         }
                         break;
                 }
-
-
             }
+        }
+
+        private void metroTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+
+                if (e.KeyChar != (char)Keys.Back )
+                    if (e.KeyChar != (char)Keys.Enter)
+                    {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНе верный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Authorization_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                metroTile1.PerformClick();// имитируем нажатие button1
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+         Help.ShowHelp(null, "Help/Сотрудники.chm");
+
         }
     }
 }
