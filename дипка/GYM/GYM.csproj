@@ -123,6 +123,12 @@
     <Compile Include="MOD_Employee.Designer.cs">
       <DependentUpon>MOD_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOD_sportsmen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_sportsmen.Designer.cs">
+      <DependentUpon>MOD_sportsmen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_Employee.resx">
       <DependentUpon>MOD_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOD_sportsmen.resx">
+      <DependentUpon>MOD_sportsmen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Money.resx">
       <DependentUpon>Money.cs</DependentUpon>

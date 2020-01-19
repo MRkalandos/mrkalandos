@@ -41,8 +41,6 @@
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
-            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroTextBox5 = new MetroFramework.Controls.MetroTextBox();
             this.metroTextBox6 = new MetroFramework.Controls.MetroTextBox();
@@ -50,6 +48,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -194,32 +194,6 @@
             this.metroLabel9.TabIndex = 18;
             this.metroLabel9.Text = "Зарплата:";
             // 
-            // metroTile1
-            // 
-            this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(122, 415);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(146, 35);
-            this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTile1.TabIndex = 19;
-            this.metroTile1.Text = "пааппап";
-            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile1.UseSelectable = true;
-            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
-            // 
-            // metroTile2
-            // 
-            this.metroTile2.ActiveControl = null;
-            this.metroTile2.Location = new System.Drawing.Point(122, 465);
-            this.metroTile2.Name = "metroTile2";
-            this.metroTile2.Size = new System.Drawing.Size(146, 35);
-            this.metroTile2.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroTile2.TabIndex = 20;
-            this.metroTile2.Text = "Выход";
-            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile2.UseSelectable = true;
-            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
-            // 
             // metroButton1
             // 
             this.metroButton1.BackColor = System.Drawing.Color.Crimson;
@@ -339,6 +313,32 @@
             this.textBox3.TextChanged += new System.EventHandler(this.metroTextBox3_Click);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox3_KeyPress);
             // 
+            // metroTile1
+            // 
+            this.metroTile1.ActiveControl = null;
+            this.metroTile1.Location = new System.Drawing.Point(122, 415);
+            this.metroTile1.Name = "metroTile1";
+            this.metroTile1.Size = new System.Drawing.Size(146, 35);
+            this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile1.TabIndex = 19;
+            this.metroTile1.Text = "пааппап";
+            this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile1.UseSelectable = true;
+            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
+            // 
+            // metroTile2
+            // 
+            this.metroTile2.ActiveControl = null;
+            this.metroTile2.Location = new System.Drawing.Point(122, 465);
+            this.metroTile2.Name = "metroTile2";
+            this.metroTile2.Size = new System.Drawing.Size(146, 35);
+            this.metroTile2.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile2.TabIndex = 20;
+            this.metroTile2.Text = "Выход";
+            this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile2.UseSelectable = true;
+            this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
+            // 
             // MOD_Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,7 +387,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel8;
         public System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroTile metroTile2;
         private MetroFramework.Controls.MetroButton metroButton2;
         public MetroFramework.Controls.MetroTextBox metroTextBox4;
         public MetroFramework.Controls.MetroDateTime metroDateTime1;
@@ -395,9 +394,10 @@
         public MetroFramework.Controls.MetroButton metroButton1;
         public MetroFramework.Controls.MetroTextBox metroTextBox5;
         public MetroFramework.Controls.MetroTextBox metroTextBox6;
-        public MetroFramework.Controls.MetroTile metroTile1;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.TextBox textBox2;
         public System.Windows.Forms.TextBox textBox3;
+        public MetroFramework.Controls.MetroTile metroTile1;
+        private MetroFramework.Controls.MetroTile metroTile2;
     }
 }
