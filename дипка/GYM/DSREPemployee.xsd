@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSREPemployee" targetNamespace="http://tempuri.org/DSREPemployee.xsd" xmlns:mstns="http://tempuri.org/DSREPemployee.xsd" xmlns="http://tempuri.org/DSREPemployee.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Constring" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Constring (Settings)" PropertyReference="ApplicationSettings.GYM.Properties.Settings.GlobalReference.Default.Constring" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vie1TableAdapter" GeneratorDataComponentClassName="vie1TableAdapter" Name="vie1" UserDataComponentName="vie1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Constring (Settings)" DbObjectName="vie1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Фамилия, Имя, Отчество, Должность, Телефон, Дата, Пароль, Зарплата FROM vie1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Фамилия" DataSetColumn="Фамилия" />
+              <Mapping SourceColumn="Имя" DataSetColumn="Имя" />
+              <Mapping SourceColumn="Отчество" DataSetColumn="Отчество" />
+              <Mapping SourceColumn="Должность" DataSetColumn="Должность" />
+              <Mapping SourceColumn="Телефон" DataSetColumn="Телефон" />
+              <Mapping SourceColumn="Дата" DataSetColumn="Дата" />
+              <Mapping SourceColumn="Пароль" DataSetColumn="Пароль" />
+              <Mapping SourceColumn="Зарплата" DataSetColumn="Зарплата" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSREPemployee" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DSREPemployee" msprop:Generator_UserDSName="DSREPemployee">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vie1" msprop:Generator_TableClassName="vie1DataTable" msprop:Generator_TableVarName="tablevie1" msprop:Generator_TablePropName="vie1" msprop:Generator_RowDeletingName="vie1RowDeleting" msprop:Generator_RowChangingName="vie1RowChanging" msprop:Generator_RowEvHandlerName="vie1RowChangeEventHandler" msprop:Generator_RowDeletedName="vie1RowDeleted" msprop:Generator_UserTableName="vie1" msprop:Generator_RowChangedName="vie1RowChanged" msprop:Generator_RowEvArgName="vie1RowChangeEvent" msprop:Generator_RowClassName="vie1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Фамилия" msprop:Generator_ColumnVarNameInTable="columnФамилия" msprop:Generator_ColumnPropNameInRow="Фамилия" msprop:Generator_ColumnPropNameInTable="ФамилияColumn" msprop:Generator_UserColumnName="Фамилия" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Имя" msprop:Generator_ColumnVarNameInTable="columnИмя" msprop:Generator_ColumnPropNameInRow="Имя" msprop:Generator_ColumnPropNameInTable="ИмяColumn" msprop:Generator_UserColumnName="Имя" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Отчество" msprop:Generator_ColumnVarNameInTable="columnОтчество" msprop:Generator_ColumnPropNameInRow="Отчество" msprop:Generator_ColumnPropNameInTable="ОтчествоColumn" msprop:Generator_UserColumnName="Отчество" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Должность" msprop:Generator_ColumnVarNameInTable="columnДолжность" msprop:Generator_ColumnPropNameInRow="Должность" msprop:Generator_ColumnPropNameInTable="ДолжностьColumn" msprop:Generator_UserColumnName="Должность" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Телефон" msprop:Generator_ColumnVarNameInTable="columnТелефон" msprop:Generator_ColumnPropNameInRow="Телефон" msprop:Generator_ColumnPropNameInTable="ТелефонColumn" msprop:Generator_UserColumnName="Телефон" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Дата" msprop:Generator_ColumnVarNameInTable="columnДата" msprop:Generator_ColumnPropNameInRow="Дата" msprop:Generator_ColumnPropNameInTable="ДатаColumn" msprop:Generator_UserColumnName="Дата" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Пароль" msprop:Generator_ColumnVarNameInTable="columnПароль" msprop:Generator_ColumnPropNameInRow="Пароль" msprop:Generator_ColumnPropNameInTable="ПарольColumn" msprop:Generator_UserColumnName="Пароль" type="xs:int" minOccurs="0" />
+              <xs:element name="Зарплата" msprop:Generator_ColumnVarNameInTable="columnЗарплата" msprop:Generator_ColumnPropNameInRow="Зарплата" msprop:Generator_ColumnPropNameInTable="ЗарплатаColumn" msprop:Generator_UserColumnName="Зарплата" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

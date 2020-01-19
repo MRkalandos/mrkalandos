@@ -84,6 +84,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DSREPemployee.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSREPemployee.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MOD_Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,11 +117,6 @@
     <Compile Include="HeadForm.Designer.cs">
       <DependentUpon>HeadForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ISgymDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="MOD_Employee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +131,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Employee.Designer.cs">
+      <DependentUpon>Report_Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Send_Mail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Diagramm_Money.rdlc" />
+    <EmbeddedResource Include="Report_Employee.resx">
+      <DependentUpon>Report_Employee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Send_Mail.resx">
       <DependentUpon>Send_Mail.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +186,17 @@
     <None Include="DSEmployee.xss">
       <DependentUpon>DSEmployee.xsd</DependentUpon>
     </None>
+    <None Include="DSREPemployee.xsc">
+      <DependentUpon>DSREPemployee.xsd</DependentUpon>
+    </None>
+    <None Include="DSREPemployee.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSREPemployee.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSREPemployee.xss">
+      <DependentUpon>DSREPemployee.xsd</DependentUpon>
+    </None>
     <None Include="DS_Money.xsc">
       <DependentUpon>DS_Money.xsd</DependentUpon>
     </None>
@@ -186,17 +207,6 @@
     </None>
     <None Include="DS_Money.xss">
       <DependentUpon>DS_Money.xsd</DependentUpon>
-    </None>
-    <None Include="ISgymDataSet.xsc">
-      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ISgymDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ISgymDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ISgymDataSet.xss">
-      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DSEmployee.СотрудникDataTable.datasource" />
@@ -233,7 +243,6 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Updates.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataSource\" />
