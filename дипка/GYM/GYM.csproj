@@ -60,6 +60,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -88,6 +89,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsRepSportsmen.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
     </Compile>
     <Compile Include="MOD_Money.cs">
       <SubType>Form</SubType>
@@ -143,6 +149,12 @@
     <Compile Include="Report_Employee.Designer.cs">
       <DependentUpon>Report_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="RepSportsmen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepSportsmen.Designer.cs">
+      <DependentUpon>RepSportsmen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Send_Mail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,8 +190,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Diagramm_Money.rdlc" />
+    <EmbeddedResource Include="Report3.rdlc" />
     <EmbeddedResource Include="Report_Employee.resx">
       <DependentUpon>Report_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepSportsmen.resx">
+      <DependentUpon>RepSportsmen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Send_Mail.resx">
       <DependentUpon>Send_Mail.cs</DependentUpon>
@@ -205,6 +221,17 @@
     </None>
     <None Include="DSREPemployee.xss">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
+    </None>
+    <None Include="DsRepSportsmen.xsc">
+      <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
+    </None>
+    <None Include="DsRepSportsmen.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsRepSportsmen.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DsRepSportsmen.xss">
+      <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
     </None>
     <None Include="DS_Money.xsc">
       <DependentUpon>DS_Money.xsd</DependentUpon>

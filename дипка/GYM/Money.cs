@@ -150,7 +150,7 @@ namespace GYM
             }
             catch
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись нельзя, данная запись используется в таблице 'Cотрудник'", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись нельзя, данная запись используется в таблице 'Cотрудник'", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

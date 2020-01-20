@@ -69,6 +69,7 @@
             this.metroComboBox1.Size = new System.Drawing.Size(131, 29);
             this.metroComboBox1.TabIndex = 7;
             this.metroComboBox1.UseSelectable = true;
+            this.metroComboBox1.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
             // 
             // metroTextBox1
             // 

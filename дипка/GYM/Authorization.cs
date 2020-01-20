@@ -108,6 +108,11 @@ namespace GYM
          Help.ShowHelp(null, "Help/Сотрудники.chm");
 
         }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
