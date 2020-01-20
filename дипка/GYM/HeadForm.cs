@@ -232,9 +232,9 @@ namespace GYM
                     sss.Parameters.AddWithValue("st4", ObjEmployeeAdd.metroTextBox4.Text);
                     sss.Parameters.AddWithValue("st5", ObjEmployeeAdd.maskedTextBox1.Text);
                     sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjEmployeeAdd.metroDateTime1.Text));
-                    sss.Parameters.AddWithValue("st7", Convert.ToInt16(ObjEmployeeAdd.metroTextBox5.Text));
+                    sss.Parameters.AddWithValue("st7", Convert.ToInt32(ObjEmployeeAdd.metroTextBox5.Text));
                     sss.Parameters.AddWithValue("st8", ObjEmployeeAdd.metroTextBox6.Text);
-                    sss.Parameters.AddWithValue("st9", Convert.ToInt16(ObjEmployeeAdd.metroComboBox1.SelectedValue.ToString()));
+                    sss.Parameters.AddWithValue("st9", Convert.ToInt32(ObjEmployeeAdd.metroComboBox1.SelectedValue.ToString()));
                     sss.ExecuteNonQuery();
                     con.Close();
                     updEmployee();
@@ -707,13 +707,21 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
         private void metroGrid1_SelectionChanged(object sender, EventArgs e)
         {
-            if (EMPLmetroGrid1.CurrentRow != null)
+            try
             {
-                EMPLpictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                metroTextBox1.Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[8].Value);
-                EMPLpictureBox1.Load(Application.StartupPath + @"\model\" + metroTextBox1.Text);
+                if (EMPLmetroGrid1.CurrentRow != null)
+                {
+                    EMPLpictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    metroTextBox1.Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[8].Value);
+                    EMPLpictureBox1.Load(Application.StartupPath + @"\PhotoEmployee\" + metroTextBox1.Text);
+                }
+            }
+           catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
             }
         }
+        
 
         private void metroTile12_Click(object sender, EventArgs e)
         {

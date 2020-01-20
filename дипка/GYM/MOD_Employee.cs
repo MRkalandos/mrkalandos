@@ -68,14 +68,22 @@ namespace GYM
             {
                 string fileName = filedialog.SafeFileName;
                 string sourcePath = filedialog.FileName;
-                string targetPath = @"model";
+                string targetPath = @"PhotoEmployee";
                 if (!Directory.Exists(targetPath)) //Если папки нет...
                     Directory.CreateDirectory(targetPath); //...создадим ее
                 string destFile = Path.Combine(targetPath, fileName);
-                // File.Copy(sourcePath, destFile, true);
-                metroTextBox6.Text = Path.GetFileName(fileName);// то добавляем
-            }
-        }
+                try
+                {
+                       File.Copy(sourcePath, destFile, true);
+                        metroTextBox6.Text = Path.GetFileName(fileName);// то добавляем
+                    }
+
+                catch
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                     metroTextBox6.Text = Path.GetFileName(fileName);// то добавляем
+                }
+            } }
 
         private void metroTile2_Click(object sender, EventArgs e)
         {
