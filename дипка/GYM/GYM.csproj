@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gym-icon_30328 %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
@@ -135,6 +138,12 @@
     <Compile Include="MOD_sportsmen.Designer.cs">
       <DependentUpon>MOD_sportsmen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOD_Trener.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_Trener.Designer.cs">
+      <DependentUpon>MOD_Trener.cs</DependentUpon>
+    </Compile>
     <Compile Include="Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_sportsmen.resx">
       <DependentUpon>MOD_sportsmen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOD_Trener.resx">
+      <DependentUpon>MOD_Trener.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Money.resx">
       <DependentUpon>Money.cs</DependentUpon>
@@ -265,6 +277,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gym-icon_30328 %281%29.ico" />
     <Content Include="ISgym.mdb" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

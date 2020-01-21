@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DSREPemployee = new GYM.DSREPemployee();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report_Employee));
             this.vie1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DSREPemployee = new GYM.DSREPemployee();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.vie1TableAdapter = new GYM.DSREPemployeeTableAdapters.vie1TableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DSREPemployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vie1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DSREPemployee)).BeginInit();
             this.SuspendLayout();
+            // 
+            // vie1BindingSource
+            // 
+            this.vie1BindingSource.DataMember = "vie1";
+            this.vie1BindingSource.DataSource = this.DSREPemployee;
+            // 
+            // DSREPemployee
+            // 
+            this.DSREPemployee.DataSetName = "DSREPemployee";
+            this.DSREPemployee.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -50,16 +61,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(1346, 708);
             this.reportViewer1.TabIndex = 0;
             // 
-            // DSREPemployee
-            // 
-            this.DSREPemployee.DataSetName = "DSREPemployee";
-            this.DSREPemployee.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vie1BindingSource
-            // 
-            this.vie1BindingSource.DataMember = "vie1";
-            this.vie1BindingSource.DataSource = this.DSREPemployee;
-            // 
             // vie1TableAdapter
             // 
             this.vie1TableAdapter.ClearBeforeFill = true;
@@ -70,14 +71,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Report_Employee";
             this.Text = "Диаграмма зарплат";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Report_Employee_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DSREPemployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vie1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DSREPemployee)).EndInit();
             this.ResumeLayout(false);
 
         }

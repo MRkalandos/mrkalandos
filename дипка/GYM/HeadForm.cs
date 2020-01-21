@@ -22,14 +22,18 @@ namespace GYM
         }
         public int numbstrokasportsmen = 0;
         public int numbstrokemployee = 0;
+        public int numbstroktrener = 0;
         public string idEmployee;
         public string idsportsmen;
+        public string idtrener;
         public DataTable dtEmployee;
         public DataTable dtSportsmen;
+        public DataTable dtTrener;
         string filename;
         public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
         public OleDbDataAdapter sdaEmployee;
         public OleDbDataAdapter sdasportsmen;
+        public OleDbDataAdapter sdatrener;
 
         public void updSportsmen()
         {
@@ -39,34 +43,79 @@ namespace GYM
                                                     FROM Спортсмен;", con);
                 dtSportsmen = new DataTable();
                 sdasportsmen.Fill(dtSportsmen);
-                metroGrid2.DataSource = dtSportsmen;
-                metroGrid2.Columns[0].Visible = false;
-                metroGrid2.Select();
-                metroGrid2.AllowUserToAddRows = false;
-                metroTabControl12.Enabled = true;
+                SPORTMmetroGrid2.DataSource = dtSportsmen;
+                SPORTMmetroGrid2.Columns[0].Visible = false;
+                SPORTMmetroGrid2.Select();
+                SPORTMmetroGrid2.AllowUserToAddRows = false;
+                SPORTMmetroTabControl12.Enabled = true;
                 metroTabControl2.Enabled = true;
-                metroTabControl10.Enabled = true;
-                metroTabControl9.Enabled = true;
+                SPORTMmetroTabControl10.Enabled = true;
+                SPORTMmetroTabControl9.Enabled = true;
                 metroTile33.Enabled = true;
                 metroTile32.Enabled = true;
                 metroTile34.Enabled = true;
-                metroTabControl9.Enabled = true;
+                SPORTMmetroTabControl9.Enabled = true;
                 metroTile30.Enabled = true;
-                textBox1.Text = "";
-                textBox6.Text = "";
-                textBox7.Text = "";
-                textBox9.Text = "";
-                textBox10.Text = "";
+                SPORTMtextBox1.Text = "";
+                SPORTMtextBox6.Text = "";
+                SPORTMtextBox7.Text = "";
+                SPORTMtextBox9.Text = "";
+                SPORTMtextBox10.Text = "";
                 metroTile29.Enabled = true;
                 metroTile31.Enabled = true;
-                metroTabControl11.Enabled = true;
-                metroTabControl14.Enabled = true;
+                SPORTMmetroTabControl11.Enabled = true;
+                SPORTMmetroTabControl14.Enabled = true;
             }
             catch
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nНе удалось обновить таблицу", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void updTrener()
+        {
+            try
+            {
+                sdatrener = new OleDbDataAdapter(@"SELECT Тренер.*
+                                                    FROM Тренер;", con);
+                dtTrener = new DataTable();
+                sdatrener.Fill(dtTrener);
+                metroGrid1.DataSource = dtTrener;
+                metroGrid1.Columns[0].Visible = false;
+                metroGrid1.Columns[8].Visible = false;
+                textBox8.Text = "";
+                textBox5.Text = "";
+                textBox4.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                metroTextBox2.Text = "";
+                metroTextBox3.Text = "";
+                metroGrid1.Select();
+                metroGrid1.AllowUserToAddRows = false;
+                metroTile16.Visible = true;
+                pictureBox2.Visible = true;
+                metroTile11.Enabled = true;
+                metroTile12.Enabled = true;
+                metroTile10.Enabled = true;
+                metroTabControl4.Enabled = true;
+                metroTabControl3.Enabled = true;
+                metroTabControl6.Enabled = true;
+                metroTile7.Enabled = true;
+                metroTile8.Enabled = true;
+                metroTile9.Enabled = true;
+                metroTabControl5.Enabled = true;
+                metroTabControl8.Enabled = true;
+                
+                metroTabControl5.Enabled = true;
+
+
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНе удалось обновить таблицу", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         public void updEmployee()
         {
@@ -132,16 +181,29 @@ namespace GYM
                                                  FROM Спортсмен;", conSportsmen);
             dtSportsmen = new DataTable();
             sdasportsmen.Fill(dtSportsmen);
-            metroGrid2.DataSource = dtSportsmen;
+            SPORTMmetroGrid2.DataSource = dtSportsmen;
 
+
+            ///////////////////////////////////////////////trener///////////////////////////////////
+            OleDbConnection conTrener = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filename + "");
+            sdatrener = new OleDbDataAdapter(@"SELECT тренер.*
+                                                 FROM тренер;", conSportsmen);
+            dtTrener = new DataTable();
+            sdatrener.Fill(dtTrener);
+            metroGrid1.DataSource = dtTrener;
+
+            metroGrid1.Columns[0].Visible = false;
+            SPORTMmetroGrid2.Columns[0].Visible = false;
+            EMPLmetroGrid1.Columns[0].Visible = false;
         }
 
         private void HeadeForm_Load(object sender, EventArgs e)
         {
-            metroComboBox1.SelectedIndex = 0;
+            SPORTMmetroComboBox1.SelectedIndex = 0;
             this.EMPLзарплата_сотрудникаTableAdapter.Fill(this.EMPLdS_Money.Зарплата_сотрудника);
             try
             {
+                updTrener();
                 updEmployee();
                 updSportsmen();
             }
@@ -210,7 +272,7 @@ namespace GYM
             ObjEmployeeAdd.textBox3.Text = "";
             ObjEmployeeAdd.maskedTextBox1.Text = "";
             ObjEmployeeAdd.metroDateTime1.Text = null;
-            ObjEmployeeAdd.metroTextBox6.Text = "";
+           // ObjEmployeeAdd.metroTextBox6.Text = "";
             ObjEmployeeAdd.metroTextBox5.Text = "";
             ObjEmployeeAdd.Text = "Добавить сотрудника";
             ObjEmployeeAdd.metroTile1.Text = "Добавить";
@@ -865,8 +927,8 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             if (ObjSportsmenAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    metroGrid2.Sort(metroGrid2.Columns[1], ListSortDirection.Ascending);
-                    idsportsmen = Convert.ToString(Convert.ToInt32(metroGrid2.Rows[metroGrid2.RowCount - 1].Cells[0].Value) + 1);
+                    SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
+                    idsportsmen = Convert.ToString(Convert.ToInt32(SPORTMmetroGrid2.Rows[SPORTMmetroGrid2.RowCount - 1].Cells[0].Value) + 1);
                     con.Open();
                     OleDbCommand sss = new OleDbCommand(@"INSERT INTO [спортсмен]
                                                         ( Фамилия, Имя, Отчество, Телефон, Дата_рождения, Пол)
@@ -893,17 +955,17 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 
             ObjSportsmenUpdate.Text = "Редактировать спортсмена";
             ObjSportsmenUpdate.metroTile1.Text = "Редактировать";
-            numbstrokasportsmen = Convert.ToInt32(metroGrid2.CurrentRow.Cells[0].Value);
-            ObjSportsmenUpdate.textBox1.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[1].Value);
-            ObjSportsmenUpdate.textBox2.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[2].Value);
-            ObjSportsmenUpdate.textBox3.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[3].Value);
-            ObjSportsmenUpdate.maskedTextBox1.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[4].Value);
-            ObjSportsmenUpdate.metroDateTime1.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[5].Value);
-            ObjSportsmenUpdate.metroComboBox1.Text = Convert.ToString(metroGrid2.CurrentRow.Cells[6].Value);
+            numbstrokasportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
+            ObjSportsmenUpdate.textBox1.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[1].Value);
+            ObjSportsmenUpdate.textBox2.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[2].Value);
+            ObjSportsmenUpdate.textBox3.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[3].Value);
+            ObjSportsmenUpdate.maskedTextBox1.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[4].Value);
+            ObjSportsmenUpdate.metroDateTime1.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[5].Value);
+            ObjSportsmenUpdate.metroComboBox1.Text = Convert.ToString(SPORTMmetroGrid2.CurrentRow.Cells[6].Value);
             if (ObjSportsmenUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    metroGrid2.Sort(metroGrid2.Columns[1], ListSortDirection.Ascending);
+                    SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
                     con.Open();
                     OleDbCommand sss = new OleDbCommand("update спортсмен set Фамилия=@st1, Имя=@st2, Отчество=@st3, Телефон=@st4, Дата_рождения=@st5,Пол=@st6 where идспортсмен=" + numbstrokasportsmen + "", con);
                     sss.Parameters.AddWithValue("st1", ObjSportsmenUpdate.textBox1.Text);
@@ -927,7 +989,7 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены, что хотите Удалить?", "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 con.Open();
-                numbstrokasportsmen = Convert.ToInt32(metroGrid2.CurrentRow.Cells[0].Value);
+                numbstrokasportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
                 OleDbCommand sss = new OleDbCommand(@"DELETE FROM спортсмен 
                                                     WHERE идспортсмен=" + numbstrokasportsmen + "", con);
                 sss.ExecuteNonQuery();
@@ -954,14 +1016,14 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             ExcelApp.Cells[1, 5] = "Дата";
             ExcelApp.Cells[1, 6] = "Пол";
             {
-                for (int i = 1; i < metroGrid2.Rows.Count + 1; i++)
+                for (int i = 1; i < SPORTMmetroGrid2.Rows.Count + 1; i++)
                 {
-                    ExcelApp.Cells[i + 1, 1] = metroGrid2.Rows[i - 1].Cells[1].Value;
-                    ExcelApp.Cells[i + 1, 2] = metroGrid2.Rows[i - 1].Cells[2].Value;
-                    ExcelApp.Cells[i + 1, 3] = metroGrid2.Rows[i - 1].Cells[3].Value;
-                    ExcelApp.Cells[i + 1, 4] = metroGrid2.Rows[i - 1].Cells[4].Value;
-                    ExcelApp.Cells[i + 1, 5] = metroGrid2.Rows[i - 1].Cells[5].Value;
-                    ExcelApp.Cells[i + 1, 6] = metroGrid2.Rows[i - 1].Cells[6].Value;
+                    ExcelApp.Cells[i + 1, 1] = SPORTMmetroGrid2.Rows[i - 1].Cells[1].Value;
+                    ExcelApp.Cells[i + 1, 2] = SPORTMmetroGrid2.Rows[i - 1].Cells[2].Value;
+                    ExcelApp.Cells[i + 1, 3] = SPORTMmetroGrid2.Rows[i - 1].Cells[3].Value;
+                    ExcelApp.Cells[i + 1, 4] = SPORTMmetroGrid2.Rows[i - 1].Cells[4].Value;
+                    ExcelApp.Cells[i + 1, 5] = SPORTMmetroGrid2.Rows[i - 1].Cells[5].Value;
+                    ExcelApp.Cells[i + 1, 6] = SPORTMmetroGrid2.Rows[i - 1].Cells[6].Value;
 
                 }
                 ExcelApp.Visible = true;
@@ -981,7 +1043,7 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
-                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, metroGrid2.RowCount + 1, 6);
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, SPORTMmetroGrid2.RowCount + 1, 6);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Фамилия";
                 table.Cell(1, 2).Range.Text = "Имя"; ;
@@ -995,14 +1057,14 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
                 table.Range.Font.Name = "TimesNewRoman";
                 table.Range.Font.Size = 7;
                 table.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                for (int i = 1; i < metroGrid2.RowCount + 1; i++)
+                for (int i = 1; i < SPORTMmetroGrid2.RowCount + 1; i++)
                 {
-                    table.Cell(i + 1, 1).Range.Text = metroGrid2.Rows[i - 1].Cells[1].Value.ToString();
-                    table.Cell(i + 1, 2).Range.Text = metroGrid2.Rows[i - 1].Cells[2].Value.ToString();
-                    table.Cell(i + 1, 3).Range.Text = metroGrid2.Rows[i - 1].Cells[3].Value.ToString();
-                    table.Cell(i + 1, 4).Range.Text = metroGrid2.Rows[i - 1].Cells[4].Value.ToString();
-                    table.Cell(i + 1, 5).Range.Text = metroGrid2.Rows[i - 1].Cells[5].Value.ToString();
-                    table.Cell(i + 1, 6).Range.Text = metroGrid2.Rows[i - 1].Cells[6].Value.ToString();
+                    table.Cell(i + 1, 1).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[1].Value.ToString();
+                    table.Cell(i + 1, 2).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[2].Value.ToString();
+                    table.Cell(i + 1, 3).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[3].Value.ToString();
+                    table.Cell(i + 1, 4).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[4].Value.ToString();
+                    table.Cell(i + 1, 5).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[5].Value.ToString();
+                    table.Cell(i + 1, 6).Range.Text = SPORTMmetroGrid2.Rows[i - 1].Cells[6].Value.ToString();
                 }
 
                 try
@@ -1113,22 +1175,22 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 
         private void textBox10_KeyUp(object sender, KeyEventArgs e)
         {
-            metroTabControl12.Enabled = false;
-            metroTabControl10.Enabled = false;
-            metroTabControl9.Enabled = false;
+            SPORTMmetroTabControl12.Enabled = false;
+            SPORTMmetroTabControl10.Enabled = false;
+            SPORTMmetroTabControl9.Enabled = false;
             metroTile33.Enabled = false;
             metroTile32.Enabled = false;
             string s = @"SELECT *
                        FROM спортсмен 
-                       WHERE[Фамилия] LIKE '%" + textBox10.Text + "%'";
+                       WHERE[Фамилия] LIKE '%" + SPORTMtextBox10.Text + "%'";
             sdasportsmen = new OleDbDataAdapter(s, con);
             dtSportsmen = new DataTable();
             sdasportsmen.Fill(dtSportsmen);
-            metroGrid2.DataSource = dtSportsmen;
-            if (metroGrid2.RowCount == 0)
+            SPORTMmetroGrid2.DataSource = dtSportsmen;
+            if (SPORTMmetroGrid2.RowCount == 0)
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                textBox10.Text = "";
+                SPORTMtextBox10.Text = "";
                 updSportsmen();
             }
         }
@@ -1170,26 +1232,26 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 
         private void metroButton10_Click(object sender, EventArgs e)
         {
-            metroTabControl12.Enabled = false;
-            metroTabControl10.Enabled = false;
-            metroTabControl9.Enabled = false;
+            SPORTMmetroTabControl12.Enabled = false;
+            SPORTMmetroTabControl10.Enabled = false;
+            SPORTMmetroTabControl9.Enabled = false;
             metroTile34.Enabled = false;
             metroTile32.Enabled = false;
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
-            string date1 = metroDateTime3.Value.ToString("MM/dd/yyyy").Replace('.', '/');
-            string date2 = metroDateTime4.Value.ToString("MM/dd/yyyy").Replace('.', '/');
-            if (Convert.ToDateTime(metroDateTime3.Text) > Convert.ToDateTime(metroDateTime4.Text))
+            string date1 = SPORTMmetroDateTime3.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            string date2 = SPORTMmetroDateTime4.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            if (Convert.ToDateTime(SPORTMmetroDateTime3.Text) > Convert.ToDateTime(SPORTMmetroDateTime4.Text))
             {
                 OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT *
                                                                               FROM спортсмен
                                                                               WHERE Дата_рождения Between #{0}# and #{1}#", date1, date2), conn);
                 adapter.Fill(ds);
-                metroGrid2.DataSource = ds.Tables[0];
+                SPORTMmetroGrid2.DataSource = ds.Tables[0];
                 conn.Close();
-                if (metroGrid2.RowCount == 0)
+                if (SPORTMmetroGrid2.RowCount == 0)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     updSportsmen();
@@ -1205,21 +1267,21 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            switch (metroComboBox1.SelectedIndex)
+            switch (SPORTMmetroComboBox1.SelectedIndex)
             {
 
                 case 0:
-                    metroTabControl12.Enabled = false;
-                    metroTabControl10.Enabled = false;
-                    metroTabControl9.Enabled = false;
+                    SPORTMmetroTabControl12.Enabled = false;
+                    SPORTMmetroTabControl10.Enabled = false;
+                    SPORTMmetroTabControl9.Enabled = false;
                     metroTile34.Enabled = false;
                     metroTile33.Enabled = false;
                     string s = @"SELECT * FROM Спортсмен WHERE (((Спортсмен.Пол) = 'Мужской'));";
                     sdasportsmen = new OleDbDataAdapter(s, con);
                     dtSportsmen = new DataTable();
                     sdasportsmen.Fill(dtSportsmen);
-                    metroGrid2.DataSource = dtSportsmen;
-                    if (metroGrid2.RowCount == 0)
+                    SPORTMmetroGrid2.DataSource = dtSportsmen;
+                    if (SPORTMmetroGrid2.RowCount == 0)
                     {
                         MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1227,17 +1289,17 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
                     }
                     break;
                 case 1:
-                    metroTabControl12.Enabled = false;
-                    metroTabControl10.Enabled = false;
-                    metroTabControl9.Enabled = false;
+                    SPORTMmetroTabControl12.Enabled = false;
+                    SPORTMmetroTabControl10.Enabled = false;
+                    SPORTMmetroTabControl9.Enabled = false;
                     metroTile34.Enabled = false;
                     metroTile33.Enabled = false;
                     string s1 = @"SELECT * FROM Спортсмен WHERE (((Спортсмен.Пол) = 'Женский'));";
                     sdasportsmen = new OleDbDataAdapter(s1, con);
                     dtSportsmen = new DataTable();
                     sdasportsmen.Fill(dtSportsmen);
-                    metroGrid2.DataSource = dtSportsmen;
-                    if (metroGrid2.RowCount == 0)
+                    SPORTMmetroGrid2.DataSource = dtSportsmen;
+                    if (SPORTMmetroGrid2.RowCount == 0)
                     {
                         MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Спортсменов с таким полом не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1261,108 +1323,108 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 
         private void metroButton8_Click(object sender, EventArgs e)
         {
-            if (textBox9.Text == "")
+            if (SPORTMtextBox9.Text == "")
             {
                 MessageBox.Show("Не введены данные");
             }
             else
             {
-                metroTabControl12.Enabled = false;
-                metroTabControl11.Enabled = false;
-                metroTabControl9.Enabled = false;
+                SPORTMmetroTabControl12.Enabled = false;
+                SPORTMmetroTabControl11.Enabled = false;
+                SPORTMmetroTabControl9.Enabled = false;
                 metroTile30.Enabled = false;
                 metroTile29.Enabled = false;
                 string s = @"SELECT *
                            FROM спортсмен 
-                           WHERE Фамилия='" + textBox9.Text + "'";
+                           WHERE Фамилия='" + SPORTMtextBox9.Text + "'";
                 sdasportsmen = new OleDbDataAdapter(s, con);
                 dtSportsmen = new DataTable();
                 sdasportsmen.Fill(dtSportsmen);
-                metroGrid2.DataSource = dtSportsmen;
+                SPORTMmetroGrid2.DataSource = dtSportsmen;
                 //metroGrid2.Columns[8].Visible = false;
-                metroGrid2.Columns[0].Visible = false;
+                SPORTMmetroGrid2.Columns[0].Visible = false;
                
-                if (metroGrid2.RowCount == 0)
+                if (SPORTMmetroGrid2.RowCount == 0)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "\nТаких спортсменов не найдено", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     updSportsmen();
                 }
-                textBox9.Text = "";
+                SPORTMtextBox9.Text = "";
             }
         }
 
         private void metroButton7_Click(object sender, EventArgs e)
         {
-            if (textBox7.Text == "")
+            if (SPORTMtextBox7.Text == "")
             {
                 MessageBox.Show("Не введены данные");
             }
             else
             {
-                metroTabControl12.Enabled = false;
-                metroTabControl11.Enabled = false;
-                metroTabControl9.Enabled = false;
+                SPORTMmetroTabControl12.Enabled = false;
+                SPORTMmetroTabControl11.Enabled = false;
+                SPORTMmetroTabControl9.Enabled = false;
                 metroTile31.Enabled = false;
                 metroTile29.Enabled = false;
                 string s = @"SELECT *
                            FROM спортсмен 
-                           WHERE Имя='" + textBox7.Text + "'";
+                           WHERE Имя='" + SPORTMtextBox7.Text + "'";
                 sdasportsmen = new OleDbDataAdapter(s, con);
                 dtSportsmen = new DataTable();
                 sdasportsmen.Fill(dtSportsmen);
-                metroGrid2.DataSource = dtSportsmen;
+                SPORTMmetroGrid2.DataSource = dtSportsmen;
                 //metroGrid2.Columns[8].Visible = false;
-                metroGrid2.Columns[0].Visible = false;
+                SPORTMmetroGrid2.Columns[0].Visible = false;
 
-                if (metroGrid2.RowCount == 0)
+                if (SPORTMmetroGrid2.RowCount == 0)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "\nТаких спортсменов не найдено", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     updSportsmen();
                 }
-                textBox7.Text = "";
+                SPORTMtextBox7.Text = "";
             }
         }
 
         private void metroButton6_Click(object sender, EventArgs e)
         {
             //EMPLmetroTile3.Visible = true;
-            if ((textBox6.Text == "") || (textBox1.Text == ""))
+            if ((SPORTMtextBox6.Text == "") || (SPORTMtextBox1.Text == ""))
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nНе введены данные", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                metroTabControl12.Enabled = false;
-                metroTabControl11.Enabled = false;
-                metroTabControl9.Enabled = false;
+                SPORTMmetroTabControl12.Enabled = false;
+                SPORTMmetroTabControl11.Enabled = false;
+                SPORTMmetroTabControl9.Enabled = false;
                 metroTile31.Enabled = false;
                 metroTile20.Enabled = false;
                 string s = @"SELECT *
                            from спортсмен
-                           WHERE Фамилия='" + textBox6.Text + "' and Имя='" + textBox1.Text + "'";
+                           WHERE Фамилия='" + SPORTMtextBox6.Text + "' and Имя='" + SPORTMtextBox1.Text + "'";
                 sdasportsmen = new OleDbDataAdapter(s, con);
                 dtSportsmen = new DataTable();
                 sdasportsmen.Fill(dtSportsmen);
-                metroGrid2.DataSource = dtSportsmen;
-                metroGrid2.Columns[0].Visible = false;
+                SPORTMmetroGrid2.DataSource = dtSportsmen;
+                SPORTMmetroGrid2.Columns[0].Visible = false;
             
-                if (metroGrid2.RowCount == 0)
+                if (SPORTMmetroGrid2.RowCount == 0)
                 {
                     MetroFramework.MetroMessageBox.Show(this, "\nТаких спортсменов не найдено", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     updSportsmen();
                 }
-                textBox6.Text = "";
-                textBox1.Text = "";
+                SPORTMtextBox6.Text = "";
+                SPORTMtextBox1.Text = "";
             }
         }
 
         private void metroTile28_Click(object sender, EventArgs e)
         {
-            metroTabControl12.Enabled = false;
-            metroTabControl11.Enabled = false;
-            metroTabControl9.Enabled = false;
-            metroTabControl10.Enabled = false;
-            metroTabControl14.Enabled = false;
+            SPORTMmetroTabControl12.Enabled = false;
+            SPORTMmetroTabControl11.Enabled = false;
+            SPORTMmetroTabControl9.Enabled = false;
+            SPORTMmetroTabControl10.Enabled = false;
+            SPORTMmetroTabControl14.Enabled = false;
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
@@ -1374,9 +1436,9 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
                                                                           ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) 
                                                                           ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент;"), conn);
             adapter.Fill(ds);
-            metroGrid2.DataSource = ds.Tables[0];
+            SPORTMmetroGrid2.DataSource = ds.Tables[0];
             conn.Close();
-            if (metroGrid2.RowCount == 0)
+            if (SPORTMmetroGrid2.RowCount == 0)
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1386,11 +1448,11 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 
         private void metroTile27_Click(object sender, EventArgs e)
         {
-            metroTabControl12.Enabled = false;
-            metroTabControl11.Enabled = false;
-            metroTabControl9.Enabled = false;
-            metroTabControl10.Enabled = false;
-            metroTabControl14.Enabled = false;
+            SPORTMmetroTabControl12.Enabled = false;
+            SPORTMmetroTabControl11.Enabled = false;
+            SPORTMmetroTabControl9.Enabled = false;
+            SPORTMmetroTabControl10.Enabled = false;
+            SPORTMmetroTabControl14.Enabled = false;
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
@@ -1401,9 +1463,9 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
 FROM (Спортсмен INNER JOIN (Абонемент INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) INNER JOIN Учет_посещений ON Продажа_абонемента.Идпродажа = Учет_посещений.Идпродажа
 WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
             adapter.Fill(ds);
-            metroGrid2.DataSource = ds.Tables[0];
+            SPORTMmetroGrid2.DataSource = ds.Tables[0];
             conn.Close();
-            if (metroGrid2.RowCount == 0)
+            if (SPORTMmetroGrid2.RowCount == 0)
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1413,11 +1475,11 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
 
         private void metroTile26_Click(object sender, EventArgs e)
         {
-            metroTabControl12.Enabled = false;
-            metroTabControl11.Enabled = false;
-            metroTabControl9.Enabled = false;
-            metroTabControl10.Enabled = false;
-            metroTabControl14.Enabled = false;
+            SPORTMmetroTabControl12.Enabled = false;
+            SPORTMmetroTabControl11.Enabled = false;
+            SPORTMmetroTabControl9.Enabled = false;
+            SPORTMmetroTabControl10.Enabled = false;
+            SPORTMmetroTabControl14.Enabled = false;
             string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
@@ -1428,14 +1490,567 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
         (SELECT Идпродажа FROM продажа_абонемента WHERE Идспортсмен = Спортсмен.Идспортсмен)) AS КоличествоПосещений
                FROM Спортсмен"), conn);
             adapter.Fill(ds);
-            metroGrid2.DataSource = ds.Tables[0];
+            SPORTMmetroGrid2.DataSource = ds.Tables[0];
             conn.Close();
-            if (metroGrid2.RowCount == 0)
+            if (SPORTMmetroGrid2.RowCount == 0)
             {
                 MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 updSportsmen();
             }
+        }
+
+        private void metroTile19_Click_1(object sender, EventArgs e)
+        {
+            MOD_Trener ObjTrenerAdd = new MOD_Trener();
+            ObjTrenerAdd.textBox1.Text = "";
+            ObjTrenerAdd.textBox2.Text = "";
+            ObjTrenerAdd.textBox3.Text = "";
+            ObjTrenerAdd.maskedTextBox1.Text = "";
+            ObjTrenerAdd.metroDateTime1.Text = null;
+           // ObjTrenerAdd.metroTextBox6.Text = "";
+            ObjTrenerAdd.metroTextBox5.Text = "";
+            ObjTrenerAdd.Text = "Добавить тренера";
+            ObjTrenerAdd.metroTile1.Text = "Добавить";
+            ObjTrenerAdd.metroTextBox1.Text = "";
+            if (ObjTrenerAdd.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    metroGrid1.Sort(metroGrid1.Columns[1], ListSortDirection.Ascending);
+                    idtrener = Convert.ToString(Convert.ToInt32(metroGrid1.Rows[metroGrid1.RowCount - 1].Cells[0].Value) + 1);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand(@"INSERT INTO [тренер]
+                                                        ( Фамилия, Имя, Отчество, Должность,Телефон, Дата_рождения,Пароль,Фото,оклад)
+                                                        VALUES(@st1,@st2,@st3,@st4,@st5,@st6,@st7,@st8,@st9)", con);
+                    sss.Parameters.AddWithValue("st1", ObjTrenerAdd.textBox1.Text);
+                    sss.Parameters.AddWithValue("st2", ObjTrenerAdd.textBox2.Text);
+                    sss.Parameters.AddWithValue("st3", ObjTrenerAdd.textBox3.Text);
+                    sss.Parameters.AddWithValue("st4", ObjTrenerAdd.metroTextBox4.Text);
+                    sss.Parameters.AddWithValue("st5", ObjTrenerAdd.maskedTextBox1.Text);
+                    sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjTrenerAdd.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st7", Convert.ToInt32(ObjTrenerAdd.metroTextBox5.Text));
+                    sss.Parameters.AddWithValue("st8", ObjTrenerAdd.metroTextBox6.Text);
+                    sss.Parameters.AddWithValue("st9", Convert.ToInt32(ObjTrenerAdd.metroTextBox1.Text));
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    updTrener();
+                }
+                catch (Exception ex)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
+                }
+        }
+
+        private void metroTile18_Click_1(object sender, EventArgs e)
+        {
+            MOD_Trener ObjTrenerUpdate = new MOD_Trener();
+            ObjTrenerUpdate.Text = "Редактировать тренера";
+            ObjTrenerUpdate.metroTile1.Text = "Редактировать";
+            numbstroktrener = Convert.ToInt32(metroGrid1.CurrentRow.Cells[0].Value);
+            ObjTrenerUpdate.textBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[1].Value);
+            ObjTrenerUpdate.textBox2.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[2].Value);
+            ObjTrenerUpdate.textBox3.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[3].Value);
+            ObjTrenerUpdate.metroTextBox4.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[4].Value);
+            ObjTrenerUpdate.maskedTextBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[5].Value);
+            ObjTrenerUpdate.metroDateTime1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[6].Value);
+            ObjTrenerUpdate.metroTextBox5.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[7].Value);
+            ObjTrenerUpdate.metroTextBox6.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[8].Value);
+            ObjTrenerUpdate.metroTextBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[9].Value);
+            if (ObjTrenerUpdate.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    metroGrid1.Sort(metroGrid1.Columns[1], ListSortDirection.Ascending);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand("update тренер set Фамилия=@st1, Имя=@st2, Отчество=@st3, Должность=@st4,Телефон=@st5, Дата_рождения=@st6,Пароль=@st7,Фото=@st8,оклад=@st9 where идтренер=" + numbstroktrener + "", con);
+                    sss.Parameters.AddWithValue("st1", ObjTrenerUpdate.textBox1.Text);
+                    sss.Parameters.AddWithValue("st2", ObjTrenerUpdate.textBox2.Text);
+                    sss.Parameters.AddWithValue("st3", ObjTrenerUpdate.textBox3.Text);
+                    sss.Parameters.AddWithValue("st4", ObjTrenerUpdate.metroTextBox4.Text);
+                    sss.Parameters.AddWithValue("st5", ObjTrenerUpdate.maskedTextBox1.Text);
+                    sss.Parameters.AddWithValue("st6", Convert.ToDateTime(ObjTrenerUpdate.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st7", Convert.ToInt32(ObjTrenerUpdate.metroTextBox5.Text));
+                    sss.Parameters.AddWithValue("st8", ObjTrenerUpdate.metroTextBox6.Text);
+                    sss.Parameters.AddWithValue("st9", Convert.ToInt32(ObjTrenerUpdate.metroTextBox1.Text));
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    updTrener();
+                }
+                catch (Exception ex)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
+                }
+        }
+
+        private void metroTile17_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены, что хотите Удалить?", "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                con.Open();
+                numbstroktrener = Convert.ToInt32(metroGrid1.CurrentRow.Cells[0].Value);
+                OleDbCommand sss = new OleDbCommand(@"DELETE FROM тренер 
+                                                    WHERE идтренер=" + numbstroktrener + "", con);
+                sss.ExecuteNonQuery();
+                updTrener();
+                con.Close();
+            }
+        }
+
+        private void metroTile15_Click(object sender, EventArgs e)
+        {
+
+            MetroFramework.MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.updEmployee();
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            ExcelWorkSheet.StandardWidth = 17;
+            ExcelWorkSheet.Name = "Тренер";
+            ExcelApp.Cells[1, 1] = "Фамилия";
+            ExcelApp.Cells[1, 2] = "Имя";
+            ExcelApp.Cells[1, 3] = "Отчество";
+            ExcelApp.Cells[1, 4] = "Должность";
+            ExcelApp.Cells[1, 5] = "Телефон";
+            ExcelApp.Cells[1, 6] = "Дата";
+            ExcelApp.Cells[1, 7] = "Пароль";
+            ExcelApp.Cells[1, 8] = "Оклад";
+            {
+                for (int i = 1; i < metroGrid1.Rows.Count + 1; i++)
+                {
+                    ExcelApp.Cells[i + 1, 1] = metroGrid1.Rows[i - 1].Cells[1].Value;
+                    ExcelApp.Cells[i + 1, 2] = metroGrid1.Rows[i - 1].Cells[2].Value;
+                    ExcelApp.Cells[i + 1, 3] = metroGrid1.Rows[i - 1].Cells[3].Value;
+                    ExcelApp.Cells[i + 1, 4] = metroGrid1.Rows[i - 1].Cells[4].Value;
+                    ExcelApp.Cells[i + 1, 5] = metroGrid1.Rows[i - 1].Cells[5].Value;
+                    ExcelApp.Cells[i + 1, 6] = metroGrid1.Rows[i - 1].Cells[6].Value;
+                    ExcelApp.Cells[i + 1, 7] = metroGrid1.Rows[i - 1].Cells[7].Value;
+                    ExcelApp.Cells[i + 1, 8] = metroGrid1.Rows[i - 1].Cells[9].Value;
+                }
+                ExcelApp.Visible = true;
+                ExcelApp.UserControl = true;
+            }
+        }
+
+        private void metroTile14_Click(object sender, EventArgs e)
+        {
+            MetroFramework.MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/Trener.docx";
+            var Wordapp = new Microsoft.Office.Interop.Word.Application();
+
+            Wordapp.Visible = true;
+            Microsoft.Office.Interop.Word.Document doc = Wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
+            try
+            {
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, metroGrid1.RowCount + 1, 8);
+                table.Borders.Enable = 1;
+                table.Cell(1, 1).Range.Text = "Фамилия";
+                table.Cell(1, 2).Range.Text = "Имя"; ;
+                table.Cell(1, 3).Range.Text = "Отчество";
+                table.Cell(1, 4).Range.Text = "Должность";
+                table.Cell(1, 5).Range.Text = "Телефон";
+                table.Cell(1, 6).Range.Text = "Дата";
+                table.Cell(1, 7).Range.Text = "Пароль";
+                table.Cell(1, 8).Range.Text = "Оклад";
+                table.Range.Bold = 1;
+                table.Range.Font.Name = "TimesNewRoman";
+                table.Range.Font.Size = 7;
+                table.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                for (int i = 1; i < metroGrid1.RowCount + 1; i++)
+                {
+                    table.Cell(i + 1, 1).Range.Text = metroGrid1.Rows[i - 1].Cells[1].Value.ToString();
+                    table.Cell(i + 1, 2).Range.Text = metroGrid1.Rows[i - 1].Cells[2].Value.ToString();
+                    table.Cell(i + 1, 3).Range.Text = metroGrid1.Rows[i - 1].Cells[3].Value.ToString();
+                    table.Cell(i + 1, 4).Range.Text = metroGrid1.Rows[i - 1].Cells[4].Value.ToString();
+                    table.Cell(i + 1, 5).Range.Text = metroGrid1.Rows[i - 1].Cells[5].Value.ToString();
+                    table.Cell(i + 1, 6).Range.Text = metroGrid1.Rows[i - 1].Cells[6].Value.ToString();
+                    table.Cell(i + 1, 7).Range.Text = metroGrid1.Rows[i - 1].Cells[7].Value.ToString();
+                    table.Cell(i + 1, 8).Range.Text = metroGrid1.Rows[i - 1].Cells[9].Value.ToString();
+                }
+
+                try
+                {
+                    doc.SaveAs(path);
+                    MetroFramework.MetroMessageBox.Show(this, "\nОтчет Word сформирование и сохранен по пути" + path, "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch { }
+            }
+            catch { }
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox3_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox2_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox8_KeyUp(object sender, KeyEventArgs e)
+        {
+            string s = @"SELECT Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                       FROM тренер
+                       WHERE[Фамилия] LIKE '%" + textBox8.Text + "%'";
+            sdatrener = new OleDbDataAdapter(s, con);
+            dtTrener = new DataTable();
+            sdatrener.Fill(dtTrener);
+            metroGrid1.DataSource = dtTrener;
+            metroTile11.Enabled=false;
+            metroTile10.Enabled = false;
+            metroTabControl4.Enabled = false;
+            metroTabControl3.Enabled = false;
+            metroTabControl6.Enabled = false;
+            if (metroGrid1.RowCount == 0)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox8.Text = "";
+                updTrener();
+            }
+        }
+
+        private void metroButton5_Click_1(object sender, EventArgs e)
+        {
+            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+            string date1 = metroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            string date2 = metroDateTime1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            if (Convert.ToDateTime(metroDateTime2.Text) < Convert.ToDateTime(metroDateTime1.Text))
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter
+                (String.Format(@"select Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                               FROM тренер 
+                                WHERE Дата_рождения Between #{0}# and #{1}#", date1, date2), conn);
+                adapter.Fill(ds);
+                metroGrid1.DataSource = ds.Tables[0];
+                conn.Close();
+                metroTile12.Enabled = false;
+                metroTile10.Enabled = false;
+                metroTabControl4.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl6.Enabled = false;
+
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updTrener();
+                }
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНачальный период не может быть больше конечного", "Ошибка диапазона", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                updTrener();
+            }
+        }
+
+        private void metroButton4_Click_1(object sender, EventArgs e)
+        {
+            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+            if (Convert.ToInt32(metroTextBox3.Text) < Convert.ToInt32(metroTextBox2.Text))
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"select Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                               FROM тренер 
+                               where оклад between {0} and {1}", metroTextBox3.Text, metroTextBox2.Text), conn);
+                adapter.Fill(ds);
+                metroGrid1.DataSource = ds.Tables[0];
+                conn.Close();
+                metroTile12.Enabled = false;
+                metroTile11.Enabled = false;
+                metroTabControl4.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl6.Enabled = false;
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updTrener();
+                }
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНачальный оклад не может быть больше конечного", "Ошибка диапазона", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                updTrener(); 
+            }
+        }
+
+        private void metroButton3_Click_1(object sender, EventArgs e)
+        {
+            if (textBox5.Text == "")
+            {
+                MessageBox.Show("Не введены данные");
+            }
+            else
+            {
+                string s = @"select Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                               FROM тренер
+                           WHERE Фамилия='" + textBox5.Text + "'";
+                sdatrener = new OleDbDataAdapter(s, con);
+                dtTrener = new DataTable();
+                sdatrener.Fill(dtTrener);
+                metroGrid1.DataSource = dtTrener;
+                metroGrid1.Columns[8].Visible = false;
+                //  metroGrid1.Columns[0].Visible = false;
+                metroTile7.Enabled = false;
+                metroTile8.Enabled = false;
+                metroTabControl5.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl6.Enabled = false;
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nТаких тренеров не найдено", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updTrener();
+                }
+                textBox5.Text = "";
+            }
+        }
+
+        private void metroButton2_Click_1(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "")
+            {
+                MessageBox.Show("Не введены данные");
+            }
+            else
+            {
+                string s = @"select Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                               FROM тренер
+                           WHERE Имя='" + textBox4.Text + "'";
+                sdatrener = new OleDbDataAdapter(s, con);
+                dtTrener = new DataTable();
+                sdatrener.Fill(dtTrener);
+                metroGrid1.DataSource = dtTrener;
+                metroGrid1.Columns[8].Visible = false;
+               // metroGrid1.Columns[0].Visible = false;
+                metroTile7.Enabled = false;
+                metroTile9.Enabled = false;
+                metroTabControl5.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl6.Enabled = false;
+
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nТаких тренеров не найдено", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updTrener();
+                }
+                textBox4.Text = "";
+            }
+        }
+
+        private void metroButton1_Click_1(object sender, EventArgs e)
+        {
+           // EMPLmetroTile3.Visible = true;
+            if ((textBox3.Text == "") || (textBox2.Text == ""))
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНе введены данные", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string s = @"SELECT Фамилия, Имя, Отчество, Должность, Телефон, Дата_рождения, Пароль,оклад, Фото
+                               FROM тренер
+                               WHERE Фамилия='" + textBox3.Text + "' and Имя='" + textBox2.Text + "'";
+                sdatrener = new OleDbDataAdapter(s, con);
+                dtTrener = new DataTable();
+                sdatrener.Fill(dtTrener);
+                metroGrid1.DataSource = dtTrener;
+                metroGrid1.Columns[8].Visible = false;
+                metroTile8.Enabled = false;
+                metroTile9.Enabled = false;
+                metroTabControl5.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl6.Enabled = false;
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nТаких тренеров не найдено", "Тренера не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updTrener();
+                }
+                textBox3.Text = "";
+                textBox2.Text = "";
+            }
+        }
+
+        private void metroGrid1_SelectionChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (metroGrid1.CurrentRow != null)
+                {
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                    textBox1.Text = Convert.ToString(metroGrid1.CurrentRow.Cells[8].Value);
+                    pictureBox2.Load(Application.StartupPath + @"\PhotoTrener\" + textBox1.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
+            }
+        }
+
+        private void сброситьФильтрToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            updTrener();
+        }
+
+        private void metroTile6_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                OleDbConnection conn = new OleDbConnection(conString);
+                conn.Open();
+                DataSet ds = new DataSet();
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Тренер.Фамилия, Тренер.Имя, Тренер.Отчество, Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания,тренер.фото
+FROM Тренер INNER JOIN
+(Спортсмен INNER JOIN 
+(Абонемент INNER JOIN Продажа_абонемента
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент)
+ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Тренер.Идтренер = Абонемент.Идтренер;"), conn);
+
+                metroTile16.Visible = false;
+                pictureBox2.Visible=false;
+
+                adapter.Fill(ds);
+                metroGrid1.DataSource = ds.Tables[0];
+
+                metroTabControl8.Enabled = false;
+                metroTabControl6.Enabled = false;
+                metroTabControl3.Enabled = false;
+                metroTabControl4.Enabled = false;
+                metroTabControl5.Enabled = false;
+                conn.Close();
+
+
+                if (metroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    updTrener();
+                }
+            }
+            catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
     }
 }
