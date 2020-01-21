@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.OleDb;
 using MetroFramework.Forms;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GYM
 {
@@ -51,7 +52,7 @@ namespace GYM
             }
             else
             {
-                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                 con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
                                                                       from [зарплата_сотрудника] 
                                                                       where зарплата=@st1 ", con1);

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace GYM
             InitializeComponent();
         }
         public DataTable dt;
-        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
         public OleDbDataAdapter sda;
 
         public void upd()
@@ -44,19 +45,13 @@ namespace GYM
 
         private void Money_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = FormBorderStyle.None;
             upd();
         }
 
         private void Money_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //MOD_Money money = new MOD_Money();
-
-
-            //  this.зарплата_сотрудникаTableAdapter1.Update(this.dS_Money1.Зарплата_сотрудника);
-            // this.зарплата_сотрудникаTableAdapter1.Fill(this.dS_Money1.Зарплата_сотрудника);
-            // HeadForm main1 = new HeadForm();
-            //main1.Opacity = 1; // возвращаем нормальный вид главной форме
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,6 +86,7 @@ namespace GYM
 
         private void button2_Click(object sender, EventArgs e)
         {
+            con.Close();
             int rez = 0;
             MOD_Money ObjMoneyUpdate = new MOD_Money();
 
@@ -101,19 +97,20 @@ namespace GYM
             if (ObjMoneyUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
-                    con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
-                                                                      from [зарплата_сотрудника] 
-                                                                      where зарплата=@st1 ", con1);
+                     con.Open();
+                    OleDbCommand sss1 = new OleDbCommand(@"select *  
+                                                          from [зарплата_сотрудника] 
+                                                           where зарплата=@st1 ", con);
                     sss1.Parameters.AddWithValue("st1", ObjMoneyUpdate.textBox1.Text);
                     sss1.ExecuteNonQuery();
                     if (sss1.ExecuteScalar() != null)
                     {
-                        con1.Close();
+                        con.Close();
                         MetroFramework.MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
+                        con.Close();
                         dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
                         con.Open();
                         OleDbCommand sss = new OleDbCommand("update зарплата_сотрудника set зарплата=@st1 where идзарплата=" + rez + "", con);
@@ -133,7 +130,7 @@ namespace GYM
         {
             try
             {
-
+                con.Close();
                 int rez = 0;
                 if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                 {

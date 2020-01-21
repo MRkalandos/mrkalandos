@@ -2,6 +2,7 @@
 using System.Data.OleDb;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using System.IO;
 
 namespace GYM
 {
@@ -13,10 +14,10 @@ namespace GYM
             InitializeComponent();
             this.KeyPreview = true;
         }
-        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = FormBorderStyle.None;
             metroComboBox1.SelectedIndex = 0;
         }
 
@@ -31,7 +32,7 @@ namespace GYM
             else
             {
                 con.Open();
-                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                 switch (metroComboBox1.SelectedIndex)
                 {
                     case 0:

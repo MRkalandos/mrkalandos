@@ -104,16 +104,6 @@
     <Compile Include="MOD_Money.Designer.cs">
       <DependentUpon>MOD_Money.cs</DependentUpon>
     </Compile>
-    <Compile Include="DSEmployee.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DS_Money.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DS_Money.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,7 +192,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Diagramm_Money.rdlc" />
-    <EmbeddedResource Include="Report3.rdlc" />
     <EmbeddedResource Include="Report_Employee.resx">
       <DependentUpon>Report_Employee.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,17 +201,6 @@
     <EmbeddedResource Include="Send_Mail.resx">
       <DependentUpon>Send_Mail.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DSEmployee.xsc">
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
-    </None>
-    <None Include="DSEmployee.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSEmployee.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DSEmployee.xss">
-      <DependentUpon>DSEmployee.xsd</DependentUpon>
-    </None>
     <None Include="DSREPemployee.xsc">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
     </None>
@@ -244,17 +222,6 @@
     </None>
     <None Include="DsRepSportsmen.xss">
       <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
-    </None>
-    <None Include="DS_Money.xsc">
-      <DependentUpon>DS_Money.xsd</DependentUpon>
-    </None>
-    <None Include="DS_Money.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DS_Money.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DS_Money.xss">
-      <DependentUpon>DS_Money.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DSEmployee.СотрудникDataTable.datasource" />

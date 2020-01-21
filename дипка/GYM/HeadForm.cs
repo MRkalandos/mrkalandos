@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace GYM
 {
     public partial class HeadForm : MetroFramework.Forms.MetroForm
     {
+     
         public HeadForm()
         {
             InitializeComponent();
@@ -30,7 +32,8 @@ namespace GYM
         public DataTable dtSportsmen;
         public DataTable dtTrener;
         string filename;
-        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+       public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
         public OleDbDataAdapter sdaEmployee;
         public OleDbDataAdapter sdasportsmen;
         public OleDbDataAdapter sdatrener;
@@ -199,8 +202,9 @@ namespace GYM
 
         private void HeadeForm_Load(object sender, EventArgs e)
         {
+
             SPORTMmetroComboBox1.SelectedIndex = 0;
-            this.EMPLзарплата_сотрудникаTableAdapter.Fill(this.EMPLdS_Money.Зарплата_сотрудника);
+            
             try
             {
                 updTrener();
@@ -236,7 +240,7 @@ namespace GYM
 
         private void metroTile18_Click(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -276,9 +280,21 @@ namespace GYM
             ObjEmployeeAdd.metroTextBox5.Text = "";
             ObjEmployeeAdd.Text = "Добавить сотрудника";
             ObjEmployeeAdd.metroTile1.Text = "Добавить";
-            ObjEmployeeAdd.metroComboBox1.DataSource = EMPLbindingSource1;
-            ObjEmployeeAdd.metroComboBox1.ValueMember = "Идзарплата";
+            con.Open();
+            OleDbCommand cmd = new OleDbCommand("select идзарплата,зарплата from зарплата_сотрудника", con);
             ObjEmployeeAdd.metroComboBox1.DisplayMember = "Зарплата";
+            OleDbDataReader reader = cmd.ExecuteReader();
+            Dictionary<int, int> list = new Dictionary<int, int>();
+            while (reader.Read())
+            {
+                list.Add((int)reader[0], (int)reader[1]);
+            }
+            reader.Close();
+            cmd.ExecuteNonQuery();
+            ObjEmployeeAdd.metroComboBox1.DataSource = list.ToList();
+            ObjEmployeeAdd.metroComboBox1.DisplayMember = "Value";
+            ObjEmployeeAdd.metroComboBox1.ValueMember = "Key";
+            con.Close();
             if (ObjEmployeeAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
@@ -310,7 +326,7 @@ namespace GYM
         private void metroTile5_Click(object sender, EventArgs e)
         {
             MOD_Employee ObjEmployeeUpdate = new MOD_Employee();
-
+            con.Close();
             ObjEmployeeUpdate.Text = "Редактировать сотрудника";
             ObjEmployeeUpdate.metroTile1.Text = "Редактировать";
             numbstrokemployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
@@ -322,9 +338,8 @@ namespace GYM
             ObjEmployeeUpdate.metroDateTime1.Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[6].Value);
             ObjEmployeeUpdate.metroTextBox5.Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[7].Value);
             ObjEmployeeUpdate.metroTextBox6.Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[8].Value);
-            OleDbConnection con2 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
-            con2.Open();
-            OleDbCommand cmd = new OleDbCommand("select идзарплата,зарплата from зарплата_сотрудника", con2);
+            con.Open();
+            OleDbCommand cmd = new OleDbCommand("select идзарплата,зарплата from зарплата_сотрудника", con);
             ObjEmployeeUpdate.metroComboBox1.DisplayMember = "Зарплата";
             OleDbDataReader reader = cmd.ExecuteReader();
             Dictionary<int, int> list = new Dictionary<int, int>();
@@ -334,6 +349,7 @@ namespace GYM
             }
             reader.Close();
             cmd.ExecuteNonQuery();
+            con.Close();
             ObjEmployeeUpdate.metroComboBox1.DataSource = list.ToList();
             ObjEmployeeUpdate.metroComboBox1.DisplayMember = "Value";
             ObjEmployeeUpdate.metroComboBox1.ValueMember = "Key";
@@ -341,6 +357,7 @@ namespace GYM
             if (ObjEmployeeUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
+                    con.Close();
                     EMPLmetroGrid1.Sort(EMPLmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     con.Open();
                     OleDbCommand sss = new OleDbCommand("update Сотрудник set Фамилия=@st1, Имя=@st2, Отчество=@st3, Должность=@st4,Телефон=@st5, Дата=@st6,Пароль=@st7,Фото=@st8,Идзарплата=@st9 where идсотрудник=" + numbstrokemployee + "", con);
@@ -367,6 +384,7 @@ namespace GYM
         {
             if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены, что хотите Удалить?", "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
+                con.Close();
                 con.Open();
                 numbstrokemployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
                 OleDbCommand sss = new OleDbCommand(@"DELETE FROM сотрудник 
@@ -464,6 +482,7 @@ namespace GYM
 
         private void metroTextBox2_KeyUp(object sender, KeyEventArgs e)
         {
+            //con.Close();
             EMPLmetroTabControl5.Enabled = false;
             EMPLmetroTile11.Enabled = false;
             EMPLmetroTabControl7.Enabled = false;
@@ -499,8 +518,9 @@ namespace GYM
         private void metroButton1_Click(object sender, EventArgs e)
         {
             EMPLmetroTile3.Visible = true;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            //string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
+          //  conn.Close();
             conn.Open();
             DataSet ds = new DataSet();
             string date1 = EMPLmetroDateTime1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -787,7 +807,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
         private void metroTile12_Click(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+            
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -810,7 +830,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
         private void metroTile17_Click(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+          
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -834,7 +854,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
 
         private void metroTile19_Click(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+         
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -870,7 +890,7 @@ WHERE сотрудник.Дата Between #{0}# and #{1}#", date1, date2), conn)
         private void metroButton2_Click(object sender, EventArgs e)
         {
             EMPLmetroTile3.Visible = true;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+    
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1086,6 +1106,8 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены, что хотите закрыть программу?", "Подтверждение выхода", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 Environment.Exit(0);
+                //int hWnd = FindWindow("Shell_TrayWnd", "");
+               // ShowWindow(hWnd, SW_SHOW); //показываем панель задач
                 e.Cancel = false;
             }
             else
@@ -1237,7 +1259,6 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             SPORTMmetroTabControl9.Enabled = false;
             metroTile34.Enabled = false;
             metroTile32.Enabled = false;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1425,7 +1446,6 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             SPORTMmetroTabControl9.Enabled = false;
             SPORTMmetroTabControl10.Enabled = false;
             SPORTMmetroTabControl14.Enabled = false;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1453,7 +1473,6 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             SPORTMmetroTabControl9.Enabled = false;
             SPORTMmetroTabControl10.Enabled = false;
             SPORTMmetroTabControl14.Enabled = false;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1480,7 +1499,6 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
             SPORTMmetroTabControl9.Enabled = false;
             SPORTMmetroTabControl10.Enabled = false;
             SPORTMmetroTabControl14.Enabled = false;
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1830,7 +1848,6 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
 
         private void metroButton5_Click_1(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -1866,7 +1883,6 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
 
         private void metroButton4_Click_1(object sender, EventArgs e)
         {
-            string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
@@ -2017,7 +2033,6 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
         {
             try
             {
-                string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
                 OleDbConnection conn = new OleDbConnection(conString);
                 conn.Open();
                 DataSet ds = new DataSet();

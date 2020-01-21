@@ -41,7 +41,7 @@ namespace GYM
             }
             else
             {
-                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ISgym.mdb");
+                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                 con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
                                                                       from [сотрудник] 
                                                                       where пароль=@st1 ", con1);

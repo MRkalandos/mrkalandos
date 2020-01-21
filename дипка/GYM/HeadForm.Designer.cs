@@ -157,6 +157,7 @@
             this.metroLabel30 = new MetroFramework.Controls.MetroLabel();
             this.SPORTMmetroTabControl12 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.metroTile3 = new MetroFramework.Controls.MetroTile();
             this.SPORTMmetroTile36 = new MetroFramework.Controls.MetroTile();
             this.SPORTMmetroTile37 = new MetroFramework.Controls.MetroTile();
             this.SPORTMmetroTabControl14 = new MetroFramework.Controls.MetroTabControl();
@@ -167,6 +168,8 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.metroTile23 = new MetroFramework.Controls.MetroTile();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.metroContextMenu2 = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.сброситьФильтрToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTile16 = new MetroFramework.Controls.MetroTile();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -231,12 +234,7 @@
             this.metroTile20 = new MetroFramework.Controls.MetroTile();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.EMPLзарплата_сотрудникаTableAdapter = new GYM.DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter();
-            this.EMPLdS_Money = new GYM.DS_Money();
-            this.EMPLbindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.metroContextMenu2 = new MetroFramework.Controls.MetroContextMenu(this.components);
-            this.сброситьФильтрToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.metroTabControl2.SuspendLayout();
@@ -288,6 +286,7 @@
             this.tabPage5.SuspendLayout();
             this.metroTile23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
+            this.metroContextMenu2.SuspendLayout();
             this.metroTile16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.metroTile1.SuspendLayout();
@@ -308,10 +307,7 @@
             this.metroTabControl8.SuspendLayout();
             this.tabPage23.SuspendLayout();
             this.tabPage13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EMPLdS_Money)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EMPLbindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.metroContextMenu2.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroTabControl1
@@ -345,7 +341,7 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 2;
+            this.metroTabControl2.SelectedIndex = 1;
             this.metroTabControl2.Size = new System.Drawing.Size(1338, 666);
             this.metroTabControl2.TabIndex = 0;
             this.metroTabControl2.UseSelectable = true;
@@ -1064,7 +1060,7 @@
             // EMPLmetroDateTime2
             // 
             this.EMPLmetroDateTime2.Location = new System.Drawing.Point(44, 59);
-            this.EMPLmetroDateTime2.MinimumSize = new System.Drawing.Size(0, 29);
+            this.EMPLmetroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
             this.EMPLmetroDateTime2.Name = "EMPLmetroDateTime2";
             this.EMPLmetroDateTime2.Size = new System.Drawing.Size(143, 29);
             this.EMPLmetroDateTime2.TabIndex = 2;
@@ -1072,7 +1068,7 @@
             // EMPLmetroDateTime1
             // 
             this.EMPLmetroDateTime1.Location = new System.Drawing.Point(44, 24);
-            this.EMPLmetroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
+            this.EMPLmetroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
             this.EMPLmetroDateTime1.Name = "EMPLmetroDateTime1";
             this.EMPLmetroDateTime1.Size = new System.Drawing.Size(143, 29);
             this.EMPLmetroDateTime1.TabIndex = 1;
@@ -1839,7 +1835,7 @@
             // SPORTMmetroDateTime3
             // 
             this.SPORTMmetroDateTime3.Location = new System.Drawing.Point(44, 59);
-            this.SPORTMmetroDateTime3.MinimumSize = new System.Drawing.Size(0, 29);
+            this.SPORTMmetroDateTime3.MinimumSize = new System.Drawing.Size(4, 29);
             this.SPORTMmetroDateTime3.Name = "SPORTMmetroDateTime3";
             this.SPORTMmetroDateTime3.Size = new System.Drawing.Size(143, 29);
             this.SPORTMmetroDateTime3.TabIndex = 2;
@@ -1847,7 +1843,7 @@
             // SPORTMmetroDateTime4
             // 
             this.SPORTMmetroDateTime4.Location = new System.Drawing.Point(44, 24);
-            this.SPORTMmetroDateTime4.MinimumSize = new System.Drawing.Size(0, 29);
+            this.SPORTMmetroDateTime4.MinimumSize = new System.Drawing.Size(4, 29);
             this.SPORTMmetroDateTime4.Name = "SPORTMmetroDateTime4";
             this.SPORTMmetroDateTime4.Size = new System.Drawing.Size(143, 29);
             this.SPORTMmetroDateTime4.TabIndex = 1;
@@ -1927,6 +1923,7 @@
             // 
             // tabPage17
             // 
+            this.tabPage17.Controls.Add(this.metroTile3);
             this.tabPage17.Controls.Add(this.SPORTMmetroTile36);
             this.tabPage17.Controls.Add(this.SPORTMmetroTile37);
             this.tabPage17.Location = new System.Drawing.Point(4, 38);
@@ -1934,6 +1931,18 @@
             this.tabPage17.Size = new System.Drawing.Size(222, 314);
             this.tabPage17.TabIndex = 0;
             this.tabPage17.Text = "Формирование отчетов";
+            // 
+            // metroTile3
+            // 
+            this.metroTile3.ActiveControl = null;
+            this.metroTile3.Location = new System.Drawing.Point(13, 114);
+            this.metroTile3.Name = "metroTile3";
+            this.metroTile3.Size = new System.Drawing.Size(194, 39);
+            this.metroTile3.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile3.TabIndex = 2;
+            this.metroTile3.Text = "Отчет по посещениям";
+            this.metroTile3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile3.UseSelectable = true;
             // 
             // SPORTMmetroTile36
             // 
@@ -2096,6 +2105,20 @@
             this.metroGrid1.Style = MetroFramework.MetroColorStyle.Purple;
             this.metroGrid1.TabIndex = 0;
             this.metroGrid1.SelectionChanged += new System.EventHandler(this.metroGrid1_SelectionChanged_1);
+            // 
+            // metroContextMenu2
+            // 
+            this.metroContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сброситьФильтрToolStripMenuItem1});
+            this.metroContextMenu2.Name = "metroContextMenu2";
+            this.metroContextMenu2.Size = new System.Drawing.Size(172, 26);
+            // 
+            // сброситьФильтрToolStripMenuItem1
+            // 
+            this.сброситьФильтрToolStripMenuItem1.Name = "сброситьФильтрToolStripMenuItem1";
+            this.сброситьФильтрToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+            this.сброситьФильтрToolStripMenuItem1.Text = "Сбросить фильтр";
+            this.сброситьФильтрToolStripMenuItem1.Click += new System.EventHandler(this.сброситьФильтрToolStripMenuItem1_Click);
             // 
             // metroTile16
             // 
@@ -2682,7 +2705,7 @@
             // metroDateTime1
             // 
             this.metroDateTime1.Location = new System.Drawing.Point(44, 59);
-            this.metroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
+            this.metroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
             this.metroDateTime1.Name = "metroDateTime1";
             this.metroDateTime1.Size = new System.Drawing.Size(143, 29);
             this.metroDateTime1.TabIndex = 2;
@@ -2690,7 +2713,7 @@
             // metroDateTime2
             // 
             this.metroDateTime2.Location = new System.Drawing.Point(44, 24);
-            this.metroDateTime2.MinimumSize = new System.Drawing.Size(0, 29);
+            this.metroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
             this.metroDateTime2.Name = "metroDateTime2";
             this.metroDateTime2.Size = new System.Drawing.Size(143, 29);
             this.metroDateTime2.TabIndex = 1;
@@ -2949,20 +2972,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Сотрудники";
             // 
-            // EMPLзарплата_сотрудникаTableAdapter
-            // 
-            this.EMPLзарплата_сотрудникаTableAdapter.ClearBeforeFill = true;
-            // 
-            // EMPLdS_Money
-            // 
-            this.EMPLdS_Money.DataSetName = "DS_Money";
-            this.EMPLdS_Money.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // EMPLbindingSource1
-            // 
-            this.EMPLbindingSource1.DataMember = "Зарплата_сотрудника";
-            this.EMPLbindingSource1.DataSource = this.EMPLdS_Money;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -2973,20 +2982,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
-            // 
-            // metroContextMenu2
-            // 
-            this.metroContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сброситьФильтрToolStripMenuItem1});
-            this.metroContextMenu2.Name = "metroContextMenu2";
-            this.metroContextMenu2.Size = new System.Drawing.Size(172, 26);
-            // 
-            // сброситьФильтрToolStripMenuItem1
-            // 
-            this.сброситьФильтрToolStripMenuItem1.Name = "сброситьФильтрToolStripMenuItem1";
-            this.сброситьФильтрToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
-            this.сброситьФильтрToolStripMenuItem1.Text = "Сбросить фильтр";
-            this.сброситьФильтрToolStripMenuItem1.Click += new System.EventHandler(this.сброситьФильтрToolStripMenuItem1_Click);
             // 
             // HeadForm
             // 
@@ -2999,6 +2994,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HeadForm";
+            this.ShowInTaskbar = false;
             this.Text = "Главная форма";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HeadForm_FormClosing);
@@ -3066,6 +3062,7 @@
             this.tabPage5.ResumeLayout(false);
             this.metroTile23.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
+            this.metroContextMenu2.ResumeLayout(false);
             this.metroTile16.ResumeLayout(false);
             this.metroTile16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -3093,10 +3090,7 @@
             this.metroTabControl8.ResumeLayout(false);
             this.tabPage23.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EMPLdS_Money)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EMPLbindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.metroContextMenu2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3172,13 +3166,10 @@
         private System.Windows.Forms.TextBox EMPLtextBox5;
         private System.Windows.Forms.TextBox EMPLtextBox4;
         private System.Windows.Forms.TextBox EMPLtextBox8;
-        private DS_MoneyTableAdapters.Зарплата_сотрудникаTableAdapter EMPLзарплата_сотрудникаTableAdapter;
         private MetroFramework.Controls.MetroGrid EMPLmetroGrid1;
         private MetroFramework.Controls.MetroTile EMPLmetroTile3;
         private System.Windows.Forms.PictureBox EMPLpictureBox1;
         private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private DS_Money EMPLdS_Money;
-        private System.Windows.Forms.BindingSource EMPLbindingSource1;
         private System.Windows.Forms.TabPage tabPage13;
         private MetroFramework.Controls.MetroTile metroTile22;
         private MetroFramework.Controls.MetroTile metroTile21;
@@ -3301,5 +3292,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private MetroFramework.Controls.MetroContextMenu metroContextMenu2;
         private System.Windows.Forms.ToolStripMenuItem сброситьФильтрToolStripMenuItem1;
+        private MetroFramework.Controls.MetroTile metroTile3;
     }
 }

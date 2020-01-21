@@ -29,62 +29,58 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DsRepSportsmen = new GYM.DsRepSportsmen();
             this.СпортсменBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DsRepSportsmen = new GYM.DsRepSportsmen();
             this.СпортсменTableAdapter = new GYM.DsRepSportsmenTableAdapters.СпортсменTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DsRepSportsmen)).BeginInit();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.СпортсменBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsRepSportsmen)).BeginInit();
             this.SuspendLayout();
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DSRepSportsmen";
-            reportDataSource1.Value = this.СпортсменBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "GYM.Report3.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(284, 265);
-            this.reportViewer1.TabIndex = 0;
-            // 
-            // DsRepSportsmen
-            // 
-            this.DsRepSportsmen.DataSetName = "DsRepSportsmen";
-            this.DsRepSportsmen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // СпортсменBindingSource
             // 
             this.СпортсменBindingSource.DataMember = "Спортсмен";
             this.СпортсменBindingSource.DataSource = this.DsRepSportsmen;
             // 
+            // DsRepSportsmen
+            // 
+            this.DsRepSportsmen.DataSetName = "DsRepSportsmen";
+            this.DsRepSportsmen.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // СпортсменTableAdapter
             // 
             this.СпортсменTableAdapter.ClearBeforeFill = true;
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(20, 60);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(1346, 708);
+            this.reportViewer1.TabIndex = 0;
             // 
             // RepSportsmen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 265);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.reportViewer1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RepSportsmen";
-            this.Text = "RepSportsmen";
+            this.Text = "Отчет по посещениям";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.RepSportsmen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DsRepSportsmen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.СпортсменBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsRepSportsmen)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource СпортсменBindingSource;
         private DsRepSportsmen DsRepSportsmen;
         private DsRepSportsmenTableAdapters.СпортсменTableAdapter СпортсменTableAdapter;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }
