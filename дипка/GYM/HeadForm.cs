@@ -23,6 +23,7 @@ namespace GYM
             InitializeComponent();
         }
         public int numbstrokasportsmen = 0;
+
         public int numbstrokemployee = 0;
         public int numbstroktrener = 0;
         public string idEmployee;
