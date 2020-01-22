@@ -2045,13 +2045,12 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
                 OleDbConnection conn = new OleDbConnection(conString);
                 conn.Open();
                 DataSet ds = new DataSet();
-                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Тренер.Фамилия, Тренер.Имя, Тренер.Отчество, Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания,тренер.фото
-FROM Тренер INNER JOIN
-(Спортсмен INNER JOIN 
-(Абонемент INNER JOIN Продажа_абонемента
-ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент)
-ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
-ON Тренер.Идтренер = Абонемент.Идтренер;"), conn);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Тренер.Фамилия, Тренер.Имя, Тренер.Отчество, Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество,Тренировка.Название,тренер.Телефон,Тренер.Фото
+                                                                              FROM Спортсмен 
+                                                                              INNER JOIN (((Тренер INNER JOIN Тренировка ON Тренер.Идтренер = Тренировка.Идтренер)
+                                                                              INNER JOIN Абонемент ON Тренировка.Идтренировка = Абонемент.Идтренеровка) 
+                                                                              INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) 
+                                                                              ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен;"), conn);
 
                 metroTile16.Visible = false;
                 pictureBox2.Visible=false;
@@ -2065,6 +2064,7 @@ ON Тренер.Идтренер = Абонемент.Идтренер;"), conn)
                 metroTabControl4.Enabled = false;
                 metroTabControl5.Enabled = false;
                 conn.Close();
+                metroGrid1.Columns[8].Visible = false;
 
 
                 if (metroGrid1.RowCount == 0)
