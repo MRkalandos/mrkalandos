@@ -131,7 +131,7 @@
             this.metroTile1.Size = new System.Drawing.Size(146, 35);
             this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile1.TabIndex = 41;
-            this.metroTile1.Text = "пааппап";
+            this.metroTile1.Text = "Добавить";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
@@ -374,7 +374,7 @@
             this.Controls.Add(this.metroTextBox6);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MOD_Trener";
-            this.Text = "Редактировать тренера";
+            this.Text = "Добавить тренера";
             this.Load += new System.EventHandler(this.MOD_Trener_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

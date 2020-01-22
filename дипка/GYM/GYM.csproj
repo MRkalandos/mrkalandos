@@ -103,6 +103,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSREPSportsmenVIE2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DSRepVIE3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSRepVIE3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ISgymDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -144,6 +149,18 @@
     <Compile Include="MOD_Trener.Designer.cs">
       <DependentUpon>MOD_Trener.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOD_Trenerovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_Trenerovka.Designer.cs">
+      <DependentUpon>MOD_Trenerovka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MOD_View_trenerovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_View_trenerovka.Designer.cs">
+      <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +169,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportTrenerovka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTrenerovka.Designer.cs">
+      <DependentUpon>ReportTrenerovka.cs</DependentUpon>
+    </Compile>
     <Compile Include="Report_Employee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +205,12 @@
       <DependentUpon>Send_Mail.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="View_trenerovki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View_trenerovki.Designer.cs">
+      <DependentUpon>View_trenerovki.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MOD_Money.resx">
       <DependentUpon>MOD_Money.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +229,12 @@
     <EmbeddedResource Include="MOD_Trener.resx">
       <DependentUpon>MOD_Trener.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MOD_Trenerovka.resx">
+      <DependentUpon>MOD_Trenerovka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOD_View_trenerovka.resx">
+      <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Money.resx">
       <DependentUpon>Money.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +249,10 @@
     </Compile>
     <EmbeddedResource Include="Diagramm_Money_Employ.rdlc" />
     <EmbeddedResource Include="DiagrammMoneyTrener.rdlc" />
+    <EmbeddedResource Include="REPORTTrenerovka.rdlc" />
+    <EmbeddedResource Include="ReportTrenerovka.resx">
+      <DependentUpon>ReportTrenerovka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report_Trener.resx">
       <DependentUpon>Report_Trener.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Send_Mail.resx">
       <DependentUpon>Send_Mail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View_trenerovki.resx">
+      <DependentUpon>View_trenerovki.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DSREPemployee.xsc">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
@@ -259,6 +301,17 @@
     </None>
     <None Include="DSREPSportsmenVIE2.xss">
       <DependentUpon>DSREPSportsmenVIE2.xsd</DependentUpon>
+    </None>
+    <None Include="DSRepVIE3.xsc">
+      <DependentUpon>DSRepVIE3.xsd</DependentUpon>
+    </None>
+    <None Include="DSRepVIE3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSRepVIE3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSRepVIE3.xss">
+      <DependentUpon>DSRepVIE3.xsd</DependentUpon>
     </None>
     <None Include="ISgymDataSet.xsc">
       <DependentUpon>ISgymDataSet.xsd</DependentUpon>
