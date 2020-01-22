@@ -98,6 +98,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DSREPSportsmenVIE2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSREPSportsmenVIE2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ISgymDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MOD_Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,11 +158,22 @@
     <Compile Include="Report_Employee.Designer.cs">
       <DependentUpon>Report_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report_Trener.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_Trener.Designer.cs">
+      <DependentUpon>Report_Trener.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepSportsmen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RepSportsmen.Designer.cs">
       <DependentUpon>RepSportsmen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepTrener.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepTrener.xsd</DependentUpon>
     </Compile>
     <Compile Include="Send_Mail.cs">
       <SubType>Form</SubType>
@@ -191,7 +212,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Diagramm_Money.rdlc" />
+    <EmbeddedResource Include="Diagramm_Money_Employ.rdlc" />
+    <EmbeddedResource Include="DiagrammMoneyTrener.rdlc" />
+    <EmbeddedResource Include="Report_Trener.resx">
+      <DependentUpon>Report_Trener.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepSportsmen.rdlc" />
     <EmbeddedResource Include="Report_Employee.resx">
       <DependentUpon>Report_Employee.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,6 +249,28 @@
     <None Include="DsRepSportsmen.xss">
       <DependentUpon>DsRepSportsmen.xsd</DependentUpon>
     </None>
+    <None Include="DSREPSportsmenVIE2.xsc">
+      <DependentUpon>DSREPSportsmenVIE2.xsd</DependentUpon>
+    </None>
+    <None Include="DSREPSportsmenVIE2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSREPSportsmenVIE2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DSREPSportsmenVIE2.xss">
+      <DependentUpon>DSREPSportsmenVIE2.xsd</DependentUpon>
+    </None>
+    <None Include="ISgymDataSet.xsc">
+      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ISgymDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ISgymDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ISgymDataSet.xss">
+      <DependentUpon>ISgymDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DSEmployee.СотрудникDataTable.datasource" />
     <None Include="Properties\DataSources\DSReport.datasource" />
@@ -237,6 +285,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RepTrener.xsc">
+      <DependentUpon>RepTrener.xsd</DependentUpon>
+    </None>
+    <None Include="RepTrener.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RepTrener.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RepTrener.xss">
+      <DependentUpon>RepTrener.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -260,9 +319,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataSource\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

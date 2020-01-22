@@ -1037,8 +1037,8 @@
         </ChartNoDataMessage>
         <DataSetName>DSREPORTemployee</DataSetName>
         <Top>1.30583cm</Top>
-        <Height>18.78479cm</Height>
-        <Width>33.34917cm</Width>
+        <Height>14.04875cm</Height>
+        <Width>30.34917cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1050,10 +1050,10 @@
         </Style>
       </Chart>
     </ReportItems>
-    <Height>8.00892in</Height>
+    <Height>6.04511in</Height>
     <Style />
   </Body>
-  <Width>13.22334in</Width>
+  <Width>15.0981in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

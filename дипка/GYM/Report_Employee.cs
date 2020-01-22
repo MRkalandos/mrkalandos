@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +18,23 @@ namespace GYM
         {
             InitializeComponent();
         }
+        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
 
         private void Report_Employee_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "DSREPemployee.vie1". При необходимости она может быть перемещена или удалена.
-            this.vie1TableAdapter.Fill(this.DSREPemployee.vie1);
-            this.reportViewer1.RefreshReport();
+            try
+            {
+                OleDbConnection conn = new OleDbConnection(conString);
+                conn.Open();
+                DataSet ds = new DataSet();
+
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"select * from vie1"), conn);
+                adapter.Fill(this.DSREPemployee.vie1);
+                conn.Close();
+                this.reportViewer1.RefreshReport();
+            }
+            catch {
+            }
         }
     }
 }

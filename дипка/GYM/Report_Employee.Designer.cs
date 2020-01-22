@@ -55,7 +55,7 @@
             reportDataSource1.Name = "DSREPORTemployee";
             reportDataSource1.Value = this.vie1BindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "GYM.Diagramm_Money.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "GYM.Diagramm_Money_Employ.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(20, 60);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1346, 708);
@@ -75,7 +75,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Report_Employee";
-            this.Text = "Диаграмма зарплат";
+            this.Text = "Диаграмма зарплат сотрудников";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Report_Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.vie1BindingSource)).EndInit();

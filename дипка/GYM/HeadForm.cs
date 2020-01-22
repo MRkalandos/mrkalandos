@@ -1477,19 +1477,27 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
-            string n = Microsoft.VisualBasic.Interaction. InputBox("Введите Фамилию спортсмена: ", "Запрос",
-                "", 500, 500);
-            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@" SELECT Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество, Учет_посещений.Дата,Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, 
+            try
+            {
+                string n = Microsoft.VisualBasic.Interaction.InputBox("Введите Фамилию спортсмена: ", "Запрос",
+                    "", 500, 500);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@" SELECT Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество, Учет_посещений.Дата,Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания
 FROM (Спортсмен INNER JOIN (Абонемент INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) INNER JOIN Учет_посещений ON Продажа_абонемента.Идпродажа = Учет_посещений.Идпродажа
 WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
-            adapter.Fill(ds);
-            SPORTMmetroGrid2.DataSource = ds.Tables[0];
-            conn.Close();
-            if (SPORTMmetroGrid2.RowCount == 0)
-            {
-                MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                updSportsmen();
+                adapter.Fill(ds);
+                SPORTMmetroGrid2.DataSource = ds.Tables[0];
+                conn.Close();
+                if (SPORTMmetroGrid2.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    updSportsmen();
+                }
+            }
+            catch (Exception ex)
+            {
+                MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
             }
         }
 
@@ -2067,6 +2075,19 @@ ON Тренер.Идтренер = Абонемент.Идтренер;"), conn)
                 }
             }
             catch(Exception ex) { MessageBox.Show(ex.Message); }
+        }
+
+        private void metroTile13_Click(object sender, EventArgs e)
+        {
+            Report_Trener reptr = new Report_Trener();
+            reptr.Show();
+                
+        }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            RepSportsmen resp = new RepSportsmen();
+            resp.Show();
         }
     }
 }
