@@ -17,10 +17,11 @@ namespace GYM
 {
     public partial class HeadForm : MetroFramework.Forms.MetroForm
     {
-      
         public HeadForm()
         {
             InitializeComponent();
+           
+            metroTile4.PerformClick();
         }
         public int numbstrokasportsmen = 0;
         public int numbstrokTrenerovka = 0;
@@ -1141,8 +1142,16 @@ FROM Зарплата_сотрудника INNER JOIN Сотрудник ON За
         
         private void HeadForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-         
-
+            Exit s = new Exit();
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                Environment.Exit(0);
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
@@ -2120,10 +2129,8 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
         private void metroTile38_Click(object sender, EventArgs e)
         {
             MOD_Trenerovka ObjTrenerovkaAdd = new MOD_Trenerovka();
-            ObjTrenerovkaAdd.textBox1.Text = "";
-           // ObjTrenerovkaAdd.metroComboBox1.Text = "";
-            //ObjTrenerovkaAdd.metroComboBox2.Text = "";
         
+            ObjTrenerovkaAdd.textBox1.Text = "";
             ObjTrenerovkaAdd.Text = "Добавить тренировку";
             ObjTrenerovkaAdd.metroTile1.Text = "Добавить";
             con.Open();
@@ -2157,10 +2164,7 @@ WHERE (((Спортсмен.Фамилия)='" + n + "'));"), conn);
             ObjTrenerovkaAdd.metroComboBox2.DisplayMember = "Value";
             ObjTrenerovkaAdd.metroComboBox2.ValueMember = "Key";
             con.Close();
-
-
-
-
+         //   ShowDialog();
             if (ObjTrenerovkaAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
@@ -2540,16 +2544,33 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
         }
 
 
-      public  class MyClass
-        {
-            public bool f = false;
-        }
+     
         
-        public void pictureBox2_Click(object sender, EventArgs e)
+      
+
+        private void metroTile5_Click_1(object sender, EventArgs e)
         {
           
+        }
+
+        private void metroTile6_Click_2(object sender, EventArgs e)
+        {
            
-           
+        }
+
+        private void metroTile4_VisibleChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void pictureBox2_Click(object sender, EventArgs e)
+        {
+          MOD_Trenerovka d = new MOD_Trenerovka();
+            WindowState = FormWindowState.Normal;
+            Height =-9999;
+            Width = -9999;
+        //   metroTile4.PerformClick();
+           // d.ShowDialog();
         }
     }
 }

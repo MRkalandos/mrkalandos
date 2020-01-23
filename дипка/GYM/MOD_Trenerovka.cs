@@ -72,16 +72,34 @@ namespace GYM
             View_trenerovki view = new View_trenerovki();
             view.Show();
         }
-     
-        public void metroButton2_Click(object sender, EventArgs e)
-        {      
-        //  HeadForm 
+        void NewForm()
+        {
+            HeadForm form = new HeadForm();
+            form.pictureBox2.Visible = true;
+            
+            form.metroTabControl1.SelectedTab = form.tabPage1;
+            form.metroTabControl2.SelectedTab = form.tabPage5;
+            ((Control)form.tabPage2).Enabled = false;
+            ((Control)form.tabPage3).Enabled = false;
+            ((Control)form.tabPage13).Enabled = false;
+            ((Control)form.EMPLtabPage6).Enabled = false;
+            ((Control)form.tabPage4).Enabled = false;
+            ((Control)form.tabPage20).Enabled = false;
+            ((Control)form.tabPage21).Enabled = false;
+            ((Control)form.tabPage18).Enabled = false;
+            ((Control)form.tabPage6).Enabled = false;
+            form.ShowDialog();
+           
+
         }
-       
+        public void metroButton2_Click(object sender, EventArgs e)
+        {
+            new System.Threading.Thread(NewForm).Start();
+        }
+      
 
-          
 
-        
+
 
 
     }
