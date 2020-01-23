@@ -27,14 +27,17 @@ namespace GYM
         public int numbstrokTrenerovka = 0;
         public int numbstrokemployee = 0;
         public int numbstroktrener = 0;
+        public int numbstrSALE = 0;
         public int numbAbonement = 0;
         public string idEmployee;
+        public string idSALE;
         public string idsportsmen;
         public string idtrener;
         public string idabonement;
         public string idtrenerovka;
         public DataTable dtEmployee;
         public DataTable dtSportsmen;
+        public DataTable dtSALE;
         public DataTable dtAbonement;
         public DataTable dtTrener;
         public DataTable dtTrenerovka;
@@ -42,6 +45,7 @@ namespace GYM
         public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
         public OleDbDataAdapter sdaEmployee;
+        public OleDbDataAdapter sdaSALE;
         public OleDbDataAdapter sdasportsmen;
         public OleDbDataAdapter sdaabonement;
         public OleDbDataAdapter sdatrener;
@@ -115,6 +119,45 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 metroTile14.Enabled = true;
                 metroTile17.Enabled = true;
 
+            }
+            catch
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНе удалось обновить таблицу", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        public void updSale()
+        {
+            try
+            {
+                sdaSALE = new OleDbDataAdapter(@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник;", con);
+                dtSALE = new DataTable();
+                sdaSALE.Fill(dtSALE);
+                SALEmetroGrid1.DataSource = dtSALE;
+                SALEmetroGrid1.Columns[0].Visible = false;
+                SALEmetroGrid1.Columns[7].Visible = false;
+                SALEmetroGrid1.Columns[8].Visible = false;
+                SALEmetroGrid1.Columns[9].Visible = false;
+                SALEmetroTabControl4.Enabled = true;
+                metroTile44.Enabled = true;
+                SALEmetroTabControl6.Enabled = true;
+                SALEmetroTabControl9.Enabled = true;
+                SALEmetroTabControl7.Enabled = true;
+                SALEmetroTabControl5.Enabled = true;
+                SALEmetroTabControl7.Enabled = true;
+                metroTile42.Enabled = true;
+                metroTile43.Enabled = true;
+                SALEmetroGrid1.Select();
+                SALEmetroGrid1.AllowUserToAddRows = false;
+                metroTile40.Enabled = true;
+                metroTile41.Enabled = true;
+                SALEtextBox6.Text = "";
+                SALEtextBox4.Text = "";
+                SALEtextBox5.Text = "";
+                SALEmetroTextBox2.Text = "";
+                SALEmetroTextBox3.Text = "";
             }
             catch
             {
@@ -279,6 +322,15 @@ FROM Тренировка INNER JOIN Абонемент ON Тренировка.
             dtAbonement = new DataTable();
             sdaabonement.Fill(dtAbonement);
             ABONmetroGrid1.DataSource = dtAbonement;
+
+            ////////////////////////////////////////////////////////////sale///////////////////
+            OleDbConnection conSale = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filename + "");
+            sdaabonement = new OleDbDataAdapter(@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник;", conSale);
+            dtSALE = new DataTable();
+            sdaSALE.Fill(dtSALE);
+            SALEmetroGrid1.DataSource = dtSALE;
+
             ////////////////////////////////////trenerovka
             OleDbConnection contrenerovka = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filename + "");
             sdatrenerovka = new OleDbDataAdapter(@"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия
@@ -314,6 +366,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 updSportsmen();
                 updTrenerovka();
                 updAbonement();
+                updSale();
             }
             catch
             {
@@ -2913,8 +2966,10 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             OleDbConnection conn = new OleDbConnection(conString);
             conn.Open();
             DataSet ds = new DataSet();
-            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Тренер.Фамилия, Спортсмен.Фамилия
-FROM Спортсмен INNER JOIN ((Тренер INNER JOIN (Тренировка INNER JOIN Абонемент ON Тренировка.Идтренировка = Абонемент.Идтренеровка) ON Тренер.Идтренер = Тренировка.Идтренер) INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен;"), conn);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT top 1  абонемент.идабонемент,абонемент.название, count (абонемент.идабонемент) as [В продажах]
+FROM Абонемент INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент
+ GROUP BY  абонемент.идабонемент,абонемент.название
+            ORDER BY sum(абонемент.идабонемент)desc"), conn);
             adapter.Fill(ds);
             ABONmetroGrid1.DataSource = ds.Tables[0];
             
@@ -3172,6 +3227,585 @@ FROM Спортсмен INNER JOIN ((Тренер INNER JOIN (Тренировк
                 }
                 ABONtextBox4.Text = "";
             }
+        }
+
+        private void metroTile48_Click(object sender, EventArgs e)
+        {
+            MOD_SALE f = new MOD_SALE();
+            f.ShowDialog();
+        }
+
+        private void metroTile51_Click(object sender, EventArgs e)
+        {
+            MOD_SALE ObjSaleAdd = new MOD_SALE();
+            ObjSaleAdd.Text = "Добавить продажу";
+            ObjSaleAdd.metroTile1.Text = "Добавить";
+
+            con.Open();
+            OleDbCommand cmd = new OleDbCommand("SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия FROM Сотрудник;", con);
+            ObjSaleAdd.metroComboBox1.DisplayMember = "Фамилия";
+            OleDbDataReader reader = cmd.ExecuteReader();
+            Dictionary<int, string> list = new Dictionary<int, string>();
+            while (reader.Read())
+            {
+                list.Add((int)reader[0], (string)reader[1]);
+            }
+            reader.Close();
+            cmd.ExecuteNonQuery();
+            ObjSaleAdd.metroComboBox1.DataSource = list.ToList();
+            ObjSaleAdd.metroComboBox1.DisplayMember = "Value";
+            ObjSaleAdd.metroComboBox1.ValueMember = "Key";
+            con.Close();
+            //////////////////////////////////////////////////
+            con.Open();
+            OleDbCommand cmd1 = new OleDbCommand("SELECT Спортсмен.Идспортсмен, Спортсмен.Фамилия FROM Спортсмен;", con);
+            ObjSaleAdd.metroComboBox2.DisplayMember = "фамилия";
+            OleDbDataReader reader1 = cmd1.ExecuteReader();
+            Dictionary<int, string> list1 = new Dictionary<int, string>();
+            while (reader1.Read())
+            {
+                list1.Add((int)reader1[0], (string)reader1[1]);
+            }
+            reader1.Close();
+            cmd1.ExecuteNonQuery();
+            ObjSaleAdd.metroComboBox2.DataSource = list1.ToList();
+            ObjSaleAdd.metroComboBox2.DisplayMember = "Value";
+            ObjSaleAdd.metroComboBox2.ValueMember = "Key";
+            con.Close();
+            ///////////////////////////////////////////////////////////////
+            con.Open();
+            OleDbCommand cmd2 = new OleDbCommand("SELECT Абонемент.Идабонемент, Абонемент.Название FROM Абонемент;", con);
+            ObjSaleAdd.metroComboBox3.DisplayMember = "Название";
+            OleDbDataReader reader2 = cmd2.ExecuteReader();
+            Dictionary<int, string> list2 = new Dictionary<int, string>();
+            while (reader2.Read())
+            {
+                list2.Add((int)reader2[0], (string)reader2[1]);
+            }
+            reader2.Close();
+            cmd2.ExecuteNonQuery();
+            ObjSaleAdd.metroComboBox3.DataSource = list2.ToList();
+            ObjSaleAdd.metroComboBox3.DisplayMember = "Value";
+            ObjSaleAdd.metroComboBox3.ValueMember = "Key";
+            con.Close();
+
+
+            if (ObjSaleAdd.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    SALEmetroGrid1.Sort(SALEmetroGrid1.Columns[1], ListSortDirection.Ascending);
+                    idSALE = Convert.ToString(Convert.ToInt32(SALEmetroGrid1.Rows[SALEmetroGrid1.RowCount - 1].Cells[0].Value) + 1);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Продажа_абонемента]
+                                                        ( Идсотрудник, Идспортсмен, Идабонемент, Дата_начала,Дата_окончания)
+                                                        VALUES(@st1,@st2,@st3,@st4,@st5)", con);
+                    sss.Parameters.AddWithValue("st1", Convert.ToInt32(ObjSaleAdd.metroComboBox1.SelectedValue.ToString()));
+                    sss.Parameters.AddWithValue("st2", Convert.ToInt32(ObjSaleAdd.metroComboBox2.SelectedValue.ToString()));
+                    sss.Parameters.AddWithValue("st3", Convert.ToInt32(ObjSaleAdd.metroComboBox3.SelectedValue.ToString()));
+                    sss.Parameters.AddWithValue("st4", Convert.ToDateTime(ObjSaleAdd.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st5", Convert.ToDateTime(ObjSaleAdd.metroDateTime2.Text));
+
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    updSale();
+                }
+                catch (Exception ex)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
+                }
+        }
+
+        private void metroTile50_Click(object sender, EventArgs e)
+        {
+            MOD_SALE ObjSaleUpdate = new MOD_SALE();
+            con.Close();
+            ObjSaleUpdate.Text = "Редактировать продажи";
+            ObjSaleUpdate.metroTile1.Text = "Редактировать";
+            numbstrSALE = Convert.ToInt32(SALEmetroGrid1.CurrentRow.Cells[0].Value);
+            con.Open();
+            OleDbCommand cmd = new OleDbCommand("SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия FROM Сотрудник;", con);
+            ObjSaleUpdate.metroComboBox1.DisplayMember = "Фамилия";
+            OleDbDataReader reader = cmd.ExecuteReader();
+            Dictionary<int, string> list = new Dictionary<int, string>();
+            while (reader.Read())
+            {
+                list.Add((int)reader[0], (string)reader[1]);
+            }
+            reader.Close();
+            cmd.ExecuteNonQuery();
+            ObjSaleUpdate.metroComboBox1.DataSource = list.ToList();
+            ObjSaleUpdate.metroComboBox1.DisplayMember = "Value";
+            ObjSaleUpdate.metroComboBox1.ValueMember = "Key";
+            con.Close();
+
+            ObjSaleUpdate.metroComboBox1.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[7].Value;
+
+            //////////////////////////////////////////////////
+            con.Open();
+            OleDbCommand cmd1 = new OleDbCommand("SELECT Спортсмен.Идспортсмен, Спортсмен.Фамилия FROM Спортсмен;", con);
+            ObjSaleUpdate.metroComboBox2.DisplayMember = "фамилия";
+            OleDbDataReader reader1 = cmd1.ExecuteReader();
+            Dictionary<int, string> list1 = new Dictionary<int, string>();
+            while (reader1.Read())
+            {
+                list1.Add((int)reader1[0], (string)reader1[1]);
+            }
+            reader1.Close();
+            cmd1.ExecuteNonQuery();
+            ObjSaleUpdate.metroComboBox2.DataSource = list1.ToList();
+            ObjSaleUpdate.metroComboBox2.DisplayMember = "Value";
+            ObjSaleUpdate.metroComboBox2.ValueMember = "Key";
+            con.Close();
+            ObjSaleUpdate.metroComboBox2.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[8].Value;
+
+            ///////////////////////////////////////////////////////////////
+            con.Open();
+            OleDbCommand cmd2 = new OleDbCommand("SELECT Абонемент.Идабонемент, Абонемент.Название FROM Абонемент;", con);
+            ObjSaleUpdate.metroComboBox3.DisplayMember = "Название";
+            OleDbDataReader reader2 = cmd2.ExecuteReader();
+            Dictionary<int, string> list2 = new Dictionary<int, string>();
+            while (reader2.Read())
+            {
+                list2.Add((int)reader2[0], (string)reader2[1]);
+            }
+            reader2.Close();
+            cmd2.ExecuteNonQuery();
+            ObjSaleUpdate.metroComboBox3.DataSource = list2.ToList();
+            ObjSaleUpdate.metroComboBox3.DisplayMember = "Value";
+            ObjSaleUpdate.metroComboBox3.ValueMember = "Key";
+            con.Close();
+            ObjSaleUpdate.metroComboBox3.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[9].Value;
+
+            ObjSaleUpdate.metroDateTime1.Text = Convert.ToString(SALEmetroGrid1.CurrentRow.Cells[4].Value);
+            ObjSaleUpdate.metroDateTime2.Text = Convert.ToString(SALEmetroGrid1.CurrentRow.Cells[5].Value);
+          
+            if (ObjSaleUpdate.ShowDialog() == DialogResult.OK)
+                try
+                {
+                    con.Close();
+                    SALEmetroGrid1.Sort(SALEmetroGrid1.Columns[1], ListSortDirection.Ascending);
+                    con.Open();
+                    OleDbCommand sss = new OleDbCommand("update Продажа_абонемента set Идсотрудник=@st1, Идспортсмен=@st2, Идабонемент=@st3, Дата_начала=@st4,Дата_окончания=@st5 where идпродажа=" + numbstrSALE + "", con);
+                    sss.Parameters.AddWithValue("st1", Convert.ToInt32(ObjSaleUpdate.metroComboBox1.SelectedValue));
+                    sss.Parameters.AddWithValue("st2", Convert.ToInt32(ObjSaleUpdate.metroComboBox2.SelectedValue));
+                    sss.Parameters.AddWithValue("st3", Convert.ToInt32(ObjSaleUpdate.metroComboBox3.SelectedValue));
+                    sss.Parameters.AddWithValue("st4", Convert.ToDateTime(ObjSaleUpdate.metroDateTime1.Text));
+                    sss.Parameters.AddWithValue("st5", Convert.ToDateTime(ObjSaleUpdate.metroDateTime2.Text));
+                    sss.ExecuteNonQuery();
+                    con.Close();
+                    updSale();
+                }
+                catch (Exception ex)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, ex.Message, "Ошибка");
+                }
+        }
+
+        private void metroTile49_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены, что хотите Удалить?", "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            {
+                con.Close();
+                con.Open();
+                numbstrSALE = Convert.ToInt32(SALEmetroGrid1.CurrentRow.Cells[0].Value);
+                OleDbCommand sss = new OleDbCommand(@"DELETE FROM продажа_абонемента 
+                                                    WHERE идпродажа=" + numbstrSALE + "", con);
+                sss.ExecuteNonQuery();
+                updSale();
+                con.Close();
+            }
+        }
+
+        private void metroTile47_Click(object sender, EventArgs e)
+        {
+
+            MetroFramework.MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.updSale();
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
+            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
+            ExcelWorkSheet.StandardWidth = 17;
+            ExcelWorkSheet.Name = "Продажи";
+            ExcelApp.Cells[1, 1] = "Сотрудник";
+            ExcelApp.Cells[1, 2] = "Абонемент";
+            ExcelApp.Cells[1, 3] = "Количество_посещений";
+            ExcelApp.Cells[1, 4] = "Дата_начала";
+            ExcelApp.Cells[1, 5] = "Дата_окончания";
+            ExcelApp.Cells[1, 6] = "Фамилия";
+        
+            {
+                for (int i = 1; i < SALEmetroGrid1.Rows.Count + 1; i++)
+                {
+                    ExcelApp.Cells[i + 1, 1] = SALEmetroGrid1.Rows[i - 1].Cells[1].Value;
+                    ExcelApp.Cells[i + 1, 2] = SALEmetroGrid1.Rows[i - 1].Cells[2].Value;
+                    ExcelApp.Cells[i + 1, 3] = SALEmetroGrid1.Rows[i - 1].Cells[3].Value;
+                    ExcelApp.Cells[i + 1, 4] = SALEmetroGrid1.Rows[i - 1].Cells[4].Value;
+                    ExcelApp.Cells[i + 1, 5] = SALEmetroGrid1.Rows[i - 1].Cells[5].Value;
+                    ExcelApp.Cells[i + 1, 6] = SALEmetroGrid1.Rows[i - 1].Cells[6].Value;
+                }
+                ExcelApp.Visible = true;
+                ExcelApp.UserControl = true;
+            }
+        }
+
+        private void metroTile46_Click(object sender, EventArgs e)
+        {
+            MetroFramework.MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/SALE.docx";
+            var Wordapp = new Microsoft.Office.Interop.Word.Application();
+
+            Wordapp.Visible = true;
+            Microsoft.Office.Interop.Word.Document doc = Wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
+            try
+            {
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, SALEmetroGrid1.RowCount + 1, 6);
+                table.Borders.Enable = 1;
+                table.Cell(1, 1).Range.Text = "Сотрудник";
+                table.Cell(1, 2).Range.Text = "Абонемент"; ;
+                table.Cell(1, 3).Range.Text = "Количество_посещений";
+                table.Cell(1, 4).Range.Text = "Дата_начала";
+                table.Cell(1, 5).Range.Text = "Дата_окончания";
+                table.Cell(1, 6).Range.Text = "Фамилия";
+                table.Range.Bold = 1;
+                table.Range.Font.Name = "TimesNewRoman";
+                table.Range.Font.Size = 7;
+                table.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
+                for (int i = 1; i < SALEmetroGrid1.RowCount + 1; i++)
+                {
+                    table.Cell(i + 1, 1).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[1].Value.ToString();
+                    table.Cell(i + 1, 2).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[2].Value.ToString();
+                    table.Cell(i + 1, 3).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[3].Value.ToString();
+                    table.Cell(i + 1, 4).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[4].Value.ToString();
+                    table.Cell(i + 1, 5).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[5].Value.ToString();
+                    table.Cell(i + 1, 6).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[6].Value.ToString();
+                }
+
+                try
+                {
+                    doc.SaveAs(path);
+                    MetroFramework.MetroMessageBox.Show(this, "\nОтчет Word сформирование и сохранен по пути" + path, "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch { }
+            }
+            catch { }
+        }
+
+        private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox6_KeyPress_2(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox3_KeyPress_3(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metroTextBox2_KeyPress_3(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= '0' && blockCifr <= '9'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox5_KeyPress_3(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox4_KeyPress_3(object sender, KeyPressEventArgs e)
+        {
+            char blockCifr = e.KeyChar;
+            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
+            {
+                if (e.KeyChar != (char)Keys.Back)
+
+                {
+                    e.Handled = true;
+                    DialogResult result = MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void textBox6_TextChanged_2(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox5_TextChanged_3(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox4_TextChanged_3(object sender, EventArgs e)
+        {
+            if (((TextBox)sender).Text.Length == 1)
+                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
+            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+        }
+
+        private void textBox6_KeyUp_1(object sender, KeyEventArgs e)
+        {
+
+            string s = @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
+(Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник 
+                       WHERE[Абонемент.Название] LIKE '%" + SALEtextBox6.Text + "%'";
+            sdaSALE = new OleDbDataAdapter(s, con);
+            dtSALE = new DataTable();
+            sdaSALE.Fill(dtSALE);
+            SALEmetroGrid1.DataSource = dtSALE;
+            SALEmetroTabControl4.Enabled = false;
+            SALEmetroTabControl5.Enabled = false;
+            SALEmetroTabControl7.Enabled = false;
+            metroTile42.Enabled = false;
+            metroTile43.Enabled = false;
+            if (SALEmetroGrid1.RowCount == 0)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Абонемента не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                SALEtextBox6.Text = "";
+                updSale();
+            }
+        }
+
+        private void metroButton5_Click_2(object sender, EventArgs e)
+        {
+            OleDbConnection conn = new OleDbConnection(conString);
+            //  conn.Close();
+            conn.Open();
+            DataSet ds = new DataSet();
+            string date1 = SALEmetroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            string date2 = SALEmetroDateTime1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
+            if (Convert.ToDateTime(SALEmetroDateTime2.Text) < Convert.ToDateTime(SALEmetroDateTime1.Text))
+            {
+                SALEmetroTabControl4.Enabled = false;
+                SALEmetroTabControl5.Enabled = false;
+                SALEmetroTabControl7.Enabled = false;
+                metroTile42.Enabled = false;
+                metroTile44.Enabled = false;
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
+(Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
+WHERE Продажа_абонемента.Дата_начала Between #{0}# and #{1}#", date1, date2), conn);
+                adapter.Fill(ds);
+                SALEmetroGrid1.DataSource = ds.Tables[0];
+                conn.Close();
+
+                if (SALEmetroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Даты не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updSale();
+                }
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНачальный период не может быть больше конечного", "Ошибка диапазона", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                updEmployee();
+            }
+        }
+
+        private void metroButton4_Click_3(object sender, EventArgs e)
+        {
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+            if (Convert.ToInt32(SALEmetroTextBox3.Text) < Convert.ToInt32(SALEmetroTextBox2.Text))
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
+(Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник where Абонемент.Количество_посещений between {0} and {1}", SALEmetroTextBox3.Text, SALEmetroTextBox2.Text), conn);
+                adapter.Fill(ds);
+                SALEmetroGrid1.DataSource = ds.Tables[0];
+                conn.Close();
+                SALEmetroTabControl4.Enabled = false;
+                SALEmetroTabControl5.Enabled = false;
+                SALEmetroTabControl7.Enabled = false;
+                metroTile43.Enabled = false;
+                metroTile44.Enabled = false;
+
+                if (SALEmetroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nЗапись не найдена", "Количество не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updSale();
+                }
+            }
+            else
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nНачальное количество не может быть больше конечного", "Ошибка диапазона", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                updSale();
+            }
+        }
+
+        private void metroButton3_Click_4(object sender, EventArgs e)
+        {
+            if (SALEtextBox5.Text == "")
+            {
+                MessageBox.Show("Не введены данные");
+            }
+            else
+            {
+                SALEmetroTabControl4.Enabled = false;
+                SALEmetroTabControl6.Enabled = false;
+                SALEmetroTabControl7.Enabled = false;
+                metroTile40.Enabled = false;
+               
+                string s = @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
+(Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
+                           WHERE Спортсмен.Фамилия='" + SALEtextBox5.Text + "'";
+                sdaSALE = new OleDbDataAdapter(s, con);
+                dtSALE = new DataTable();
+                sdaSALE.Fill(dtSALE);
+                SALEmetroGrid1.DataSource = dtSALE;
+
+                if (SALEmetroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nТаких спортсменов не найдено", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updSale();
+                }
+                SALEtextBox5.Text = "";
+            }
+        }
+
+        private void metroButton2_Click_4(object sender, EventArgs e)
+        {
+            if (SALEtextBox4.Text == "")
+            {
+                MessageBox.Show("Не введены данные");
+            }
+            else
+            {
+                SALEmetroTabControl4.Enabled = false;
+                SALEmetroTabControl6.Enabled = false;
+                SALEmetroTabControl7.Enabled = false;
+                metroTile41.Enabled = false;
+                string s = @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
+(Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
+ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
+                           WHERE Сотрудник.Фамилия='" + SALEtextBox4.Text + "'";
+                sdaSALE = new OleDbDataAdapter(s, con);
+                dtSALE = new DataTable();
+                sdaSALE.Fill(dtSALE);
+                SALEmetroGrid1.DataSource = dtSALE;
+
+                if (SALEmetroGrid1.RowCount == 0)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "\nТаких спортсменов не найдено", "Спортсмена не найдено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updSale();
+                }
+                SALEtextBox4.Text = "";
+            }
+        }
+
+        private void metroTile38_Click_2(object sender, EventArgs e)
+        {
+            OleDbConnection conn = new OleDbConnection(conString);
+            conn.Open();
+            DataSet ds = new DataSet();
+            OleDbDataAdapter adapter = new OleDbDataAdapter(String.Format(@"SELECT Абонемент.Название AS Абонемент, Сотрудник.Фамилия  & Сотрудник.Имя AS [Реализовавший сотрудник], Спортсмен.Фамилия  & Спортсмен.Имя AS Спортсмен, Продажа_абонемента.Дата_начала as Начало,  Продажа_абонемента.Дата_окончания as Конец
+                                                                          FROM Спортсмен 
+                                                                          INNER JOIN (Сотрудник 
+                                                                          INNER JOIN (Абонемент INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) 
+                                                                          ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник) 
+                                                                          ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен;"), conn);
+            adapter.Fill(ds);
+            SALEmetroGrid1.DataSource = ds.Tables[0];
+            conn.Close();
+            //EnableOFF();
+            SALEmetroTabControl4.Enabled = false;
+            SALEmetroTabControl5.Enabled = false;
+            SALEmetroTabControl6.Enabled = false;
+            SALEmetroTabControl9.Enabled = false;
+            SALEmetroTabControl7.Enabled = false;
+            if (SALEmetroGrid1.RowCount == 0)
+            {
+                MetroFramework.MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                updSale();
+            }
+        }
+
+        private void сброситьФильтрToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            updSale();
+        }
+
+        private void metroTile45_Click(object sender, EventArgs e)
+        {
+            RepSportsmen resp = new RepSportsmen();
+            resp.Show();
         }
     }
 }

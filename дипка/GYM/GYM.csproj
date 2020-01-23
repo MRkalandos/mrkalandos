@@ -234,6 +234,12 @@
     <Compile Include="View_trenerovki.Designer.cs">
       <DependentUpon>View_trenerovki.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOD_SALE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_SALE.Designer.cs">
+      <DependentUpon>MOD_SALE.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Exit.resx">
       <DependentUpon>Exit.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View_trenerovki.resx">
       <DependentUpon>View_trenerovki.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOD_SALE.resx">
+      <DependentUpon>MOD_SALE.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DSREPemployee.xsc">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
