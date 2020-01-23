@@ -2703,7 +2703,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
 
         public void pictureBox2_Click(object sender, EventArgs e)
         {
-          MOD_Trenerovka d = new MOD_Trenerovka();
+         // MOD_Trenerovka d = new MOD_Trenerovka();
             WindowState = FormWindowState.Normal;
             Height =-9999;
             Width = -9999;
@@ -3806,6 +3806,16 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         {
             RepSportsmen resp = new RepSportsmen();
             resp.Show();
+        }
+
+        private void metroTile28_Click_3(object sender, EventArgs e)
+        {
+            try
+            {
+                VISITS f = new VISITS();
+                f.ShowDialog();
+            }
+            catch { }
         }
     }
 }

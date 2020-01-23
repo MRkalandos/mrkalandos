@@ -173,6 +173,12 @@
     <Compile Include="MOD_View_trenerovka.Designer.cs">
       <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
     </Compile>
+    <Compile Include="MOD_VISITS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MOD_VISITS.Designer.cs">
+      <DependentUpon>MOD_VISITS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Money.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +246,12 @@
     <Compile Include="MOD_SALE.Designer.cs">
       <DependentUpon>MOD_SALE.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISITS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISITS.Designer.cs">
+      <DependentUpon>VISITS.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Exit.resx">
       <DependentUpon>Exit.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_View_trenerovka.resx">
       <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOD_VISITS.resx">
+      <DependentUpon>MOD_VISITS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Money.resx">
       <DependentUpon>Money.cs</DependentUpon>
@@ -310,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_SALE.resx">
       <DependentUpon>MOD_SALE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISITS.resx">
+      <DependentUpon>VISITS.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DSREPemployee.xsc">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>
