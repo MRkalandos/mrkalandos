@@ -1,128 +1,197 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GYM
 {
     public partial class Money : MetroFramework.Forms.MetroForm
     {
+        private const string TitleException = "Ошибка";
+        private int _idMoney = 0;
+        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
+        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Money.txt";
+        public DataTable dataTableMoney;
+
+        public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
+                                                                Directory.GetParent(Directory.GetCurrentDirectory())
+                                                                    .Parent?.FullName +
+                                                                "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+
+        public OleDbDataAdapter dataAdapterMoney;
+
         public Money()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
-        public DataTable dt;
-        public OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-        public OleDbDataAdapter sda;
 
-        public void upd()
+        public void UpdateMoney()
         {
             try
             {
-                sda = new OleDbDataAdapter(@"SELECT * from зарплата_сотрудника;", con);
-                dt = new DataTable();
-                sda.Fill(dt);
-                dataGridView1.DataSource = dt;
+                dataAdapterMoney = new OleDbDataAdapter(@"SELECT * from зарплата_сотрудника;", connection);
+                dataTableMoney = new DataTable();
+                dataAdapterMoney.Fill(dataTableMoney);
+                dataGridView1.DataSource = dataTableMoney;
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
                 dataGridView1.Select();
                 dataGridView1.AllowUserToAddRows = false;
             }
-                 catch (Exception ex)
+            catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, ex.Message, "Таблица не загрузилась");
+                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
             }
         }
 
-
         private void Money_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.None;
-            upd();
-        }
-
-        private void Money_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           
+            try
+            {
+                this.FormBorderStyle = FormBorderStyle.None;
+                UpdateMoney();
+            }
+            catch (Exception exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string id;
-            Money mon = new Money();
-            MOD_Money ObjMoneyAdd = new MOD_Money();
-            ObjMoneyAdd.textBox1.Text = "";
-            ObjMoneyAdd.Text = "Добавить зарплату";
-            ObjMoneyAdd.button1.Text = "Добавить";
-            if (ObjMoneyAdd.ShowDialog() == DialogResult.OK)
+            var objMoneyAdd = new ModMoney
+            {
+                textBox1 = {Text = ""}, Text = @"Добавить зарплату", button1 = {Text = @"Добавить"},
+                 metroLabel1= { Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value)}
+        };
+            if (objMoneyAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-
-                    id = Convert.ToString(Convert.ToInt32(dataGridView1.Rows[dataGridView1.RowCount - 1].Cells[0].Value) + 1);
-                    con.Open();
-                    OleDbCommand sss = new OleDbCommand(@"INSERT INTO [Зарплата_сотрудника]
+                    connection.Open();
+                    var queryAddMoney = new OleDbCommand(@"INSERT INTO [Зарплата_сотрудника]
                                                         ( Зарплата)
-                                                        VALUES(@st1)", con);
-                    sss.Parameters.AddWithValue("st1", ObjMoneyAdd.textBox1.Text);
-                    sss.ExecuteNonQuery();
-                    con.Close();
-                    upd();
-
+                                                        VALUES(@money)", connection);
+                    queryAddMoney.Parameters.AddWithValue("money", objMoneyAdd.textBox1.Text);
+                    queryAddMoney.ExecuteNonQuery();
+                    connection.Close();
+                    UpdateMoney();
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this,ex.Message,"Запись не добавлена");
+                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (File.Exists(_fileNameLog) != true)
+                    {
+                        using (var streamWriter =
+                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                        {
+                            streamWriter.WriteLine(_dateLog);
+                            streamWriter.WriteLine(exception.Message);
+                        }
+                    }
+                    else
+                    {
+                        using (var streamWriter =
+                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                        {
+                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
+                            streamWriter.WriteLine(_dateLog);
+                            streamWriter.WriteLine(exception.Message);
+                        }
+                    }
                 }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            con.Close();
-            int rez = 0;
-            MOD_Money ObjMoneyUpdate = new MOD_Money();
-
-            ObjMoneyUpdate.Text = "Редактировать зарплату";
-            ObjMoneyUpdate.button1.Text = "Редактировать";
-            rez = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-            ObjMoneyUpdate.textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
-            if (ObjMoneyUpdate.ShowDialog() == DialogResult.OK)
+            connection.Close();
+            var objMoneyUpdate = new ModMoney {Text = @"Редактировать зарплату", button1 = {Text = @"Редактировать"}};
+            Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
+            _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+            objMoneyUpdate.metroLabel1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
+            objMoneyUpdate.textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
+            if (objMoneyUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                     con.Open();
-                    OleDbCommand sss1 = new OleDbCommand(@"select *  
-                                                          from [зарплата_сотрудника] 
-                                                           where зарплата=@st1 ", con);
-                    sss1.Parameters.AddWithValue("st1", ObjMoneyUpdate.textBox1.Text);
-                    sss1.ExecuteNonQuery();
-                    if (sss1.ExecuteScalar() != null)
+                    connection.Close();
+                    dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+                    connection.Open();
+                    var queryUpdateMoney =
+                        new OleDbCommand(
+                            "update зарплата_сотрудника set зарплата=@money where идзарплата=" + _idMoney + "",
+                            connection);
+                    queryUpdateMoney.Parameters.AddWithValue("money", objMoneyUpdate.textBox1.Text);
+                    queryUpdateMoney.ExecuteNonQuery();
+                    connection.Close();
+                    UpdateMoney();
+                }
+                catch (Exception exception)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (File.Exists(_fileNameLog) != true)
                     {
-                        con.Close();
-                        MetroFramework.MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        using (var streamWriter =
+                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                        {
+                            streamWriter.WriteLine(_dateLog);
+                            streamWriter.WriteLine(exception.Message);
+                        }
                     }
                     else
                     {
-                        con.Close();
-                        dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                        con.Open();
-                        OleDbCommand sss = new OleDbCommand("update зарплата_сотрудника set зарплата=@st1 where идзарплата=" + rez + "", con);
-                        sss.Parameters.AddWithValue("st1", ObjMoneyUpdate.textBox1.Text);
-                        sss.ExecuteNonQuery();
-                        con.Close();
-                        upd();
+                        using (var streamWriter =
+                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                        {
+                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
+                            streamWriter.WriteLine(_dateLog);
+                            streamWriter.WriteLine(exception.Message);
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message,"Запись не изменена");
                 }
         }
 
@@ -130,25 +199,129 @@ namespace GYM
         {
             try
             {
-                con.Close();
-                int rez = 0;
-                if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?", MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                connection.Close();
+                if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
                 {
-                    con.Open();
-                    rez = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-                    OleDbCommand sss = new OleDbCommand(@"DELETE FROM зарплата_сотрудника 
-                                                    WHERE идзарплата=" + rez + "", con);
-                    sss.ExecuteNonQuery();
+                    connection.Open();
+                    Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
+                    _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+                    var queryDeleteMoney = new OleDbCommand(@"DELETE FROM зарплата_сотрудника 
+                                                    WHERE идзарплата=" + _idMoney + "", connection);
+                    queryDeleteMoney.ExecuteNonQuery();
                     dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                    upd();
-                    con.Close();
+                    UpdateMoney();
+                    connection.Close();
                 }
-
             }
-            catch
+            catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись нельзя, данная запись используется в таблице 'Cотрудник'", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroFramework.MetroMessageBox.Show(this,
+                    "\nУдалить запись нельзя, данная запись используется в таблице 'Cотрудник'",TitleException,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var streamWriter =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        streamWriter.WriteLine(_dateLog);
+                        streamWriter.WriteLine(exception.Message);
+                    }
+                }
+                else
+                {
+                    using (var streamWriter =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
+                        streamWriter.WriteLine(_dateLog);
+                        streamWriter.WriteLine(exception.Message);
+                    }
+                }
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("Help/Money.chm"))
+                {
+                    Help.ShowHelp(null, "Help/Money.chm");
+                }
+                else
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    FocusMe();
+                }
+            }
+            catch (Exception exception)
+            {
+                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+            }
+        }
+
+        private void Money_Activated(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void Money_Shown(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void Money_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    metroButton3.PerformClick();
+                    break;
+                case Keys.F6:
+                    metroButton2.PerformClick();
+                    break;
+                case Keys.F5:
+                    metroButton1.PerformClick();
+                    break;
+                case Keys.F1:
+                    pictureBox1_Click(this, e);
+                    break;
+                case Keys.Escape:
+                    Close();
+                    break;
+            }
+        }
+
+        private void metroTabControl1_Click(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

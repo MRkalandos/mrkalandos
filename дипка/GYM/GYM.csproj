@@ -108,6 +108,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSRepVIE3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmailREPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmailREPort.Designer.cs">
+      <DependentUpon>EmailREPort.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,11 +155,11 @@
     <Compile Include="MOD_Employee.Designer.cs">
       <DependentUpon>MOD_Employee.cs</DependentUpon>
     </Compile>
-    <Compile Include="MOD_sportsmen.cs">
+    <Compile Include="MOD_Sportsmen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MOD_sportsmen.Designer.cs">
-      <DependentUpon>MOD_sportsmen.cs</DependentUpon>
+    <Compile Include="MOD_Sportsmen.Designer.cs">
+      <DependentUpon>MOD_Sportsmen.cs</DependentUpon>
     </Compile>
     <Compile Include="MOD_Trener.cs">
       <SubType>Form</SubType>
@@ -167,11 +173,11 @@
     <Compile Include="MOD_Trenerovka.Designer.cs">
       <DependentUpon>MOD_Trenerovka.cs</DependentUpon>
     </Compile>
-    <Compile Include="MOD_View_trenerovka.cs">
+    <Compile Include="MOD_ViewTrenerovka.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MOD_View_trenerovka.Designer.cs">
-      <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
+    <Compile Include="MOD_ViewTrenerovka.Designer.cs">
+      <DependentUpon>MOD_ViewTrenerovka.cs</DependentUpon>
     </Compile>
     <Compile Include="MOD_VISITS.cs">
       <SubType>Form</SubType>
@@ -187,58 +193,58 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepAbonement.cs">
+    <Compile Include="ReportAbonement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RepAbonement.Designer.cs">
-      <DependentUpon>RepAbonement.cs</DependentUpon>
+    <Compile Include="ReportAbonement.Designer.cs">
+      <DependentUpon>ReportAbonement.cs</DependentUpon>
     </Compile>
     <Compile Include="REPAbonement1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>REPAbonement.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ReportTrenerovka.cs">
+    <Compile Include="ReportTrening.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportTrenerovka.Designer.cs">
-      <DependentUpon>ReportTrenerovka.cs</DependentUpon>
+    <Compile Include="ReportTrening.Designer.cs">
+      <DependentUpon>ReportTrening.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report_Employee.cs">
+    <Compile Include="ReportEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report_Employee.Designer.cs">
-      <DependentUpon>Report_Employee.cs</DependentUpon>
+    <Compile Include="ReportEmployee.Designer.cs">
+      <DependentUpon>ReportEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report_Trener.cs">
+    <Compile Include="ReportTrener.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report_Trener.Designer.cs">
-      <DependentUpon>Report_Trener.cs</DependentUpon>
+    <Compile Include="ReportTrener.Designer.cs">
+      <DependentUpon>ReportTrener.cs</DependentUpon>
     </Compile>
-    <Compile Include="RepSportsmen.cs">
+    <Compile Include="ReportSportsmen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RepSportsmen.Designer.cs">
-      <DependentUpon>RepSportsmen.cs</DependentUpon>
+    <Compile Include="ReportSportsmen.Designer.cs">
+      <DependentUpon>ReportSportsmen.cs</DependentUpon>
     </Compile>
     <Compile Include="RepTrener.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RepTrener.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Send_Mail.cs">
+    <Compile Include="SendComment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Send_Mail.Designer.cs">
-      <DependentUpon>Send_Mail.cs</DependentUpon>
+    <Compile Include="SendComment.Designer.cs">
+      <DependentUpon>SendComment.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="View_trenerovki.cs">
+    <Compile Include="ViewTrening.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View_trenerovki.Designer.cs">
-      <DependentUpon>View_trenerovki.cs</DependentUpon>
+    <Compile Include="ViewTrening.Designer.cs">
+      <DependentUpon>ViewTrening.cs</DependentUpon>
     </Compile>
     <Compile Include="MOD_SALE.cs">
       <SubType>Form</SubType>
@@ -246,12 +252,15 @@
     <Compile Include="MOD_SALE.Designer.cs">
       <DependentUpon>MOD_SALE.cs</DependentUpon>
     </Compile>
-    <Compile Include="VISITS.cs">
+    <Compile Include="RecordsOfVisits.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VISITS.Designer.cs">
-      <DependentUpon>VISITS.cs</DependentUpon>
+    <Compile Include="RecordsOfVisits.Designer.cs">
+      <DependentUpon>RecordsOfVisits.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EmailREPort.resx">
+      <DependentUpon>EmailREPort.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Exit.resx">
       <DependentUpon>Exit.cs</DependentUpon>
     </EmbeddedResource>
@@ -270,8 +279,8 @@
     <EmbeddedResource Include="MOD_Employee.resx">
       <DependentUpon>MOD_Employee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MOD_sportsmen.resx">
-      <DependentUpon>MOD_sportsmen.cs</DependentUpon>
+    <EmbeddedResource Include="MOD_Sportsmen.resx">
+      <DependentUpon>MOD_Sportsmen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_Trener.resx">
       <DependentUpon>MOD_Trener.cs</DependentUpon>
@@ -279,8 +288,8 @@
     <EmbeddedResource Include="MOD_Trenerovka.resx">
       <DependentUpon>MOD_Trenerovka.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MOD_View_trenerovka.resx">
-      <DependentUpon>MOD_View_trenerovka.cs</DependentUpon>
+    <EmbeddedResource Include="MOD_ViewTrenerovka.resx">
+      <DependentUpon>MOD_ViewTrenerovka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_VISITS.resx">
       <DependentUpon>MOD_VISITS.cs</DependentUpon>
@@ -299,35 +308,35 @@
     </Compile>
     <EmbeddedResource Include="Diagramm_Money_Employ.rdlc" />
     <EmbeddedResource Include="DiagrammMoneyTrener.rdlc" />
-    <EmbeddedResource Include="RepAbonement.resx">
-      <DependentUpon>RepAbonement.cs</DependentUpon>
+    <EmbeddedResource Include="ReportAbonement.resx">
+      <DependentUpon>ReportAbonement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="REPAbonement.rdlc" />
     <EmbeddedResource Include="REPORTTrenerovka.rdlc" />
-    <EmbeddedResource Include="ReportTrenerovka.resx">
-      <DependentUpon>ReportTrenerovka.cs</DependentUpon>
+    <EmbeddedResource Include="ReportTrening.resx">
+      <DependentUpon>ReportTrening.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_Trener.resx">
-      <DependentUpon>Report_Trener.cs</DependentUpon>
+    <EmbeddedResource Include="ReportTrener.resx">
+      <DependentUpon>ReportTrener.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RepSportsmen.rdlc" />
-    <EmbeddedResource Include="Report_Employee.resx">
-      <DependentUpon>Report_Employee.cs</DependentUpon>
+    <EmbeddedResource Include="ReportEmployee.resx">
+      <DependentUpon>ReportEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RepSportsmen.resx">
-      <DependentUpon>RepSportsmen.cs</DependentUpon>
+    <EmbeddedResource Include="ReportSportsmen.resx">
+      <DependentUpon>ReportSportsmen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Send_Mail.resx">
-      <DependentUpon>Send_Mail.cs</DependentUpon>
+    <EmbeddedResource Include="SendComment.resx">
+      <DependentUpon>SendComment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View_trenerovki.resx">
-      <DependentUpon>View_trenerovki.cs</DependentUpon>
+    <EmbeddedResource Include="ViewTrening.resx">
+      <DependentUpon>ViewTrening.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MOD_SALE.resx">
       <DependentUpon>MOD_SALE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VISITS.resx">
-      <DependentUpon>VISITS.cs</DependentUpon>
+    <EmbeddedResource Include="RecordsOfVisits.resx">
+      <DependentUpon>RecordsOfVisits.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DSREPemployee.xsc">
       <DependentUpon>DSREPemployee.xsd</DependentUpon>

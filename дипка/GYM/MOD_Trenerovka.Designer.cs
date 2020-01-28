@@ -1,6 +1,6 @@
 ﻿namespace GYM
 {
-    partial class MOD_Trenerovka
+    partial class ModTrenerovka
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModTrenerovka));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroComboBox2 = new MetroFramework.Controls.MetroComboBox();
@@ -38,11 +39,15 @@
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(133, 63);
+            this.textBox1.MaxLength = 12;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(149, 20);
             this.textBox1.TabIndex = 49;
@@ -96,6 +101,7 @@
             this.metroTile2.TabIndex = 55;
             this.metroTile2.Text = "Выход";
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile2, "Esc");
             this.metroTile2.UseSelectable = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
@@ -107,8 +113,8 @@
             this.metroTile1.Size = new System.Drawing.Size(146, 35);
             this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile1.TabIndex = 54;
-            this.metroTile1.Text = "пааппап";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "F5");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
@@ -131,6 +137,7 @@
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton1.TabIndex = 57;
             this.metroButton1.Text = "Добавить вид";
+            this.metroToolTip1.SetToolTip(this.metroButton1, "F6");
             this.metroButton1.UseCustomBackColor = true;
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
@@ -144,16 +151,37 @@
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 58;
             this.metroButton2.Text = "Добавить тренера";
+            this.metroToolTip1.SetToolTip(this.metroButton2, "F7");
             this.metroButton2.UseCustomBackColor = true;
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
-            // MOD_Trenerovka
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(337, 261);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 59;
+            this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // ModTrenerovka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 283);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.metroComboBox1);
@@ -164,9 +192,12 @@
             this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.metroLabel1);
-            this.Name = "MOD_Trenerovka";
-            this.Text = "MOD_Trenerovka";
+            this.Name = "ModTrenerovka";
+            this.Activated += new System.EventHandler(this.ModTrenerovka_Activated);
             this.Load += new System.EventHandler(this.MOD_Trenerovka_Load);
+            this.Shown += new System.EventHandler(this.ModTrenerovka_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModTrenerovka_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +215,7 @@
         public MetroFramework.Controls.MetroComboBox metroComboBox1;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroButton metroButton2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }

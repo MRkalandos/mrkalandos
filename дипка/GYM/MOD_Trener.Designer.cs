@@ -1,6 +1,6 @@
 ﻿namespace GYM
 {
-    partial class MOD_Trener
+    partial class ModTrener
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MOD_Trener));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModTrener));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -50,11 +50,16 @@
             this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(136, 149);
+            this.textBox3.MaxLength = 12;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
             this.textBox3.TabIndex = 49;
@@ -64,6 +69,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(136, 109);
+            this.textBox2.MaxLength = 12;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(163, 20);
             this.textBox2.TabIndex = 48;
@@ -73,6 +79,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(136, 68);
+            this.textBox1.MaxLength = 12;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 47;
@@ -95,7 +102,7 @@
             this.metroTextBox5.CustomButton.Visible = false;
             this.metroTextBox5.Lines = new string[0];
             this.metroTextBox5.Location = new System.Drawing.Point(136, 303);
-            this.metroTextBox5.MaxLength = 32767;
+            this.metroTextBox5.MaxLength = 12;
             this.metroTextBox5.Name = "metroTextBox5";
             this.metroTextBox5.PasswordChar = '\0';
             this.metroTextBox5.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -120,6 +127,7 @@
             this.metroTile2.TabIndex = 42;
             this.metroTile2.Text = "Выход";
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile2, "Esc");
             this.metroTile2.UseSelectable = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
@@ -133,6 +141,7 @@
             this.metroTile1.TabIndex = 41;
             this.metroTile1.Text = "Добавить";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "F5");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
@@ -310,6 +319,7 @@
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton1.TabIndex = 43;
             this.metroButton1.Text = "Добавить фото";
+            this.metroToolTip1.SetToolTip(this.metroButton1, "F6");
             this.metroButton1.UseCustomBackColor = true;
             this.metroButton1.UseCustomForeColor = true;
             this.metroButton1.UseSelectable = true;
@@ -331,7 +341,7 @@
             this.metroTextBox1.CustomButton.Visible = false;
             this.metroTextBox1.Lines = new string[0];
             this.metroTextBox1.Location = new System.Drawing.Point(136, 383);
-            this.metroTextBox1.MaxLength = 32767;
+            this.metroTextBox1.MaxLength = 6;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '\0';
             this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -346,11 +356,43 @@
             this.metroTextBox1.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.metroTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.metroTextBox1_KeyPress);
             // 
-            // MOD_Trener
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(331, 508);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(309, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
+            // ModTrener
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 531);
+            this.ControlBox = false;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.metroTextBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -373,9 +415,13 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroTextBox6);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MOD_Trener";
+            this.Name = "ModTrener";
             this.Text = "Добавить тренера";
+            this.Activated += new System.EventHandler(this.MOD_Trener_Activated);
             this.Load += new System.EventHandler(this.MOD_Trener_Load);
+            this.Shown += new System.EventHandler(this.MOD_Trener_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModTrener_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +450,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel9;
         public MetroFramework.Controls.MetroButton metroButton1;
         public MetroFramework.Controls.MetroTextBox metroTextBox1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Label label1;
     }
 }

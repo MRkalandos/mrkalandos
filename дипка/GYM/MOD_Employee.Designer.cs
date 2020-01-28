@@ -1,6 +1,6 @@
 ﻿namespace GYM
 {
-    partial class MOD_Employee
+    partial class ModEmployee
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MOD_Employee));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModEmployee));
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -51,6 +51,10 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroLabel1
@@ -205,6 +209,7 @@
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton1.TabIndex = 21;
             this.metroButton1.Text = "Добавить фото";
+            this.metroToolTip1.SetToolTip(this.metroButton1, "F6");
             this.metroButton1.UseCustomBackColor = true;
             this.metroButton1.UseCustomForeColor = true;
             this.metroButton1.UseSelectable = true;
@@ -226,7 +231,7 @@
             this.metroTextBox5.CustomButton.Visible = false;
             this.metroTextBox5.Lines = new string[0];
             this.metroTextBox5.Location = new System.Drawing.Point(131, 294);
-            this.metroTextBox5.MaxLength = 32767;
+            this.metroTextBox5.MaxLength = 6;
             this.metroTextBox5.Name = "metroTextBox5";
             this.metroTextBox5.PasswordChar = '\0';
             this.metroTextBox5.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -284,6 +289,7 @@
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 24;
             this.metroButton2.Text = "Добавить зарплату";
+            this.metroToolTip1.SetToolTip(this.metroButton2, "F7");
             this.metroButton2.UseCustomBackColor = true;
             this.metroButton2.UseCustomForeColor = true;
             this.metroButton2.UseSelectable = true;
@@ -292,6 +298,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(131, 59);
+            this.textBox1.MaxLength = 12;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 25;
@@ -301,6 +308,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(131, 100);
+            this.textBox2.MaxLength = 12;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(163, 20);
             this.textBox2.TabIndex = 26;
@@ -310,6 +318,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(131, 140);
+            this.textBox3.MaxLength = 12;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
             this.textBox3.TabIndex = 27;
@@ -324,8 +333,8 @@
             this.metroTile1.Size = new System.Drawing.Size(146, 35);
             this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile1.TabIndex = 19;
-            this.metroTile1.Text = "пааппап";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "F5");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
@@ -339,15 +348,47 @@
             this.metroTile2.TabIndex = 20;
             this.metroTile2.Text = "Выход";
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile2, "Esc");
             this.metroTile2.UseSelectable = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
-            // MOD_Employee
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(315, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(346, 498);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 29;
+            this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // ModEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 519);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -371,9 +412,13 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroTextBox6);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MOD_Employee";
+            this.Name = "ModEmployee";
             this.Text = "MOD_Employee";
+            this.Activated += new System.EventHandler(this.ModEmployee_Activated);
             this.Load += new System.EventHandler(this.MOD_Employee_Load);
+            this.Shown += new System.EventHandler(this.ModEmployee_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModEmployee_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +448,8 @@
         public System.Windows.Forms.TextBox textBox3;
         public MetroFramework.Controls.MetroTile metroTile1;
         private MetroFramework.Controls.MetroTile metroTile2;
+        public System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }

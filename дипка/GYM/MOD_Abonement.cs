@@ -1,51 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework;
 
 namespace GYM
 {
-    public partial class MOD_Abonement : MetroFramework.Forms.MetroForm
+    public partial class ModAbonement : MetroFramework.Forms.MetroForm
     {
-        public MOD_Abonement()
+        private const string TitleException = "Ошибка";
+        private const string Message = @"Неверный тип данных";
+        private const string Title = @"Корректность ввода";
+        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
+        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Mod_Abonement.txt";
+
+        public ModAbonement()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void MOD_Abonement_Load(object sender, EventArgs e)
         {
-
+            FocusMe();
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            HeadForm HF = new HeadForm();
             if ((textBox1.Text == "") ||
                 (textBox2.Text == "") ||
                 (textBox3.Text == "") ||
                 (metroComboBox1.Text == ""))
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                OleDbConnection con1 = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-                con1.Open(); OleDbCommand sss1 = new OleDbCommand(@"select *  
+                var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
+                                                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent
+                                                         ?.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+                connection.Open();
+                var queryFindCloneAbonement = new OleDbCommand(@"select *  
                                                                       from [Абонемент] 
-                                                                      where Название=@st1 ", con1);
-                sss1.Parameters.AddWithValue("st1", textBox1.Text);
-                sss1.ExecuteNonQuery();
-                if (sss1.ExecuteScalar() != null)
+                                                                      where Название=@name
+                                                                      and идабонемент <> " +
+                                                               Convert.ToInt32(metroLabel4.Text) + "", connection);
+                queryFindCloneAbonement.Parameters.AddWithValue("name", textBox1.Text);
+                queryFindCloneAbonement.ExecuteNonQuery();
+                if (queryFindCloneAbonement.ExecuteScalar() != null)
                 {
-                    con1.Close();
-                    MetroFramework.MetroMessageBox.Show(this, "\nТакое название уже существует", "Корректность", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+                    connection.Close();
+                    MetroFramework.MetroMessageBox.Show(this, "\nТакое название уже существует", TitleException,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -56,7 +63,9 @@ namespace GYM
 
         private void metroTile2_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nВы уверены что хотите выйти без сохранения", "Выход", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            if (DialogResult.Yes == MetroMessageBox.Show(this,
+                    "\nВы уверены что хотите выйти без сохранения", "Выход", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning))
             {
                 Close();
             }
@@ -67,10 +76,11 @@ namespace GYM
             char blockCifr = e.KeyChar;
             if (!(blockCifr >= 'А' && blockCifr <= 'я'))
             {
-                if (e.KeyChar != (char)Keys.Back)
+                if (e.KeyChar != (char) Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this,Message, Title, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -80,10 +90,11 @@ namespace GYM
             char blockCifr = e.KeyChar;
             if (!(blockCifr >= '0' && blockCifr <= '9'))
             {
-                if (e.KeyChar != (char)Keys.Back)
+                if (e.KeyChar != (char) Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -93,44 +104,113 @@ namespace GYM
             char blockCifr = e.KeyChar;
             if (!(blockCifr >= '0' && blockCifr <= '9'))
             {
-                if (e.KeyChar != (char)Keys.Back)
+                if (e.KeyChar != (char) Keys.Back)
                 {
                     e.Handled = true;
-                    DialogResult result = MessageBox.Show("Неверный тип данных", "Корректность ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox)sender).Text.Length == 1)
-                ((TextBox)sender).Text = ((TextBox)sender).Text.ToUpper();
-            ((TextBox)sender).Select(((TextBox)sender).Text.Length, 0);
+            if (((TextBox) sender).Text.Length == 1)
+                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
+            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
         }
-        void NewForm()
-        {
-            HeadForm form = new HeadForm();
-            form.pictureBox2.Visible = true;
 
+        private static void NewForm()
+        {
+            var form = new HeadForm {pictureBox2 = {Visible = true}};
             form.metroTabControl1.SelectedTab = form.tabPage3;
-        
-            ((Control)form.EMPLtabPage6).Enabled = false;
-            ((Control)form.tabPage5).Enabled = false;
-            ((Control)form.tabPage4).Enabled = false;
-            ((Control)form.tabPage29).Enabled = false;
-            ((Control)form.tabPage13).Enabled = false;
-            ((Control)form.tabPage30).Enabled = false;
-            ((Control)form.tabPage27).Enabled = false;
-            ((Control)form.tabPage26).Enabled = false;
-            ((Control)form.tabPage25).Enabled = false;
-            ((Control)form.tabPage24).Enabled = false;
-            ((Control)form.tabPage22).Enabled = false;
+            ((Control) form.EMPLtabPage6).Enabled = false;
+            ((Control) form.tabPage5).Enabled = false;
+            ((Control) form.tabPage4).Enabled = false;
+            ((Control) form.tabPage29).Enabled = false;
+            ((Control) form.tabPage13).Enabled = false;
+            ((Control) form.tabPage30).Enabled = false;
+            ((Control) form.tabPage27).Enabled = false;
+            ((Control) form.tabPage26).Enabled = false;
+            ((Control) form.tabPage25).Enabled = false;
+            ((Control) form.tabPage24).Enabled = false;
+            ((Control) form.tabPage22).Enabled = false;
             form.ShowDialog();
         }
-      
+
         private void metroButton2_Click(object sender, EventArgs e)
         {
-           new System.Threading.Thread(NewForm).Start();
+            new System.Threading.Thread(NewForm).Start();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("Help/Mod_Abonement.chm"))
+                {
+                    Help.ShowHelp(null, "Help/Mod_Abonement.chm");
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    FocusMe();
+                }
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+            }
+        }
+
+        private void ModAbonement_Activated(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ModAbonement_Shown(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ModAbonement_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F6:
+                    metroButton2.PerformClick();
+                    break;
+                case Keys.F5:
+                    metroTile1.PerformClick();
+                    break;
+                case Keys.F1:
+                    pictureBox1_Click(this, e);
+                    break;
+                case Keys.Escape:
+                    metroTile2.PerformClick();
+                    break;
+            }
         }
     }
 }

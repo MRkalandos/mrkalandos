@@ -1,6 +1,6 @@
 ﻿namespace GYM
 {
-    partial class MOD_Abonement
+    partial class ModAbonement
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModAbonement));
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -39,11 +40,16 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(172, 153);
+            this.textBox3.MaxLength = 12;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
             this.textBox3.TabIndex = 49;
@@ -52,6 +58,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(172, 113);
+            this.textBox2.MaxLength = 12;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(163, 20);
             this.textBox2.TabIndex = 48;
@@ -60,6 +67,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(172, 73);
+            this.textBox1.MaxLength = 12;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 47;
@@ -77,6 +85,7 @@
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 46;
             this.metroButton2.Text = "Добавить тренировку";
+            this.metroToolTip1.SetToolTip(this.metroButton2, "F6");
             this.metroButton2.UseCustomBackColor = true;
             this.metroButton2.UseCustomForeColor = true;
             this.metroButton2.UseSelectable = true;
@@ -92,6 +101,7 @@
             this.metroTile2.TabIndex = 42;
             this.metroTile2.Text = "Выход";
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile2, "Esc");
             this.metroTile2.UseSelectable = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
@@ -105,6 +115,7 @@
             this.metroTile1.TabIndex = 41;
             this.metroTile1.Text = "пааппап";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "F5");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
@@ -154,11 +165,41 @@
             this.metroLabel1.TabIndex = 28;
             this.metroLabel1.Text = "Название:";
             // 
-            // MOD_Abonement
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(364, 74);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(0, 0);
+            this.metroLabel4.TabIndex = 50;
+            this.metroLabel4.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(422, 317);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // ModAbonement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 338);
+            this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -170,9 +211,13 @@
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
-            this.Name = "MOD_Abonement";
+            this.Name = "ModAbonement";
             this.Text = "Редактировать абонемент";
+            this.Activated += new System.EventHandler(this.ModAbonement_Activated);
             this.Load += new System.EventHandler(this.MOD_Abonement_Load);
+            this.Shown += new System.EventHandler(this.ModAbonement_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModAbonement_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +236,8 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        public MetroFramework.Controls.MetroLabel metroLabel4;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }

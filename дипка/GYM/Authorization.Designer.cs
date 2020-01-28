@@ -69,7 +69,6 @@
             this.metroComboBox1.Size = new System.Drawing.Size(131, 29);
             this.metroComboBox1.TabIndex = 7;
             this.metroComboBox1.UseSelectable = true;
-            this.metroComboBox1.SelectedIndexChanged += new System.EventHandler(this.metroComboBox1_SelectedIndexChanged);
             // 
             // metroTextBox1
             // 
@@ -114,7 +113,7 @@
             this.metroTile1.TabIndex = 9;
             this.metroTile1.Text = "Вход";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroToolTip1.SetToolTip(this.metroTile1, "Горячая клавиш Enter");
+            this.metroToolTip1.SetToolTip(this.metroTile1, "Enter");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
             // 
@@ -134,6 +133,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Authorization
@@ -156,6 +156,7 @@
             this.Name = "Authorization";
             this.Opacity = 0.9D;
             this.Text = "Авторизация";
+            this.metroToolTip1.SetToolTip(this, "Esc");
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Authorization_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

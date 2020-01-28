@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MOD_VISITS));
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.metroDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
@@ -35,6 +36,9 @@
             this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroLabel6
@@ -65,6 +69,7 @@
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 27;
             this.metroButton2.Text = "Добавить продажу";
+            this.metroToolTip1.SetToolTip(this.metroButton2, "F6");
             this.metroButton2.UseCustomBackColor = true;
             this.metroButton2.UseCustomForeColor = true;
             this.metroButton2.UseSelectable = true;
@@ -99,6 +104,7 @@
             this.metroTile2.TabIndex = 29;
             this.metroTile2.Text = "Выход";
             this.metroTile2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile2, "Esc");
             this.metroTile2.UseSelectable = true;
             this.metroTile2.Click += new System.EventHandler(this.metroTile2_Click);
             // 
@@ -110,16 +116,37 @@
             this.metroTile1.Size = new System.Drawing.Size(146, 35);
             this.metroTile1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile1.TabIndex = 28;
-            this.metroTile1.Text = "пааппап";
             this.metroTile1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroToolTip1.SetToolTip(this.metroTile1, "F5");
             this.metroTile1.UseSelectable = true;
             this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(356, 237);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // MOD_VISITS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 259);
+            this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.metroTile2);
             this.Controls.Add(this.metroTile1);
             this.Controls.Add(this.metroButton2);
@@ -128,8 +155,11 @@
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.metroDateTime1);
             this.Name = "MOD_VISITS";
-            this.Text = "MOD_VISITS";
+            this.Activated += new System.EventHandler(this.MOD_VISITS_Activated);
             this.Load += new System.EventHandler(this.MOD_VISITS_Load);
+            this.Shown += new System.EventHandler(this.MOD_VISITS_Shown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOD_VISITS_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +173,7 @@
         public MetroFramework.Controls.MetroButton metroButton2;
         public MetroFramework.Controls.MetroLabel metroLabel9;
         public MetroFramework.Controls.MetroTile metroTile2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }
