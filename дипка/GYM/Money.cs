@@ -16,6 +16,11 @@ namespace GYM
         private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Money.txt";
         public DataTable dataTableMoney;
 
+        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
+                                   Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
+                                   "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+
+
         public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
                                                                 Directory.GetParent(Directory.GetCurrentDirectory())
                                                                     .Parent?.FullName +
@@ -322,6 +327,10 @@ namespace GYM
         private void metroTile1_Click(object sender, EventArgs e)
         {
             FocusMe();
+        }
+
+        private void Money_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }

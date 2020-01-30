@@ -768,13 +768,14 @@ namespace GYM
                 {
                     connection.Close();
                     connection.Open();
-                    Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
-                    idEmployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
+                   // Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
+                   idEmployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
                     var queryDeleteEmployee = new OleDbCommand(@"DELETE FROM сотрудник 
                                                     WHERE идсотрудник=" + idEmployee + "", connection);
                     queryDeleteEmployee.ExecuteNonQuery();
-                    UpdEmployee();
                     connection.Close();
+                    UpdEmployee();
+                    
                 }
 
                 catch (Exception exception)
@@ -1521,7 +1522,7 @@ namespace GYM
             }
         }
 
-        private void сброситьФильтрToolStripMenuItem_Click(object sender, EventArgs e)
+        public void сброситьФильтрToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -6938,6 +6939,87 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         private void HeadForm_Click(object sender, EventArgs e)
         {
             FocusMe();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("Help/HeadForm.chm"))
+                {
+                    Help.ShowHelp(null, "Help/HeadForm.chm");
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    FocusMe();
+                }
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+            }
+        }
+
+        private void HeadForm_Activated(object sender, EventArgs e)
+        {
+            //SPORTMmetroComboBox1.SelectedIndex = 0;
+            //FocusMe();
+            try
+            {
+            //    UpdTrener();
+            //    UpdEmployee();
+            //    UpdSportsmen();
+            //    UpdTrening();
+            //    UpdAbonement();
+            //    UpdSale();
+            }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (File.Exists(_fileNameLog) != true)
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
+                    {
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+                else
+                {
+                    using (var sw =
+                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    {
+                        (sw.BaseStream).Seek(0, SeekOrigin.End);
+                        sw.WriteLine(_dateLog);
+                        sw.WriteLine(exception.Message);
+                        FocusMe();
+                    }
+                }
+            }
         }
     }
 }
