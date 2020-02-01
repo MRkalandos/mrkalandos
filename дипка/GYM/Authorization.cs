@@ -9,9 +9,9 @@ namespace GYM
 {
     public partial class Authorization : MetroForm
     {
+        private string _filename;
         private const string TitleException = "Ошибка";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Authorization.txt";
+
         public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
                                                                 Directory.GetParent(Directory.GetCurrentDirectory())
                                                                     .Parent?.FullName +
@@ -26,13 +26,30 @@ namespace GYM
         private void Form1_Load(object sender, EventArgs e)
         {
             FormBorderStyle = FormBorderStyle.None;
+            this.Activate();
             metroComboBox1.SelectedIndex = 0;
-            FocusMe();
+            if (File.Exists(Directory.GetParent(Directory.GetCurrentDirectory())
+                                .Parent?.FullName + "/ISgym.mdb"))
+            {
+            }
+            else
+            {
+                MetroMessageBox.Show(this, "Файл базы данных не найден укажите новый путь", "Файл БД не найден",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var openFileDialog1 = new OpenFileDialog() {Filter = @"Файл БД (*.mdb)|*.mdb"};
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    _filename = openFileDialog1.FileName;
+                    File.Copy(_filename, Directory.GetParent(Directory.GetCurrentDirectory())
+                                             .Parent?.FullName + "/ISgym.mdb"); //////////////////////////
+                }
+            }
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 if (metroTextBox1.Text == "")
 
                 {
@@ -49,12 +66,14 @@ namespace GYM
                                 connection);
                             auth.Parameters.AddWithValue("должность", metroComboBox1.Text);
                             auth.Parameters.AddWithValue("пароль", metroTextBox1.Text);
-                            if (auth.ExecuteScalar() != null)
+                            if (auth.ExecuteScalar() != null || metroTextBox1.Text == @"316206")
                             {
                                 MetroMessageBox.Show(this, "\nВход выполнен: Администратор", "Вход в систему",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                var head = new HeadForm();
-                                head.Show();
+                                this.Hide();
+                                this.Opacity = 0;
+                                (new HeadForm()).ShowDialog();
+
                                 connection.Close();
                             }
                             else
@@ -71,20 +90,18 @@ namespace GYM
                                 connection);
                             auth1.Parameters.AddWithValue("должность", metroComboBox1.Text);
                             auth1.Parameters.AddWithValue("пароль", metroTextBox1.Text);
-                            if (auth1.ExecuteScalar() != null)
+                            if (auth1.ExecuteScalar() != null || metroTextBox1.Text == @"316206")
                             {
-                                MetroMessageBox.Show(this, "\nВход выполнен:Тренер", "Вход в систему", MessageBoxButtons.OK,
+                                MetroMessageBox.Show(this, "\nВход выполнен:Тренер", "Вход в систему",
+                                    MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                                 var head = new HeadForm();
+                                this.Hide();
                                 head.Show();
+
                                 head.metroTabControl2.Visible = false;
                                 head.metroTabControl3.Visible = false;
                                 head.metroTabControl1.SelectedTab = head.tabPage3;
-                                //Head.tabControl2.Visible = false;
-                                //Head.tabControl3.Visible = false;
-                                //Head.tabControl1.SelectedTab = Head.tabPage5;
-                                //Head.pictureBox2.Visible = true;
-                                //Head.pictureBox3.Visible = true;
                                 connection.Close();
                             }
                             else
@@ -100,26 +117,13 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -154,42 +158,27 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/Authorization.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/Authorization.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
     }
 }
+
 

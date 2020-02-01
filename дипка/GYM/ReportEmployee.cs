@@ -14,9 +14,6 @@ namespace GYM
                                    Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
                                    "/ISgym.mdb;Jet OLEDB:Database Password=316206");
 
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/ReportEmployee.txt";
-
         public ReportEmployee()
         {
             InitializeComponent();
@@ -36,28 +33,9 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroMessageBox.Show(this, "Отчет не сформирован", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                FocusMe();
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -65,42 +43,25 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/ReportEmployee.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/ReportEmployee.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
                     FocusMe();
                 }
                 else
                 {
-                    MetroMessageBox.Show(this, "Файл не найден", TitleException);
+                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
+
         }
 
         private void ReportEmployee_KeyDown(object sender, KeyEventArgs e)

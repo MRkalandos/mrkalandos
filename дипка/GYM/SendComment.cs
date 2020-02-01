@@ -12,8 +12,6 @@ namespace GYM
     public partial class SendComment : MetroForm
     {
         private const string TitleException = "Ошибка";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/SendComment.txt";
         public static bool attachment = false;
 
         public SendComment()
@@ -31,30 +29,12 @@ namespace GYM
                 try
                 {
                     var ping = new Ping();
-                    var testSite = ping.Send(@"yandex.ru");
+                    var testSite = ping.Send(@"mail.ru");
                     if (testSite != null) internetStatus = testSite.Status;
                 }
                 catch (Exception exception)
                 {
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
 
                 if (internetStatus != IPStatus.Success)
@@ -75,25 +55,7 @@ namespace GYM
                 MetroMessageBox.Show(this, "Сообщение не отправлено на почту" + metroTextBox4.Text, "Не отправлено",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 FocusMe();
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -114,27 +76,7 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 FocusMe();
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -167,7 +109,7 @@ namespace GYM
                 {
                     var ping = new Ping();
                     var internetStatus = IPStatus.TimedOut;
-                    var testSite = ping.Send(@"yandex.ru");
+                    var testSite = ping.Send(@"mail.ru");
                     if (testSite != null) internetStatus = testSite.Status;
                     if (internetStatus != IPStatus.Success)
                     {
@@ -204,30 +146,7 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroMessageBox.Show(this, "Сообщение не отправлено на почту " + metroTextBox4.Text, "Не отправлено",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                FocusMe();
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -263,9 +182,9 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/SendComment.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/SendComment.chm");
+                    Help.ShowHelp(null, "Help/Help.chm");
                     FocusMe();
                 }
                 else
@@ -277,28 +196,9 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

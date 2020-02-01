@@ -8,10 +8,7 @@ namespace GYM
     public partial class ModSportsmen : MetroFramework.Forms.MetroForm
     {
         private const string TitleException = "Ошибка";
-        private const string Message = @"Неверный тип данных";
-        private const string Title = @"Корректность ввода";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Mod_sportsmen.txt";
+        Inputaccuracy _inputaccuracy = new Inputaccuracy();
 
         public ModSportsmen()
         {
@@ -27,7 +24,7 @@ namespace GYM
 
         private void metroTile2_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this,
+            if (DialogResult.Yes == MetroMessageBox.Show(this,
                     "\nВы уверены что хотите выйти без сохранения", "Выход", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning))
             {
@@ -42,7 +39,7 @@ namespace GYM
                 (textBox3.Text == "") ||
                 (maskedTextBox1.Text == ""))
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность",
+                MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -53,105 +50,56 @@ namespace GYM
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModSportsmenInputaccuracyLetter(sender, e);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModSportsmenInputaccuracyLetter(sender, e);
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModSportsmenInputaccuracyLetter(sender, e);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
             {
-                if (File.Exists("Help/Mod_sportsmen.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/Mod_sportsmen.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using MetroFramework;
 
 namespace GYM
 {
@@ -14,8 +15,6 @@ namespace GYM
     {
         private const string TitleException = "Ошибка";
         public int idvisit;
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/visits.txt";
         public DataTable dataTableVisits;
 
         public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
@@ -55,28 +54,9 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -89,76 +69,42 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            try
+            if (DialogResult.Yes == MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                connection.Close();
-                if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                if (VISITSGrid.RowCount == 0)
                 {
-                    connection.Open();
-                    Debug.Assert(VISITSGrid.CurrentRow != null, "Таблица пуста");
-                    var idVisit = Convert.ToInt32(VISITSGrid.CurrentRow.Cells[0].Value);
-                    var queryDeleteVisit = new OleDbCommand(@"DELETE FROM учет_посещений 
+                    MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                else
+                {
+                    try
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(VISITSGrid.CurrentRow != null, "Таблица пуста");
+                        var idVisit = Convert.ToInt32(VISITSGrid.CurrentRow.Cells[0].Value);
+                        var queryDeleteVisit = new OleDbCommand(@"DELETE FROM учет_посещений 
                                                     WHERE идпосещений=" + idVisit + "", connection);
-                    queryDeleteVisit.ExecuteNonQuery();
-                    VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
-                    UpdateVisits();
-                    connection.Close();
-                }
-                else
-                {
-                    FocusMe();
-                }
-            }
-            catch (Exception exception)
-            {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
+                        queryDeleteVisit.ExecuteNonQuery();
+                        VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
+                        UpdateVisits();
+                        connection.Close();
                     }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
+                    catch (Exception exception)
                     {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
+                        MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        HelperLog.Write(exception.Message);
                     }
                 }
             }
@@ -202,28 +148,9 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -274,28 +201,9 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            streamWriter.BaseStream.Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -303,41 +211,24 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
         {
             try
             {
-                if (File.Exists("Help/Visit.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/Visit.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
                     FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

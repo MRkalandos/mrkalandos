@@ -3,16 +3,14 @@ using System.Windows.Forms;
 using MetroFramework.Forms;
 using System.Data.OleDb;
 using System.IO;
+using MetroFramework;
 
 namespace GYM
 {
     public partial class ModEmployee : MetroForm
     {
         private const string TitleException = "Ошибка";
-        private const string Message = @"Неверный тип данных";
-        private const string Title = @"Корректность ввода";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Mod_Employee.txt";
+        Inputaccuracy _inputaccuracy = new Inputaccuracy();
 
         public ModEmployee()
         {
@@ -35,7 +33,7 @@ namespace GYM
                 (metroTextBox5.Text == "") ||
                 (metroComboBox1.Text == ""))
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
+                MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -53,7 +51,7 @@ namespace GYM
                 if (queryFindCloneEmployee.ExecuteScalar() != null)
                 {
                     connection.Close();
-                    MetroFramework.MetroMessageBox.Show(this, "\nТакой пароль уже существует", TitleException,
+                    MetroMessageBox.Show(this, "\nТакой пароль уже существует", TitleException,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -80,10 +78,11 @@ namespace GYM
                     File.Copy(sourcePath, destFile, true);
                     metroTextBox6.Text = Path.GetFileName(fileName);
                 }
-                catch
+                catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено",
+                    MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено",
                         TitleException, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    HelperLog.Write(exception.Message);
                     metroTextBox6.Text = Path.GetFileName(fileName);
                 }
             }
@@ -101,93 +100,42 @@ namespace GYM
 
         private void metroTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MessageBox.Show(Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModEmployeeInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                   MessageBox.Show(Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModEmployeeInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                   MessageBox.Show(Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModEmployeeInputaccuracyLetter(sender, e);
         }
 
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MessageBox.Show(Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModEmployeeInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MessageBox.Show(Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.ModEmployeeInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox1_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroTextBox2_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroTextBox3_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -200,40 +148,24 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/Mod_Employee.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/Mod_Employee.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

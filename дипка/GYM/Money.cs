@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using MetroFramework;
 
 namespace GYM
 {
@@ -12,8 +13,6 @@ namespace GYM
     {
         private const string TitleException = "Ошибка";
         private int _idMoney = 0;
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/Money.txt";
         public DataTable dataTableMoney;
 
         public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
@@ -49,28 +48,9 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -83,38 +63,20 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
             var objMoneyAdd = new ModMoney
             {
                 textBox1 = {Text = ""}, Text = @"Добавить зарплату", button1 = {Text = @"Добавить"},
-                 metroLabel1= { Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value)}
-        };
+                metroLabel1 = {Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value)}
+            };
             if (objMoneyAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
@@ -129,26 +91,9 @@ namespace GYM
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -177,71 +122,43 @@ namespace GYM
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
+            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                connection.Close();
-                if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                try
                 {
-                    connection.Open();
-                    Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
-                    _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-                    var queryDeleteMoney = new OleDbCommand(@"DELETE FROM зарплата_сотрудника 
+                    if (dataGridView1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
+                        _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+                        var queryDeleteMoney = new OleDbCommand(@"DELETE FROM зарплата_сотрудника 
                                                     WHERE идзарплата=" + _idMoney + "", connection);
-                    queryDeleteMoney.ExecuteNonQuery();
-                    dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                    UpdateMoney();
-                    connection.Close();
-                }
-            }
-            catch (Exception exception)
-            {
-                MetroFramework.MetroMessageBox.Show(this,
-                    "\nУдалить запись нельзя, данная запись используется в таблице 'Cотрудник'",TitleException,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
+                        queryDeleteMoney.ExecuteNonQuery();
+                        dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+                        UpdateMoney();
+                        connection.Close();
                     }
                 }
-                else
+                catch (Exception exception)
                 {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -250,40 +167,24 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/Money.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/Money.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

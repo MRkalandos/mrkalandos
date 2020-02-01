@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using MetroFramework;
 
 namespace GYM
 {
@@ -18,8 +19,6 @@ namespace GYM
         public DataTable dataTableViewTrening;
         private const string TitleException = "Ошибка";
         public OleDbDataAdapter dataAdapterViewTrening;
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/ViewTrening.txt";
 
         public ViewTrening()
         {
@@ -44,114 +43,59 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void View_trenerovki_Load(object sender, EventArgs e)
         {
-            ViewmetroGrid1.Select();
-            ViewmetroGrid1.AllowUserToAddRows = false;
-            FocusMe();
+            
             try
             {
-                UpdateViewTrening();
+                UpdateViewTrening();FocusMe();
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            try
+            if (DialogResult.Yes == MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                connection.Close();
-                if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                try
                 {
-                    connection.Open();
-                    Debug.Assert(ViewmetroGrid1.CurrentRow != null, "Таблица пуста");
-                    var idViewTrening = Convert.ToInt32(ViewmetroGrid1.CurrentRow.Cells[0].Value);
-                    var queryDeleteViewTtrening = new OleDbCommand(@"DELETE FROM Вид_тренировки 
+                    if (ViewmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(ViewmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        var idViewTrening = Convert.ToInt32(ViewmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteViewTtrening = new OleDbCommand(@"DELETE FROM Вид_тренировки 
                                                                          WHERE идвидтренировка=" + idViewTrening + "",
-                        connection);
-                    queryDeleteViewTtrening.ExecuteNonQuery();
-                    ViewmetroGrid1.Sort(ViewmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    UpdateViewTrening();
-                    connection.Close();
-                }
-                else
-                {
-                    FocusMe();
-                }
-            }
-            catch (Exception exception)
-            {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
+                            connection);
+                        queryDeleteViewTtrening.ExecuteNonQuery();
+                        ViewmetroGrid1.Sort(ViewmetroGrid1.Columns[1], ListSortDirection.Ascending);
+                        UpdateViewTrening();
+                        connection.Close();
                     }
                 }
-                else
+                catch (Exception exception)
                 {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -162,8 +106,8 @@ namespace GYM
             var objViewTreningAdd = new ModViewTrenerovka
             {
                 textBox1 = {Text = ""}, Text = @"Добавить тренировку", button1 = {Text = @"Добавить"},
-                metroLabel1= { Text = Convert.ToString(ViewmetroGrid1.CurrentRow.Cells[0].Value)}
-        };
+                metroLabel1 = {Text = Convert.ToString(ViewmetroGrid1.CurrentRow.Cells[0].Value)}
+            };
             if (objViewTreningAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
@@ -178,28 +122,9 @@ namespace GYM
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -210,7 +135,6 @@ namespace GYM
             {
                 Text = @"Редактировать тренировку", button1 = {Text = @"Редактировать"}
             };
-
             Debug.Assert(ViewmetroGrid1.CurrentRow != null, "Таблица пуста");
             var idViewTrening = Convert.ToInt32(ViewmetroGrid1.CurrentRow.Cells[0].Value);
             objViewTreningUpdate.metroLabel1.Text = Convert.ToString(ViewmetroGrid1.CurrentRow.Cells[0].Value);
@@ -232,28 +156,9 @@ namespace GYM
                 }
                 catch (Exception exception)
                 {
-                    MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                            FocusMe();
-                        }
-                    }
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -261,43 +166,24 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/ViewTrening.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
                     FocusMe();
-                    Help.ShowHelp(null, "Help/ViewTrening.chm");
+                    Help.ShowHelp(null, "Help/Help.chm");
                     FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroFramework.MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                FocusMe();
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

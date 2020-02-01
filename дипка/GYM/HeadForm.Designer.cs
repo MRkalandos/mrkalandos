@@ -537,7 +537,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(1346, 708);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
@@ -559,7 +559,7 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 0;
+            this.metroTabControl2.SelectedIndex = 2;
             this.metroTabControl2.Size = new System.Drawing.Size(1338, 666);
             this.metroTabControl2.TabIndex = 0;
             this.metroTabControl2.UseSelectable = true;
@@ -1278,7 +1278,7 @@
             // EMPLmetroDateTime2
             // 
             this.EMPLmetroDateTime2.Location = new System.Drawing.Point(44, 59);
-            this.EMPLmetroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
+            this.EMPLmetroDateTime2.MinimumSize = new System.Drawing.Size(0, 29);
             this.EMPLmetroDateTime2.Name = "EMPLmetroDateTime2";
             this.EMPLmetroDateTime2.Size = new System.Drawing.Size(143, 29);
             this.EMPLmetroDateTime2.TabIndex = 2;
@@ -2156,7 +2156,7 @@
             // TRENmetroDateTime1
             // 
             this.TRENmetroDateTime1.Location = new System.Drawing.Point(44, 59);
-            this.TRENmetroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
+            this.TRENmetroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
             this.TRENmetroDateTime1.Name = "TRENmetroDateTime1";
             this.TRENmetroDateTime1.Size = new System.Drawing.Size(143, 29);
             this.TRENmetroDateTime1.TabIndex = 2;
@@ -2164,7 +2164,7 @@
             // TRENmetroDateTime2
             // 
             this.TRENmetroDateTime2.Location = new System.Drawing.Point(44, 24);
-            this.TRENmetroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
+            this.TRENmetroDateTime2.MinimumSize = new System.Drawing.Size(0, 29);
             this.TRENmetroDateTime2.Name = "TRENmetroDateTime2";
             this.TRENmetroDateTime2.Size = new System.Drawing.Size(143, 29);
             this.TRENmetroDateTime2.TabIndex = 1;
@@ -2898,7 +2898,7 @@
             // SPORTMmetroDateTime3
             // 
             this.SPORTMmetroDateTime3.Location = new System.Drawing.Point(44, 59);
-            this.SPORTMmetroDateTime3.MinimumSize = new System.Drawing.Size(4, 29);
+            this.SPORTMmetroDateTime3.MinimumSize = new System.Drawing.Size(0, 29);
             this.SPORTMmetroDateTime3.Name = "SPORTMmetroDateTime3";
             this.SPORTMmetroDateTime3.Size = new System.Drawing.Size(143, 29);
             this.SPORTMmetroDateTime3.TabIndex = 2;
@@ -2906,7 +2906,7 @@
             // SPORTMmetroDateTime4
             // 
             this.SPORTMmetroDateTime4.Location = new System.Drawing.Point(44, 24);
-            this.SPORTMmetroDateTime4.MinimumSize = new System.Drawing.Size(4, 29);
+            this.SPORTMmetroDateTime4.MinimumSize = new System.Drawing.Size(0, 29);
             this.SPORTMmetroDateTime4.Name = "SPORTMmetroDateTime4";
             this.SPORTMmetroDateTime4.Size = new System.Drawing.Size(143, 29);
             this.SPORTMmetroDateTime4.TabIndex = 1;
@@ -5179,6 +5179,7 @@
             this.metroTile22.Text = "Справка";
             this.metroTile22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile22.UseSelectable = true;
+            this.metroTile22.Click += new System.EventHandler(this.metroTile22_Click);
             // 
             // metroTile21
             // 
@@ -5206,6 +5207,7 @@
             this.metroTile20.Text = "О программе";
             this.metroTile20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile20.UseSelectable = true;
+            this.metroTile20.Click += new System.EventHandler(this.metroTile20_Click);
             // 
             // pictureBox1
             // 
@@ -5242,9 +5244,7 @@
             this.Controls.Add(this.metroTabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "HeadForm";
-            this.ShowInTaskbar = false;
             this.Text = "Главная форма";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.HeadForm_Activated);

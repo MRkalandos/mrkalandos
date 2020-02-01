@@ -9,8 +9,6 @@ namespace GYM
     public partial class EmailRePort : MetroFramework.Forms.MetroForm
     {
         private const string TitleException = "Ошибка";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/EmailReport.txt";
 
         public EmailRePort()
         {
@@ -24,9 +22,8 @@ namespace GYM
             try
             {
                 var ping = new Ping();
-                var testSite = ping.Send(@"yandex.ru");
+                var testSite = ping.Send(@"mail.ru");
                 if (testSite != null) internetStatus = testSite.Status;
-
             }
             catch (Exception exception)
             {
@@ -64,40 +61,24 @@ namespace GYM
         {
             try
             {
-                if (File.Exists("Help/EmailReport.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/EmailReport.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroMessageBox.Show(this, "Файл не найден", TitleException,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 

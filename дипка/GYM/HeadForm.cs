@@ -13,14 +13,13 @@ using MetroFramework;
 using Microsoft.Office.Interop.Excel;
 using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
-using TextBox = System.Windows.Forms.TextBox;
+
 
 namespace GYM
 {
     public partial class HeadForm : MetroFramework.Forms.MetroForm
     {
-        private const string Message = @"Неверный тип данных";
-        private const string Title = @"Корректность ввода";
+        readonly Inputaccuracy _inputaccuracy = new Inputaccuracy();
         public int idSportsmen;
         public int idTrenerovka;
         public int idEmployee;
@@ -33,7 +32,6 @@ namespace GYM
         public DataTable dataTableAbonement;
         public DataTable dataTableTrener;
         public DataTable dataTableTrenerovka;
-        string _filename;
 
         public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
                                                                 Directory.GetParent(Directory.GetCurrentDirectory())
@@ -51,8 +49,6 @@ namespace GYM
         public OleDbDataAdapter dataAdapterTrener;
         public OleDbDataAdapter dataAdapterTrening;
         private const string TitleException = "Ошибка";
-        private readonly string _dateLog = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
-        private readonly string _fileNameLog = Directory.GetCurrentDirectory() + @"\" + "LOG/HeadForm.txt";
 
         public HeadForm()
         {
@@ -95,25 +91,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -135,7 +113,6 @@ namespace GYM
                 TRENINGmetroGrid1.Select();
                 TRENINGmetroGrid1.AllowUserToAddRows = false;
                 TRENINGmetroTabControl6.Enabled = true;
-                //metroTile18.Enabled = true;
                 TRENINGmetroTabControl4.Enabled = true;
                 TRENINGmetroTabControl3.Enabled = true;
                 TRENINGmetroTabControl5.Enabled = true;
@@ -154,25 +131,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -217,25 +176,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -244,7 +185,7 @@ namespace GYM
             try
             {
                 dataAdapterAbonement = new OleDbDataAdapter(
-                    @"SELECT Абонемент.Идабонемент, Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений as[Количество посещений], Тренировка.Название, Абонемент.Идтренеровка
+                    @"SELECT Абонемент.Идабонемент, Абонемент.Название as[Название], Абонемент.Цена as[Цена], Абонемент.Количество_посещений as[Количество посещений], Тренировка.Название as[Тренировка], Абонемент.Идтренеровка
                                  FROM Тренировка INNER JOIN Абонемент
                                  ON Тренировка.Идтренировка = Абонемент.Идтренеровка;", connection);
                 dataTableAbonement = new DataTable();
@@ -270,25 +211,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -331,25 +254,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -399,142 +304,22 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
-        }
-
-        public void Updfilename()
-        {
-            var connectionEmplyee =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterEmployee = new OleDbDataAdapter(
-                @"SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Сотрудник.Фото, Зарплата_сотрудника.Зарплата
-                                       FROM Зарплата_сотрудника 
-                                       INNER JOIN Сотрудник   
-                                       ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата;", connectionEmplyee);
-            dataTableEmployee = new DataTable();
-            dataAdapterEmployee.Fill(dataTableEmployee);
-            EMPLmetroGrid1.DataSource = dataTableEmployee;
-            var connectionSportsmen =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterSportsmen = new OleDbDataAdapter(@"SELECT Спортсмен.*
-                                                                      FROM Спортсмен;", connectionSportsmen);
-            dataTableSportsmen = new DataTable();
-            dataAdapterSportsmen.Fill(dataTableSportsmen);
-            SPORTMmetroGrid2.DataSource = dataTableSportsmen;
-            var conAbonement =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterAbonement = new OleDbDataAdapter(
-                @"SELECT Абонемент.Идабонемент, Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
-                             FROM Тренировка INNER JOIN Абонемент
-                             ON Тренировка.Идтренировка = Абонемент.Идтренеровка;", conAbonement);
-            dataTableAbonement = new DataTable();
-            dataAdapterAbonement.Fill(dataTableAbonement);
-            ABONmetroGrid1.DataSource = dataTableAbonement;
-            var conSale =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterAbonement = new OleDbDataAdapter(
-                @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
-                             FROM Сотрудник INNER JOIN (Абонемент 
-                             INNER JOIN (Спортсмен 
-                             INNER JOIN Продажа_абонемента 
-                             ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен) 
-                             ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) 
-                             ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник;", conSale);
-            dataTableSale = new DataTable();
-            dataAdapterSale.Fill(dataTableSale);
-            SALEmetroGrid1.DataSource = dataTableSale;
-            var contrenerovka =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterTrening = new OleDbDataAdapter(
-                @"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия
-                             FROM Тренер 
-                             INNER JOIN (Вид_тренировки 
-                             INNER JOIN Тренировка 
-                             ON Вид_тренировки.Идвидтренировка = Тренировка.Идвидтренировка) 
-                             ON Тренер.Идтренер = Тренировка.Идтренер;", contrenerovka);
-            dataTableTrenerovka = new DataTable();
-            dataAdapterTrening.Fill(dataTableTrenerovka);
-            TRENINGmetroGrid1.DataSource = dataTableTrenerovka;
-            var conTrener =
-                new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + _filename + "");
-            dataAdapterTrener = new OleDbDataAdapter(@"SELECT тренер.*
-                                                 FROM тренер;", conTrener);
-            dataTableTrener = new DataTable();
-            dataAdapterTrener.Fill(dataTableTrener);
-            TRENmetroGrid1.DataSource = dataTableTrener;
-            TRENmetroGrid1.Columns[0].Visible = false;
-            SPORTMmetroGrid2.Columns[0].Visible = false;
-            EMPLmetroGrid1.Columns[0].Visible = false;
-            TRENINGmetroGrid1.Columns[0].Visible = false;
         }
 
         private void HeadeForm_Load(object sender, EventArgs e)
         {
+            this.Activate();
             SPORTMmetroComboBox1.SelectedIndex = 0;
-            FocusMe();
-            try
-            {
-                UpdTrener();
-                UpdEmployee();
-                UpdSportsmen();
-                UpdTrening();
-                UpdAbonement();
-                UpdSale();
-            }
-            catch
-            {
-                MetroMessageBox.Show(this, "\nФайл базы данных не найден укажите новый путь",
-                    "Файл БД не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                var openFileDialog1 = new OpenFileDialog() {Filter = @"Файл БД (*.mdb)|*.mdb"};
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    using (var sw =
-                        File.CreateText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName + @"\" +
-                                        "text.txt"))
-                    {
-                        _filename = openFileDialog1.FileName;
-                        sw.WriteLine(_filename);
-                        File.Copy(_filename,
-                            Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                ?.FullName /*AppDomain.CurrentDomain.BaseDirectory*/ + Path.GetFileName(_filename));
-                        Updfilename();
-                    }
-                }
-                else
-                {
-                    string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName + @"\" +
-                                  "text.txt";
-                    using (var sr = new StreamReader(path))
-                    {
-                        _filename = sr.ReadLine();
-                    }
-
-                    Updfilename();
-                    MetroMessageBox.Show(this,
-                        "\nВы не выбрали файл БД, поэтому выбранно последнее выбранное место БД", "Не указана БД",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            UpdTrener();
+            UpdEmployee();
+            UpdSportsmen();
+            UpdTrening();
+            UpdAbonement();
+            UpdSale();
         }
+
 
         private void metroTile18_Click(object sender, EventArgs e)
         {
@@ -571,30 +356,13 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroTile4_Click(object sender, EventArgs e)
         {
+            Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objEmployeeAdd = new ModEmployee
             {
                 textBox1 = {Text = ""},
@@ -603,7 +371,7 @@ namespace GYM
                 maskedTextBox1 = {Text = ""},
                 metroDateTime1 = {Text = null},
                 metroTextBox5 = {Text = ""},
-                label1= { Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[0].Value)},
+                label1 = {Text = Convert.ToString(EMPLmetroGrid1.CurrentRow.Cells[0].Value)},
                 Text = @"Добавить сотрудника",
                 metroTile1 = {Text = @"Добавить"}
             };
@@ -617,6 +385,7 @@ namespace GYM
             {
                 list.Add((int) reader[0], (int) reader[1]);
             }
+
             reader.Close();
             cmd.ExecuteNonQuery();
             objEmployeeAdd.metroComboBox1.DataSource = list.ToList();
@@ -651,25 +420,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -737,25 +488,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -766,41 +499,30 @@ namespace GYM
             {
                 try
                 {
-                    connection.Close();
-                    connection.Open();
-                   // Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
-                   idEmployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
-                    var queryDeleteEmployee = new OleDbCommand(@"DELETE FROM сотрудник 
+                    if (EMPLmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        idEmployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteEmployee = new OleDbCommand(@"DELETE FROM сотрудник 
                                                     WHERE идсотрудник=" + idEmployee + "", connection);
-                    queryDeleteEmployee.ExecuteNonQuery();
-                    connection.Close();
-                    UpdEmployee();
-                    
+                        queryDeleteEmployee.ExecuteNonQuery();
+                        connection.Close();
+                        UpdEmployee();
+                    }
                 }
 
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -883,31 +605,9 @@ namespace GYM
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(
-                                        new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -999,33 +699,9 @@ namespace GYM
                             }
                             catch (Exception exception)
                             {
-                                MetroMessageBox.Show(this,
-                                    "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                    "Не отправлено",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                FocusMe();
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
+                                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -1033,50 +709,14 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1110,25 +750,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1187,153 +809,65 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroTextBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                     MetroMessageBox.Show(this,Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox2_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroTextBox3_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroTextBox4_Click(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
             if (EMPLtextBox3.Text == "")
             {
-                MetroMessageBox.Show(this,@"Заполните пустые(ое) поля", TitleException, MessageBoxButtons.OK,
+                MetroMessageBox.Show(this, @"Заполните пустые(ое) поля", TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             else
@@ -1370,25 +904,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -1434,25 +950,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -1499,25 +997,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -1532,25 +1012,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1569,25 +1031,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1619,25 +1063,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1672,25 +1098,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1728,25 +1136,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1799,25 +1189,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -1868,25 +1240,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -1928,25 +1282,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -1957,39 +1293,28 @@ namespace GYM
             {
                 try
                 {
-                    connection.Open();
-                    Debug.Assert(SPORTMmetroGrid2.CurrentRow != null, "Таблица пуста");
-                    idSportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
-                    var queryDeleteSportsmen = new OleDbCommand(@"DELETE FROM спортсмен 
+                    if (SPORTMmetroGrid2.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Open();
+                        Debug.Assert(SPORTMmetroGrid2.CurrentRow != null, "Таблица пуста");
+                        idSportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
+                        var queryDeleteSportsmen = new OleDbCommand(@"DELETE FROM спортсмен 
                                                     WHERE идспортсмен=" + idSportsmen + "", connection);
-                    queryDeleteSportsmen.ExecuteNonQuery();
-                    UpdSportsmen();
-                    connection.Close();
+                        queryDeleteSportsmen.ExecuteNonQuery();
+                        UpdSportsmen();
+                        connection.Close();
+                    }
                 }
-
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -2070,32 +1395,9 @@ namespace GYM
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -2188,26 +1490,7 @@ namespace GYM
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                    }
-                                }
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -2215,50 +1498,14 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -2277,76 +1524,27 @@ namespace GYM
 
         private void textBox10_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox9_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                     MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox10_KeyUp(object sender, KeyEventArgs e)
@@ -2377,62 +1575,34 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
 
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void metroButton10_Click(object sender, EventArgs e)
@@ -2476,25 +1646,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -2526,25 +1678,7 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        if (File.Exists(_fileNameLog) != true)
-                        {
-                            using (var streamWriter =
-                                new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                            {
-                                streamWriter.WriteLine(_dateLog);
-                                streamWriter.WriteLine(exception.Message);
-                            }
-                        }
-                        else
-                        {
-                            using (var streamWriter =
-                                new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                            {
-                                (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                streamWriter.WriteLine(_dateLog);
-                                streamWriter.WriteLine(exception.Message);
-                            }
-                        }
+                        HelperLog.Write(exception.Message);
                     }
 
                     break;
@@ -2575,25 +1709,7 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        if (File.Exists(_fileNameLog) != true)
-                        {
-                            using (var streamWriter =
-                                new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                            {
-                                streamWriter.WriteLine(_dateLog);
-                                streamWriter.WriteLine(exception.Message);
-                            }
-                        }
-                        else
-                        {
-                            using (var streamWriter =
-                                new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                            {
-                                (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                streamWriter.WriteLine(_dateLog);
-                                streamWriter.WriteLine(exception.Message);
-                            }
-                        }
+                        HelperLog.Write(exception.Message);
                     }
 
                     break;
@@ -2610,25 +1726,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -2674,25 +1772,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -2734,25 +1814,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -2795,25 +1857,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -2853,25 +1897,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -2908,25 +1934,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -2961,41 +1969,23 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroTile19_Click_1(object sender, EventArgs e)
         {
+            Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objTrenerAdd = new ModTrener
             {
-
                 textBox1 = {Text = ""},
                 textBox2 = {Text = ""},
                 textBox3 = {Text = ""},
                 maskedTextBox1 = {Text = ""},
                 metroDateTime1 = {Text = null},
                 metroTextBox5 = {Text = ""},
-                label1= { Text = Convert.ToString(TRENmetroGrid1.CurrentRow.Cells[0].Value)},
-            Text = @"Добавить тренера",
+                label1 = {Text = Convert.ToString(TRENmetroGrid1.CurrentRow.Cells[0].Value)},
+                Text = @"Добавить тренера",
                 metroTile1 = {Text = @"Добавить"},
                 metroTextBox1 = {Text = ""}
             };
@@ -3026,25 +2016,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -3093,25 +2065,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -3120,14 +2074,31 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             if (DialogResult.Yes == MetroMessageBox.Show(this, "\nВы уверены, что хотите Удалить?",
                     "Подтверждение Удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
-                connection.Open();
-                Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
-                idTrener = Convert.ToInt32(TRENmetroGrid1.CurrentRow.Cells[0].Value);
-                var queryDeleteTrener = new OleDbCommand(@"DELETE FROM тренер 
+                try
+                {
+                    if (TRENmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Open();
+                        Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        idTrener = Convert.ToInt32(TRENmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteTrener = new OleDbCommand(@"DELETE FROM тренер 
                                                     WHERE идтренер=" + idTrener + "", connection);
-                queryDeleteTrener.ExecuteNonQuery();
-                UpdTrener();
-                connection.Close();
+                        queryDeleteTrener.ExecuteNonQuery();
+                        UpdTrener();
+                        connection.Close();
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
+                }
             }
         }
 
@@ -3209,32 +2180,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                "Сообщение не отправлено на почту " + objEMailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -3324,33 +2272,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                             }
                             catch (Exception exception)
                             {
-                                MetroMessageBox.Show(this,
-                                    "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                    "Не отправлено",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                FocusMe();
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
+                                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -3358,184 +2282,75 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox3_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox2_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                     MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox8_KeyUp(object sender, KeyEventArgs e)
@@ -3567,25 +2382,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -3630,25 +2427,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -3692,25 +2471,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -3752,25 +2513,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -3812,25 +2555,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -3874,25 +2599,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -3908,9 +2615,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     TRENpictureBox2.Load(Application.StartupPath + @"\PhotoTrener\" + textBox1.Text);
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                MetroMessageBox.Show(this, ex.Message, "Ошибка");
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -3924,25 +2633,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -3983,25 +2674,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -4078,25 +2751,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -4168,25 +2823,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -4197,39 +2834,29 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 try
                 {
-                    connection.Close();
-                    connection.Open();
-                    Debug.Assert(TRENINGmetroGrid1.CurrentRow != null, "Таблица пуста");
-                    idTrenerovka = Convert.ToInt32(TRENINGmetroGrid1.CurrentRow.Cells[0].Value);
-                    var queryDeleteTrening = new OleDbCommand(@"DELETE FROM тренировка 
+                    if (TRENINGmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(TRENINGmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        idTrenerovka = Convert.ToInt32(TRENINGmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteTrening = new OleDbCommand(@"DELETE FROM тренировка 
                                                     WHERE идтренировка=" + idTrenerovka + "", connection);
-                    queryDeleteTrening.ExecuteNonQuery();
-                    UpdTrening();
-                    connection.Close();
+                        queryDeleteTrening.ExecuteNonQuery();
+                        UpdTrening();
+                        connection.Close();
+                    }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -4304,32 +2931,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -4410,33 +3014,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                             }
                             catch (Exception exception)
                             {
-                                MetroMessageBox.Show(this,
-                                    "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                    "Не отправлено",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                FocusMe();
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
+                                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -4444,135 +3024,55 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void textBox6_TextChanged_1(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox5_TextChanged_1(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox4_TextChanged_1(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox3_TextChanged_1(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox5_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                     MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox4_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox3_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox6_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox6_KeyUp(object sender, KeyEventArgs e)
@@ -4603,25 +3103,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -4665,25 +3147,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -4698,25 +3162,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -4760,25 +3206,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -4823,31 +3251,9 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
-        }
-
-        private void metroComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
         }
 
         private void metroTile26_Click_1(object sender, EventArgs e)
@@ -4867,7 +3273,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             WindowState = FormWindowState.Normal;
             Height = -9999;
             Width = -9999;
-            }
+        }
 
         private void metroTile13_Click_1(object sender, EventArgs e)
         {
@@ -4901,39 +3307,23 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void metroTile41_Click_1(object sender, EventArgs e)
         {
+            Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objAbonementAdd = new ModAbonement
             {
                 textBox1 = {Text = ""},
                 textBox2 = {Text = ""},
-                metroLabel4= { Text = Convert.ToString(ABONmetroGrid1.CurrentRow.Cells[0].Value)},
-            textBox3 = {Text = ""},
+                metroLabel4 = {Text = Convert.ToString(ABONmetroGrid1.CurrentRow.Cells[0].Value)},
+                textBox3 = {Text = ""},
                 Text = @"Добавить абонемент",
                 metroTile1 = {Text = @"Добавить"}
             };
+            connection.Close();
             connection.Open();
             var cmd = new OleDbCommand("SELECT Тренировка.Идтренировка, Тренировка.Название FROM Тренировка",
                 connection);
@@ -4972,25 +3362,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -5047,25 +3419,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -5076,39 +3430,29 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 try
                 {
-                    connection.Close();
-                    connection.Open();
-                    Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
-                    idAbonement = Convert.ToInt32(ABONmetroGrid1.CurrentRow.Cells[0].Value);
-                    var queryDeleteAbonement = new OleDbCommand(@"DELETE FROM абонемент 
+                    if (ABONmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        idAbonement = Convert.ToInt32(ABONmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteAbonement = new OleDbCommand(@"DELETE FROM абонемент 
                                                     WHERE идабонемент=" + idAbonement + "", connection);
-                    queryDeleteAbonement.ExecuteNonQuery();
-                    UpdAbonement();
-                    connection.Close();
+                        queryDeleteAbonement.ExecuteNonQuery();
+                        UpdAbonement();
+                        connection.Close();
+                    }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -5185,32 +3529,9 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -5296,33 +3617,9 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                             }
                             catch (Exception exception)
                             {
-                                MetroMessageBox.Show(this,
-                                    "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                    "Не отправлено",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                FocusMe();
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
+                                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -5330,50 +3627,14 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -5393,25 +3654,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -5453,25 +3696,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -5507,25 +3732,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -5537,120 +3744,52 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
 
         private void textBox8_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox3_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                     MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox2_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void textBox5_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox4_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void textBox3_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox8_TextChanged_1(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox5_TextChanged_2(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox4_TextChanged_2(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox3_TextChanged_2(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox8_KeyUp_1(object sender, KeyEventArgs e)
@@ -5683,25 +3822,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -5745,25 +3866,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -5805,25 +3908,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -5832,7 +3917,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
         {
             if (ABONtextBox4.Text == "")
             {
-                MetroMessageBox.Show(this, "Заполните все поля", Title, MessageBoxButtons.OK,
+                MetroMessageBox.Show(this, "Заполните все поля", TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             else
@@ -5867,25 +3952,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -5971,25 +4038,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -6085,25 +4134,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
         }
 
@@ -6114,40 +4145,29 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 try
                 {
-                    connection.Close();
-                    connection.Open();
-                    Debug.Assert(SALEmetroGrid1.CurrentRow != null, "Таблица пуста");
-                    idSale = Convert.ToInt32(SALEmetroGrid1.CurrentRow.Cells[0].Value);
-                    var queryDeleteSaleAbonement = new OleDbCommand(@"DELETE FROM продажа_абонемента 
+                    if (SALEmetroGrid1.RowCount == 0)
+                    {
+                        MetroMessageBox.Show(this, "Записей больше нет", "Таблица пуста", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        connection.Close();
+                        connection.Open();
+                        Debug.Assert(SALEmetroGrid1.CurrentRow != null, "Таблица пуста");
+                        idSale = Convert.ToInt32(SALEmetroGrid1.CurrentRow.Cells[0].Value);
+                        var queryDeleteSaleAbonement = new OleDbCommand(@"DELETE FROM продажа_абонемента 
                                                     WHERE идпродажа=" + idSale + "", connection);
-                    queryDeleteSaleAbonement.ExecuteNonQuery();
-                    UpdSale();
-                    connection.Close();
+                        queryDeleteSaleAbonement.ExecuteNonQuery();
+                        UpdSale();
+                        connection.Close();
+                    }
                 }
-
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -6228,32 +4248,9 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                         }
                         catch (Exception exception)
                         {
-                            MetroMessageBox.Show(this,
-                                @"Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                "Не отправлено",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            FocusMe();
-                            if (File.Exists(_fileNameLog) != true)
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                {
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
-                            else
-                            {
-                                using (var streamWriter =
-                                    new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                {
-                                    (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                    streamWriter.WriteLine(_dateLog);
-                                    streamWriter.WriteLine(exception.Message);
-                                    FocusMe();
-                                }
-                            }
+                            MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            HelperLog.Write(exception.Message);
                         }
                 }
             }
@@ -6342,33 +4339,9 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                             }
                             catch (Exception exception)
                             {
-                                MetroMessageBox.Show(this,
-                                    "Сообщение не отправлено на почту " + objEmailReport.metroTextBox4.Text,
-                                    "Не отправлено",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                FocusMe();
-                                if (File.Exists(_fileNameLog) != true)
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(
-                                            new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                                    {
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
-                                else
-                                {
-                                    using (var streamWriter =
-                                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                                    {
-                                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                                        streamWriter.WriteLine(_dateLog);
-                                        streamWriter.WriteLine(exception.Message);
-                                        FocusMe();
-                                    }
-                                }
+                                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                                HelperLog.Write(exception.Message);
                             }
                     }
                 }
@@ -6377,25 +4350,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
 
@@ -6403,122 +4358,48 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void textBox6_KeyPress_2(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void metroTextBox3_KeyPress_3(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void metroTextBox2_KeyPress_3(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= '0' && blockCifr <= '9'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyNumeral(sender, e);
         }
 
         private void textBox5_KeyPress_3(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox4_KeyPress_3(object sender, KeyPressEventArgs e)
         {
-            char blockCifr = e.KeyChar;
-            if (!(blockCifr >= 'А' && blockCifr <= 'я'))
-            {
-                if (e.KeyChar != (char) Keys.Back)
-
-                {
-                    e.Handled = true;
-                    MetroMessageBox.Show(this, Message, Title, MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-            }
+            _inputaccuracy.HeadInputaccuracyLetter(sender, e);
         }
 
         private void textBox6_TextChanged_2(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox5_TextChanged_3(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox4_TextChanged_3(object sender, EventArgs e)
         {
-            if (((TextBox) sender).Text.Length == 1)
-                ((TextBox) sender).Text = ((TextBox) sender).Text.ToUpper();
-            ((TextBox) sender).Select(((TextBox) sender).Text.Length, 0);
+            _inputaccuracy.UpperLetter(sender, e);
         }
 
         private void textBox6_KeyUp_1(object sender, KeyEventArgs e)
@@ -6553,25 +4434,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -6618,25 +4481,7 @@ WHERE Продажа_абонемента.Дата_начала Between #{date1}
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -6682,25 +4527,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -6745,25 +4572,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -6806,25 +4615,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    if (File.Exists(_fileNameLog) != true)
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                        {
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
-                    else
-                    {
-                        using (var streamWriter =
-                            new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                        {
-                            (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                            streamWriter.WriteLine(_dateLog);
-                            streamWriter.WriteLine(exception.Message);
-                        }
-                    }
+                    HelperLog.Write(exception.Message);
                 }
             }
         }
@@ -6864,25 +4655,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -6897,25 +4670,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
-                else
-                {
-                    using (var streamWriter =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (streamWriter.BaseStream).Seek(0, SeekOrigin.End);
-                        streamWriter.WriteLine(_dateLog);
-                        streamWriter.WriteLine(exception.Message);
-                    }
-                }
+                HelperLog.Write(exception.Message);
             }
         }
 
@@ -6933,7 +4688,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
 
         private void HeadForm_Shown(object sender, EventArgs e)
         {
-            FocusMe();
+            //FocusMe();
         }
 
         private void HeadForm_Click(object sender, EventArgs e)
@@ -6945,81 +4700,61 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         {
             try
             {
-                if (File.Exists("Help/HeadForm.chm"))
+                if (File.Exists("Help/Help.chm"))
                 {
-                    Help.ShowHelp(null, "Help/HeadForm.chm");
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     FocusMe();
                 }
             }
             catch (Exception exception)
             {
-                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
-                else
-                {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
-                }
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
             }
         }
 
         private void HeadForm_Activated(object sender, EventArgs e)
         {
-            //SPORTMmetroComboBox1.SelectedIndex = 0;
-            //FocusMe();
+            FocusMe();
+        }
+
+        private void metroTile22_Click(object sender, EventArgs e)
+        {
             try
             {
-            //    UpdTrener();
-            //    UpdEmployee();
-            //    UpdSportsmen();
-            //    UpdTrening();
-            //    UpdAbonement();
-            //    UpdSale();
-            }
-            catch (Exception exception)
-            {
-                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (File.Exists(_fileNameLog) != true)
+                if (File.Exists("Help/Help.chm"))
                 {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Create, FileAccess.Write)))
-                    {
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
+                    FocusMe();
+                    Help.ShowHelp(null, "Help/Help.chm");
+                    FocusMe();
                 }
                 else
                 {
-                    using (var sw =
-                        new StreamWriter(new FileStream(_fileNameLog, FileMode.Open, FileAccess.Write)))
-                    {
-                        (sw.BaseStream).Seek(0, SeekOrigin.End);
-                        sw.WriteLine(_dateLog);
-                        sw.WriteLine(exception.Message);
-                        FocusMe();
-                    }
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    FocusMe();
                 }
             }
+            catch (Exception exception)
+            {
+                MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        private void metroTile20_Click(object sender, EventArgs e)
+        {
+            AboutTheProgramm aboutTheProgramm = new AboutTheProgramm();
+            aboutTheProgramm.ShowDialog();
         }
     }
 }
