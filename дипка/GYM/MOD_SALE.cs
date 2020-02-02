@@ -26,7 +26,7 @@ namespace GYM
                 (metroComboBox2.Text == "") ||
                 (metroComboBox3.Text == ""))
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
+                MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -42,6 +42,10 @@ namespace GYM
                     MessageBoxIcon.Warning))
             {
                 Close();
+            }
+            else
+            {
+                FocusMe();
             }
         }
 
@@ -61,6 +65,7 @@ namespace GYM
             ((Control) form.tabPage10).Enabled = false;
             ((Control) form.tabPage11).Enabled = false;
             ((Control) form.tabPage12).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
         }
 
@@ -83,6 +88,7 @@ namespace GYM
             ((Control) form.tabPage16).Enabled = false;
             ((Control) form.tabPage15).Enabled = false;
             ((Control) form.tabPage14).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
         }
 
@@ -104,6 +110,7 @@ namespace GYM
             ((Control) form.tabPage33).Enabled = false;
             ((Control) form.tabPage32).Enabled = false;
             ((Control) form.tabPage31).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
         }
 
@@ -153,15 +160,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -170,6 +174,15 @@ namespace GYM
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
+        }
+
+        private void ModSale_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

@@ -420,6 +420,7 @@
             this.Activated += new System.EventHandler(this.MOD_Trener_Activated);
             this.Load += new System.EventHandler(this.MOD_Trener_Load);
             this.Shown += new System.EventHandler(this.MOD_Trener_Shown);
+            this.Click += new System.EventHandler(this.ModTrener_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModTrener_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -211,11 +211,13 @@
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModAbonement";
             this.Text = "Редактировать абонемент";
             this.Activated += new System.EventHandler(this.ModAbonement_Activated);
             this.Load += new System.EventHandler(this.MOD_Abonement_Load);
             this.Shown += new System.EventHandler(this.ModAbonement_Shown);
+            this.Click += new System.EventHandler(this.ModAbonement_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModAbonement_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

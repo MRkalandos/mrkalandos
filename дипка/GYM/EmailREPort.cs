@@ -63,15 +63,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
-                    Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
+                      Help.ShowHelp(null, "Help/Help.chm");
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -79,6 +76,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -106,6 +107,11 @@ namespace GYM
                     Close();
                     break;
             }
+        }
+
+        private void EmailRePort_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

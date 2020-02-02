@@ -26,6 +26,10 @@ namespace GYM
             {
                 Close();
             }
+            else
+            {
+                FocusMe();
+            }
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
@@ -50,6 +54,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -77,7 +85,7 @@ namespace GYM
         private void metroButton1_Click(object sender, EventArgs e)
         {
             var view = new ViewTrening();
-            view.Show();
+            view.ShowDialog();
         }
 
         private static void NewForm()
@@ -94,6 +102,7 @@ namespace GYM
             ((Control) form.tabPage21).Enabled = false;
             ((Control) form.tabPage18).Enabled = false;
             ((Control) form.tabPage6).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
         }
 
@@ -108,15 +117,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -124,6 +130,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -157,6 +167,11 @@ namespace GYM
                     metroTile2.PerformClick();
                     break;
             }
+        }
+
+        private void ModTrenerovka_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

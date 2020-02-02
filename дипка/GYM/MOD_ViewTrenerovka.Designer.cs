@@ -126,11 +126,13 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModViewTrenerovka";
             this.Text = "Добавить вид тренировки";
             this.Activated += new System.EventHandler(this.ModViewTrenerovka_Activated);
             this.Load += new System.EventHandler(this.MOD_View_trenerovka_Load);
             this.Shown += new System.EventHandler(this.ModViewTrenerovka_Shown);
+            this.Click += new System.EventHandler(this.ModViewTrenerovka_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModViewTrenerovka_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

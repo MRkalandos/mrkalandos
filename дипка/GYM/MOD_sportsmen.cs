@@ -30,6 +30,10 @@ namespace GYM
             {
                 Close();
             }
+            else
+            {
+                FocusMe();
+            }
         }
 
         private void metroTile1_Click(object sender, EventArgs e)
@@ -84,15 +88,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -100,6 +101,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -125,6 +130,11 @@ namespace GYM
         }
 
         private void ModSportsmen_Shown(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ModSportsmen_Click(object sender, EventArgs e)
         {
             FocusMe();
         }

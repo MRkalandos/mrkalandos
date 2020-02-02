@@ -22,7 +22,6 @@ namespace GYM
 
         private void Send_Mail_Load(object sender, EventArgs e)
         {
-            FocusMe();
             try
             {
                 var internetStatus = IPStatus.TimedOut;
@@ -35,6 +34,7 @@ namespace GYM
                 catch (Exception exception)
                 {
                     HelperLog.Write(exception.Message);
+                    FocusMe();
                 }
 
                 if (internetStatus != IPStatus.Success)
@@ -54,8 +54,9 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, "Сообщение не отправлено на почту" + metroTextBox4.Text, "Не отправлено",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                FocusMe();
+                
                 HelperLog.Write(exception.Message);
+                FocusMe();
             }
         }
 
@@ -68,17 +69,20 @@ namespace GYM
                 if (dialog.ShowDialog() != DialogResult.OK)
                 {
                     attachment = false;
-                    FocusMe();
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                FocusMe();
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
         }
+
 
         private void metroTile3_Click(object sender, EventArgs e)
         {
@@ -86,6 +90,10 @@ namespace GYM
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 Close();
+            }
+            else
+            {
+                FocusMe();   
             }
         }
 
@@ -103,7 +111,6 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, "Заполните все поля", "Корректность ввода", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
                 else
                 {
@@ -115,7 +122,6 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, "Интернет-соединение отсутсвует, сообщение не отправиться",
                             "Соединение не установлено", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        FocusMe();
                     }
                     else
                     {
@@ -140,13 +146,16 @@ namespace GYM
                         smtpServer.Send(objMessage);
                         MetroMessageBox.Show(this, "Сообщение отправлено на почту " + metroTextBox4.Text, "Отправлено",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FocusMe();
                     }
                 }
             }
             catch (Exception exception)
             {
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -200,9 +209,18 @@ namespace GYM
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
         }
 
         private void SendComment_Activated(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void SendComment_Click(object sender, EventArgs e)
         {
             FocusMe();
         }

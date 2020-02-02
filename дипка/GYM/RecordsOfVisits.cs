@@ -50,13 +50,16 @@ namespace GYM
                 VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
                 VISITSGrid.Select();
                 VISITSGrid.AllowUserToAddRows = false;
-                FocusMe();
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -72,6 +75,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -96,15 +103,20 @@ namespace GYM
                         var queryDeleteVisit = new OleDbCommand(@"DELETE FROM учет_посещений 
                                                     WHERE идпосещений=" + idVisit + "", connection);
                         queryDeleteVisit.ExecuteNonQuery();
+                        connection.Close();
                         VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
                         UpdateVisits();
-                        connection.Close();
                     }
                     catch (Exception exception)
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
                         HelperLog.Write(exception.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                        FocusMe();
                     }
                 }
             }
@@ -123,7 +135,6 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             {
                 list.Add((int) reader[0], (string) reader[1]);
             }
-
             reader.Close();
             dbCommandVisit.ExecuteNonQuery();
             objVisiTeAdd.metroComboBox1.DataSource = list.ToList();
@@ -152,6 +163,11 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    FocusMe();
+                    connection.Close();
+                }
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -167,13 +183,12 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             var oleDbCommand = new OleDbCommand(@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия
 FROM Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен;", connection);
             objVisiteUpdate.metroComboBox1.DisplayMember = "Спортсмен.Фамилия";
-            OleDbDataReader reader = oleDbCommand.ExecuteReader();
-            Dictionary<int, string> list = new Dictionary<int, string>();
+            var reader = oleDbCommand.ExecuteReader();
+            var list = new Dictionary<int, string>();
             while (reader.Read())
             {
                 list.Add((int) reader[0], (string) reader[1]);
             }
-
             reader.Close();
             oleDbCommand.ExecuteNonQuery();
             objVisiteUpdate.metroComboBox1.DataSource = list.ToList();
@@ -205,6 +220,11 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    FocusMe();
+                    connection.Close();
+                }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -213,15 +233,12 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -229,6 +246,10 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -265,6 +286,16 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
         }
 
         private void RecordsOfVisits_Shown(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void RecordsOfVisits_Click(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void VISITSGrid_Click(object sender, EventArgs e)
         {
             FocusMe();
         }

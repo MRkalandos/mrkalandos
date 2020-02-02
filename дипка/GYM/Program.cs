@@ -11,7 +11,8 @@ namespace GYM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new  ViewTrening());
+            Application.Run(new  Authorization());
+
         }
     }
 }

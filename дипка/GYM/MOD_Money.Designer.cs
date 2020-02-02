@@ -132,6 +132,7 @@
             this.Activated += new System.EventHandler(this.ModMoney_Activated);
             this.Load += new System.EventHandler(this.AddMoney_Load);
             this.Shown += new System.EventHandler(this.ModMoney_Shown);
+            this.Click += new System.EventHandler(this.ModMoney_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModMoney_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

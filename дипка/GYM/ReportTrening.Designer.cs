@@ -80,7 +80,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox1, "Горячая клаивша F1");
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // metroToolTip1
@@ -96,15 +96,17 @@
             this.ClientSize = new System.Drawing.Size(284, 265);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ReportTrening";
             this.Text = "Отчет по тренировкам";
-            this.metroToolTip1.SetToolTip(this, "Горячая клавиша Esc");
+            this.metroToolTip1.SetToolTip(this, "Esc");
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.ReportTrening_Activated);
             this.Load += new System.EventHandler(this.ReportTrenerovka_Load);
             this.Shown += new System.EventHandler(this.ReportTrening_Shown);
+            this.Click += new System.EventHandler(this.ReportTrening_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReportTrening_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.vie3BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSRepVIE3)).EndInit();

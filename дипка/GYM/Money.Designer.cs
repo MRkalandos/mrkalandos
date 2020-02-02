@@ -103,6 +103,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(191, 173);
             this.dataGridView1.Style = MetroFramework.MetroColorStyle.Purple;
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // metroTile1
             // 
@@ -219,6 +220,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Money_FormClosed);
             this.Load += new System.EventHandler(this.Money_Load);
             this.Shown += new System.EventHandler(this.Money_Shown);
+            this.Click += new System.EventHandler(this.Money_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Money_KeyDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -68,6 +68,11 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -87,13 +92,16 @@ namespace GYM
                     File.Copy(sourcePath, destFile, true);
                     metroTextBox6.Text = Path.GetFileName(fileName);
                 }
-
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено", TitleException,
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     metroTextBox6.Text = Path.GetFileName(fileName);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    FocusMe();
                 }
             }
         }
@@ -104,6 +112,10 @@ namespace GYM
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 Close();
+            }
+            else
+            {
+                FocusMe();
             }
         }
 
@@ -164,15 +176,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -180,6 +189,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -205,6 +218,11 @@ namespace GYM
                     metroTile2.PerformClick();
                     break;
             }
+        }
+
+        private void ModTrener_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

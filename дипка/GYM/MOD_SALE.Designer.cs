@@ -238,7 +238,7 @@
             this.metroToolTip1.SetToolTip(this.pictureBox1, "Справка F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // MOD_SALE
+            // ModSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -260,11 +260,13 @@
             this.Controls.Add(this.metroComboBox3);
             this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.metroComboBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModSale";
             this.Text = "Редактировать продажу";
             this.Activated += new System.EventHandler(this.MOD_SALE_Activated);
             this.Load += new System.EventHandler(this.VISITS_Load);
             this.Shown += new System.EventHandler(this.MOD_SALE_Shown);
+            this.Click += new System.EventHandler(this.ModSale_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MOD_SALE_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

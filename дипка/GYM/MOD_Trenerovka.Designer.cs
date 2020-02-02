@@ -192,10 +192,12 @@
             this.Controls.Add(this.metroComboBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.metroLabel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModTrenerovka";
             this.Activated += new System.EventHandler(this.ModTrenerovka_Activated);
             this.Load += new System.EventHandler(this.MOD_Trenerovka_Load);
             this.Shown += new System.EventHandler(this.ModTrenerovka_Shown);
+            this.Click += new System.EventHandler(this.ModTrenerovka_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModTrenerovka_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

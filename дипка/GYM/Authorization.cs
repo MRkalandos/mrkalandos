@@ -43,15 +43,16 @@ namespace GYM
                     File.Copy(_filename, Directory.GetParent(Directory.GetCurrentDirectory())
                                              .Parent?.FullName + "/ISgym.mdb"); //////////////////////////
                 }
+                FocusMe();
             }
+            FocusMe();
         }
-
+        
         private void metroTile1_Click(object sender, EventArgs e)
         {
             try
             {
                 if (metroTextBox1.Text == "")
-
                 {
                     MetroMessageBox.Show(this, "\nЗаполните поле пароль", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -110,7 +111,6 @@ namespace GYM
                                     MessageBoxIcon.Error);
                                 connection.Close();
                             }
-
                             break;
                     }
                 }
@@ -123,6 +123,7 @@ namespace GYM
             }
             finally
             {
+                FocusMe();
                 connection.Close();
             }
         }
@@ -160,15 +161,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -176,6 +174,11 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                connection.Close();
+                FocusMe();
             }
         }
     }

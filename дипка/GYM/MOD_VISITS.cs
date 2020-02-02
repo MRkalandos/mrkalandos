@@ -41,6 +41,10 @@ namespace GYM
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
         }
 
         private void metroTile2_Click(object sender, EventArgs e)
@@ -50,6 +54,10 @@ namespace GYM
                     MessageBoxIcon.Warning))
             {
                 Close();
+            }
+            else
+            {
+                FocusMe();
             }
         }
 
@@ -67,6 +75,7 @@ namespace GYM
             ((Control) form.tabPage38).Enabled = false;
             ((Control) form.tabPage37).Enabled = false;
             ((Control) form.tabPage36).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
         }
 
@@ -81,15 +90,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -97,6 +103,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -127,6 +137,11 @@ namespace GYM
                     metroTile2.PerformClick();
                     break;
             }
+        }
+
+        private void MOD_VISITS_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

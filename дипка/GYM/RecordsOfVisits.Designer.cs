@@ -85,6 +85,7 @@
             this.VISITSGrid.Size = new System.Drawing.Size(626, 150);
             this.VISITSGrid.Style = MetroFramework.MetroColorStyle.Purple;
             this.VISITSGrid.TabIndex = 0;
+            this.VISITSGrid.Click += new System.EventHandler(this.VISITSGrid_Click);
             // 
             // metroTile1
             // 
@@ -130,7 +131,7 @@
             this.metroButton3.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton3.TabIndex = 2;
             this.metroButton3.Text = "Удалить";
-            this.metroToolTip1.SetToolTip(this.metroButton3, "Горячая клавиша Del");
+            this.metroToolTip1.SetToolTip(this.metroButton3, "Del");
             this.metroButton3.UseCustomBackColor = true;
             this.metroButton3.UseSelectable = true;
             this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
@@ -144,7 +145,7 @@
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 1;
             this.metroButton2.Text = "Редактировать";
-            this.metroToolTip1.SetToolTip(this.metroButton2, "Горячая клавиша F6");
+            this.metroToolTip1.SetToolTip(this.metroButton2, "F6");
             this.metroButton2.UseCustomBackColor = true;
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
@@ -158,7 +159,7 @@
             this.metroButton1.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton1.TabIndex = 0;
             this.metroButton1.Text = "Добавить";
-            this.metroToolTip1.SetToolTip(this.metroButton1, "Горячая клавиша F5");
+            this.metroToolTip1.SetToolTip(this.metroButton1, "F5");
             this.metroButton1.UseCustomBackColor = true;
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
@@ -173,7 +174,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox1, "Справка F1");
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // metroToolTip1
@@ -196,9 +197,10 @@
             this.Name = "RecordsOfVisits";
             this.Opacity = 0.94D;
             this.Text = "Учет посещений";
-            this.metroToolTip1.SetToolTip(this, "Горячая клавиша ESC");
+            this.metroToolTip1.SetToolTip(this, "ESC");
             this.Load += new System.EventHandler(this.VISITS_Load);
             this.Shown += new System.EventHandler(this.RecordsOfVisits_Shown);
+            this.Click += new System.EventHandler(this.RecordsOfVisits_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Visits_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.VISITSGrid)).EndInit();
             this.metroTile1.ResumeLayout(false);

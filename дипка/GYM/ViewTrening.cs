@@ -51,10 +51,10 @@ namespace GYM
 
         private void View_trenerovki_Load(object sender, EventArgs e)
         {
-            
             try
             {
-                UpdateViewTrening();FocusMe();
+                UpdateViewTrening();
+                FocusMe();
             }
             catch (Exception exception)
             {
@@ -88,7 +88,6 @@ namespace GYM
                         queryDeleteViewTtrening.ExecuteNonQuery();
                         ViewmetroGrid1.Sort(ViewmetroGrid1.Columns[1], ListSortDirection.Ascending);
                         UpdateViewTrening();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
@@ -96,6 +95,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                    FocusMe();
                 }
             }
         }
@@ -117,7 +121,6 @@ namespace GYM
                                                                        VALUES(@name)", connection);
                     queryAddViewTtrening.Parameters.AddWithValue("name", objViewTreningAdd.textBox1.Text);
                     queryAddViewTtrening.ExecuteNonQuery();
-                    connection.Close();
                     UpdateViewTrening();
                 }
                 catch (Exception exception)
@@ -125,6 +128,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                    FocusMe();
                 }
         }
 
@@ -159,6 +167,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                    FocusMe();
                 }
         }
 
@@ -229,6 +242,16 @@ namespace GYM
         }
 
         private void ViewTrening_Activated(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ViewmetroGrid1_Click(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ViewTrening_Click(object sender, EventArgs e)
         {
             FocusMe();
         }

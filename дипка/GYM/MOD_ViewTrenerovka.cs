@@ -34,6 +34,10 @@ namespace GYM
             {
                 Close();
             }
+            else
+            {
+                FocusMe();
+            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -44,7 +48,7 @@ namespace GYM
                 if (e.KeyChar != (char) Keys.Back)
                 {
                     e.Handled = true;
-                    MetroFramework.MetroMessageBox.Show(this, "\nНеверный тип данных",
+                    MetroMessageBox.Show(this, "\nНеверный тип данных",
                         TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -56,7 +60,7 @@ namespace GYM
             {
                 if ((textBox1.Text == ""))
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность",
+                    MetroMessageBox.Show(this, "\nНе все поля заполнены", "Корректность",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -72,7 +76,7 @@ namespace GYM
                     if (queryFindClone.ExecuteScalar() != null)
                     {
                         _connection.Close();
-                        MetroFramework.MetroMessageBox.Show(this, "\nТакой вид тренировки уже существует",
+                        MetroMessageBox.Show(this, "\nТакой вид тренировки уже существует",
                             TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
@@ -86,6 +90,11 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                _connection.Close();
+                FocusMe();
             }
         }
 
@@ -102,15 +111,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -118,6 +124,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -143,6 +153,11 @@ namespace GYM
         }
 
         private void ModViewTrenerovka_Shown(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ModViewTrenerovka_Click(object sender, EventArgs e)
         {
             FocusMe();
         }

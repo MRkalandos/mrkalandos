@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTrener));
             this.ТренерBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RepTrener = new GYM.RepTrener();
@@ -55,9 +55,9 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource2.Name = "DSREPTRENER";
-            reportDataSource2.Value = this.ТренерBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DSREPTRENER";
+            reportDataSource1.Value = this.ТренерBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "GYM.DiagrammMoneyTrener.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(20, 60);
             this.reportViewer1.Name = "reportViewer1";
@@ -85,6 +85,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // ReportTrener
@@ -94,14 +95,17 @@
             this.ClientSize = new System.Drawing.Size(1386, 773);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ReportTrener";
             this.Text = "Диаграмма оклада тренеров";
+            this.metroToolTip1.SetToolTip(this, "Esc");
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.ReportTrener_Activated);
             this.Load += new System.EventHandler(this.Report_Trener_Load);
             this.Shown += new System.EventHandler(this.ReportTrener_Shown);
+            this.Click += new System.EventHandler(this.ReportTrener_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReportTrener_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ТренерBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepTrener)).EndInit();

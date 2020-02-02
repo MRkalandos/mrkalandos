@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportEmployee));
             this.vie1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DSREPemployee = new GYM.DSREPemployee();
@@ -55,14 +55,15 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource3.Name = "DSREPORTemployee";
-            reportDataSource3.Value = this.vie1BindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
+            reportDataSource1.Name = "DSREPORTemployee";
+            reportDataSource1.Value = this.vie1BindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "GYM.Diagramm_Money_Employ.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(20, 60);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1346, 708);
             this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.Click += new System.EventHandler(this.reportViewer1_Click);
             // 
             // vie1TableAdapter
             // 
@@ -78,7 +79,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox1, "Горячая клавиша F1");
+            this.metroToolTip1.SetToolTip(this.pictureBox1, "F1");
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // metroToolTip1
@@ -99,11 +100,12 @@
             this.MinimizeBox = false;
             this.Name = "ReportEmployee";
             this.Text = "Диаграмма зарплат сотрудников";
-            this.metroToolTip1.SetToolTip(this, "Горячая клавиша Esc");
+            this.metroToolTip1.SetToolTip(this, "Esc");
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.ReportEmployee_Activated);
             this.Load += new System.EventHandler(this.Report_Employee_Load);
             this.Shown += new System.EventHandler(this.ReportEmployee_Shown);
+            this.Click += new System.EventHandler(this.ReportEmployee_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReportEmployee_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.vie1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DSREPemployee)).EndInit();

@@ -23,7 +23,6 @@ namespace GYM
         {
             try
             {
-                FocusMe();
                 var connection = new OleDbConnection(conString);
                 connection.Open();
                 var adapter = new OleDbDataAdapter(@"select * from абонемент", connection);
@@ -37,6 +36,10 @@ namespace GYM
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -45,14 +48,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
-                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    FocusMe();
+                    MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             catch (Exception exception)
@@ -60,6 +61,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -85,6 +90,16 @@ namespace GYM
                     FocusMe();
                     break;
             }
+        }
+
+        private void reportViewer1_Click(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void ReportAbonement_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

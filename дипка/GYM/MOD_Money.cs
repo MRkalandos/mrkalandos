@@ -25,6 +25,10 @@ namespace GYM
             {
                 Close();
             }
+            else
+            {
+                FocusMe();
+            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -45,31 +49,45 @@ namespace GYM
         {
             if ((textBox1.Text == ""))
             {
-                MetroFramework.MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
+                MetroMessageBox.Show(this, "\nНе все поля заполнены", TitleException,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                         ?.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-                connection.Open();
-                var sss1 = new OleDbCommand(@"select зарплата  
+                try
+                {
+                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
+                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
+                                                             ?.FullName +
+                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+                    connection.Open();
+                    var sss1 = new OleDbCommand(@"select зарплата  
                                                  from [зарплата_сотрудника] 
                                                      where зарплата=@st1 
                                                        and идзарплата <> " + Convert.ToInt32(metroLabel1.Text) + "",
-                    connection);
-                sss1.Parameters.AddWithValue("st1", textBox1.Text);
-                sss1.ExecuteNonQuery();
-                if (sss1.ExecuteScalar() != null)
-                {
-                    connection.Close();
-                    MetroFramework.MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        connection);
+                    sss1.Parameters.AddWithValue("st1", textBox1.Text);
+                    sss1.ExecuteNonQuery();
+                    if (sss1.ExecuteScalar() != null)
+                    {
+                        connection.Close();
+                        MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
-                else
+                catch (Exception exception)
                 {
-                    this.DialogResult = DialogResult.OK;
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    FocusMe();
                 }
             }
         }
@@ -85,15 +103,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -101,6 +116,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -128,6 +147,11 @@ namespace GYM
                     metroTile2.PerformClick();
                     break;
             }
+        }
+
+        private void ModMoney_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

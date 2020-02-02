@@ -118,6 +118,7 @@
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroTextBox4);
             this.Controls.Add(this.metroTile2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EmailRePort";
@@ -126,6 +127,7 @@
             this.Activated += new System.EventHandler(this.EmailRePort_Activated);
             this.Load += new System.EventHandler(this.EmailREPort_Load);
             this.Shown += new System.EventHandler(this.EmailRePort_Shown);
+            this.Click += new System.EventHandler(this.EmailRePort_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EmailRePort_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

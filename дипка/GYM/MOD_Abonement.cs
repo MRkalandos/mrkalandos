@@ -36,26 +36,40 @@ namespace GYM
             }
             else
             {
-                var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                     Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                         ?.FullName + "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-                connection.Open();
-                var queryFindCloneAbonement = new OleDbCommand(@"select *  
+                try
+                {
+                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
+                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
+                                                             ?.FullName +
+                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+                    connection.Open();
+                    var queryFindCloneAbonement = new OleDbCommand(@"select *  
                                                                       from [Абонемент] 
                                                                       where Название=@name
                                                                       and идабонемент <> " +
-                                                               Convert.ToInt32(metroLabel4.Text) + "", connection);
-                queryFindCloneAbonement.Parameters.AddWithValue("name", textBox1.Text);
-                queryFindCloneAbonement.ExecuteNonQuery();
-                if (queryFindCloneAbonement.ExecuteScalar() != null)
-                {
-                    connection.Close();
-                    MetroMessageBox.Show(this, "\nТакое название уже существует", TitleException,
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                   Convert.ToInt32(metroLabel4.Text) + "", connection);
+                    queryFindCloneAbonement.Parameters.AddWithValue("name", textBox1.Text);
+                    queryFindCloneAbonement.ExecuteNonQuery();
+                    if (queryFindCloneAbonement.ExecuteScalar() != null)
+                    {
+                        connection.Close();
+                        MetroMessageBox.Show(this, "\nТакое название уже существует", TitleException,
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
-                else
+                catch (Exception exception)
                 {
-                    this.DialogResult = DialogResult.OK;
+                    MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    FocusMe();
                 }
             }
         }
@@ -67,6 +81,10 @@ namespace GYM
                     MessageBoxIcon.Warning))
             {
                 Close();
+            }
+            else
+            {
+                FocusMe();
             }
         }
 
@@ -114,7 +132,9 @@ namespace GYM
             ((Control) form.tabPage25).Enabled = false;
             ((Control) form.tabPage24).Enabled = false;
             ((Control) form.tabPage22).Enabled = false;
+            form.ShowInTaskbar = false;
             form.ShowDialog();
+            
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
@@ -128,15 +148,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -144,6 +161,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -174,6 +195,11 @@ namespace GYM
                     metroTile2.PerformClick();
                     break;
             }
+        }
+
+        private void ModAbonement_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }

@@ -143,6 +143,7 @@
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AboutTheProgramm";
             this.Load += new System.EventHandler(this.Progruzka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

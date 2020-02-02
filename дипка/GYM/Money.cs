@@ -18,8 +18,7 @@ namespace GYM
         public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
                                    Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
                                    "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-
-
+        
         public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
                                                                 Directory.GetParent(Directory.GetCurrentDirectory())
                                                                     .Parent?.FullName +
@@ -52,6 +51,10 @@ namespace GYM
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
             }
+            finally
+            {
+                FocusMe();
+            }
         }
 
         private void Money_Load(object sender, EventArgs e)
@@ -66,6 +69,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -94,6 +101,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    FocusMe();
+                    connection.Close();
                 }
         }
 
@@ -125,6 +137,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    FocusMe();
+                    connection.Close();
                 }
         }
 
@@ -160,6 +177,11 @@ namespace GYM
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    FocusMe();
+                    connection.Close();
+                }
             }
         }
 
@@ -169,15 +191,12 @@ namespace GYM
             {
                 if (File.Exists("Help/Help.chm"))
                 {
-                    FocusMe();
                     Help.ShowHelp(null, "Help/Help.chm");
-                    FocusMe();
                 }
                 else
                 {
                     MetroMessageBox.Show(this, "Файл не найден", TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    FocusMe();
                 }
             }
             catch (Exception exception)
@@ -185,6 +204,10 @@ namespace GYM
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 HelperLog.Write(exception.Message);
+            }
+            finally
+            {
+                FocusMe();
             }
         }
 
@@ -232,6 +255,16 @@ namespace GYM
 
         private void Money_FormClosed(object sender, FormClosedEventArgs e)
         {
+        }
+
+        private void Money_Click(object sender, EventArgs e)
+        {
+            FocusMe();
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            FocusMe();
         }
     }
 }
