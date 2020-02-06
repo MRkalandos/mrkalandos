@@ -103,6 +103,7 @@ namespace GYM
             ((Control) form.tabPage18).Enabled = false;
             ((Control) form.tabPage6).Enabled = false;
             form.ShowInTaskbar = false;
+            form.ControlBox = false;
             form.ShowDialog();
         }
 

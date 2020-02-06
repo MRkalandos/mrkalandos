@@ -73,11 +73,11 @@
             this.metroLabel3.ForeColor = System.Drawing.Color.Crimson;
             this.metroLabel3.Location = new System.Drawing.Point(238, 134);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(343, 152);
+            this.metroLabel3.Size = new System.Drawing.Size(343, 171);
             this.metroLabel3.TabIndex = 9;
             this.metroLabel3.Text = "Преимущества над остальными программами:\r\n- Отправка отчетов на Email\r\n- Проверка" +
     " на существование записей\r\n- Ведение лога ошибок\r\n- Темная и светлая тема\r\n- Гор" +
-    "ячие клавиши\r\n\r\n";
+    "ячие клавиши\r\n- Т9 для полей\r\n\r\n";
             this.metroLabel3.UseCustomForeColor = true;
             // 
             // metroLabel2

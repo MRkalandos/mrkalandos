@@ -66,6 +66,7 @@ namespace GYM
             ((Control) form.tabPage11).Enabled = false;
             ((Control) form.tabPage12).Enabled = false;
             form.ShowInTaskbar = false;
+            form.ControlBox = false;
             form.ShowDialog();
         }
 
@@ -88,6 +89,7 @@ namespace GYM
             ((Control) form.tabPage16).Enabled = false;
             ((Control) form.tabPage15).Enabled = false;
             ((Control) form.tabPage14).Enabled = false;
+            form.ControlBox = false;
             form.ShowInTaskbar = false;
             form.ShowDialog();
         }
@@ -111,6 +113,7 @@ namespace GYM
             ((Control) form.tabPage32).Enabled = false;
             ((Control) form.tabPage31).Enabled = false;
             form.ShowInTaskbar = false;
+            form.ControlBox = false;
             form.ShowDialog();
         }
 

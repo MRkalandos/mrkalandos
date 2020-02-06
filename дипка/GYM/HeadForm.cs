@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -140,7 +141,7 @@ namespace GYM
             try
             {
                 dataAdapterSale = new OleDbDataAdapter(
-                    @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название, Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                    @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
                                  FROM Сотрудник 
                                  INNER JOIN (Абонемент INNER JOIN (Спортсмен INNER JOIN Продажа_абонемента 
                                  ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
@@ -198,6 +199,8 @@ namespace GYM
                 ABONmetroTabControl4.Enabled = true;
                 metroTile27.Enabled = true;
                 metroTile35.Enabled = true;
+                tabPage35.Enabled = true;
+                ABONmetroTabControl8.Enabled = true;
                 ABONmetroTabControl7.Enabled = true;
                 ABONmetroTabControl6.Enabled = true;
                 ABONmetroTabControl4.Enabled = true;
@@ -308,9 +311,247 @@ namespace GYM
             }
         }
 
+        public void T9EmplSurname()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct фамилия FROM сотрудник", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+                EMPLtextBox2.AutoCompleteCustomSource = Collection;
+                EMPLtextBox3.AutoCompleteCustomSource = Collection;
+                EMPLtextBox5.AutoCompleteCustomSource = Collection;
+                SALEtextBox4.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9SportmSurname()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct фамилия FROM спортсмен", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+                SALEtextBox5.AutoCompleteCustomSource = Collection;
+                SPORTMtextBox10.AutoCompleteCustomSource = Collection;
+                SPORTMtextBox9.AutoCompleteCustomSource = Collection;
+                SPORTMtextBox6.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9SportmName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct имя FROM спортсмен", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+               
+                SPORTMtextBox1.AutoCompleteCustomSource = Collection;
+                SPORTMtextBox7.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9EmplName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Имя FROM сотрудник", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+
+                EMPLtextBox4.AutoCompleteCustomSource = Collection;
+                EMPLtextBox8.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9TrenName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Имя FROM Тренер", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+
+                TRENtextBox4.AutoCompleteCustomSource = Collection;
+                TRENtextBox2.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9TrenSurname()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Фамилия FROM Тренер", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+
+                TRENINGtextBox4.AutoCompleteCustomSource = Collection;
+                TRENtextBox3.AutoCompleteCustomSource = Collection;
+                TRENtextBox5.AutoCompleteCustomSource = Collection;
+                TRENtextBox8.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+
+        public void T9AbonName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Название FROM абонемент", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+                //TRENINGtextBox4.AutoCompleteCustomSource = Collection;
+                ABONtextBox8.AutoCompleteCustomSource = Collection;
+                ABONtextBox5.AutoCompleteCustomSource = Collection;
+                SALEtextBox6.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9treningName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Название FROM тренировка", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+                TRENINGtextBox6.AutoCompleteCustomSource = Collection;
+                ABONtextBox3.AutoCompleteCustomSource = Collection;
+                TRENINGtextBox3.AutoCompleteCustomSource = Collection;
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
+        public void T9viewtreningName()
+        {
+            try
+            {
+                OleDbCommand cmd;
+                OleDbDataReader dataReader;
+                cmd = new OleDbCommand("SELECT distinct Название FROM Вид_тренировки", connection);
+                connection.Open();
+                dataReader = cmd.ExecuteReader();
+                var Collection = new AutoCompleteStringCollection();
+                while (dataReader.Read())
+                {
+                    Collection.Add(dataReader.GetString(0));
+                }
+                TRENINGtextBox5.AutoCompleteCustomSource = Collection;
+               
+                dataReader.Close();
+                connection.Close();
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.Message);
+            }
+        }
+
         private void HeadeForm_Load(object sender, EventArgs e)
         {
-            this.Activate();
             SPORTMmetroComboBox1.SelectedIndex = 0;
             UpdTrener();
             UpdEmployee();
@@ -318,6 +559,16 @@ namespace GYM
             UpdTrening();
             UpdAbonement();
             UpdSale();
+            T9EmplSurname();
+            T9TrenName();
+            T9EmplName();
+            T9TrenSurname();
+            T9SportmSurname();
+            T9SportmName();
+            T9treningName();
+            T9viewtreningName();
+            T9AbonName();
+            this.Activate();
         }
 
 
@@ -884,7 +1135,6 @@ namespace GYM
                     dataAdapterEmployee.Fill(dataTableEmployee);
                     EMPLmetroGrid1.DataSource = dataTableEmployee;
                     EMPLmetroGrid1.Columns[8].Visible = false;
-                    EMPLmetroGrid1.Columns[0].Visible = false;
                     EMPLmetroTabControl5.Enabled = false;
                     EMPLmetroTabControl6.Enabled = false;
                     EMPLmetroTile14.Enabled = false;
@@ -3080,7 +3330,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             try
             {
                 string selectTreningWhereLike =
-                    @"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия,тренер.идтренер, вид_тренировки.идвидтренировка
+                    @"SELECT  Тренировка.Идтренировка, Тренировка.Название as [Название тренировки], Вид_тренировки.Название as [Название вида], Тренер.Фамилия as [Тренер],тренер.идтренер, вид_тренировки.идвидтренировка
 FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Тренировка ON Вид_тренировки.Идвидтренировка = Тренировка.Идвидтренировка) ON Тренер.Идтренер = Тренировка.Идтренер 
                        WHERE[Тренировка.Название] LIKE '%" + TRENINGtextBox6.Text + "%'";
                 dataAdapterTrening = new OleDbDataAdapter(selectTreningWhereLike, connection);
@@ -3119,7 +3369,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 try
                 {
                     string selectViewTreningwhere =
-                        @"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия,тренер.идтренер, вид_тренировки.идвидтренировка
+                        @"SELECT Тренировка.Идтренировка, Тренировка.Название as [Название тренировки], Вид_тренировки.Название as [Название вида], Тренер.Фамилия as [Тренер],тренер.идтренер, вид_тренировки.идвидтренировка
 FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Тренировка ON Вид_тренировки.Идвидтренировка = Тренировка.Идвидтренировка) ON Тренер.Идтренер = Тренировка.Идтренер
  WHERE Вид_тренировки.Название='" + TRENINGtextBox5.Text + "'";
                     dataAdapterTrening = new OleDbDataAdapter(selectViewTreningwhere, connection);
@@ -3178,7 +3428,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 try
                 {
                     string selectTrenerWhereSurname =
-                        @"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия,тренер.идтренер, вид_тренировки.идвидтренировка
+                        @"SELECT Тренировка.Идтренировка, Тренировка.Название as [Название тренировки], Вид_тренировки.Название as [Название вида], Тренер.Фамилия as [Тренер],тренер.идтренер, вид_тренировки.идвидтренировка
 FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Тренировка ON Вид_тренировки.Идвидтренировка = Тренировка.Идвидтренировка) ON Тренер.Идтренер = Тренировка.Идтренер
  WHERE Тренер.Фамилия='" + TRENINGtextBox4.Text + "'";
                     dataAdapterTrening = new OleDbDataAdapter(selectTrenerWhereSurname, connection);
@@ -3223,7 +3473,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 try
                 {
                     string selectTreningwhereName =
-                        @"SELECT Тренировка.Идтренировка, Тренировка.Название, Вид_тренировки.Название, Тренер.Фамилия,тренер.идтренер, вид_тренировки.идвидтренировка
+                        @"SELECT Тренировка.Идтренировка, Тренировка.Название as [Название тренировки], Вид_тренировки.Название as [Название вида], Тренер.Фамилия as [Тренер],тренер.идтренер, вид_тренировки.идвидтренировка
 FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Тренировка ON Вид_тренировки.Идвидтренировка = Тренировка.Идвидтренировка) ON Тренер.Идтренер = Тренировка.Идтренер
  WHERE Тренировка.Название='" + TRENINGtextBox3.Text + "'";
                     dataAdapterTrening = new OleDbDataAdapter(selectTreningwhereName, connection);
@@ -3670,7 +3920,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 try
                 {
                     string selectTreningWhereName =
-                        @"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
+                        @"SELECT  Абонемент.Название as [Название], Абонемент.Цена as [Цена], Абонемент.Количество_посещений as [Количество посещений], Тренировка.Название as [Тренировка], Абонемент.Идтренеровка
                                                      FROM Тренировка INNER JOIN Абонемент
                                                      ON Тренировка.Идтренировка = Абонемент.Идтренеровка 
                            WHERE  Тренировка.Название='" + ABONtextBox3.Text + "'";
@@ -3797,7 +4047,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             try
             {
                 string selectAbonementWhereName =
-                    @"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
+                    @"SELECT Абонемент.Название as [Название], Абонемент.Цена as [Цена], Абонемент.Количество_посещений as [Количество посещений], Тренировка.Название as [Тренировка], Абонемент.Идтренеровка
                                                      FROM Тренировка INNER JOIN Абонемент
                                                      ON Тренировка.Идтренировка = Абонемент.Идтренеровка 
                        WHERE[Абонемент.Название] LIKE '%" + ABONtextBox8.Text + "%'";
@@ -3836,7 +4086,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 if (Convert.ToInt32(ABONmetroTextBox3.Text) < Convert.ToInt32(ABONmetroTextBox2.Text))
                 {
                     var adapter = new OleDbDataAdapter(
-                        $@"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
+                        $@"SELECT Абонемент.Название as [Название], Абонемент.Цена as [Цена], Абонемент.Количество_посещений as [Количество посещений], Тренировка.Название as [Тренировка], Абонемент.Идтренеровка
                                                      FROM Тренировка INNER JOIN Абонемент
                                                      ON Тренировка.Идтренировка = Абонемент.Идтренеровка  where Абонемент.Цена between {ABONmetroTextBox3.Text} and {ABONmetroTextBox2.Text}",
                         selectConnection);
@@ -3882,7 +4132,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 try
                 {
                     string selectWhereAbonementName =
-                        @"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
+                        @"SELECT Абонемент.Название as [Название], Абонемент.Цена as [Цена], Абонемент.Количество_посещений as [Количество посещений], Тренировка.Название as [Тренировка], Абонемент.Идтренеровка
                                                      FROM Тренировка INNER JOIN Абонемент
                                                      ON Тренировка.Идтренировка = Абонемент.Идтренеровка 
                            WHERE Абонемент.Название='" + ABONtextBox5.Text + "'";
@@ -3925,7 +4175,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 try
                 {
                     string selectAbonementWhereCount =
-                        @"SELECT Абонемент.Название, Абонемент.Цена, Абонемент.Количество_посещений, Тренировка.Название, Абонемент.Идтренеровка
+                        @"SELECT Абонемент.Название as [Название], Абонемент.Цена as [Цена], Абонемент.Количество_посещений as [Количество посещений], Тренировка.Название as [Тренировка], Абонемент.Идтренеровка
                                                      FROM Тренировка INNER JOIN Абонемент
                                                      ON Тренировка.Идтренировка = Абонемент.Идтренеровка 
                            WHERE Абонемент.Количество_посещений=" + ABONtextBox4.Text + "";
@@ -4407,7 +4657,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             try
             {
                 string selectAbonementWhereName =
-                    @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                    @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
 FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
 (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
 ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник 
@@ -4455,7 +4705,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                     metroTile42.Enabled = false;
                     metroTile44.Enabled = false;
                     var adapter = new OleDbDataAdapter(
-                        $@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                        $@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
 FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
 (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
 ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
@@ -4495,7 +4745,7 @@ WHERE Продажа_абонемента.Дата_начала Between #{date1}
                 if (Convert.ToInt32(SALEmetroTextBox3.Text) < Convert.ToInt32(SALEmetroTextBox2.Text))
                 {
                     var adapter = new OleDbDataAdapter(
-                        $@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                        $@"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
 FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
 (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
 ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник where Абонемент.Количество_посещений between {SALEmetroTextBox3.Text} and {SALEmetroTextBox2.Text}",
@@ -4548,7 +4798,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                     SALEmetroTabControl7.Enabled = false;
                     metroTile40.Enabled = false;
                     string selectWhereSportsmenSurname =
-                        @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                        @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
 FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
 (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
 ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
@@ -4593,7 +4843,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                     SALEmetroTabControl7.Enabled = false;
                     metroTile41.Enabled = false;
                     string selectWhereEmployeeSurname =
-                        @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия, Абонемент.Название, Абонемент.Количество_посещений, Продажа_абонемента.Дата_начала, Продажа_абонемента.Дата_окончания, Сотрудник.Фамилия, Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
+                        @"SELECT Продажа_абонемента.Идпродажа, Спортсмен.Фамилия as [Спортсмен], Абонемент.Название as [Название], Абонемент.Количество_посещений as [Количество посещений], Продажа_абонемента.Дата_начала as [Дата начала], Продажа_абонемента.Дата_окончания as [Дата окончания], Сотрудник.Фамилия as [Сотрудник], Продажа_абонемента.Идсотрудник, Продажа_абонемента.Идспортсмен, Продажа_абонемента.Идабонемент
 FROM Сотрудник INNER JOIN (Абонемент INNER JOIN
 (Спортсмен INNER JOIN Продажа_абонемента ON Спортсмен.Идспортсмен = Продажа_абонемента.Идспортсмен)
 ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент) ON Сотрудник.Идсотрудник = Продажа_абонемента.Идсотрудник
@@ -4753,8 +5003,117 @@ ON Абонемент.Идабонемент = Продажа_абонемент
 
         private void metroTile20_Click(object sender, EventArgs e)
         {
-            AboutTheProgramm aboutTheProgramm = new AboutTheProgramm();
+            var aboutTheProgramm = new AboutTheProgramm();
             aboutTheProgramm.ShowDialog();
+        }
+
+        private void metroTile18_Click_2(object sender, EventArgs e)
+        {
+            var recordsOfVisits = new RecordsOfVisits();
+            recordsOfVisits.ShowDialog();
+        }
+
+        private void ABONmetroContextMenu2_Opening(object sender, CancelEventArgs e)
+        {
+        }
+
+        private void metroCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (metroCheckBox1.Checked == true)
+            {
+                metroStyleManager1.Theme = MetroThemeStyle.Dark;
+                Theme = MetroThemeStyle.Dark;
+                tabPage27.BackColor = Color.Black;
+                tabPage28.BackColor = Color.Black;
+                tabPage26.BackColor = Color.Black;
+                tabPage25.BackColor = Color.Black;
+                tabPage24.BackColor = Color.Black;
+                tabPage22.BackColor = Color.Black;
+                TRENINGmetroTile1.Style = MetroColorStyle.Black;
+                tabPage35.BackColor = Color.Black;
+                tabPage34.BackColor = Color.Black;
+                tabPage33.BackColor = Color.Black;
+                tabPage32.BackColor = Color.Black;
+                tabPage31.BackColor = Color.Black;
+                metroTile1.Style = MetroColorStyle.Black;
+                tabPage40.BackColor = Color.Black;
+                tabPage41.BackColor = Color.Black;
+                tabPage39.BackColor = Color.Black;
+                tabPage38.BackColor = Color.Black;
+                tabPage37.BackColor = Color.Black;
+                tabPage36.BackColor = Color.Black;
+                metroTile6.Style = MetroColorStyle.Black;
+                tabPage19.BackColor = Color.Black;
+                tabPage17.BackColor = Color.Black;
+                tabPage16.BackColor = Color.Black;
+                tabPage15.BackColor = Color.Black;
+                tabPage14.BackColor = Color.Black;
+                metroTile24.Style = MetroColorStyle.Black;
+                TRENmetroTile1.Style = MetroColorStyle.Black;
+                tabPage23.BackColor = Color.Black;
+                tabPage21.BackColor = Color.Black;
+                tabPage20.BackColor = Color.Black;
+                tabPage18.BackColor = Color.Black;
+                tabPage6.BackColor = Color.Black;
+                EMPLmetroTile1.Style = MetroColorStyle.Black;
+                tabPage8.BackColor = Color.Black;
+                tabPage7.BackColor = Color.Black;
+                tabPage9.BackColor = Color.Black;
+                tabPage10.BackColor = Color.Black;
+                tabPage11.BackColor = Color.Black;
+                tabPage12.BackColor = Color.Black;
+                Refresh();
+            }
+            else
+            {
+                metroStyleManager1.Theme = MetroThemeStyle.Light;
+                Theme = MetroThemeStyle.Light;
+                tabPage27.BackColor = Color.White;
+                tabPage28.BackColor = Color.White;
+                tabPage26.BackColor = Color.White;
+                tabPage25.BackColor = Color.White;
+                tabPage24.BackColor = Color.White;
+                tabPage22.BackColor = Color.White;
+                TRENINGmetroTile1.Style = MetroColorStyle.Blue;
+                tabPage35.BackColor = Color.White;
+                tabPage34.BackColor = Color.White;
+                tabPage33.BackColor = Color.White;
+                tabPage32.BackColor = Color.White;
+                tabPage31.BackColor = Color.White;
+                metroTile1.Style = MetroColorStyle.Blue;
+                tabPage40.BackColor = Color.White;
+                tabPage41.BackColor = Color.White;
+                tabPage39.BackColor = Color.White;
+                tabPage38.BackColor = Color.White;
+                tabPage37.BackColor = Color.White;
+                tabPage36.BackColor = Color.White;
+                metroTile6.Style = MetroColorStyle.Blue;
+                tabPage19.BackColor = Color.White;
+                tabPage17.BackColor = Color.White;
+                tabPage16.BackColor = Color.White;
+                tabPage15.BackColor = Color.White;
+                tabPage14.BackColor = Color.White;
+                metroTile24.Style = MetroColorStyle.Blue;
+                TRENmetroTile1.Style = MetroColorStyle.Blue;
+                tabPage23.BackColor = Color.White;
+                tabPage21.BackColor = Color.White;
+                tabPage20.BackColor = Color.White;
+                tabPage18.BackColor = Color.White;
+                tabPage6.BackColor = Color.White;
+                EMPLmetroTile1.Style = MetroColorStyle.Blue;
+                tabPage8.BackColor = Color.White;
+                tabPage7.BackColor = Color.White;
+                tabPage9.BackColor = Color.White;
+                tabPage10.BackColor = Color.White;
+                tabPage11.BackColor = Color.White;
+                tabPage12.BackColor = Color.White;
+                Refresh();
+            }
+        }
+
+        private void SALEmetroContextMenu1_Opening(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

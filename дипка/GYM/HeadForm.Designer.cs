@@ -378,6 +378,7 @@
             this.TRENINGmetroTile28 = new MetroFramework.Controls.MetroTile();
             this.TRENINGmetroTabControl7 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.metroTile18 = new MetroFramework.Controls.MetroTile();
             this.TRENINGmetroTile35 = new MetroFramework.Controls.MetroTile();
             this.TRENINGmetroTabControl8 = new MetroFramework.Controls.MetroTabControl();
             this.tabPage28 = new System.Windows.Forms.TabPage();
@@ -390,6 +391,8 @@
             this.metroTile20 = new MetroFramework.Controls.MetroTile();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.metroCheckBox1 = new MetroFramework.Controls.MetroCheckBox();
+            this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.metroTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.metroTabControl2.SuspendLayout();
@@ -526,6 +529,7 @@
             this.tabPage13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroTabControl1
@@ -559,7 +563,7 @@
             this.metroTabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl2.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl2.Name = "metroTabControl2";
-            this.metroTabControl2.SelectedIndex = 2;
+            this.metroTabControl2.SelectedIndex = 0;
             this.metroTabControl2.Size = new System.Drawing.Size(1338, 666);
             this.metroTabControl2.TabIndex = 0;
             this.metroTabControl2.UseSelectable = true;
@@ -693,6 +697,8 @@
             // 
             // EMPLmetroContextMenu1
             // 
+            this.EMPLmetroContextMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.EMPLmetroContextMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.EMPLmetroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сброситьФильтрToolStripMenuItem});
             this.EMPLmetroContextMenu1.Name = "metroContextMenu1";
@@ -724,6 +730,9 @@
             // 
             // EMPLmetroTabControl8
             // 
+            this.EMPLmetroTabControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTabControl8.Controls.Add(this.tabPage12);
             this.EMPLmetroTabControl8.Location = new System.Drawing.Point(1088, 14);
             this.EMPLmetroTabControl8.Name = "EMPLmetroTabControl8";
@@ -748,9 +757,12 @@
             // EMPLmetroTile19
             // 
             this.EMPLmetroTile19.ActiveControl = null;
+            this.EMPLmetroTile19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile19.Location = new System.Drawing.Point(11, 172);
             this.EMPLmetroTile19.Name = "EMPLmetroTile19";
-            this.EMPLmetroTile19.Size = new System.Drawing.Size(165, 54);
+            this.EMPLmetroTile19.Size = new System.Drawing.Size(165, 56);
             this.EMPLmetroTile19.Style = MetroFramework.MetroColorStyle.Red;
             this.EMPLmetroTile19.TabIndex = 3;
             this.EMPLmetroTile19.Text = "Проданные \r\nабонементы";
@@ -761,9 +773,12 @@
             // EMPLmetroTile18
             // 
             this.EMPLmetroTile18.ActiveControl = null;
+            this.EMPLmetroTile18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile18.Location = new System.Drawing.Point(11, 124);
             this.EMPLmetroTile18.Name = "EMPLmetroTile18";
-            this.EMPLmetroTile18.Size = new System.Drawing.Size(165, 37);
+            this.EMPLmetroTile18.Size = new System.Drawing.Size(165, 39);
             this.EMPLmetroTile18.Style = MetroFramework.MetroColorStyle.Red;
             this.EMPLmetroTile18.TabIndex = 2;
             this.EMPLmetroTile18.Text = "Средняя зарплата";
@@ -774,9 +789,12 @@
             // EMPLmetroTile17
             // 
             this.EMPLmetroTile17.ActiveControl = null;
+            this.EMPLmetroTile17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile17.Location = new System.Drawing.Point(11, 78);
             this.EMPLmetroTile17.Name = "EMPLmetroTile17";
-            this.EMPLmetroTile17.Size = new System.Drawing.Size(165, 37);
+            this.EMPLmetroTile17.Size = new System.Drawing.Size(165, 38);
             this.EMPLmetroTile17.Style = MetroFramework.MetroColorStyle.Red;
             this.EMPLmetroTile17.TabIndex = 1;
             this.EMPLmetroTile17.Text = "Лучший сотрудник";
@@ -787,9 +805,12 @@
             // EMPLmetroTile12
             // 
             this.EMPLmetroTile12.ActiveControl = null;
+            this.EMPLmetroTile12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile12.Location = new System.Drawing.Point(11, 13);
             this.EMPLmetroTile12.Name = "EMPLmetroTile12";
-            this.EMPLmetroTile12.Size = new System.Drawing.Size(165, 55);
+            this.EMPLmetroTile12.Size = new System.Drawing.Size(165, 57);
             this.EMPLmetroTile12.Style = MetroFramework.MetroColorStyle.Red;
             this.EMPLmetroTile12.TabIndex = 0;
             this.EMPLmetroTile12.Text = "Дни рождения в \r\nближайщие 30 дней";
@@ -799,6 +820,9 @@
             // 
             // EMPLmetroTabControl7
             // 
+            this.EMPLmetroTabControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTabControl7.Controls.Add(this.tabPage11);
             this.EMPLmetroTabControl7.Location = new System.Drawing.Point(842, 12);
             this.EMPLmetroTabControl7.Name = "EMPLmetroTabControl7";
@@ -828,7 +852,7 @@
             this.EMPLmetroTile15.Controls.Add(this.EMPLmetroLabel15);
             this.EMPLmetroTile15.Controls.Add(this.EMPLmetroLabel10);
             this.EMPLmetroTile15.Controls.Add(this.EMPLmetroLabel11);
-            this.EMPLmetroTile15.Location = new System.Drawing.Point(11, 192);
+            this.EMPLmetroTile15.Location = new System.Drawing.Point(0, 192);
             this.EMPLmetroTile15.Name = "EMPLmetroTile15";
             this.EMPLmetroTile15.Size = new System.Drawing.Size(200, 115);
             this.EMPLmetroTile15.Style = MetroFramework.MetroColorStyle.Pink;
@@ -837,6 +861,8 @@
             // 
             // EMPLtextBox8
             // 
+            this.EMPLtextBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLtextBox8.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.EMPLtextBox8.Location = new System.Drawing.Point(81, 56);
             this.EMPLtextBox8.Name = "EMPLtextBox8";
             this.EMPLtextBox8.Size = new System.Drawing.Size(100, 20);
@@ -846,6 +872,8 @@
             // 
             // EMPLtextBox5
             // 
+            this.EMPLtextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLtextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.EMPLtextBox5.Location = new System.Drawing.Point(81, 26);
             this.EMPLtextBox5.Name = "EMPLtextBox5";
             this.EMPLtextBox5.Size = new System.Drawing.Size(100, 20);
@@ -921,7 +949,7 @@
             this.EMPLmetroTile14.Controls.Add(this.EMPLmetroButton4);
             this.EMPLmetroTile14.Controls.Add(this.EMPLmetroLabel8);
             this.EMPLmetroTile14.Controls.Add(this.EMPLmetroLabel9);
-            this.EMPLmetroTile14.Location = new System.Drawing.Point(11, 102);
+            this.EMPLmetroTile14.Location = new System.Drawing.Point(0, 102);
             this.EMPLmetroTile14.Name = "EMPLmetroTile14";
             this.EMPLmetroTile14.Size = new System.Drawing.Size(200, 83);
             this.EMPLmetroTile14.Style = MetroFramework.MetroColorStyle.Pink;
@@ -930,6 +958,8 @@
             // 
             // EMPLtextBox4
             // 
+            this.EMPLtextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLtextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.EMPLtextBox4.Location = new System.Drawing.Point(81, 26);
             this.EMPLtextBox4.Name = "EMPLtextBox4";
             this.EMPLtextBox4.Size = new System.Drawing.Size(100, 20);
@@ -990,7 +1020,7 @@
             this.EMPLmetroTile13.Controls.Add(this.EMPLmetroButton3);
             this.EMPLmetroTile13.Controls.Add(this.EMPLmetroLabel7);
             this.EMPLmetroTile13.Controls.Add(this.EMPLmetroLabel6);
-            this.EMPLmetroTile13.Location = new System.Drawing.Point(10, 8);
+            this.EMPLmetroTile13.Location = new System.Drawing.Point(0, 8);
             this.EMPLmetroTile13.Name = "EMPLmetroTile13";
             this.EMPLmetroTile13.Size = new System.Drawing.Size(200, 86);
             this.EMPLmetroTile13.Style = MetroFramework.MetroColorStyle.Pink;
@@ -999,6 +1029,11 @@
             // 
             // EMPLtextBox3
             // 
+            this.EMPLtextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EMPLtextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLtextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.EMPLtextBox3.Location = new System.Drawing.Point(81, 26);
             this.EMPLtextBox3.Name = "EMPLtextBox3";
             this.EMPLtextBox3.Size = new System.Drawing.Size(100, 20);
@@ -1008,6 +1043,9 @@
             // 
             // EMPLmetroButton3
             // 
+            this.EMPLmetroButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroButton3.BackColor = System.Drawing.Color.Crimson;
             this.EMPLmetroButton3.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.EMPLmetroButton3.FontWeight = MetroFramework.MetroButtonWeight.Regular;
@@ -1026,6 +1064,9 @@
             // 
             // EMPLmetroLabel7
             // 
+            this.EMPLmetroLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroLabel7.AutoSize = true;
             this.EMPLmetroLabel7.BackColor = System.Drawing.Color.Black;
             this.EMPLmetroLabel7.ForeColor = System.Drawing.Color.Black;
@@ -1054,6 +1095,9 @@
             // 
             // EMPLmetroTabControl6
             // 
+            this.EMPLmetroTabControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTabControl6.Controls.Add(this.tabPage10);
             this.EMPLmetroTabControl6.Location = new System.Drawing.Point(597, 12);
             this.EMPLmetroTabControl6.Name = "EMPLmetroTabControl6";
@@ -1083,7 +1127,7 @@
             this.EMPLmetroTile16.Controls.Add(this.metroLabel12);
             this.EMPLmetroTile16.Controls.Add(this.EMPLmetroLabel13);
             this.EMPLmetroTile16.Controls.Add(this.EMPLmetroTextBox6);
-            this.EMPLmetroTile16.Location = new System.Drawing.Point(11, 215);
+            this.EMPLmetroTile16.Location = new System.Drawing.Point(0, 211);
             this.EMPLmetroTile16.Name = "EMPLmetroTile16";
             this.EMPLmetroTile16.Size = new System.Drawing.Size(200, 91);
             this.EMPLmetroTile16.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1092,6 +1136,9 @@
             // 
             // EMPLmetroButton2
             // 
+            this.EMPLmetroButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroButton2.BackColor = System.Drawing.Color.Crimson;
             this.EMPLmetroButton2.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.EMPLmetroButton2.FontWeight = MetroFramework.MetroButtonWeight.Regular;
@@ -1111,6 +1158,11 @@
             // 
             // EMPLmetroTextBox7
             // 
+            this.EMPLmetroTextBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EMPLmetroTextBox7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLmetroTextBox7.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             // 
             // 
             // 
@@ -1185,6 +1237,11 @@
             // 
             // EMPLmetroTextBox6
             // 
+            this.EMPLmetroTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EMPLmetroTextBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLmetroTextBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             // 
             // 
             // 
@@ -1223,7 +1280,7 @@
             this.EMPLmetroTile11.Controls.Add(this.EMPLmetroDateTime2);
             this.EMPLmetroTile11.Controls.Add(this.EMPLmetroDateTime1);
             this.EMPLmetroTile11.Controls.Add(this.EMPLmetroLabel2);
-            this.EMPLmetroTile11.Location = new System.Drawing.Point(11, 77);
+            this.EMPLmetroTile11.Location = new System.Drawing.Point(0, 77);
             this.EMPLmetroTile11.Name = "EMPLmetroTile11";
             this.EMPLmetroTile11.Size = new System.Drawing.Size(200, 127);
             this.EMPLmetroTile11.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1232,6 +1289,9 @@
             // 
             // EMPLmetroButton1
             // 
+            this.EMPLmetroButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroButton1.BackColor = System.Drawing.Color.Crimson;
             this.EMPLmetroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.EMPLmetroButton1.FontWeight = MetroFramework.MetroButtonWeight.Regular;
@@ -1308,7 +1368,7 @@
             this.EMPLmetroTile10.Controls.Add(this.EMPLtextBox2);
             this.EMPLmetroTile10.Controls.Add(this.EMPLmetroLabel5);
             this.EMPLmetroTile10.Controls.Add(this.EMPLmetroLabel1);
-            this.EMPLmetroTile10.Location = new System.Drawing.Point(11, 10);
+            this.EMPLmetroTile10.Location = new System.Drawing.Point(0, 10);
             this.EMPLmetroTile10.Name = "EMPLmetroTile10";
             this.EMPLmetroTile10.Size = new System.Drawing.Size(200, 56);
             this.EMPLmetroTile10.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1317,6 +1377,8 @@
             // 
             // EMPLtextBox2
             // 
+            this.EMPLtextBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.EMPLtextBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.EMPLtextBox2.Location = new System.Drawing.Point(81, 26);
             this.EMPLtextBox2.Name = "EMPLtextBox2";
             this.EMPLtextBox2.Size = new System.Drawing.Size(100, 20);
@@ -1342,6 +1404,7 @@
             // 
             // EMPLmetroLabel1
             // 
+            this.EMPLmetroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroLabel1.AutoSize = true;
             this.EMPLmetroLabel1.BackColor = System.Drawing.Color.Transparent;
             this.EMPLmetroLabel1.ForeColor = System.Drawing.Color.Black;
@@ -1355,6 +1418,9 @@
             // 
             // EMPLmetroTabControl5
             // 
+            this.EMPLmetroTabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTabControl5.Controls.Add(this.tabPage9);
             this.EMPLmetroTabControl5.Location = new System.Drawing.Point(378, 12);
             this.EMPLmetroTabControl5.Name = "EMPLmetroTabControl5";
@@ -1378,6 +1444,9 @@
             // EMPLmetroTile23
             // 
             this.EMPLmetroTile23.ActiveControl = null;
+            this.EMPLmetroTile23.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile23.Location = new System.Drawing.Point(12, 113);
             this.EMPLmetroTile23.Name = "EMPLmetroTile23";
             this.EMPLmetroTile23.Size = new System.Drawing.Size(173, 39);
@@ -1391,6 +1460,9 @@
             // EMPLmetroTile9
             // 
             this.EMPLmetroTile9.ActiveControl = null;
+            this.EMPLmetroTile9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile9.Location = new System.Drawing.Point(12, 63);
             this.EMPLmetroTile9.Name = "EMPLmetroTile9";
             this.EMPLmetroTile9.Size = new System.Drawing.Size(173, 39);
@@ -1404,6 +1476,9 @@
             // EMPLmetroTile8
             // 
             this.EMPLmetroTile8.ActiveControl = null;
+            this.EMPLmetroTile8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile8.Location = new System.Drawing.Point(13, 13);
             this.EMPLmetroTile8.Name = "EMPLmetroTile8";
             this.EMPLmetroTile8.Size = new System.Drawing.Size(173, 39);
@@ -1417,6 +1492,9 @@
             // 
             // EMPLmetroTabControl4
             // 
+            this.EMPLmetroTabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTabControl4.Controls.Add(this.tabPage8);
             this.EMPLmetroTabControl4.Location = new System.Drawing.Point(13, 12);
             this.EMPLmetroTabControl4.Name = "EMPLmetroTabControl4";
@@ -1438,6 +1516,9 @@
             // EMPLmetroTile7
             // 
             this.EMPLmetroTile7.ActiveControl = null;
+            this.EMPLmetroTile7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile7.Location = new System.Drawing.Point(9, 13);
             this.EMPLmetroTile7.Name = "EMPLmetroTile7";
             this.EMPLmetroTile7.Size = new System.Drawing.Size(107, 39);
@@ -1450,6 +1531,10 @@
             // 
             // EMPLmetroTabControl3
             // 
+            this.EMPLmetroTabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EMPLmetroTabControl3.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.EMPLmetroTabControl3.Controls.Add(this.tabPage7);
             this.EMPLmetroTabControl3.Location = new System.Drawing.Point(157, 12);
             this.EMPLmetroTabControl3.Name = "EMPLmetroTabControl3";
@@ -1464,15 +1549,18 @@
             this.tabPage7.Controls.Add(this.EMPLmetroTile6);
             this.tabPage7.Controls.Add(this.EMPLmetroTile5);
             this.tabPage7.Controls.Add(this.EMPLmetroTile4);
-            this.tabPage7.Location = new System.Drawing.Point(4, 38);
+            this.tabPage7.Location = new System.Drawing.Point(4, 41);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(199, 314);
+            this.tabPage7.Size = new System.Drawing.Size(199, 311);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Модификация данных";
             // 
             // EMPLmetroTile6
             // 
             this.EMPLmetroTile6.ActiveControl = null;
+            this.EMPLmetroTile6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile6.Location = new System.Drawing.Point(13, 115);
             this.EMPLmetroTile6.Name = "EMPLmetroTile6";
             this.EMPLmetroTile6.Size = new System.Drawing.Size(173, 39);
@@ -1487,6 +1575,9 @@
             // EMPLmetroTile5
             // 
             this.EMPLmetroTile5.ActiveControl = null;
+            this.EMPLmetroTile5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile5.Location = new System.Drawing.Point(13, 64);
             this.EMPLmetroTile5.Name = "EMPLmetroTile5";
             this.EMPLmetroTile5.Size = new System.Drawing.Size(173, 39);
@@ -1501,6 +1592,9 @@
             // EMPLmetroTile4
             // 
             this.EMPLmetroTile4.ActiveControl = null;
+            this.EMPLmetroTile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.EMPLmetroTile4.Location = new System.Drawing.Point(13, 13);
             this.EMPLmetroTile4.Name = "EMPLmetroTile4";
             this.EMPLmetroTile4.Size = new System.Drawing.Size(173, 39);
@@ -1585,6 +1679,8 @@
             // 
             // TRENmetroContextMenu2
             // 
+            this.TRENmetroContextMenu2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TRENmetroContextMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TRENmetroContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сброситьФильтрToolStripMenuItem1});
             this.TRENmetroContextMenu2.Name = "metroContextMenu2";
@@ -1644,6 +1740,9 @@
             // 
             // TRENmetroTabControl3
             // 
+            this.TRENmetroTabControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTabControl3.Controls.Add(this.tabPage6);
             this.TRENmetroTabControl3.Location = new System.Drawing.Point(1055, 14);
             this.TRENmetroTabControl3.Name = "TRENmetroTabControl3";
@@ -1665,9 +1764,12 @@
             // TRENmetroTile6
             // 
             this.TRENmetroTile6.ActiveControl = null;
+            this.TRENmetroTile6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile6.Location = new System.Drawing.Point(11, 13);
             this.TRENmetroTile6.Name = "TRENmetroTile6";
-            this.TRENmetroTile6.Size = new System.Drawing.Size(200, 57);
+            this.TRENmetroTile6.Size = new System.Drawing.Size(200, 58);
             this.TRENmetroTile6.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENmetroTile6.TabIndex = 0;
             this.TRENmetroTile6.Text = "Тренер закрепленный за \r\nспортсменом";
@@ -1677,11 +1779,14 @@
             // 
             // TRENmetroTabControl4
             // 
+            this.TRENmetroTabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTabControl4.Controls.Add(this.tabPage18);
             this.TRENmetroTabControl4.Location = new System.Drawing.Point(794, 12);
             this.TRENmetroTabControl4.Name = "TRENmetroTabControl4";
             this.TRENmetroTabControl4.SelectedIndex = 0;
-            this.TRENmetroTabControl4.Size = new System.Drawing.Size(231, 356);
+            this.TRENmetroTabControl4.Size = new System.Drawing.Size(227, 356);
             this.TRENmetroTabControl4.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENmetroTabControl4.TabIndex = 4;
             this.TRENmetroTabControl4.UseSelectable = true;
@@ -1693,7 +1798,7 @@
             this.tabPage18.Controls.Add(this.metroTile9);
             this.tabPage18.Location = new System.Drawing.Point(4, 38);
             this.tabPage18.Name = "tabPage18";
-            this.tabPage18.Size = new System.Drawing.Size(223, 314);
+            this.tabPage18.Size = new System.Drawing.Size(219, 314);
             this.tabPage18.TabIndex = 0;
             this.tabPage18.Text = "Поиск данных";
             // 
@@ -1706,7 +1811,7 @@
             this.metroTile7.Controls.Add(this.metroLabel2);
             this.metroTile7.Controls.Add(this.metroLabel3);
             this.metroTile7.Controls.Add(this.metroLabel4);
-            this.metroTile7.Location = new System.Drawing.Point(11, 192);
+            this.metroTile7.Location = new System.Drawing.Point(0, 192);
             this.metroTile7.Name = "metroTile7";
             this.metroTile7.Size = new System.Drawing.Size(200, 115);
             this.metroTile7.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1715,6 +1820,8 @@
             // 
             // TRENtextBox2
             // 
+            this.TRENtextBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENtextBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENtextBox2.Location = new System.Drawing.Point(81, 56);
             this.TRENtextBox2.Name = "TRENtextBox2";
             this.TRENtextBox2.Size = new System.Drawing.Size(100, 20);
@@ -1724,6 +1831,8 @@
             // 
             // TRENtextBox3
             // 
+            this.TRENtextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENtextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENtextBox3.Location = new System.Drawing.Point(81, 26);
             this.TRENtextBox3.Name = "TRENtextBox3";
             this.TRENtextBox3.Size = new System.Drawing.Size(100, 20);
@@ -1799,7 +1908,7 @@
             this.metroTile8.Controls.Add(this.TRENmetroButton2);
             this.metroTile8.Controls.Add(this.metroLabel5);
             this.metroTile8.Controls.Add(this.metroLabel6);
-            this.metroTile8.Location = new System.Drawing.Point(11, 102);
+            this.metroTile8.Location = new System.Drawing.Point(0, 102);
             this.metroTile8.Name = "metroTile8";
             this.metroTile8.Size = new System.Drawing.Size(200, 83);
             this.metroTile8.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1808,6 +1917,8 @@
             // 
             // TRENtextBox4
             // 
+            this.TRENtextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENtextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENtextBox4.Location = new System.Drawing.Point(81, 26);
             this.TRENtextBox4.Name = "TRENtextBox4";
             this.TRENtextBox4.Size = new System.Drawing.Size(100, 20);
@@ -1868,7 +1979,7 @@
             this.metroTile9.Controls.Add(this.TRENmetroButton3);
             this.metroTile9.Controls.Add(this.metroLabel7);
             this.metroTile9.Controls.Add(this.metroLabel8);
-            this.metroTile9.Location = new System.Drawing.Point(10, 8);
+            this.metroTile9.Location = new System.Drawing.Point(0, 8);
             this.metroTile9.Name = "metroTile9";
             this.metroTile9.Size = new System.Drawing.Size(200, 86);
             this.metroTile9.Style = MetroFramework.MetroColorStyle.Pink;
@@ -1877,6 +1988,8 @@
             // 
             // TRENtextBox5
             // 
+            this.TRENtextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENtextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENtextBox5.Location = new System.Drawing.Point(81, 26);
             this.TRENtextBox5.Name = "TRENtextBox5";
             this.TRENtextBox5.Size = new System.Drawing.Size(100, 20);
@@ -1932,11 +2045,14 @@
             // 
             // TRENmetroTabControl5
             // 
+            this.TRENmetroTabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTabControl5.Controls.Add(this.tabPage20);
             this.TRENmetroTabControl5.Location = new System.Drawing.Point(537, 12);
             this.TRENmetroTabControl5.Name = "TRENmetroTabControl5";
             this.TRENmetroTabControl5.SelectedIndex = 0;
-            this.TRENmetroTabControl5.Size = new System.Drawing.Size(230, 356);
+            this.TRENmetroTabControl5.Size = new System.Drawing.Size(228, 356);
             this.TRENmetroTabControl5.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENmetroTabControl5.TabIndex = 3;
             this.TRENmetroTabControl5.UseSelectable = true;
@@ -1948,7 +2064,7 @@
             this.tabPage20.Controls.Add(this.metroTile12);
             this.tabPage20.Location = new System.Drawing.Point(4, 38);
             this.tabPage20.Name = "tabPage20";
-            this.tabPage20.Size = new System.Drawing.Size(222, 314);
+            this.tabPage20.Size = new System.Drawing.Size(220, 314);
             this.tabPage20.TabIndex = 0;
             this.tabPage20.Text = "Фильтрация данных";
             // 
@@ -1961,7 +2077,7 @@
             this.metroTile10.Controls.Add(this.metroLabel10);
             this.metroTile10.Controls.Add(this.metroLabel11);
             this.metroTile10.Controls.Add(this.TRENmetroTextBox3);
-            this.metroTile10.Location = new System.Drawing.Point(11, 215);
+            this.metroTile10.Location = new System.Drawing.Point(0, 215);
             this.metroTile10.Name = "metroTile10";
             this.metroTile10.Size = new System.Drawing.Size(200, 91);
             this.metroTile10.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2095,13 +2211,14 @@
             // metroTile11
             // 
             this.metroTile11.ActiveControl = null;
+            this.metroTile11.AutoSize = true;
             this.metroTile11.Controls.Add(this.TRENmetroButton5);
             this.metroTile11.Controls.Add(this.metroLabel13);
             this.metroTile11.Controls.Add(this.metroLabel14);
             this.metroTile11.Controls.Add(this.TRENmetroDateTime1);
             this.metroTile11.Controls.Add(this.TRENmetroDateTime2);
             this.metroTile11.Controls.Add(this.metroLabel15);
-            this.metroTile11.Location = new System.Drawing.Point(11, 77);
+            this.metroTile11.Location = new System.Drawing.Point(0, 77);
             this.metroTile11.Name = "metroTile11";
             this.metroTile11.Size = new System.Drawing.Size(200, 127);
             this.metroTile11.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2171,6 +2288,7 @@
             // 
             // metroLabel15
             // 
+            this.metroLabel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel15.AutoSize = true;
             this.metroLabel15.Location = new System.Drawing.Point(2, 1);
             this.metroLabel15.Name = "metroLabel15";
@@ -2183,10 +2301,11 @@
             // metroTile12
             // 
             this.metroTile12.ActiveControl = null;
+            this.metroTile12.AutoSize = true;
             this.metroTile12.Controls.Add(this.TRENtextBox8);
             this.metroTile12.Controls.Add(this.metroLabel23);
             this.metroTile12.Controls.Add(this.metroLabel24);
-            this.metroTile12.Location = new System.Drawing.Point(11, 10);
+            this.metroTile12.Location = new System.Drawing.Point(0, 10);
             this.metroTile12.Name = "metroTile12";
             this.metroTile12.Size = new System.Drawing.Size(200, 56);
             this.metroTile12.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2195,6 +2314,8 @@
             // 
             // TRENtextBox8
             // 
+            this.TRENtextBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENtextBox8.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENtextBox8.Location = new System.Drawing.Point(81, 26);
             this.TRENtextBox8.Name = "TRENtextBox8";
             this.TRENtextBox8.Size = new System.Drawing.Size(100, 20);
@@ -2220,7 +2341,6 @@
             // 
             // metroLabel24
             // 
-            this.metroLabel24.AutoSize = true;
             this.metroLabel24.BackColor = System.Drawing.Color.Transparent;
             this.metroLabel24.ForeColor = System.Drawing.Color.Black;
             this.metroLabel24.Location = new System.Drawing.Point(4, 2);
@@ -2233,6 +2353,9 @@
             // 
             // TRENmetroTabControl6
             // 
+            this.TRENmetroTabControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTabControl6.Controls.Add(this.tabPage21);
             this.TRENmetroTabControl6.Location = new System.Drawing.Point(280, 12);
             this.TRENmetroTabControl6.Name = "TRENmetroTabControl6";
@@ -2256,6 +2379,9 @@
             // TRENmetroTile13
             // 
             this.TRENmetroTile13.ActiveControl = null;
+            this.TRENmetroTile13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile13.Location = new System.Drawing.Point(12, 113);
             this.TRENmetroTile13.Name = "TRENmetroTile13";
             this.TRENmetroTile13.Size = new System.Drawing.Size(195, 39);
@@ -2269,6 +2395,9 @@
             // TRENmetroTile14
             // 
             this.TRENmetroTile14.ActiveControl = null;
+            this.TRENmetroTile14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile14.Location = new System.Drawing.Point(12, 63);
             this.TRENmetroTile14.Name = "TRENmetroTile14";
             this.TRENmetroTile14.Size = new System.Drawing.Size(195, 39);
@@ -2282,6 +2411,9 @@
             // TRENmetroTile15
             // 
             this.TRENmetroTile15.ActiveControl = null;
+            this.TRENmetroTile15.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile15.Location = new System.Drawing.Point(13, 13);
             this.TRENmetroTile15.Name = "TRENmetroTile15";
             this.TRENmetroTile15.Size = new System.Drawing.Size(194, 39);
@@ -2295,6 +2427,9 @@
             // 
             // TRENmetroTabControl8
             // 
+            this.TRENmetroTabControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTabControl8.Controls.Add(this.tabPage23);
             this.TRENmetroTabControl8.Location = new System.Drawing.Point(26, 12);
             this.TRENmetroTabControl8.Name = "TRENmetroTabControl8";
@@ -2318,6 +2453,9 @@
             // TRENmetroTile17
             // 
             this.TRENmetroTile17.ActiveControl = null;
+            this.TRENmetroTile17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile17.Location = new System.Drawing.Point(13, 115);
             this.TRENmetroTile17.Name = "TRENmetroTile17";
             this.TRENmetroTile17.Size = new System.Drawing.Size(195, 39);
@@ -2332,6 +2470,9 @@
             // TRENmetroTile18
             // 
             this.TRENmetroTile18.ActiveControl = null;
+            this.TRENmetroTile18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile18.Location = new System.Drawing.Point(13, 64);
             this.TRENmetroTile18.Name = "TRENmetroTile18";
             this.TRENmetroTile18.Size = new System.Drawing.Size(195, 39);
@@ -2346,6 +2487,9 @@
             // TRENmetroTile19
             // 
             this.TRENmetroTile19.ActiveControl = null;
+            this.TRENmetroTile19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENmetroTile19.Location = new System.Drawing.Point(13, 13);
             this.TRENmetroTile19.Name = "TRENmetroTile19";
             this.TRENmetroTile19.Size = new System.Drawing.Size(195, 39);
@@ -2416,6 +2560,8 @@
             // 
             // SPORTSMmetroContextMenu1
             // 
+            this.SPORTSMmetroContextMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.SPORTSMmetroContextMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.SPORTSMmetroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.SPORTSMmetroContextMenu1.Name = "metroContextMenu1";
@@ -2446,11 +2592,14 @@
             // 
             // SPORTMmetroTabControl9
             // 
+            this.SPORTMmetroTabControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTabControl9.Controls.Add(this.tabPage14);
             this.SPORTMmetroTabControl9.Location = new System.Drawing.Point(1059, 14);
             this.SPORTMmetroTabControl9.Name = "SPORTMmetroTabControl9";
             this.SPORTMmetroTabControl9.SelectedIndex = 0;
-            this.SPORTMmetroTabControl9.Size = new System.Drawing.Size(230, 356);
+            this.SPORTMmetroTabControl9.Size = new System.Drawing.Size(249, 356);
             this.SPORTMmetroTabControl9.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTabControl9.TabIndex = 5;
             this.SPORTMmetroTabControl9.UseSelectable = true;
@@ -2462,16 +2611,19 @@
             this.tabPage14.Controls.Add(this.SPORTMmetroTile28);
             this.tabPage14.Location = new System.Drawing.Point(4, 38);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(222, 314);
+            this.tabPage14.Size = new System.Drawing.Size(241, 314);
             this.tabPage14.TabIndex = 0;
             this.tabPage14.Text = "Запросы";
             // 
             // SPORTMmetroTile26
             // 
             this.SPORTMmetroTile26.ActiveControl = null;
+            this.SPORTMmetroTile26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile26.Location = new System.Drawing.Point(11, 110);
             this.SPORTMmetroTile26.Name = "SPORTMmetroTile26";
-            this.SPORTMmetroTile26.Size = new System.Drawing.Size(198, 37);
+            this.SPORTMmetroTile26.Size = new System.Drawing.Size(217, 38);
             this.SPORTMmetroTile26.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTile26.TabIndex = 2;
             this.SPORTMmetroTile26.Text = "Количество посещений";
@@ -2482,9 +2634,12 @@
             // SPORTMmetroTile27
             // 
             this.SPORTMmetroTile27.ActiveControl = null;
+            this.SPORTMmetroTile27.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile27.Location = new System.Drawing.Point(11, 63);
             this.SPORTMmetroTile27.Name = "SPORTMmetroTile27";
-            this.SPORTMmetroTile27.Size = new System.Drawing.Size(198, 37);
+            this.SPORTMmetroTile27.Size = new System.Drawing.Size(217, 38);
             this.SPORTMmetroTile27.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTile27.TabIndex = 1;
             this.SPORTMmetroTile27.Text = "Когда пришел спортсмен";
@@ -2495,9 +2650,12 @@
             // SPORTMmetroTile28
             // 
             this.SPORTMmetroTile28.ActiveControl = null;
+            this.SPORTMmetroTile28.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile28.Location = new System.Drawing.Point(11, 13);
             this.SPORTMmetroTile28.Name = "SPORTMmetroTile28";
-            this.SPORTMmetroTile28.Size = new System.Drawing.Size(198, 41);
+            this.SPORTMmetroTile28.Size = new System.Drawing.Size(217, 42);
             this.SPORTMmetroTile28.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTile28.TabIndex = 0;
             this.SPORTMmetroTile28.Text = "Абонементы спортсменов";
@@ -2507,11 +2665,14 @@
             // 
             // SPORTMmetroTabControl10
             // 
+            this.SPORTMmetroTabControl10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTabControl10.Controls.Add(this.tabPage15);
             this.SPORTMmetroTabControl10.Location = new System.Drawing.Point(800, 12);
             this.SPORTMmetroTabControl10.Name = "SPORTMmetroTabControl10";
             this.SPORTMmetroTabControl10.SelectedIndex = 0;
-            this.SPORTMmetroTabControl10.Size = new System.Drawing.Size(231, 356);
+            this.SPORTMmetroTabControl10.Size = new System.Drawing.Size(223, 356);
             this.SPORTMmetroTabControl10.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTabControl10.TabIndex = 4;
             this.SPORTMmetroTabControl10.UseSelectable = true;
@@ -2523,7 +2684,7 @@
             this.tabPage15.Controls.Add(this.metroTile31);
             this.tabPage15.Location = new System.Drawing.Point(4, 38);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(223, 314);
+            this.tabPage15.Size = new System.Drawing.Size(215, 314);
             this.tabPage15.TabIndex = 0;
             this.tabPage15.Text = "Поиск данных";
             // 
@@ -2536,7 +2697,7 @@
             this.metroTile29.Controls.Add(this.metroLabel16);
             this.metroTile29.Controls.Add(this.metroLabel17);
             this.metroTile29.Controls.Add(this.metroLabel18);
-            this.metroTile29.Location = new System.Drawing.Point(11, 192);
+            this.metroTile29.Location = new System.Drawing.Point(0, 192);
             this.metroTile29.Name = "metroTile29";
             this.metroTile29.Size = new System.Drawing.Size(200, 115);
             this.metroTile29.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2545,6 +2706,8 @@
             // 
             // SPORTMtextBox1
             // 
+            this.SPORTMtextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SPORTMtextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SPORTMtextBox1.Location = new System.Drawing.Point(81, 56);
             this.SPORTMtextBox1.Name = "SPORTMtextBox1";
             this.SPORTMtextBox1.Size = new System.Drawing.Size(100, 20);
@@ -2554,6 +2717,8 @@
             // 
             // SPORTMtextBox6
             // 
+            this.SPORTMtextBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.SPORTMtextBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SPORTMtextBox6.Location = new System.Drawing.Point(81, 26);
             this.SPORTMtextBox6.Name = "SPORTMtextBox6";
             this.SPORTMtextBox6.Size = new System.Drawing.Size(100, 20);
@@ -2629,7 +2794,7 @@
             this.metroTile30.Controls.Add(this.SPORTMmetroButton7);
             this.metroTile30.Controls.Add(this.metroLabel19);
             this.metroTile30.Controls.Add(this.metroLabel20);
-            this.metroTile30.Location = new System.Drawing.Point(11, 102);
+            this.metroTile30.Location = new System.Drawing.Point(0, 102);
             this.metroTile30.Name = "metroTile30";
             this.metroTile30.Size = new System.Drawing.Size(200, 83);
             this.metroTile30.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2638,6 +2803,8 @@
             // 
             // SPORTMtextBox7
             // 
+            this.SPORTMtextBox7.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SPORTMtextBox7.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SPORTMtextBox7.Location = new System.Drawing.Point(81, 26);
             this.SPORTMtextBox7.Name = "SPORTMtextBox7";
             this.SPORTMtextBox7.Size = new System.Drawing.Size(100, 20);
@@ -2698,7 +2865,7 @@
             this.metroTile31.Controls.Add(this.SPORTMmetroButton8);
             this.metroTile31.Controls.Add(this.metroLabel21);
             this.metroTile31.Controls.Add(this.metroLabel22);
-            this.metroTile31.Location = new System.Drawing.Point(10, 8);
+            this.metroTile31.Location = new System.Drawing.Point(0, 8);
             this.metroTile31.Name = "metroTile31";
             this.metroTile31.Size = new System.Drawing.Size(200, 86);
             this.metroTile31.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2707,6 +2874,8 @@
             // 
             // SPORTMtextBox9
             // 
+            this.SPORTMtextBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SPORTMtextBox9.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SPORTMtextBox9.Location = new System.Drawing.Point(81, 26);
             this.SPORTMtextBox9.Name = "SPORTMtextBox9";
             this.SPORTMtextBox9.Size = new System.Drawing.Size(100, 20);
@@ -2762,11 +2931,14 @@
             // 
             // SPORTMmetroTabControl11
             // 
+            this.SPORTMmetroTabControl11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTabControl11.Controls.Add(this.tabPage16);
             this.SPORTMmetroTabControl11.Location = new System.Drawing.Point(541, 12);
             this.SPORTMmetroTabControl11.Name = "SPORTMmetroTabControl11";
             this.SPORTMmetroTabControl11.SelectedIndex = 0;
-            this.SPORTMmetroTabControl11.Size = new System.Drawing.Size(230, 356);
+            this.SPORTMmetroTabControl11.Size = new System.Drawing.Size(226, 356);
             this.SPORTMmetroTabControl11.Style = MetroFramework.MetroColorStyle.Red;
             this.SPORTMmetroTabControl11.TabIndex = 3;
             this.SPORTMmetroTabControl11.UseSelectable = true;
@@ -2778,7 +2950,7 @@
             this.tabPage16.Controls.Add(this.metroTile34);
             this.tabPage16.Location = new System.Drawing.Point(4, 38);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(222, 314);
+            this.tabPage16.Size = new System.Drawing.Size(218, 314);
             this.tabPage16.TabIndex = 0;
             this.tabPage16.Text = "Фильтрация данных";
             // 
@@ -2788,7 +2960,7 @@
             this.metroTile32.Controls.Add(this.metroLabel1);
             this.metroTile32.Controls.Add(this.SPORTMmetroComboBox1);
             this.metroTile32.Controls.Add(this.metroLabel25);
-            this.metroTile32.Location = new System.Drawing.Point(11, 215);
+            this.metroTile32.Location = new System.Drawing.Point(0, 215);
             this.metroTile32.Name = "metroTile32";
             this.metroTile32.Size = new System.Drawing.Size(200, 91);
             this.metroTile32.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2843,7 +3015,7 @@
             this.metroTile33.Controls.Add(this.SPORTMmetroDateTime3);
             this.metroTile33.Controls.Add(this.SPORTMmetroDateTime4);
             this.metroTile33.Controls.Add(this.metroLabel28);
-            this.metroTile33.Location = new System.Drawing.Point(11, 77);
+            this.metroTile33.Location = new System.Drawing.Point(0, 77);
             this.metroTile33.Name = "metroTile33";
             this.metroTile33.Size = new System.Drawing.Size(200, 127);
             this.metroTile33.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2928,7 +3100,7 @@
             this.metroTile34.Controls.Add(this.SPORTMtextBox10);
             this.metroTile34.Controls.Add(this.metroLabel29);
             this.metroTile34.Controls.Add(this.metroLabel30);
-            this.metroTile34.Location = new System.Drawing.Point(11, 10);
+            this.metroTile34.Location = new System.Drawing.Point(0, 10);
             this.metroTile34.Name = "metroTile34";
             this.metroTile34.Size = new System.Drawing.Size(200, 56);
             this.metroTile34.Style = MetroFramework.MetroColorStyle.Pink;
@@ -2937,6 +3109,8 @@
             // 
             // SPORTMtextBox10
             // 
+            this.SPORTMtextBox10.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SPORTMtextBox10.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SPORTMtextBox10.Location = new System.Drawing.Point(81, 26);
             this.SPORTMtextBox10.Name = "SPORTMtextBox10";
             this.SPORTMtextBox10.Size = new System.Drawing.Size(100, 20);
@@ -2975,6 +3149,9 @@
             // 
             // SPORTMmetroTabControl12
             // 
+            this.SPORTMmetroTabControl12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTabControl12.Controls.Add(this.tabPage17);
             this.SPORTMmetroTabControl12.Location = new System.Drawing.Point(282, 12);
             this.SPORTMmetroTabControl12.Name = "SPORTMmetroTabControl12";
@@ -2998,6 +3175,9 @@
             // metroTile3
             // 
             this.metroTile3.ActiveControl = null;
+            this.metroTile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTile3.Location = new System.Drawing.Point(13, 114);
             this.metroTile3.Name = "metroTile3";
             this.metroTile3.Size = new System.Drawing.Size(194, 39);
@@ -3011,6 +3191,9 @@
             // SPORTMmetroTile36
             // 
             this.SPORTMmetroTile36.ActiveControl = null;
+            this.SPORTMmetroTile36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile36.Location = new System.Drawing.Point(12, 63);
             this.SPORTMmetroTile36.Name = "SPORTMmetroTile36";
             this.SPORTMmetroTile36.Size = new System.Drawing.Size(194, 39);
@@ -3024,6 +3207,9 @@
             // SPORTMmetroTile37
             // 
             this.SPORTMmetroTile37.ActiveControl = null;
+            this.SPORTMmetroTile37.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile37.Location = new System.Drawing.Point(13, 13);
             this.SPORTMmetroTile37.Name = "SPORTMmetroTile37";
             this.SPORTMmetroTile37.Size = new System.Drawing.Size(194, 39);
@@ -3037,6 +3223,9 @@
             // 
             // SPORTMmetroTabControl14
             // 
+            this.SPORTMmetroTabControl14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTabControl14.Controls.Add(this.tabPage19);
             this.SPORTMmetroTabControl14.Location = new System.Drawing.Point(24, 12);
             this.SPORTMmetroTabControl14.Name = "SPORTMmetroTabControl14";
@@ -3060,6 +3249,9 @@
             // SPORTMmetroTile39
             // 
             this.SPORTMmetroTile39.ActiveControl = null;
+            this.SPORTMmetroTile39.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile39.Location = new System.Drawing.Point(13, 115);
             this.SPORTMmetroTile39.Name = "SPORTMmetroTile39";
             this.SPORTMmetroTile39.Size = new System.Drawing.Size(197, 39);
@@ -3074,6 +3266,9 @@
             // SPORTMmetroTile40
             // 
             this.SPORTMmetroTile40.ActiveControl = null;
+            this.SPORTMmetroTile40.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile40.Location = new System.Drawing.Point(13, 64);
             this.SPORTMmetroTile40.Name = "SPORTMmetroTile40";
             this.SPORTMmetroTile40.Size = new System.Drawing.Size(197, 39);
@@ -3088,6 +3283,9 @@
             // SPORTMmetroTile41
             // 
             this.SPORTMmetroTile41.ActiveControl = null;
+            this.SPORTMmetroTile41.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SPORTMmetroTile41.Location = new System.Drawing.Point(13, 13);
             this.SPORTMmetroTile41.Name = "SPORTMmetroTile41";
             this.SPORTMmetroTile41.Size = new System.Drawing.Size(197, 39);
@@ -3115,7 +3313,7 @@
             this.metroTabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl3.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl3.Name = "metroTabControl3";
-            this.metroTabControl3.SelectedIndex = 0;
+            this.metroTabControl3.SelectedIndex = 1;
             this.metroTabControl3.Size = new System.Drawing.Size(1338, 666);
             this.metroTabControl3.TabIndex = 0;
             this.metroTabControl3.UseSelectable = true;
@@ -3180,10 +3378,13 @@
             // 
             // ABONmetroContextMenu2
             // 
+            this.ABONmetroContextMenu2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ABONmetroContextMenu2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ABONmetroContextMenu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сброситьФильтрToolStripMenuItem3});
             this.ABONmetroContextMenu2.Name = "metroContextMenu2";
             this.ABONmetroContextMenu2.Size = new System.Drawing.Size(172, 26);
+            this.ABONmetroContextMenu2.Opening += new System.ComponentModel.CancelEventHandler(this.ABONmetroContextMenu2_Opening);
             // 
             // сброситьФильтрToolStripMenuItem3
             // 
@@ -3210,11 +3411,14 @@
             // 
             // ABONmetroTabControl4
             // 
+            this.ABONmetroTabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTabControl4.Controls.Add(this.tabPage31);
             this.ABONmetroTabControl4.Location = new System.Drawing.Point(1055, 14);
             this.ABONmetroTabControl4.Name = "ABONmetroTabControl4";
             this.ABONmetroTabControl4.SelectedIndex = 0;
-            this.ABONmetroTabControl4.Size = new System.Drawing.Size(230, 330);
+            this.ABONmetroTabControl4.Size = new System.Drawing.Size(239, 330);
             this.ABONmetroTabControl4.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTabControl4.TabIndex = 5;
             this.ABONmetroTabControl4.UseSelectable = true;
@@ -3224,16 +3428,19 @@
             this.tabPage31.Controls.Add(this.ABONmetroTile6);
             this.tabPage31.Location = new System.Drawing.Point(4, 38);
             this.tabPage31.Name = "tabPage31";
-            this.tabPage31.Size = new System.Drawing.Size(222, 288);
+            this.tabPage31.Size = new System.Drawing.Size(231, 288);
             this.tabPage31.TabIndex = 0;
             this.tabPage31.Text = "Запросы";
             // 
             // ABONmetroTile6
             // 
             this.ABONmetroTile6.ActiveControl = null;
+            this.ABONmetroTile6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile6.Location = new System.Drawing.Point(11, 13);
             this.ABONmetroTile6.Name = "ABONmetroTile6";
-            this.ABONmetroTile6.Size = new System.Drawing.Size(200, 57);
+            this.ABONmetroTile6.Size = new System.Drawing.Size(209, 58);
             this.ABONmetroTile6.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTile6.TabIndex = 0;
             this.ABONmetroTile6.Text = "Самый популярный\r\n абонемент";
@@ -3247,7 +3454,7 @@
             this.ABONmetroTabControl5.Location = new System.Drawing.Point(794, 12);
             this.ABONmetroTabControl5.Name = "ABONmetroTabControl5";
             this.ABONmetroTabControl5.SelectedIndex = 0;
-            this.ABONmetroTabControl5.Size = new System.Drawing.Size(231, 332);
+            this.ABONmetroTabControl5.Size = new System.Drawing.Size(209, 332);
             this.ABONmetroTabControl5.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTabControl5.TabIndex = 4;
             this.ABONmetroTabControl5.UseSelectable = true;
@@ -3259,7 +3466,7 @@
             this.tabPage32.Controls.Add(this.metroTile26);
             this.tabPage32.Location = new System.Drawing.Point(4, 38);
             this.tabPage32.Name = "tabPage32";
-            this.tabPage32.Size = new System.Drawing.Size(223, 290);
+            this.tabPage32.Size = new System.Drawing.Size(201, 290);
             this.tabPage32.TabIndex = 0;
             this.tabPage32.Text = "Поиск данных";
             // 
@@ -3270,7 +3477,7 @@
             this.metroTile5.Controls.Add(this.ABONmetroButton1);
             this.metroTile5.Controls.Add(this.metroLabel40);
             this.metroTile5.Controls.Add(this.metroLabel41);
-            this.metroTile5.Location = new System.Drawing.Point(11, 194);
+            this.metroTile5.Location = new System.Drawing.Point(0, 194);
             this.metroTile5.Name = "metroTile5";
             this.metroTile5.Size = new System.Drawing.Size(200, 87);
             this.metroTile5.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3279,6 +3486,8 @@
             // 
             // ABONtextBox3
             // 
+            this.ABONtextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ABONtextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.ABONtextBox3.Location = new System.Drawing.Point(94, 26);
             this.ABONtextBox3.Name = "ABONtextBox3";
             this.ABONtextBox3.Size = new System.Drawing.Size(100, 20);
@@ -3339,7 +3548,7 @@
             this.metroTile19.Controls.Add(this.ABONmetroButton2);
             this.metroTile19.Controls.Add(this.metroLabel42);
             this.metroTile19.Controls.Add(this.metroLabel43);
-            this.metroTile19.Location = new System.Drawing.Point(11, 102);
+            this.metroTile19.Location = new System.Drawing.Point(0, 102);
             this.metroTile19.Name = "metroTile19";
             this.metroTile19.Size = new System.Drawing.Size(200, 83);
             this.metroTile19.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3348,6 +3557,8 @@
             // 
             // ABONtextBox4
             // 
+            this.ABONtextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ABONtextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.ABONtextBox4.Location = new System.Drawing.Point(91, 26);
             this.ABONtextBox4.Name = "ABONtextBox4";
             this.ABONtextBox4.Size = new System.Drawing.Size(100, 20);
@@ -3408,7 +3619,7 @@
             this.metroTile26.Controls.Add(this.ABONmetroButton3);
             this.metroTile26.Controls.Add(this.metroLabel46);
             this.metroTile26.Controls.Add(this.metroLabel47);
-            this.metroTile26.Location = new System.Drawing.Point(10, 8);
+            this.metroTile26.Location = new System.Drawing.Point(0, 8);
             this.metroTile26.Name = "metroTile26";
             this.metroTile26.Size = new System.Drawing.Size(200, 86);
             this.metroTile26.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3417,6 +3628,8 @@
             // 
             // ABONtextBox5
             // 
+            this.ABONtextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ABONtextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.ABONtextBox5.Location = new System.Drawing.Point(90, 26);
             this.ABONtextBox5.Name = "ABONtextBox5";
             this.ABONtextBox5.Size = new System.Drawing.Size(100, 20);
@@ -3447,12 +3660,12 @@
             this.metroLabel46.AutoSize = true;
             this.metroLabel46.BackColor = System.Drawing.Color.Black;
             this.metroLabel46.ForeColor = System.Drawing.Color.Black;
-            this.metroLabel46.Location = new System.Drawing.Point(8, 28);
+            this.metroLabel46.Location = new System.Drawing.Point(13, 28);
             this.metroLabel46.Name = "metroLabel46";
-            this.metroLabel46.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel46.Size = new System.Drawing.Size(71, 19);
             this.metroLabel46.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel46.TabIndex = 5;
-            this.metroLabel46.Text = "Абонемент:";
+            this.metroLabel46.Text = "Название:";
             this.metroLabel46.UseCustomForeColor = true;
             this.metroLabel46.UseStyleColors = true;
             this.metroLabel46.UseWaitCursor = true;
@@ -3472,6 +3685,9 @@
             // 
             // ABONmetroTabControl6
             // 
+            this.ABONmetroTabControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTabControl6.Controls.Add(this.tabPage33);
             this.ABONmetroTabControl6.Location = new System.Drawing.Point(537, 12);
             this.ABONmetroTabControl6.Name = "ABONmetroTabControl6";
@@ -3500,7 +3716,7 @@
             this.metroTile27.Controls.Add(this.metroLabel49);
             this.metroTile27.Controls.Add(this.metroLabel50);
             this.metroTile27.Controls.Add(this.ABONmetroTextBox3);
-            this.metroTile27.Location = new System.Drawing.Point(11, 77);
+            this.metroTile27.Location = new System.Drawing.Point(0, 77);
             this.metroTile27.Name = "metroTile27";
             this.metroTile27.Size = new System.Drawing.Size(200, 91);
             this.metroTile27.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3637,7 +3853,7 @@
             this.metroTile35.Controls.Add(this.ABONtextBox8);
             this.metroTile35.Controls.Add(this.metroLabel54);
             this.metroTile35.Controls.Add(this.metroLabel55);
-            this.metroTile35.Location = new System.Drawing.Point(11, 10);
+            this.metroTile35.Location = new System.Drawing.Point(0, 10);
             this.metroTile35.Name = "metroTile35";
             this.metroTile35.Size = new System.Drawing.Size(200, 56);
             this.metroTile35.Style = MetroFramework.MetroColorStyle.Pink;
@@ -3646,7 +3862,9 @@
             // 
             // ABONtextBox8
             // 
-            this.ABONtextBox8.Location = new System.Drawing.Point(88, 26);
+            this.ABONtextBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ABONtextBox8.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.ABONtextBox8.Location = new System.Drawing.Point(83, 26);
             this.ABONtextBox8.Name = "ABONtextBox8";
             this.ABONtextBox8.Size = new System.Drawing.Size(100, 20);
             this.ABONtextBox8.TabIndex = 5;
@@ -3661,10 +3879,10 @@
             this.metroLabel54.ForeColor = System.Drawing.Color.Black;
             this.metroLabel54.Location = new System.Drawing.Point(8, 27);
             this.metroLabel54.Name = "metroLabel54";
-            this.metroLabel54.Size = new System.Drawing.Size(81, 19);
+            this.metroLabel54.Size = new System.Drawing.Size(71, 19);
             this.metroLabel54.Style = MetroFramework.MetroColorStyle.Pink;
             this.metroLabel54.TabIndex = 4;
-            this.metroLabel54.Text = "Абонемент:";
+            this.metroLabel54.Text = "Название:";
             this.metroLabel54.UseCustomForeColor = true;
             this.metroLabel54.UseStyleColors = true;
             this.metroLabel54.UseWaitCursor = true;
@@ -3684,11 +3902,14 @@
             // 
             // ABONmetroTabControl7
             // 
+            this.ABONmetroTabControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTabControl7.Controls.Add(this.tabPage34);
             this.ABONmetroTabControl7.Location = new System.Drawing.Point(280, 12);
             this.ABONmetroTabControl7.Name = "ABONmetroTabControl7";
             this.ABONmetroTabControl7.SelectedIndex = 0;
-            this.ABONmetroTabControl7.Size = new System.Drawing.Size(230, 332);
+            this.ABONmetroTabControl7.Size = new System.Drawing.Size(251, 332);
             this.ABONmetroTabControl7.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTabControl7.TabIndex = 2;
             this.ABONmetroTabControl7.UseSelectable = true;
@@ -3701,16 +3922,19 @@
             this.tabPage34.Controls.Add(this.ABONmetroTile38);
             this.tabPage34.Location = new System.Drawing.Point(4, 38);
             this.tabPage34.Name = "tabPage34";
-            this.tabPage34.Size = new System.Drawing.Size(222, 290);
+            this.tabPage34.Size = new System.Drawing.Size(243, 290);
             this.tabPage34.TabIndex = 0;
             this.tabPage34.Text = "Формирование отчетов";
             // 
             // ABONmetroTile28
             // 
             this.ABONmetroTile28.ActiveControl = null;
+            this.ABONmetroTile28.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile28.Location = new System.Drawing.Point(12, 165);
             this.ABONmetroTile28.Name = "ABONmetroTile28";
-            this.ABONmetroTile28.Size = new System.Drawing.Size(195, 39);
+            this.ABONmetroTile28.Size = new System.Drawing.Size(216, 39);
             this.ABONmetroTile28.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTile28.TabIndex = 3;
             this.ABONmetroTile28.Text = "Отчет по абонементам";
@@ -3721,9 +3945,12 @@
             // ABONmetroTile36
             // 
             this.ABONmetroTile36.ActiveControl = null;
+            this.ABONmetroTile36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile36.Location = new System.Drawing.Point(12, 113);
             this.ABONmetroTile36.Name = "ABONmetroTile36";
-            this.ABONmetroTile36.Size = new System.Drawing.Size(195, 39);
+            this.ABONmetroTile36.Size = new System.Drawing.Size(216, 39);
             this.ABONmetroTile36.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTile36.TabIndex = 2;
             this.ABONmetroTile36.Text = "Отчет по посещениям";
@@ -3734,9 +3961,12 @@
             // ABONmetroTile37
             // 
             this.ABONmetroTile37.ActiveControl = null;
+            this.ABONmetroTile37.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile37.Location = new System.Drawing.Point(12, 63);
             this.ABONmetroTile37.Name = "ABONmetroTile37";
-            this.ABONmetroTile37.Size = new System.Drawing.Size(195, 39);
+            this.ABONmetroTile37.Size = new System.Drawing.Size(216, 39);
             this.ABONmetroTile37.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTile37.TabIndex = 1;
             this.ABONmetroTile37.Text = "Отчет в Word";
@@ -3747,9 +3977,12 @@
             // ABONmetroTile38
             // 
             this.ABONmetroTile38.ActiveControl = null;
+            this.ABONmetroTile38.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile38.Location = new System.Drawing.Point(13, 13);
             this.ABONmetroTile38.Name = "ABONmetroTile38";
-            this.ABONmetroTile38.Size = new System.Drawing.Size(194, 39);
+            this.ABONmetroTile38.Size = new System.Drawing.Size(215, 39);
             this.ABONmetroTile38.Style = MetroFramework.MetroColorStyle.Red;
             this.ABONmetroTile38.TabIndex = 0;
             this.ABONmetroTile38.Text = "Отчет в Excel";
@@ -3760,6 +3993,9 @@
             // 
             // ABONmetroTabControl8
             // 
+            this.ABONmetroTabControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTabControl8.Controls.Add(this.tabPage35);
             this.ABONmetroTabControl8.Location = new System.Drawing.Point(26, 12);
             this.ABONmetroTabControl8.Name = "ABONmetroTabControl8";
@@ -3783,6 +4019,9 @@
             // ABONmetroTile39
             // 
             this.ABONmetroTile39.ActiveControl = null;
+            this.ABONmetroTile39.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile39.Location = new System.Drawing.Point(13, 115);
             this.ABONmetroTile39.Name = "ABONmetroTile39";
             this.ABONmetroTile39.Size = new System.Drawing.Size(195, 39);
@@ -3797,6 +4036,9 @@
             // ABONmetroTile40
             // 
             this.ABONmetroTile40.ActiveControl = null;
+            this.ABONmetroTile40.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile40.Location = new System.Drawing.Point(13, 64);
             this.ABONmetroTile40.Name = "ABONmetroTile40";
             this.ABONmetroTile40.Size = new System.Drawing.Size(195, 39);
@@ -3811,6 +4053,9 @@
             // ABONmetroTile41
             // 
             this.ABONmetroTile41.ActiveControl = null;
+            this.ABONmetroTile41.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ABONmetroTile41.Location = new System.Drawing.Point(13, 13);
             this.ABONmetroTile41.Name = "ABONmetroTile41";
             this.ABONmetroTile41.Size = new System.Drawing.Size(195, 39);
@@ -3882,10 +4127,13 @@
             // 
             // SALEmetroContextMenu1
             // 
+            this.SALEmetroContextMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.SALEmetroContextMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.SALEmetroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сброситьФильтрToolStripMenuItem4});
             this.SALEmetroContextMenu1.Name = "SALEmetroContextMenu1";
-            this.SALEmetroContextMenu1.Size = new System.Drawing.Size(172, 26);
+            this.SALEmetroContextMenu1.Size = new System.Drawing.Size(172, 48);
+            this.SALEmetroContextMenu1.Opening += new System.ComponentModel.CancelEventHandler(this.SALEmetroContextMenu1_Opening);
             // 
             // сброситьФильтрToolStripMenuItem4
             // 
@@ -3913,6 +4161,9 @@
             // 
             // metroTabControl4
             // 
+            this.metroTabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTabControl4.Controls.Add(this.tabPage40);
             this.metroTabControl4.Location = new System.Drawing.Point(14, 12);
             this.metroTabControl4.Name = "metroTabControl4";
@@ -3934,12 +4185,15 @@
             // metroTile28
             // 
             this.metroTile28.ActiveControl = null;
+            this.metroTile28.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTile28.Location = new System.Drawing.Point(7, 9);
             this.metroTile28.Name = "metroTile28";
-            this.metroTile28.Size = new System.Drawing.Size(134, 39);
+            this.metroTile28.Size = new System.Drawing.Size(134, 57);
             this.metroTile28.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile28.TabIndex = 1;
-            this.metroTile28.Text = "Учет посещений";
+            this.metroTile28.Text = "Учет \r\nпосещений";
             this.metroTile28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.metroTile28.TileImageAlign = System.Drawing.ContentAlignment.TopRight;
             this.metroTile28.UseSelectable = true;
@@ -3947,6 +4201,9 @@
             // 
             // SALEmetroTabControl4
             // 
+            this.SALEmetroTabControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTabControl4.Controls.Add(this.tabPage36);
             this.SALEmetroTabControl4.Location = new System.Drawing.Point(1113, 14);
             this.SALEmetroTabControl4.Name = "SALEmetroTabControl4";
@@ -3968,9 +4225,12 @@
             // SALEmetroTile38
             // 
             this.SALEmetroTile38.ActiveControl = null;
+            this.SALEmetroTile38.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile38.Location = new System.Drawing.Point(11, 13);
             this.SALEmetroTile38.Name = "SALEmetroTile38";
-            this.SALEmetroTile38.Size = new System.Drawing.Size(132, 60);
+            this.SALEmetroTile38.Size = new System.Drawing.Size(132, 61);
             this.SALEmetroTile38.Style = MetroFramework.MetroColorStyle.Red;
             this.SALEmetroTile38.TabIndex = 0;
             this.SALEmetroTile38.Text = "Проданные \r\nабонементы";
@@ -3980,6 +4240,9 @@
             // 
             // SALEmetroTabControl5
             // 
+            this.SALEmetroTabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTabControl5.Controls.Add(this.tabPage37);
             this.SALEmetroTabControl5.Location = new System.Drawing.Point(869, 12);
             this.SALEmetroTabControl5.Name = "SALEmetroTabControl5";
@@ -4006,7 +4269,7 @@
             this.metroTile40.Controls.Add(this.SALEmetroButton2);
             this.metroTile40.Controls.Add(this.metroLabel53);
             this.metroTile40.Controls.Add(this.metroLabel56);
-            this.metroTile40.Location = new System.Drawing.Point(11, 102);
+            this.metroTile40.Location = new System.Drawing.Point(0, 102);
             this.metroTile40.Name = "metroTile40";
             this.metroTile40.Size = new System.Drawing.Size(200, 84);
             this.metroTile40.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4015,6 +4278,8 @@
             // 
             // SALEtextBox4
             // 
+            this.SALEtextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SALEtextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SALEtextBox4.Location = new System.Drawing.Point(81, 26);
             this.SALEtextBox4.Name = "SALEtextBox4";
             this.SALEtextBox4.Size = new System.Drawing.Size(100, 20);
@@ -4075,7 +4340,7 @@
             this.metroTile41.Controls.Add(this.SALEmetroButton3);
             this.metroTile41.Controls.Add(this.metroLabel57);
             this.metroTile41.Controls.Add(this.metroLabel58);
-            this.metroTile41.Location = new System.Drawing.Point(10, 8);
+            this.metroTile41.Location = new System.Drawing.Point(0, 8);
             this.metroTile41.Name = "metroTile41";
             this.metroTile41.Size = new System.Drawing.Size(200, 86);
             this.metroTile41.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4084,6 +4349,8 @@
             // 
             // SALEtextBox5
             // 
+            this.SALEtextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SALEtextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SALEtextBox5.Location = new System.Drawing.Point(81, 26);
             this.SALEtextBox5.Name = "SALEtextBox5";
             this.SALEtextBox5.Size = new System.Drawing.Size(100, 20);
@@ -4139,6 +4406,9 @@
             // 
             // SALEmetroTabControl6
             // 
+            this.SALEmetroTabControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTabControl6.Controls.Add(this.tabPage38);
             this.SALEmetroTabControl6.Location = new System.Drawing.Point(625, 12);
             this.SALEmetroTabControl6.Name = "SALEmetroTabControl6";
@@ -4168,7 +4438,7 @@
             this.metroTile42.Controls.Add(this.metroLabel60);
             this.metroTile42.Controls.Add(this.metroLabel61);
             this.metroTile42.Controls.Add(this.SALEmetroTextBox3);
-            this.metroTile42.Location = new System.Drawing.Point(11, 215);
+            this.metroTile42.Location = new System.Drawing.Point(0, 215);
             this.metroTile42.Name = "metroTile42";
             this.metroTile42.Size = new System.Drawing.Size(200, 91);
             this.metroTile42.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4308,7 +4578,7 @@
             this.metroTile43.Controls.Add(this.SALEmetroDateTime1);
             this.metroTile43.Controls.Add(this.SALEmetroDateTime2);
             this.metroTile43.Controls.Add(this.metroLabel64);
-            this.metroTile43.Location = new System.Drawing.Point(11, 77);
+            this.metroTile43.Location = new System.Drawing.Point(0, 77);
             this.metroTile43.Name = "metroTile43";
             this.metroTile43.Size = new System.Drawing.Size(200, 127);
             this.metroTile43.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4363,7 +4633,7 @@
             // SALEmetroDateTime1
             // 
             this.SALEmetroDateTime1.Location = new System.Drawing.Point(44, 59);
-            this.SALEmetroDateTime1.MinimumSize = new System.Drawing.Size(4, 29);
+            this.SALEmetroDateTime1.MinimumSize = new System.Drawing.Size(0, 29);
             this.SALEmetroDateTime1.Name = "SALEmetroDateTime1";
             this.SALEmetroDateTime1.Size = new System.Drawing.Size(143, 29);
             this.SALEmetroDateTime1.TabIndex = 2;
@@ -4371,7 +4641,7 @@
             // SALEmetroDateTime2
             // 
             this.SALEmetroDateTime2.Location = new System.Drawing.Point(44, 24);
-            this.SALEmetroDateTime2.MinimumSize = new System.Drawing.Size(4, 29);
+            this.SALEmetroDateTime2.MinimumSize = new System.Drawing.Size(0, 29);
             this.SALEmetroDateTime2.Name = "SALEmetroDateTime2";
             this.SALEmetroDateTime2.Size = new System.Drawing.Size(143, 29);
             this.SALEmetroDateTime2.TabIndex = 1;
@@ -4393,7 +4663,7 @@
             this.metroTile44.Controls.Add(this.SALEtextBox6);
             this.metroTile44.Controls.Add(this.metroLabel65);
             this.metroTile44.Controls.Add(this.metroLabel66);
-            this.metroTile44.Location = new System.Drawing.Point(11, 10);
+            this.metroTile44.Location = new System.Drawing.Point(0, 10);
             this.metroTile44.Name = "metroTile44";
             this.metroTile44.Size = new System.Drawing.Size(200, 56);
             this.metroTile44.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4402,6 +4672,8 @@
             // 
             // SALEtextBox6
             // 
+            this.SALEtextBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.SALEtextBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.SALEtextBox6.Location = new System.Drawing.Point(81, 26);
             this.SALEtextBox6.Name = "SALEtextBox6";
             this.SALEtextBox6.Size = new System.Drawing.Size(100, 20);
@@ -4440,11 +4712,14 @@
             // 
             // SALEmetroTabControl7
             // 
+            this.SALEmetroTabControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTabControl7.Controls.Add(this.tabPage39);
             this.SALEmetroTabControl7.Location = new System.Drawing.Point(407, 12);
             this.SALEmetroTabControl7.Name = "SALEmetroTabControl7";
             this.SALEmetroTabControl7.SelectedIndex = 0;
-            this.SALEmetroTabControl7.Size = new System.Drawing.Size(205, 356);
+            this.SALEmetroTabControl7.Size = new System.Drawing.Size(216, 356);
             this.SALEmetroTabControl7.Style = MetroFramework.MetroColorStyle.Red;
             this.SALEmetroTabControl7.TabIndex = 2;
             this.SALEmetroTabControl7.UseSelectable = true;
@@ -4456,16 +4731,19 @@
             this.tabPage39.Controls.Add(this.SALEmetroTile47);
             this.tabPage39.Location = new System.Drawing.Point(4, 38);
             this.tabPage39.Name = "tabPage39";
-            this.tabPage39.Size = new System.Drawing.Size(197, 314);
+            this.tabPage39.Size = new System.Drawing.Size(208, 314);
             this.tabPage39.TabIndex = 0;
             this.tabPage39.Text = "Формирование отчетов";
             // 
             // SALEmetroTile45
             // 
             this.SALEmetroTile45.ActiveControl = null;
+            this.SALEmetroTile45.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile45.Location = new System.Drawing.Point(12, 113);
             this.SALEmetroTile45.Name = "SALEmetroTile45";
-            this.SALEmetroTile45.Size = new System.Drawing.Size(173, 39);
+            this.SALEmetroTile45.Size = new System.Drawing.Size(184, 39);
             this.SALEmetroTile45.Style = MetroFramework.MetroColorStyle.Red;
             this.SALEmetroTile45.TabIndex = 2;
             this.SALEmetroTile45.Text = "Отчет по посещениям";
@@ -4476,9 +4754,12 @@
             // SALEmetroTile46
             // 
             this.SALEmetroTile46.ActiveControl = null;
+            this.SALEmetroTile46.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile46.Location = new System.Drawing.Point(12, 63);
             this.SALEmetroTile46.Name = "SALEmetroTile46";
-            this.SALEmetroTile46.Size = new System.Drawing.Size(173, 39);
+            this.SALEmetroTile46.Size = new System.Drawing.Size(184, 39);
             this.SALEmetroTile46.Style = MetroFramework.MetroColorStyle.Red;
             this.SALEmetroTile46.TabIndex = 1;
             this.SALEmetroTile46.Text = "Отчет в Word";
@@ -4489,9 +4770,12 @@
             // SALEmetroTile47
             // 
             this.SALEmetroTile47.ActiveControl = null;
+            this.SALEmetroTile47.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile47.Location = new System.Drawing.Point(13, 13);
             this.SALEmetroTile47.Name = "SALEmetroTile47";
-            this.SALEmetroTile47.Size = new System.Drawing.Size(173, 39);
+            this.SALEmetroTile47.Size = new System.Drawing.Size(184, 39);
             this.SALEmetroTile47.Style = MetroFramework.MetroColorStyle.Red;
             this.SALEmetroTile47.TabIndex = 0;
             this.SALEmetroTile47.Text = "Отчет в Excel";
@@ -4502,6 +4786,9 @@
             // 
             // SALEmetroTabControl9
             // 
+            this.SALEmetroTabControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTabControl9.Controls.Add(this.tabPage41);
             this.SALEmetroTabControl9.Location = new System.Drawing.Point(186, 12);
             this.SALEmetroTabControl9.Name = "SALEmetroTabControl9";
@@ -4525,6 +4812,9 @@
             // SALEmetroTile49
             // 
             this.SALEmetroTile49.ActiveControl = null;
+            this.SALEmetroTile49.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile49.Location = new System.Drawing.Point(13, 115);
             this.SALEmetroTile49.Name = "SALEmetroTile49";
             this.SALEmetroTile49.Size = new System.Drawing.Size(173, 39);
@@ -4539,6 +4829,9 @@
             // SALEmetroTile50
             // 
             this.SALEmetroTile50.ActiveControl = null;
+            this.SALEmetroTile50.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile50.Location = new System.Drawing.Point(13, 64);
             this.SALEmetroTile50.Name = "SALEmetroTile50";
             this.SALEmetroTile50.Size = new System.Drawing.Size(173, 39);
@@ -4553,6 +4846,9 @@
             // SALEmetroTile51
             // 
             this.SALEmetroTile51.ActiveControl = null;
+            this.SALEmetroTile51.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SALEmetroTile51.Location = new System.Drawing.Point(13, 13);
             this.SALEmetroTile51.Name = "SALEmetroTile51";
             this.SALEmetroTile51.Size = new System.Drawing.Size(173, 39);
@@ -4623,6 +4919,8 @@
             // 
             // TRENINGmetroContextMenu1
             // 
+            this.TRENINGmetroContextMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TRENINGmetroContextMenu1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TRENINGmetroContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сброситьФильтрToolStripMenuItem2});
             this.TRENINGmetroContextMenu1.Name = "metroContextMenu1";
@@ -4687,9 +4985,12 @@
             // metroTile13
             // 
             this.metroTile13.ActiveControl = null;
+            this.metroTile13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.metroTile13.Location = new System.Drawing.Point(11, 13);
             this.metroTile13.Name = "metroTile13";
-            this.metroTile13.Size = new System.Drawing.Size(165, 56);
+            this.metroTile13.Size = new System.Drawing.Size(165, 57);
             this.metroTile13.Style = MetroFramework.MetroColorStyle.Red;
             this.metroTile13.TabIndex = 0;
             this.metroTile13.Text = "Самая популярная\r\n тренировка";
@@ -4703,7 +5004,7 @@
             this.TRENINGmetroTabControl4.Location = new System.Drawing.Point(842, 12);
             this.TRENINGmetroTabControl4.Name = "TRENINGmetroTabControl4";
             this.TRENINGmetroTabControl4.SelectedIndex = 0;
-            this.TRENINGmetroTabControl4.Size = new System.Drawing.Size(231, 356);
+            this.TRENINGmetroTabControl4.Size = new System.Drawing.Size(209, 356);
             this.TRENINGmetroTabControl4.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTabControl4.TabIndex = 4;
             this.TRENINGmetroTabControl4.UseSelectable = true;
@@ -4715,7 +5016,7 @@
             this.tabPage24.Controls.Add(this.metroTile17);
             this.tabPage24.Location = new System.Drawing.Point(4, 38);
             this.tabPage24.Name = "tabPage24";
-            this.tabPage24.Size = new System.Drawing.Size(223, 314);
+            this.tabPage24.Size = new System.Drawing.Size(201, 314);
             this.tabPage24.TabIndex = 0;
             this.tabPage24.Text = "Поиск данных";
             // 
@@ -4726,7 +5027,7 @@
             this.metroTile14.Controls.Add(this.TRENINGmetroButton1);
             this.metroTile14.Controls.Add(this.metroLabel32);
             this.metroTile14.Controls.Add(this.metroLabel33);
-            this.metroTile14.Location = new System.Drawing.Point(11, 192);
+            this.metroTile14.Location = new System.Drawing.Point(1, 192);
             this.metroTile14.Name = "metroTile14";
             this.metroTile14.Size = new System.Drawing.Size(200, 86);
             this.metroTile14.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4735,6 +5036,8 @@
             // 
             // TRENINGtextBox3
             // 
+            this.TRENINGtextBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENINGtextBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENINGtextBox3.Location = new System.Drawing.Point(85, 26);
             this.TRENINGtextBox3.Name = "TRENINGtextBox3";
             this.TRENINGtextBox3.Size = new System.Drawing.Size(100, 20);
@@ -4795,7 +5098,7 @@
             this.metroTile15.Controls.Add(this.TRENINGmetroButton2);
             this.metroTile15.Controls.Add(this.metroLabel34);
             this.metroTile15.Controls.Add(this.metroLabel35);
-            this.metroTile15.Location = new System.Drawing.Point(11, 102);
+            this.metroTile15.Location = new System.Drawing.Point(1, 102);
             this.metroTile15.Name = "metroTile15";
             this.metroTile15.Size = new System.Drawing.Size(200, 83);
             this.metroTile15.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4804,6 +5107,8 @@
             // 
             // TRENINGtextBox4
             // 
+            this.TRENINGtextBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENINGtextBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENINGtextBox4.Location = new System.Drawing.Point(81, 26);
             this.TRENINGtextBox4.Name = "TRENINGtextBox4";
             this.TRENINGtextBox4.Size = new System.Drawing.Size(100, 20);
@@ -4864,7 +5169,7 @@
             this.metroTile17.Controls.Add(this.TRENINGmetroButton3);
             this.metroTile17.Controls.Add(this.metroLabel36);
             this.metroTile17.Controls.Add(this.metroLabel37);
-            this.metroTile17.Location = new System.Drawing.Point(10, 8);
+            this.metroTile17.Location = new System.Drawing.Point(0, 8);
             this.metroTile17.Name = "metroTile17";
             this.metroTile17.Size = new System.Drawing.Size(200, 86);
             this.metroTile17.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4873,7 +5178,9 @@
             // 
             // TRENINGtextBox5
             // 
-            this.TRENINGtextBox5.Location = new System.Drawing.Point(115, 26);
+            this.TRENINGtextBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENINGtextBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.TRENINGtextBox5.Location = new System.Drawing.Point(113, 26);
             this.TRENINGtextBox5.Name = "TRENINGtextBox5";
             this.TRENINGtextBox5.Size = new System.Drawing.Size(78, 20);
             this.TRENINGtextBox5.TabIndex = 7;
@@ -4928,11 +5235,14 @@
             // 
             // TRENINGmetroTabControl5
             // 
+            this.TRENINGmetroTabControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTabControl5.Controls.Add(this.tabPage25);
             this.TRENINGmetroTabControl5.Location = new System.Drawing.Point(597, 12);
             this.TRENINGmetroTabControl5.Name = "TRENINGmetroTabControl5";
             this.TRENINGmetroTabControl5.SelectedIndex = 0;
-            this.TRENINGmetroTabControl5.Size = new System.Drawing.Size(230, 356);
+            this.TRENINGmetroTabControl5.Size = new System.Drawing.Size(227, 356);
             this.TRENINGmetroTabControl5.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTabControl5.TabIndex = 3;
             this.TRENINGmetroTabControl5.UseSelectable = true;
@@ -4942,7 +5252,7 @@
             this.tabPage25.Controls.Add(this.metroTile25);
             this.tabPage25.Location = new System.Drawing.Point(4, 38);
             this.tabPage25.Name = "tabPage25";
-            this.tabPage25.Size = new System.Drawing.Size(222, 314);
+            this.tabPage25.Size = new System.Drawing.Size(219, 314);
             this.tabPage25.TabIndex = 0;
             this.tabPage25.Text = "Фильтрация данных";
             // 
@@ -4952,7 +5262,7 @@
             this.metroTile25.Controls.Add(this.TRENINGtextBox6);
             this.metroTile25.Controls.Add(this.metroLabel44);
             this.metroTile25.Controls.Add(this.metroLabel45);
-            this.metroTile25.Location = new System.Drawing.Point(11, 10);
+            this.metroTile25.Location = new System.Drawing.Point(0, 10);
             this.metroTile25.Name = "metroTile25";
             this.metroTile25.Size = new System.Drawing.Size(200, 56);
             this.metroTile25.Style = MetroFramework.MetroColorStyle.Pink;
@@ -4961,6 +5271,8 @@
             // 
             // TRENINGtextBox6
             // 
+            this.TRENINGtextBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TRENINGtextBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.TRENINGtextBox6.Location = new System.Drawing.Point(74, 26);
             this.TRENINGtextBox6.Name = "TRENINGtextBox6";
             this.TRENINGtextBox6.Size = new System.Drawing.Size(113, 20);
@@ -4999,11 +5311,14 @@
             // 
             // TRENINGmetroTabControl6
             // 
+            this.TRENINGmetroTabControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTabControl6.Controls.Add(this.tabPage26);
             this.TRENINGmetroTabControl6.Location = new System.Drawing.Point(378, 12);
             this.TRENINGmetroTabControl6.Name = "TRENINGmetroTabControl6";
             this.TRENINGmetroTabControl6.SelectedIndex = 0;
-            this.TRENINGmetroTabControl6.Size = new System.Drawing.Size(205, 356);
+            this.TRENINGmetroTabControl6.Size = new System.Drawing.Size(217, 356);
             this.TRENINGmetroTabControl6.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTabControl6.TabIndex = 2;
             this.TRENINGmetroTabControl6.UseSelectable = true;
@@ -5015,16 +5330,19 @@
             this.tabPage26.Controls.Add(this.TRENINGmetroTile28);
             this.tabPage26.Location = new System.Drawing.Point(4, 38);
             this.tabPage26.Name = "tabPage26";
-            this.tabPage26.Size = new System.Drawing.Size(197, 314);
+            this.tabPage26.Size = new System.Drawing.Size(209, 314);
             this.tabPage26.TabIndex = 0;
             this.tabPage26.Text = "Формирование отчетов";
             // 
             // TRENINGmetroTile26
             // 
             this.TRENINGmetroTile26.ActiveControl = null;
+            this.TRENINGmetroTile26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile26.Location = new System.Drawing.Point(12, 113);
             this.TRENINGmetroTile26.Name = "TRENINGmetroTile26";
-            this.TRENINGmetroTile26.Size = new System.Drawing.Size(173, 39);
+            this.TRENINGmetroTile26.Size = new System.Drawing.Size(185, 39);
             this.TRENINGmetroTile26.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTile26.TabIndex = 2;
             this.TRENINGmetroTile26.Text = "Отчет по тренировкам";
@@ -5035,9 +5353,12 @@
             // TRENINGmetroTile27
             // 
             this.TRENINGmetroTile27.ActiveControl = null;
+            this.TRENINGmetroTile27.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile27.Location = new System.Drawing.Point(12, 63);
             this.TRENINGmetroTile27.Name = "TRENINGmetroTile27";
-            this.TRENINGmetroTile27.Size = new System.Drawing.Size(173, 39);
+            this.TRENINGmetroTile27.Size = new System.Drawing.Size(185, 39);
             this.TRENINGmetroTile27.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTile27.TabIndex = 1;
             this.TRENINGmetroTile27.Text = "Отчет в Word";
@@ -5048,9 +5369,12 @@
             // TRENINGmetroTile28
             // 
             this.TRENINGmetroTile28.ActiveControl = null;
+            this.TRENINGmetroTile28.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile28.Location = new System.Drawing.Point(13, 13);
             this.TRENINGmetroTile28.Name = "TRENINGmetroTile28";
-            this.TRENINGmetroTile28.Size = new System.Drawing.Size(173, 39);
+            this.TRENINGmetroTile28.Size = new System.Drawing.Size(185, 39);
             this.TRENINGmetroTile28.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTile28.TabIndex = 0;
             this.TRENINGmetroTile28.Text = "Отчет в Excel";
@@ -5061,30 +5385,55 @@
             // 
             // TRENINGmetroTabControl7
             // 
+            this.TRENINGmetroTabControl7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTabControl7.Controls.Add(this.tabPage27);
             this.TRENINGmetroTabControl7.Location = new System.Drawing.Point(13, 12);
             this.TRENINGmetroTabControl7.Name = "TRENINGmetroTabControl7";
             this.TRENINGmetroTabControl7.SelectedIndex = 0;
-            this.TRENINGmetroTabControl7.Size = new System.Drawing.Size(131, 356);
+            this.TRENINGmetroTabControl7.Size = new System.Drawing.Size(143, 356);
             this.TRENINGmetroTabControl7.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTabControl7.TabIndex = 1;
             this.TRENINGmetroTabControl7.UseSelectable = true;
             // 
             // tabPage27
             // 
+            this.tabPage27.Controls.Add(this.metroTile18);
             this.tabPage27.Controls.Add(this.TRENINGmetroTile35);
             this.tabPage27.Location = new System.Drawing.Point(4, 38);
             this.tabPage27.Name = "tabPage27";
-            this.tabPage27.Size = new System.Drawing.Size(123, 314);
+            this.tabPage27.Size = new System.Drawing.Size(135, 314);
             this.tabPage27.TabIndex = 0;
             this.tabPage27.Text = "Вид тренировки";
+            // 
+            // metroTile18
+            // 
+            this.metroTile18.ActiveControl = null;
+            this.metroTile18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTile18.Location = new System.Drawing.Point(9, 82);
+            this.metroTile18.Name = "metroTile18";
+            this.metroTile18.Size = new System.Drawing.Size(118, 58);
+            this.metroTile18.Style = MetroFramework.MetroColorStyle.Red;
+            this.metroTile18.TabIndex = 2;
+            this.metroTile18.Text = "Учет \r\nпосещений";
+            this.metroTile18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile18.TileImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.metroTile18.UseSelectable = true;
+            this.metroTile18.Visible = false;
+            this.metroTile18.Click += new System.EventHandler(this.metroTile18_Click_2);
             // 
             // TRENINGmetroTile35
             // 
             this.TRENINGmetroTile35.ActiveControl = null;
+            this.TRENINGmetroTile35.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile35.Location = new System.Drawing.Point(9, 13);
             this.TRENINGmetroTile35.Name = "TRENINGmetroTile35";
-            this.TRENINGmetroTile35.Size = new System.Drawing.Size(107, 56);
+            this.TRENINGmetroTile35.Size = new System.Drawing.Size(119, 58);
             this.TRENINGmetroTile35.Style = MetroFramework.MetroColorStyle.Red;
             this.TRENINGmetroTile35.TabIndex = 0;
             this.TRENINGmetroTile35.Text = "Вид\r\nтренировки";
@@ -5094,8 +5443,11 @@
             // 
             // TRENINGmetroTabControl8
             // 
+            this.TRENINGmetroTabControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTabControl8.Controls.Add(this.tabPage28);
-            this.TRENINGmetroTabControl8.Location = new System.Drawing.Point(157, 12);
+            this.TRENINGmetroTabControl8.Location = new System.Drawing.Point(161, 12);
             this.TRENINGmetroTabControl8.Name = "TRENINGmetroTabControl8";
             this.TRENINGmetroTabControl8.SelectedIndex = 0;
             this.TRENINGmetroTabControl8.Size = new System.Drawing.Size(207, 356);
@@ -5117,6 +5469,9 @@
             // TRENINGmetroTile36
             // 
             this.TRENINGmetroTile36.ActiveControl = null;
+            this.TRENINGmetroTile36.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile36.Location = new System.Drawing.Point(13, 115);
             this.TRENINGmetroTile36.Name = "TRENINGmetroTile36";
             this.TRENINGmetroTile36.Size = new System.Drawing.Size(173, 39);
@@ -5131,6 +5486,9 @@
             // TRENINGmetroTile37
             // 
             this.TRENINGmetroTile37.ActiveControl = null;
+            this.TRENINGmetroTile37.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile37.Location = new System.Drawing.Point(13, 64);
             this.TRENINGmetroTile37.Name = "TRENINGmetroTile37";
             this.TRENINGmetroTile37.Size = new System.Drawing.Size(173, 39);
@@ -5145,6 +5503,9 @@
             // TRENINGmetroTile38
             // 
             this.TRENINGmetroTile38.ActiveControl = null;
+            this.TRENINGmetroTile38.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TRENINGmetroTile38.Location = new System.Drawing.Point(13, 13);
             this.TRENINGmetroTile38.Name = "TRENINGmetroTile38";
             this.TRENINGmetroTile38.Size = new System.Drawing.Size(173, 39);
@@ -5170,7 +5531,6 @@
             // metroTile22
             // 
             this.metroTile22.ActiveControl = null;
-            this.metroTile22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTile22.Location = new System.Drawing.Point(0, 222);
             this.metroTile22.Name = "metroTile22";
             this.metroTile22.Size = new System.Drawing.Size(1338, 222);
@@ -5224,6 +5584,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(1315, 5);
             this.pictureBox2.Name = "pictureBox2";
@@ -5234,11 +5595,27 @@
             this.pictureBox2.Visible = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // metroCheckBox1
+            // 
+            this.metroCheckBox1.AutoSize = true;
+            this.metroCheckBox1.Location = new System.Drawing.Point(1216, 40);
+            this.metroCheckBox1.Name = "metroCheckBox1";
+            this.metroCheckBox1.Size = new System.Drawing.Size(92, 15);
+            this.metroCheckBox1.TabIndex = 13;
+            this.metroCheckBox1.Text = "Темная тема";
+            this.metroCheckBox1.UseSelectable = true;
+            this.metroCheckBox1.CheckedChanged += new System.EventHandler(this.metroCheckBox1_CheckedChanged);
+            // 
+            // metroStyleManager1
+            // 
+            this.metroStyleManager1.Owner = this;
+            // 
             // HeadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 788);
+            this.Controls.Add(this.metroCheckBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.metroTabControl1);
@@ -5306,6 +5683,7 @@
             this.metroTile9.PerformLayout();
             this.TRENmetroTabControl5.ResumeLayout(false);
             this.tabPage20.ResumeLayout(false);
+            this.tabPage20.PerformLayout();
             this.metroTile10.ResumeLayout(false);
             this.metroTile10.PerformLayout();
             this.metroTile11.ResumeLayout(false);
@@ -5421,7 +5799,9 @@
             this.tabPage13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -5688,8 +6068,6 @@
         private MetroFramework.Controls.MetroTile ABONmetroTile36;
         private MetroFramework.Controls.MetroTile ABONmetroTile37;
         private MetroFramework.Controls.MetroTile ABONmetroTile38;
-        private MetroFramework.Controls.MetroTabControl ABONmetroTabControl8;
-        private System.Windows.Forms.TabPage tabPage35;
         private MetroFramework.Controls.MetroTile ABONmetroTile39;
         private MetroFramework.Controls.MetroTile ABONmetroTile40;
         private MetroFramework.Controls.MetroTile ABONmetroTile41;
@@ -5768,5 +6146,10 @@
         public System.Windows.Forms.TabPage tabPage38;
         public System.Windows.Forms.TabPage tabPage39;
         public MetroFramework.Controls.MetroGrid EMPLmetroGrid1;
+        public MetroFramework.Controls.MetroTile metroTile18;
+        public System.Windows.Forms.TabPage tabPage35;
+        public MetroFramework.Controls.MetroTabControl ABONmetroTabControl8;
+        public MetroFramework.Controls.MetroCheckBox metroCheckBox1;
+        private MetroFramework.Components.MetroStyleManager metroStyleManager1;
     }
 }

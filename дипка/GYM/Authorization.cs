@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.OleDb;
+using System.Drawing;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using System.IO;
@@ -74,7 +75,7 @@ namespace GYM
                                 this.Hide();
                                 this.Opacity = 0;
                                 (new HeadForm()).ShowDialog();
-
+                                
                                 connection.Close();
                             }
                             else
@@ -98,11 +99,13 @@ namespace GYM
                                     MessageBoxIcon.Information);
                                 var head = new HeadForm();
                                 this.Hide();
-                                head.Show();
-
+                                this.Opacity = 0;
+                                head.metroTile18.Visible = true;
+                                head.tabPage27.Text = @"Тренер";
                                 head.metroTabControl2.Visible = false;
                                 head.metroTabControl3.Visible = false;
                                 head.metroTabControl1.SelectedTab = head.tabPage3;
+                                head.ShowDialog();
                                 connection.Close();
                             }
                             else
@@ -179,6 +182,26 @@ namespace GYM
             {
                 connection.Close();
                 FocusMe();
+            }
+        }
+
+       private void metroCheckBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (metroCheckBox1.Checked)
+            {
+                this.Theme = MetroThemeStyle.Dark;
+                label1.ForeColor = Color.AliceBlue;
+                label2.ForeColor = Color.AliceBlue;
+                Refresh();
+                var head = new HeadForm();
+                head.metroCheckBox1.Checked = true;
+            }
+            else
+            {
+                this.Theme = MetroThemeStyle.Light;
+                label1.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                Refresh();
             }
         }
     }
