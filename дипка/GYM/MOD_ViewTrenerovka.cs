@@ -161,5 +161,10 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModViewTrenerovka_FontChanged(object sender, EventArgs e)
+        {
+         
+        }
     }
 }

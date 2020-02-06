@@ -198,6 +198,7 @@
             this.Opacity = 0.94D;
             this.Text = "Учет посещений";
             this.metroToolTip1.SetToolTip(this, "ESC");
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RecordsOfVisits_FormClosing);
             this.Load += new System.EventHandler(this.VISITS_Load);
             this.Shown += new System.EventHandler(this.RecordsOfVisits_Shown);
             this.Click += new System.EventHandler(this.RecordsOfVisits_Click);

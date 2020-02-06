@@ -215,6 +215,7 @@
             this.Name = "ModAbonement";
             this.Text = "Редактировать абонемент";
             this.Activated += new System.EventHandler(this.ModAbonement_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModAbonement_FormClosing);
             this.Load += new System.EventHandler(this.MOD_Abonement_Load);
             this.Shown += new System.EventHandler(this.ModAbonement_Shown);
             this.Click += new System.EventHandler(this.ModAbonement_Click);

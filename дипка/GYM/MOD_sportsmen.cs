@@ -138,6 +138,11 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModSportsmen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          
+        }
     }
 }
 

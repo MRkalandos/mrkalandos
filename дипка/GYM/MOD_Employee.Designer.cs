@@ -298,7 +298,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(131, 59);
-            this.textBox1.MaxLength = 12;
+            this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 25;
@@ -308,7 +308,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(131, 100);
-            this.textBox2.MaxLength = 12;
+            this.textBox2.MaxLength = 20;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(163, 20);
             this.textBox2.TabIndex = 26;
@@ -318,7 +318,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(131, 140);
-            this.textBox3.MaxLength = 12;
+            this.textBox3.MaxLength = 20;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
             this.textBox3.TabIndex = 27;
@@ -415,6 +415,7 @@
             this.Name = "ModEmployee";
             this.Text = "MOD_Employee";
             this.Activated += new System.EventHandler(this.ModEmployee_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModEmployee_FormClosing);
             this.Load += new System.EventHandler(this.MOD_Employee_Load);
             this.Shown += new System.EventHandler(this.ModEmployee_Shown);
             this.Click += new System.EventHandler(this.ModEmployee_Click);

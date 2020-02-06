@@ -264,6 +264,7 @@
             this.Name = "ModSale";
             this.Text = "Редактировать продажу";
             this.Activated += new System.EventHandler(this.MOD_SALE_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModSale_FormClosing);
             this.Load += new System.EventHandler(this.VISITS_Load);
             this.Shown += new System.EventHandler(this.MOD_SALE_Shown);
             this.Click += new System.EventHandler(this.ModSale_Click);

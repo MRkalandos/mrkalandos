@@ -224,5 +224,10 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModTrener_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        
+        }
     }
 }

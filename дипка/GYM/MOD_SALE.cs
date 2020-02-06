@@ -187,6 +187,11 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModSale_FormClosing(object sender, FormClosingEventArgs e)
+        {
+      
+        }
     }
 }
 

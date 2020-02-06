@@ -153,5 +153,10 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModMoney_FormClosing(object sender, FormClosingEventArgs e)
+        {
+  
+        }
     }
 }

@@ -130,6 +130,7 @@
             this.Name = "ModMoney";
             this.Text = "Добавить зарплату";
             this.Activated += new System.EventHandler(this.ModMoney_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModMoney_FormClosing);
             this.Load += new System.EventHandler(this.AddMoney_Load);
             this.Shown += new System.EventHandler(this.ModMoney_Shown);
             this.Click += new System.EventHandler(this.ModMoney_Click);

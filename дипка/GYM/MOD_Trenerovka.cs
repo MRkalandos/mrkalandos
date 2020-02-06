@@ -174,6 +174,11 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModTrenerovka_FormClosing(object sender, FormClosingEventArgs e)
+        {
+     
+        }
     }
 }
     

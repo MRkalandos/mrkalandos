@@ -51,7 +51,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(149, 149);
-            this.textBox3.MaxLength = 12;
+            this.textBox3.MaxLength = 20;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
             this.textBox3.TabIndex = 41;
@@ -71,7 +71,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(149, 68);
-            this.textBox1.MaxLength = 12;
+            this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 39;
@@ -233,6 +233,7 @@
             this.Name = "ModSportsmen";
             this.Text = "Редактировать спортсмена";
             this.Activated += new System.EventHandler(this.ModSportsmen_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModSportsmen_FormClosing);
             this.Load += new System.EventHandler(this.MOD_Trener_Load);
             this.Shown += new System.EventHandler(this.ModSportsmen_Shown);
             this.Click += new System.EventHandler(this.ModSportsmen_Click);

@@ -47,7 +47,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(133, 63);
-            this.textBox1.MaxLength = 12;
+            this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(149, 20);
             this.textBox1.TabIndex = 49;
@@ -195,6 +195,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModTrenerovka";
             this.Activated += new System.EventHandler(this.ModTrenerovka_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModTrenerovka_FormClosing);
             this.Load += new System.EventHandler(this.MOD_Trenerovka_Load);
             this.Shown += new System.EventHandler(this.ModTrenerovka_Shown);
             this.Click += new System.EventHandler(this.ModTrenerovka_Click);

@@ -157,6 +157,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MOD_VISITS";
             this.Activated += new System.EventHandler(this.MOD_VISITS_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MOD_VISITS_FormClosing);
             this.Load += new System.EventHandler(this.MOD_VISITS_Load);
             this.Shown += new System.EventHandler(this.MOD_VISITS_Shown);
             this.Click += new System.EventHandler(this.MOD_VISITS_Click);

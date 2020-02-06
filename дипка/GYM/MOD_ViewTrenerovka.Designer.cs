@@ -79,7 +79,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(169, 70);
-            this.textBox1.MaxLength = 12;
+            this.textBox1.MaxLength = 20;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(162, 20);
             this.textBox1.TabIndex = 6;
@@ -132,6 +132,7 @@
             this.Activated += new System.EventHandler(this.ModViewTrenerovka_Activated);
             this.Load += new System.EventHandler(this.MOD_View_trenerovka_Load);
             this.Shown += new System.EventHandler(this.ModViewTrenerovka_Shown);
+            this.FontChanged += new System.EventHandler(this.ModViewTrenerovka_FontChanged);
             this.Click += new System.EventHandler(this.ModViewTrenerovka_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ModViewTrenerovka_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

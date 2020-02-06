@@ -202,5 +202,10 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ModAbonement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+         
+        }
     }
 }

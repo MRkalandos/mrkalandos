@@ -144,5 +144,10 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void MOD_VISITS_FormClosing(object sender, FormClosingEventArgs e)
+        {
+         
+        }
     }
 }

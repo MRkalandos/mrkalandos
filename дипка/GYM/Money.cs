@@ -255,6 +255,8 @@ namespace GYM
 
         private void Money_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //var headForm=new HeadForm();
+           
         }
 
         private void Money_Click(object sender, EventArgs e)
@@ -265,6 +267,12 @@ namespace GYM
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             FocusMe();
+        }
+
+        private void Money_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var headForm = (HeadForm)Application.OpenForms[2];
+            headForm.Form2Closed();
         }
     }
 }

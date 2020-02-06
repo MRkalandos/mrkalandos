@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MetroFramework.Forms;
 using System.Data.OleDb;
 using System.IO;
+using System.Linq;
 using MetroFramework;
 
 namespace GYM
@@ -11,6 +13,7 @@ namespace GYM
     {
         private const string TitleException = "Ошибка";
         Inputaccuracy _inputaccuracy = new Inputaccuracy();
+
 
         public ModEmployee()
         {
@@ -165,6 +168,7 @@ namespace GYM
             var money = new Money();
             money.ShowDialog();
         }
+        
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -227,6 +231,11 @@ namespace GYM
         private void ModEmployee_Click(object sender, EventArgs e)
         {
             FocusMe();
+        }
+
+        private void ModEmployee_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }

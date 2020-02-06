@@ -310,6 +310,26 @@ namespace GYM
                 HelperLog.Write(exception.Message);
             }
         }
+        public void Form2Closed()
+        {
+            SPORTMmetroComboBox1.SelectedIndex = 0;
+            UpdTrener();
+            UpdEmployee();
+            UpdSportsmen();
+            UpdTrening();
+            UpdAbonement();
+            UpdSale();
+            T9EmplSurname();
+            T9TrenName();
+            T9EmplName();
+            T9TrenSurname();
+            T9SportmSurname();
+            T9SportmName();
+            T9treningName();
+            T9viewtreningName();
+            T9AbonName();
+            this.Activate();
+        }
 
         public void T9EmplSurname()
         {
@@ -550,9 +570,30 @@ namespace GYM
             }
         }
 
+        public void GlobalUpdate()
+        {
+            UpdTrener();
+            UpdEmployee();
+            UpdSportsmen();
+            UpdTrening();
+            UpdAbonement();
+            UpdSale();
+            T9EmplSurname();
+            T9TrenName();
+            T9EmplName();
+            T9TrenSurname();
+            T9SportmSurname();
+            T9SportmName();
+            T9treningName();
+            T9viewtreningName();
+            T9AbonName();
+            this.Activate();
+        }
+
         private void HeadeForm_Load(object sender, EventArgs e)
         {
             SPORTMmetroComboBox1.SelectedIndex = 0;
+            this.ShowInTaskbar = true;
             UpdTrener();
             UpdEmployee();
             UpdSportsmen();
@@ -673,6 +714,11 @@ namespace GYM
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile5_Click(object sender, EventArgs e)
@@ -741,6 +787,10 @@ namespace GYM
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                }
         }
 
         private void metroTile6_Click(object sender, EventArgs e)
@@ -774,6 +824,10 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
                 }
             }
         }
@@ -1390,7 +1444,7 @@ namespace GYM
             }
         }
 
-        private void metroTile7_Click(object sender, EventArgs e)
+        public void metroTile7_Click(object sender, EventArgs e)
         {
             var money = new Money();
             money.ShowDialog();
@@ -1471,6 +1525,7 @@ namespace GYM
                 try
                 {
                     SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
+                    connection.Close();
                     connection.Open();
                     var queryAddSportsmen = new OleDbCommand(@"INSERT INTO [спортсмен]
                                                         ( Фамилия, Имя, Отчество, Телефон, Дата_рождения, Пол)
@@ -1492,6 +1547,11 @@ namespace GYM
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile40_Click(object sender, EventArgs e)
@@ -1512,6 +1572,7 @@ namespace GYM
                 try
                 {
                     SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
+                    connection.Close();
                     connection.Open();
                     var queryUpdateSportsmen =
                         new OleDbCommand(
@@ -1534,6 +1595,11 @@ namespace GYM
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile39_Click(object sender, EventArgs e)
@@ -1550,6 +1616,7 @@ namespace GYM
                     }
                     else
                     {
+                        connection.Close();
                         connection.Open();
                         Debug.Assert(SPORTMmetroGrid2.CurrentRow != null, "Таблица пуста");
                         idSportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
@@ -1565,6 +1632,11 @@ namespace GYM
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
             }
         }
@@ -2242,6 +2314,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             if (objTrenerAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
+                    connection.Close();
                     TRENmetroGrid1.Sort(TRENmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryAddTrener = new OleDbCommand(@"INSERT INTO [тренер]
@@ -2259,7 +2332,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     queryAddTrener.Parameters.AddWithValue("photo", objTrenerAdd.metroTextBox6.Text);
                     queryAddTrener.Parameters.AddWithValue("money", Convert.ToInt32(objTrenerAdd.metroTextBox1.Text));
                     queryAddTrener.ExecuteNonQuery();
-                    connection.Close();
                     UpdTrener();
                 }
                 catch (Exception exception)
@@ -2267,6 +2339,10 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
                 }
         }
 
@@ -2289,6 +2365,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             if (objTrenerUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
+                    connection.Close();
                     TRENmetroGrid1.Sort(TRENmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryUpdateTrener =
@@ -2317,6 +2394,10 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                }
         }
 
         private void metroTile17_Click_1(object sender, EventArgs e)
@@ -2333,6 +2414,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     }
                     else
                     {
+                        connection.Close();
                         connection.Open();
                         Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idTrener = Convert.ToInt32(TRENmetroGrid1.CurrentRow.Cells[0].Value);
@@ -2348,6 +2430,10 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
                 }
             }
         }
@@ -2946,6 +3032,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 textBox1 = {Text = ""}, Text = @"Добавить тренировку", metroTile1 = {Text = @"Добавить"}
             };
+            connection.Close();
             connection.Open();
             var cmd =
                 new OleDbCommand(@"SELECT Вид_тренировки.Идвидтренировка, Вид_тренировки.Название FROM Вид_тренировки;",
@@ -3002,6 +3089,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
         }
 
@@ -3075,6 +3167,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile36_Click_1(object sender, EventArgs e)
@@ -3107,6 +3204,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
             }
         }
@@ -3614,6 +3716,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile40_Click_1(object sender, EventArgs e)
@@ -3671,6 +3778,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile39_Click_1(object sender, EventArgs e)
@@ -3703,6 +3815,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
             }
         }
@@ -4210,6 +4327,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
         private void metroTile51_Click(object sender, EventArgs e)
         {
             var objSaleAdd = new ModSale {Text = @"Добавить продажу", metroTile1 = {Text = @"Добавить"}};
+            connection.Close();
             connection.Open();
             var cmd = new OleDbCommand("SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия FROM Сотрудник;", connection);
             objSaleAdd.metroComboBox1.DisplayMember = "Фамилия";
@@ -4289,6 +4407,11 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
         }
 
@@ -4386,6 +4509,11 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
                 }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
+                }
         }
 
         private void metroTile49_Click(object sender, EventArgs e)
@@ -4418,6 +4546,11 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     HelperLog.Write(exception.Message);
+                }
+                finally
+                {
+                    GlobalUpdate();
+                    connection.Close();
                 }
             }
         }
@@ -5112,6 +5245,11 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         }
 
         private void SALEmetroContextMenu1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void EMPLmetroGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -299,6 +299,11 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
         {
             FocusMe();
         }
+
+        private void RecordsOfVisits_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }
 

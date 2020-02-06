@@ -217,6 +217,7 @@
             this.Text = "Зарплата";
             this.metroToolTip1.SetToolTip(this, "Esc");
             this.Activated += new System.EventHandler(this.Money_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Money_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Money_FormClosed);
             this.Load += new System.EventHandler(this.Money_Load);
             this.Shown += new System.EventHandler(this.Money_Shown);

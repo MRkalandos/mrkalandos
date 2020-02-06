@@ -255,5 +255,11 @@ namespace GYM
         {
             FocusMe();
         }
+
+        private void ViewTrening_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var headForm = (HeadForm)Application.OpenForms[2];
+            headForm.Form2Closed();
+        }
     }
 }
