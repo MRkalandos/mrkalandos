@@ -33,7 +33,7 @@ namespace GYM
                 }
                 catch (Exception exception)
                 {
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                     FocusMe();
                 }
 
@@ -55,7 +55,7 @@ namespace GYM
                 MetroMessageBox.Show(this, "Сообщение не отправлено на почту" + metroTextBox4.Text, "Не отправлено",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
                 FocusMe();
             }
         }
@@ -75,7 +75,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -151,7 +151,7 @@ namespace GYM
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -207,7 +207,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

@@ -8,6 +8,7 @@ namespace GYM
 {
     public partial class ModAbonement : MetroFramework.Forms.MetroForm
     {
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
         Inputaccuracy _inputaccuracy = new Inputaccuracy();
         private const string TitleException = "Ошибка";
         private const string Message = @"Неверный тип данных";
@@ -38,10 +39,6 @@ namespace GYM
             {
                 try
                 {
-                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                             ?.FullName +
-                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                     connection.Open();
                     var queryFindCloneAbonement = new OleDbCommand(@"select *  
                                                                       from [Абонемент] 
@@ -52,7 +49,7 @@ namespace GYM
                     queryFindCloneAbonement.ExecuteNonQuery();
                     if (queryFindCloneAbonement.ExecuteScalar() != null)
                     {
-                        connection.Close();
+                        
                         MetroMessageBox.Show(this, "\nТакое название уже существует", TitleException,
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -65,11 +62,12 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
+                    connection.Close();
                 }
             }
         }
@@ -161,7 +159,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

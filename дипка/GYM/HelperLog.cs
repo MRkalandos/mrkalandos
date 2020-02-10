@@ -11,7 +11,7 @@ namespace GYM
         {
             public static void Write(string exceptionMessage)
             {
-                File.AppendAllText(Path(), $@"{GetDate()}:{exceptionMessage}");
+                File.AppendAllText(Path(), $@"{GetDate()}:{exceptionMessage}"+"\n");
             }
             private static string GetDate()
             {

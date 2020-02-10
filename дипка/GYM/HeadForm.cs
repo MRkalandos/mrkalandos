@@ -10,16 +10,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
+using System.Windows.Input;
 using MetroFramework;
 using Microsoft.Office.Interop.Excel;
+using Microsoft.VisualBasic.Devices;
 using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
+using Keyboard = System.Windows.Input.Keyboard;
+using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
 
 
 namespace GYM
 {
     public partial class HeadForm : MetroFramework.Forms.MetroForm
     {
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
         readonly Inputaccuracy _inputaccuracy = new Inputaccuracy();
         public int idSportsmen;
         public int idTrenerovka;
@@ -33,16 +38,6 @@ namespace GYM
         public DataTable dataTableAbonement;
         public DataTable dataTableTrener;
         public DataTable dataTableTrenerovka;
-
-        public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                                Directory.GetParent(Directory.GetCurrentDirectory())
-                                                                    .Parent?.FullName +
-                                                                "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-
-        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                   Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
-                                   "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-
         public OleDbDataAdapter dataAdapterEmployee;
         public OleDbDataAdapter dataAdapterSale;
         public OleDbDataAdapter dataAdapterSportsmen;
@@ -55,6 +50,7 @@ namespace GYM
         {
             InitializeComponent();
             this.KeyPreview = true;
+            this.ShowInTaskbar = true;
         }
 
         public void UpdSportsmen()
@@ -66,7 +62,7 @@ namespace GYM
                 dataTableSportsmen = new DataTable();
                 dataAdapterSportsmen.Fill(dataTableSportsmen);
                 SPORTMmetroGrid2.DataSource = dataTableSportsmen;
-                SPORTMmetroGrid2.Columns[0].Visible = false;
+                SPORTMmetroGrid2.Columns[0].Visible = false; //("{Tab}", (ModifierKeys & Keys.Alt) != 0);
                 SPORTMmetroGrid2.Select();
                 SPORTMmetroGrid2.AllowUserToAddRows = false;
                 SPORTMmetroTabControl12.Enabled = true;
@@ -92,7 +88,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -132,7 +128,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -177,7 +173,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -214,7 +210,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -257,7 +253,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -307,7 +303,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
         public void Form2Closed()
@@ -325,8 +321,8 @@ namespace GYM
             T9TrenSurname();
             T9SportmSurname();
             T9SportmName();
-            T9treningName();
-            T9viewtreningName();
+            T9TreningName();
+            T9ViewtreningName();
             T9AbonName();
             this.Activate();
         }
@@ -335,26 +331,16 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct фамилия FROM сотрудник", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-                EMPLtextBox2.AutoCompleteCustomSource = Collection;
-                EMPLtextBox3.AutoCompleteCustomSource = Collection;
-                EMPLtextBox5.AutoCompleteCustomSource = Collection;
-                SALEtextBox4.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct фамилия FROM сотрудник");
+                EMPLtextBox2.AutoCompleteCustomSource = collection;
+                EMPLtextBox3.AutoCompleteCustomSource = collection;
+                EMPLtextBox5.AutoCompleteCustomSource = collection;
+                SALEtextBox4.AutoCompleteCustomSource = collection;
+
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -362,26 +348,16 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct фамилия FROM спортсмен", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-                SALEtextBox5.AutoCompleteCustomSource = Collection;
-                SPORTMtextBox10.AutoCompleteCustomSource = Collection;
-                SPORTMtextBox9.AutoCompleteCustomSource = Collection;
-                SPORTMtextBox6.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct фамилия FROM спортсмен");
+                SALEtextBox5.AutoCompleteCustomSource = collection;
+                SPORTMtextBox10.AutoCompleteCustomSource = collection;
+                SPORTMtextBox9.AutoCompleteCustomSource = collection;
+                SPORTMtextBox6.AutoCompleteCustomSource = collection;
+             
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -389,25 +365,14 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct имя FROM спортсмен", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-               
-                SPORTMtextBox1.AutoCompleteCustomSource = Collection;
-                SPORTMtextBox7.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct имя FROM спортсмен");
+
+                SPORTMtextBox1.AutoCompleteCustomSource = collection;
+                SPORTMtextBox7.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -415,51 +380,58 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Имя FROM сотрудник", connection);
+                var collection = GetCollection("SELECT distinct Имя FROM сотрудник");
+
+                EMPLtextBox4.AutoCompleteCustomSource = collection;
+                EMPLtextBox8.AutoCompleteCustomSource = collection;
+               
+            }
+            catch (Exception exception)
+            {
+                HelperLog.Write(exception.ToString());
+            }
+        }
+
+        private AutoCompleteStringCollection GetCollection(string query)
+        {
+            var collection = new AutoCompleteStringCollection();
+
+            try
+            {
+                var cmd = new OleDbCommand(query, connection);
                 connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
+                var dataReader = cmd.ExecuteReader();
+               
                 while (dataReader.Read())
                 {
-                    Collection.Add(dataReader.GetString(0));
+                    collection.Add(dataReader.GetString(0));
                 }
 
-                EMPLtextBox4.AutoCompleteCustomSource = Collection;
-                EMPLtextBox8.AutoCompleteCustomSource = Collection;
                 dataReader.Close();
                 connection.Close();
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
+            finally
+            {
+                connection.Close();
+            }
+            return collection;
         }
 
         public void T9TrenName()
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Имя FROM Тренер", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-
-                TRENtextBox4.AutoCompleteCustomSource = Collection;
-                TRENtextBox2.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct Имя FROM Тренер");
+                TRENtextBox4.AutoCompleteCustomSource = collection;
+                TRENtextBox2.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -467,27 +439,16 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Фамилия FROM Тренер", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-
-                TRENINGtextBox4.AutoCompleteCustomSource = Collection;
-                TRENtextBox3.AutoCompleteCustomSource = Collection;
-                TRENtextBox5.AutoCompleteCustomSource = Collection;
-                TRENtextBox8.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+             var collection = GetCollection("SELECT distinct Фамилия FROM Тренер");
+              
+                TRENINGtextBox4.AutoCompleteCustomSource = collection;
+                TRENtextBox3.AutoCompleteCustomSource = collection;
+                TRENtextBox5.AutoCompleteCustomSource = collection;
+                TRENtextBox8.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -496,77 +457,44 @@ namespace GYM
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Название FROM абонемент", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-                //TRENINGtextBox4.AutoCompleteCustomSource = Collection;
-                ABONtextBox8.AutoCompleteCustomSource = Collection;
-                ABONtextBox5.AutoCompleteCustomSource = Collection;
-                SALEtextBox6.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct Название FROM абонемент");
+                ABONtextBox8.AutoCompleteCustomSource = collection;
+                ABONtextBox5.AutoCompleteCustomSource = collection;
+                SALEtextBox6.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
-        public void T9treningName()
+        public void T9TreningName()
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Название FROM тренировка", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-                TRENINGtextBox6.AutoCompleteCustomSource = Collection;
-                ABONtextBox3.AutoCompleteCustomSource = Collection;
-                TRENINGtextBox3.AutoCompleteCustomSource = Collection;
-                dataReader.Close();
-                connection.Close();
+                var collection = GetCollection("SELECT distinct Название FROM тренировка");
+                TRENINGtextBox6.AutoCompleteCustomSource = collection;
+                ABONtextBox3.AutoCompleteCustomSource = collection;
+                TRENINGtextBox3.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
-        public void T9viewtreningName()
+        public void T9ViewtreningName()
         {
             try
             {
-                OleDbCommand cmd;
-                OleDbDataReader dataReader;
-                cmd = new OleDbCommand("SELECT distinct Название FROM Вид_тренировки", connection);
-                connection.Open();
-                dataReader = cmd.ExecuteReader();
-                var Collection = new AutoCompleteStringCollection();
-                while (dataReader.Read())
-                {
-                    Collection.Add(dataReader.GetString(0));
-                }
-                TRENINGtextBox5.AutoCompleteCustomSource = Collection;
+
+                var collection = GetCollection("SELECT distinct Название FROM Вид_тренировки");
                
-                dataReader.Close();
-                connection.Close();
+                TRENINGtextBox5.AutoCompleteCustomSource = collection;
             }
             catch (Exception exception)
             {
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -584,16 +512,18 @@ namespace GYM
             T9TrenSurname();
             T9SportmSurname();
             T9SportmName();
-            T9treningName();
-            T9viewtreningName();
+            T9TreningName();
+            T9ViewtreningName();
             T9AbonName();
             this.Activate();
         }
 
         private void HeadeForm_Load(object sender, EventArgs e)
         {
+            ShowIcon = true;
+            ShowInTaskbar = true;
             SPORTMmetroComboBox1.SelectedIndex = 0;
-            this.ShowInTaskbar = true;
+           // this.ShowInTaskbar = true;
             UpdTrener();
             UpdEmployee();
             UpdSportsmen();
@@ -606,8 +536,8 @@ namespace GYM
             T9TrenSurname();
             T9SportmSurname();
             T9SportmName();
-            T9treningName();
-            T9viewtreningName();
+            T9TreningName();
+            T9ViewtreningName();
             T9AbonName();
             this.Activate();
         }
@@ -617,7 +547,7 @@ namespace GYM
         {
             try
             {
-                var dbConnection = new OleDbConnection(conString);
+                var dbConnection = new OleDbConnection(ConnectionDb.conString());
                 dbConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -648,8 +578,9 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
+
         }
 
         private void metroTile4_Click(object sender, EventArgs e)
@@ -667,7 +598,6 @@ namespace GYM
                 Text = @"Добавить сотрудника",
                 metroTile1 = {Text = @"Добавить"}
             };
-            connection.Close();
             connection.Open();
             var cmd = new OleDbCommand("select идзарплата,зарплата from зарплата_сотрудника", connection);
             objEmployeeAdd.metroComboBox1.DisplayMember = "Зарплата";
@@ -683,12 +613,10 @@ namespace GYM
             objEmployeeAdd.metroComboBox1.DataSource = list.ToList();
             objEmployeeAdd.metroComboBox1.DisplayMember = "Value";
             objEmployeeAdd.metroComboBox1.ValueMember = "Key";
-            connection.Close();
             if (objEmployeeAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
                     EMPLmetroGrid1.Sort(EMPLmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryAddEmployee = new OleDbCommand(@"INSERT INTO [Сотрудник]
                                                         ( Фамилия, Имя,  Отчество, Должность, Телефон, Дата, Пароль,Фото,  Идзарплата)
                                                   VALUES(@surname, @name,@patryon, @position, @tel,    @date,@pas,  @photo,@idmoney)",
@@ -705,14 +633,13 @@ namespace GYM
                     queryAddEmployee.Parameters.AddWithValue("idmoney",
                         Convert.ToInt32(objEmployeeAdd.metroComboBox1.SelectedValue.ToString()));
                     queryAddEmployee.ExecuteNonQuery();
-                    connection.Close();
                     UpdEmployee();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -724,7 +651,6 @@ namespace GYM
         private void metroTile5_Click(object sender, EventArgs e)
         {
             var objEmployeeUpdate = new ModEmployee();
-            connection.Close();
             objEmployeeUpdate.Text = @"Редактировать сотрудника";
             objEmployeeUpdate.metroTile1.Text = @"Редактировать";
             Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
@@ -747,10 +673,8 @@ namespace GYM
             {
                 list.Add((int) reader[0], (int) reader[1]);
             }
-
             reader.Close();
             cmd.ExecuteNonQuery();
-            connection.Close();
             objEmployeeUpdate.metroComboBox1.DataSource = list.ToList();
             objEmployeeUpdate.metroComboBox1.DisplayMember = "Value";
             objEmployeeUpdate.metroComboBox1.ValueMember = "Key";
@@ -758,9 +682,7 @@ namespace GYM
             if (objEmployeeUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     EMPLmetroGrid1.Sort(EMPLmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryUpdateEmployee =
                         new OleDbCommand(
                             "update Сотрудник set Фамилия=@name, Имя=@surname, Отчество=@patryon, Должность=@position,Телефон=@telephon, Дата=@date,Пароль=@pass,Фото=@photo,Идзарплата=@idmoney where идсотрудник=" +
@@ -778,17 +700,17 @@ namespace GYM
                     queryUpdateEmployee.Parameters.AddWithValue("idmoney",
                         Convert.ToInt32(objEmployeeUpdate.metroComboBox1.SelectedValue));
                     queryUpdateEmployee.ExecuteNonQuery();
-                    connection.Close();
                     UpdEmployee();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
+                    connection.Close();
                     GlobalUpdate();
                 }
         }
@@ -807,14 +729,12 @@ namespace GYM
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(EMPLmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idEmployee = Convert.ToInt32(EMPLmetroGrid1.CurrentRow.Cells[0].Value);
                         var queryDeleteEmployee = new OleDbCommand(@"DELETE FROM сотрудник 
                                                     WHERE идсотрудник=" + idEmployee + "", connection);
                         queryDeleteEmployee.ExecuteNonQuery();
-                        connection.Close();
                         UpdEmployee();
                     }
                 }
@@ -823,10 +743,11 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
+                    connection.Close();
                     GlobalUpdate();
                 }
             }
@@ -838,9 +759,9 @@ namespace GYM
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.UpdEmployee();
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
-            var excelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            var excelWorkSheet = (Worksheet) excelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet excelWorkSheet = (Worksheet) excelWorkBook.Worksheets.get_Item(1);
             excelWorkSheet.StandardWidth = 17;
             excelWorkSheet.Name = "Сотрудники";
             excelApp.Cells[1, 1] = "Фамилия";
@@ -912,7 +833,7 @@ namespace GYM
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -923,12 +844,12 @@ namespace GYM
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/Employee.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application {Visible = true};
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application {Visible = true};
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
-                var table = doc.Tables.Add(range, EMPLmetroGrid1.RowCount + 1, 8);
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, EMPLmetroGrid1.RowCount + 1, 8);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Фамилия";
                 table.Cell(1, 2).Range.Text = "Имя";
@@ -1006,7 +927,7 @@ namespace GYM
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -1014,14 +935,14 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1055,7 +976,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1075,8 +996,8 @@ namespace GYM
             try
             {
                 EMPLmetroTile3.Visible = true;
-                var conn = new OleDbConnection(conString);
-                conn.Open();
+                var connection = new OleDbConnection(ConnectionDb.conString());
+                connection.Open();
                 var ds = new DataSet();
                 string date1 = EMPLmetroDateTime1.Value.ToString("MM/dd/yyyy").Replace('.', '/');
                 string date2 = EMPLmetroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -1085,10 +1006,9 @@ namespace GYM
                     var adapter = new OleDbDataAdapter(
                         $@"SELECT Сотрудник.Фамилия, Сотрудник.Имя, Сотрудник.Отчество, Сотрудник.Должность, Сотрудник.Телефон, Сотрудник.Дата, Сотрудник.Пароль, Зарплата_сотрудника.Зарплата ,Сотрудник.Фото
                                   FROM Зарплата_сотрудника INNER JOIN Сотрудник ON Зарплата_сотрудника.Идзарплата = Сотрудник.Идзарплата
-                                  WHERE сотрудник.Дата Between #{date1}# and #{date2}#", conn);
+                                  WHERE сотрудник.Дата Between #{date1}# and #{date2}#", connection);
                     adapter.Fill(ds);
                     EMPLmetroGrid1.DataSource = ds.Tables[0];
-                    conn.Close();
                     EMPLmetroTabControl5.Enabled = false;
                     EMPLmetroTabControl7.Enabled = false;
                     EMPLmetroTabControl8.Enabled = false;
@@ -1114,7 +1034,11 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -1208,7 +1132,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -1254,7 +1178,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -1301,7 +1225,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -1316,7 +1240,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1335,7 +1259,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1343,7 +1267,7 @@ namespace GYM
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -1367,7 +1291,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1375,7 +1299,7 @@ namespace GYM
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -1402,7 +1326,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1410,7 +1334,7 @@ namespace GYM
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -1440,7 +1364,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1455,7 +1379,7 @@ namespace GYM
             try
             {
                 EMPLmetroTile3.Visible = true;
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 if (Convert.ToInt32(EMPLmetroTextBox6.Text) < Convert.ToInt32(EMPLmetroTextBox7.Text))
@@ -1493,7 +1417,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1525,7 +1449,6 @@ namespace GYM
                 try
                 {
                     SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
-                    connection.Close();
                     connection.Open();
                     var queryAddSportsmen = new OleDbCommand(@"INSERT INTO [спортсмен]
                                                         ( Фамилия, Имя, Отчество, Телефон, Дата_рождения, Пол)
@@ -1538,14 +1461,13 @@ namespace GYM
                         Convert.ToDateTime(objSportsmenAdd.metroDateTime1.Text));
                     queryAddSportsmen.Parameters.AddWithValue("st6", objSportsmenAdd.metroComboBox1.Text);
                     queryAddSportsmen.ExecuteNonQuery();
-                    connection.Close();
                     UpdSportsmen();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -1572,7 +1494,6 @@ namespace GYM
                 try
                 {
                     SPORTMmetroGrid2.Sort(SPORTMmetroGrid2.Columns[1], ListSortDirection.Ascending);
-                    connection.Close();
                     connection.Open();
                     var queryUpdateSportsmen =
                         new OleDbCommand(
@@ -1586,14 +1507,13 @@ namespace GYM
                         Convert.ToDateTime(objSportsmenUpdate.metroDateTime1.Text));
                     queryUpdateSportsmen.Parameters.AddWithValue("sex", objSportsmenUpdate.metroComboBox1.Text);
                     queryUpdateSportsmen.ExecuteNonQuery();
-                    connection.Close();
                     UpdSportsmen();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -1616,7 +1536,6 @@ namespace GYM
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(SPORTMmetroGrid2.CurrentRow != null, "Таблица пуста");
                         idSportsmen = Convert.ToInt32(SPORTMmetroGrid2.CurrentRow.Cells[0].Value);
@@ -1624,14 +1543,13 @@ namespace GYM
                                                     WHERE идспортсмен=" + idSportsmen + "", connection);
                         queryDeleteSportsmen.ExecuteNonQuery();
                         UpdSportsmen();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -1646,12 +1564,10 @@ namespace GYM
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.UpdEmployee();
-            string path = Directory.GetCurrentDirectory() + @"\" + "report/Sportsmen.docx";
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/Sportsmen.xlsx";
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook ExcelWorkBook;
-            Worksheet ExcelWorkSheet;
-            ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet = (Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             ExcelWorkSheet.StandardWidth = 17;
             ExcelWorkSheet.Name = "Спортсмен";
             excelApp.Cells[1, 1] = "Фамилия";
@@ -1719,7 +1635,7 @@ namespace GYM
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -1730,12 +1646,12 @@ namespace GYM
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/Sportsmen.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application {Visible = true};
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application { Visible = true };
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
-                var table = doc.Tables.Add(range, SPORTMmetroGrid2.RowCount + 1, 6);
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, SPORTMmetroGrid2.RowCount + 1, 6);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Фамилия";
                 table.Cell(1, 2).Range.Text = "Имя";
@@ -1812,7 +1728,7 @@ namespace GYM
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -1820,14 +1736,14 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1897,7 +1813,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -1936,7 +1852,7 @@ namespace GYM
                 SPORTMmetroTabControl9.Enabled = false;
                 metroTile34.Enabled = false;
                 metroTile32.Enabled = false;
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 string date1 = SPORTMmetroDateTime3.Value.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -1968,7 +1884,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2000,7 +1916,7 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        HelperLog.Write(exception.Message);
+                        HelperLog.Write(exception.ToString());
                     }
 
                     break;
@@ -2031,7 +1947,7 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        HelperLog.Write(exception.Message);
+                        HelperLog.Write(exception.ToString());
                     }
 
                     break;
@@ -2048,7 +1964,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2094,7 +2010,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2136,7 +2052,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2179,7 +2095,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2193,7 +2109,7 @@ namespace GYM
                 SPORTMmetroTabControl9.Enabled = false;
                 SPORTMmetroTabControl10.Enabled = false;
                 SPORTMmetroTabControl14.Enabled = false;
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -2219,7 +2135,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2230,7 +2146,7 @@ namespace GYM
             SPORTMmetroTabControl9.Enabled = false;
             SPORTMmetroTabControl10.Enabled = false;
             SPORTMmetroTabControl14.Enabled = false;
-            var selectConnection = new OleDbConnection(conString);
+            var selectConnection = new OleDbConnection(ConnectionDb.conString());
             selectConnection.Open();
             var dataSet = new DataSet();
             try
@@ -2248,7 +2164,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, "\nЗапрос не дал результатов", "Запрос пуст",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     UpdSportsmen();
                 }
             }
@@ -2256,7 +2171,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2269,7 +2184,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 SPORTMmetroTabControl9.Enabled = false;
                 SPORTMmetroTabControl10.Enabled = false;
                 SPORTMmetroTabControl14.Enabled = false;
-                var dbConnection = new OleDbConnection(conString);
+                var dbConnection = new OleDbConnection(ConnectionDb.conString());
                 dbConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(@" SELECT Идспортсмен, Фамилия, Имя, Отчество,
@@ -2291,13 +2206,13 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
         private void metroTile19_Click_1(object sender, EventArgs e)
         {
-            Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
+           // Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objTrenerAdd = new ModTrener
             {
                 textBox1 = {Text = ""},
@@ -2314,7 +2229,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             if (objTrenerAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
+                    
                     TRENmetroGrid1.Sort(TRENmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryAddTrener = new OleDbCommand(@"INSERT INTO [тренер]
@@ -2338,11 +2253,12 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     GlobalUpdate();
+                    connection.Close();
                 }
         }
 
@@ -2365,7 +2281,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             if (objTrenerUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     TRENmetroGrid1.Sort(TRENmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryUpdateTrener =
@@ -2385,18 +2300,18 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     queryUpdateTrener.Parameters.AddWithValue("money",
                         Convert.ToInt32(objTrenerUpdate.metroTextBox1.Text));
                     queryUpdateTrener.ExecuteNonQuery();
-                    connection.Close();
                     UpdTrener();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     GlobalUpdate();
+                    connection.Close();
                 }
         }
 
@@ -2414,7 +2329,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(TRENmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idTrener = Convert.ToInt32(TRENmetroGrid1.CurrentRow.Cells[0].Value);
@@ -2422,18 +2336,18 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                                                     WHERE идтренер=" + idTrener + "", connection);
                         queryDeleteTrener.ExecuteNonQuery();
                         UpdTrener();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     GlobalUpdate();
+                    connection.Close();
                 }
             }
         }
@@ -2443,11 +2357,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.UpdEmployee();
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook ExcelWorkBook;
-            Worksheet ExcelWorkSheet;
-            ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet = (Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             ExcelWorkSheet.StandardWidth = 17;
             ExcelWorkSheet.Name = "Тренер";
             excelApp.Cells[1, 1] = "Фамилия";
@@ -2470,10 +2382,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     excelApp.Cells[i + 1, 7] = TRENmetroGrid1.Rows[i - 1].Cells[7].Value;
                     excelApp.Cells[i + 1, 8] = TRENmetroGrid1.Rows[i - 1].Cells[9].Value;
                 }
-
                 excelApp.Visible = true;
                 excelApp.UserControl = true;
-                string path = Directory.GetCurrentDirectory() + @"\" + "report/Trener.docx";
+                string path = Directory.GetCurrentDirectory() + @"\" + "report/Trener.xlsx";
                 if (File.Exists(path))
                 {
                     File.Delete(path);
@@ -2518,7 +2429,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -2529,9 +2440,9 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/Trener.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application {Visible = true};
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application { Visible = true };
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
                 Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, TRENmetroGrid1.RowCount + 1, 8);
@@ -2560,7 +2471,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     table.Cell(i + 1, 7).Range.Text = TRENmetroGrid1.Rows[i - 1].Cells[7].Value.ToString();
                     table.Cell(i + 1, 8).Range.Text = TRENmetroGrid1.Rows[i - 1].Cells[9].Value.ToString();
                 }
-
                 try
                 {
                     if (File.Exists(path))
@@ -2610,7 +2520,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -2618,14 +2528,14 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2718,7 +2628,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2726,7 +2636,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 string date1 = TRENmetroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -2763,7 +2673,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2771,7 +2681,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 if (Convert.ToInt32(TRENmetroTextBox3.Text) < Convert.ToInt32(TRENmetroTextBox2.Text))
@@ -2807,7 +2717,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2849,7 +2759,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2891,7 +2801,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2935,7 +2845,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -2955,7 +2865,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2969,7 +2879,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -2977,11 +2887,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
-                    @"SELECT Тренер.Фамилия, Тренер.Имя, Тренер.Отчество, Спортсмен.Фамилия, Спортсмен.Имя, Спортсмен.Отчество,Тренировка.Название,тренер.Телефон,Тренер.Фото
+                    @"SELECT Тренер.Фамилия as [Фамилия тренера], Тренер.Имя as [Имя тренера], Тренер.Отчество as [Отчество тренера], Спортсмен.Фамилия as [Фамилия спортсмена], Спортсмен.Имя as [Имя спортсмена], Спортсмен.Отчество as [Отчество спортсмена],Тренировка.Название as [Тренировка],тренер.Телефон as [Телефон тренера],Тренер.Фото
                                                   FROM Спортсмен 
                                                    INNER JOIN (((Тренер INNER JOIN Тренировка ON Тренер.Идтренер = Тренировка.Идтренер)
                                                     INNER JOIN Абонемент ON Тренировка.Идтренировка = Абонемент.Идтренеровка) 
@@ -3010,7 +2920,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -3032,7 +2942,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             {
                 textBox1 = {Text = ""}, Text = @"Добавить тренировку", metroTile1 = {Text = @"Добавить"}
             };
-            connection.Close();
             connection.Open();
             var cmd =
                 new OleDbCommand(@"SELECT Вид_тренировки.Идвидтренировка, Вид_тренировки.Название FROM Вид_тренировки;",
@@ -3050,8 +2959,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             objTrenerovkaAdd.metroComboBox1.DataSource = list.ToList();
             objTrenerovkaAdd.metroComboBox1.DisplayMember = "Value";
             objTrenerovkaAdd.metroComboBox1.ValueMember = "Key";
-            connection.Close();
-            connection.Open();
             var cmd1 = new OleDbCommand(@"SELECT Тренер.Идтренер, Тренер.Фамилия FROM Тренер;", connection);
             objTrenerovkaAdd.metroComboBox2.DisplayMember = "Фамилия";
             var reader1 = cmd1.ExecuteReader();
@@ -3066,12 +2973,10 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             objTrenerovkaAdd.metroComboBox2.DataSource = list1.ToList();
             objTrenerovkaAdd.metroComboBox2.DisplayMember = "Value";
             objTrenerovkaAdd.metroComboBox2.ValueMember = "Key";
-            connection.Close();
             if (objTrenerovkaAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
                     TRENINGmetroGrid1.Sort(TRENINGmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryAddTrening = new OleDbCommand(@"INSERT INTO [тренировка]
                                                         ( Название, Идвидтренировка, Идтренер)
                                                         VALUES(@name,@idtrening,@idtrener)", connection);
@@ -3081,14 +2986,13 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     queryAddTrening.Parameters.AddWithValue("idtrener",
                         Convert.ToInt32(objTrenerovkaAdd.metroComboBox2.SelectedValue.ToString()));
                     queryAddTrening.ExecuteNonQuery();
-                    connection.Close();
                     UpdTrening();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3100,7 +3004,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
         private void metroTile37_Click_1(object sender, EventArgs e)
         {
             var objTrenerovkaUpdate = new ModTrenerovka();
-            connection.Close();
             objTrenerovkaUpdate.Text = @"Редактировать тренировку";
             objTrenerovkaUpdate.metroTile1.Text = @"Редактировать";
             Debug.Assert(TRENINGmetroGrid1.CurrentRow != null, "Таблица пуста");
@@ -3124,8 +3027,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             objTrenerovkaUpdate.metroComboBox1.DisplayMember = "Value";
             objTrenerovkaUpdate.metroComboBox1.ValueMember = "Key";
             objTrenerovkaUpdate.metroComboBox1.SelectedValue = TRENINGmetroGrid1.CurrentRow.Cells[5].Value;
-            connection.Close();
-            connection.Open();
             var cmd1 = new OleDbCommand(@"SELECT Тренер.Идтренер, Тренер.Фамилия FROM Тренер;", connection);
             objTrenerovkaUpdate.metroComboBox2.DisplayMember = "Фамилия";
             var reader1 = cmd1.ExecuteReader();
@@ -3141,13 +3042,10 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             objTrenerovkaUpdate.metroComboBox2.DisplayMember = "Value";
             objTrenerovkaUpdate.metroComboBox2.ValueMember = "Key";
             objTrenerovkaUpdate.metroComboBox2.SelectedValue = TRENINGmetroGrid1.CurrentRow.Cells[4].Value;
-            connection.Close();
             if (objTrenerovkaUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     TRENINGmetroGrid1.Sort(TRENINGmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryUpdateTrening =
                         new OleDbCommand(
                             "update тренировка set название=@name, Идвидтренировка=@idtrening, Идтренер=@idtrener where Идтренировка=" +
@@ -3158,14 +3056,13 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     queryUpdateTrening.Parameters.AddWithValue("idtrener",
                         Convert.ToInt32(objTrenerovkaUpdate.metroComboBox2.SelectedValue.ToString()));
                     queryUpdateTrening.ExecuteNonQuery();
-                    connection.Close();
                     UpdTrening();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3188,7 +3085,6 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(TRENINGmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idTrenerovka = Convert.ToInt32(TRENINGmetroGrid1.CurrentRow.Cells[0].Value);
@@ -3196,14 +3092,13 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                                                     WHERE идтренировка=" + idTrenerovka + "", connection);
                         queryDeleteTrening.ExecuteNonQuery();
                         UpdTrening();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3217,13 +3112,11 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
         {
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-            string path = Directory.GetCurrentDirectory() + @"\" + "report/Trenerovka.docx";
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/Trenerovka.xlsx";
             this.UpdEmployee();
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook ExcelWorkBook;
-            Worksheet ExcelWorkSheet;
-            ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet = (Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             ExcelWorkSheet.StandardWidth = 17;
             ExcelWorkSheet.Name = "Сотрудники";
             excelApp.Cells[1, 1] = "Название";
@@ -3285,7 +3178,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -3296,13 +3189,13 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/Trenerovka.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application();
-            wordapp.Visible = true;
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application { Visible = true };
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
+
             try
             {
-                var table = doc.Tables.Add(range, TRENINGmetroGrid1.RowCount + 1, 3);
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, TRENINGmetroGrid1.RowCount + 1, 3);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Название";
                 table.Cell(1, 2).Range.Text = "Вид";
@@ -3368,7 +3261,7 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -3376,14 +3269,14 @@ WHERE (((Спортсмен.Фамилия)='" + inputBox + "'));"), selectConne
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -3455,7 +3348,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -3499,7 +3392,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -3514,7 +3407,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -3558,7 +3451,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -3603,7 +3496,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -3631,7 +3524,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -3659,13 +3552,13 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
         private void metroTile41_Click_1(object sender, EventArgs e)
         {
-            Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
+           // Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objAbonementAdd = new ModAbonement
             {
                 textBox1 = {Text = ""},
@@ -3675,7 +3568,6 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 Text = @"Добавить абонемент",
                 metroTile1 = {Text = @"Добавить"}
             };
-            connection.Close();
             connection.Open();
             var cmd = new OleDbCommand("SELECT Тренировка.Идтренировка, Тренировка.Название FROM Тренировка",
                 connection);
@@ -3692,12 +3584,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             objAbonementAdd.metroComboBox1.DataSource = list.ToList();
             objAbonementAdd.metroComboBox1.DisplayMember = "Value";
             objAbonementAdd.metroComboBox1.ValueMember = "Key";
-            connection.Close();
+            
             if (objAbonementAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
                     ABONmetroGrid1.Sort(ABONmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryAddAbonement = new OleDbCommand(@"INSERT INTO [абонемент]
                                                         ( Название, Цена, Количество_посещений, Идтренеровка)
                                                         VALUES(@name,@money,@count,@idtrening)", connection);
@@ -3707,14 +3598,13 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                     queryAddAbonement.Parameters.AddWithValue("idtrening",
                         Convert.ToInt32(objAbonementAdd.metroComboBox1.SelectedValue.ToString()));
                     queryAddAbonement.ExecuteNonQuery();
-                    connection.Close();
                     UpdAbonement();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3726,7 +3616,6 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
         private void metroTile40_Click_1(object sender, EventArgs e)
         {
             var objAbonementUpdate = new ModAbonement();
-            connection.Close();
             objAbonementUpdate.Text = @"Редактировать абонемент";
             objAbonementUpdate.metroTile1.Text = @"Редактировать";
             Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
@@ -3751,14 +3640,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             objAbonementUpdate.metroComboBox1.DataSource = list.ToList();
             objAbonementUpdate.metroComboBox1.DisplayMember = "Value";
             objAbonementUpdate.metroComboBox1.ValueMember = "Key";
-            connection.Close();
             objAbonementUpdate.metroComboBox1.SelectedValue = ABONmetroGrid1.CurrentRow.Cells[5].Value;
             if (objAbonementUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     ABONmetroGrid1.Sort(ABONmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryUpdateAbonement =
                         new OleDbCommand(
                             "update абонемент set Название=@name, Цена=@money, Количество_посещений=@count, Идтренеровка=@idtrening where идабонемент=" +
@@ -3769,14 +3655,13 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                     queryUpdateAbonement.Parameters.AddWithValue("idtrening",
                         Convert.ToInt32(objAbonementUpdate.metroComboBox1.SelectedValue));
                     queryUpdateAbonement.ExecuteNonQuery();
-                    connection.Close();
                     UpdAbonement();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3799,7 +3684,6 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(ABONmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idAbonement = Convert.ToInt32(ABONmetroGrid1.CurrentRow.Cells[0].Value);
@@ -3807,14 +3691,13 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                                                     WHERE идабонемент=" + idAbonement + "", connection);
                         queryDeleteAbonement.ExecuteNonQuery();
                         UpdAbonement();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -3828,13 +3711,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
         {
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-            string path = Directory.GetCurrentDirectory() + @"\" + "report/Abonement.docx";
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/Abonement.xlsx";
             this.UpdAbonement();
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook ExcelWorkBook;
-            Worksheet ExcelWorkSheet;
-            ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet = (Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             ExcelWorkSheet.StandardWidth = 17;
             ExcelWorkSheet.Name = "Абонемент";
             excelApp.Cells[1, 1] = "Название";
@@ -3898,7 +3779,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -3909,12 +3790,12 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/Abonement.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application {Visible = true};
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application { Visible = true };
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
-                var table = doc.Tables.Add(range, ABONmetroGrid1.RowCount + 1, 4);
+                Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, ABONmetroGrid1.RowCount + 1, 4);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Название";
                 table.Cell(1, 2).Range.Text = "Цена";
@@ -3986,7 +3867,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -3994,14 +3875,14 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
             catch (Exception exception)
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4021,7 +3902,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4063,7 +3944,7 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -4072,11 +3953,11 @@ FROM Тренер INNER JOIN (Вид_тренировки INNER JOIN Трени�
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
-                    @"SELECT top 1  абонемент.идабонемент,абонемент.название, count (абонемент.идабонемент) as [В продажах]
+                    @"SELECT top 1  абонемент.идабонемент,абонемент.название , count (абонемент.идабонемент) as [В продажах]
 FROM Абонемент INNER JOIN Продажа_абонемента ON Абонемент.Идабонемент = Продажа_абонемента.Идабонемент
  GROUP BY  абонемент.идабонемент,абонемент.название
             ORDER BY sum(абонемент.идабонемент)desc", selectConnection);
@@ -4099,7 +3980,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4189,7 +4070,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4197,7 +4078,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 if (Convert.ToInt32(ABONmetroTextBox3.Text) < Convert.ToInt32(ABONmetroTextBox2.Text))
@@ -4233,7 +4114,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4275,7 +4156,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -4319,7 +4200,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -4327,7 +4208,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
         private void metroTile51_Click(object sender, EventArgs e)
         {
             var objSaleAdd = new ModSale {Text = @"Добавить продажу", metroTile1 = {Text = @"Добавить"}};
-            connection.Close();
             connection.Open();
             var cmd = new OleDbCommand("SELECT Сотрудник.Идсотрудник, Сотрудник.Фамилия FROM Сотрудник;", connection);
             objSaleAdd.metroComboBox1.DisplayMember = "Фамилия";
@@ -4343,8 +4223,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleAdd.metroComboBox1.DataSource = list.ToList();
             objSaleAdd.metroComboBox1.DisplayMember = "Value";
             objSaleAdd.metroComboBox1.ValueMember = "Key";
-            connection.Close();
-            connection.Open();
             var cmd1 =
                 new OleDbCommand("SELECT Спортсмен.Идспортсмен, Спортсмен.Фамилия FROM Спортсмен;", connection);
             objSaleAdd.metroComboBox2.DisplayMember = "фамилия";
@@ -4360,8 +4238,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleAdd.metroComboBox2.DataSource = list1.ToList();
             objSaleAdd.metroComboBox2.DisplayMember = "Value";
             objSaleAdd.metroComboBox2.ValueMember = "Key";
-            connection.Close();
-            connection.Open();
             var cmd2 =
                 new OleDbCommand("SELECT Абонемент.Идабонемент, Абонемент.Название FROM Абонемент;", connection);
             objSaleAdd.metroComboBox3.DisplayMember = "Название";
@@ -4377,12 +4253,10 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleAdd.metroComboBox3.DataSource = list2.ToList();
             objSaleAdd.metroComboBox3.DisplayMember = "Value";
             objSaleAdd.metroComboBox3.ValueMember = "Key";
-            connection.Close();
             if (objSaleAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
                     SALEmetroGrid1.Sort(SALEmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryAddSaleAbonement = new OleDbCommand(@"INSERT INTO [Продажа_абонемента]
                                                         ( Идсотрудник, Идспортсмен, Идабонемент, Дата_начала,Дата_окончания)
                                                    VALUES(@idemployee,  @idsportsmen,     @idabonement,       @datezero,        @dateend)",
@@ -4398,7 +4272,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     queryAddSaleAbonement.Parameters.AddWithValue("dateend",
                         Convert.ToDateTime(objSaleAdd.metroDateTime2.Text));
                     queryAddSaleAbonement.ExecuteNonQuery();
-                    connection.Close();
+                    
                     UpdSale();
                 }
 
@@ -4406,7 +4280,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -4418,7 +4292,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
         private void metroTile50_Click(object sender, EventArgs e)
         {
             var objSaleUpdate = new ModSale();
-            connection.Close();
             objSaleUpdate.Text = @"Редактировать продажи";
             objSaleUpdate.metroTile1.Text = @"Редактировать";
             Debug.Assert(SALEmetroGrid1.CurrentRow != null, "Таблица пуста");
@@ -4438,9 +4311,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleUpdate.metroComboBox1.DataSource = list.ToList();
             objSaleUpdate.metroComboBox1.DisplayMember = "Value";
             objSaleUpdate.metroComboBox1.ValueMember = "Key";
-            connection.Close();
             objSaleUpdate.metroComboBox1.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[7].Value;
-            connection.Open();
             var cmd1 =
                 new OleDbCommand("SELECT Спортсмен.Идспортсмен, Спортсмен.Фамилия FROM Спортсмен;", connection);
             objSaleUpdate.metroComboBox2.DisplayMember = "фамилия";
@@ -4456,9 +4327,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleUpdate.metroComboBox2.DataSource = list1.ToList();
             objSaleUpdate.metroComboBox2.DisplayMember = "Value";
             objSaleUpdate.metroComboBox2.ValueMember = "Key";
-            connection.Close();
             objSaleUpdate.metroComboBox2.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[8].Value;
-            connection.Open();
             var cmd2 =
                 new OleDbCommand("SELECT Абонемент.Идабонемент, Абонемент.Название FROM Абонемент;", connection);
             objSaleUpdate.metroComboBox3.DisplayMember = "Название";
@@ -4474,16 +4343,13 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             objSaleUpdate.metroComboBox3.DataSource = list2.ToList();
             objSaleUpdate.metroComboBox3.DisplayMember = "Value";
             objSaleUpdate.metroComboBox3.ValueMember = "Key";
-            connection.Close();
             objSaleUpdate.metroComboBox3.SelectedValue = SALEmetroGrid1.CurrentRow.Cells[9].Value;
             objSaleUpdate.metroDateTime1.Text = Convert.ToString(SALEmetroGrid1.CurrentRow.Cells[4].Value);
             objSaleUpdate.metroDateTime2.Text = Convert.ToString(SALEmetroGrid1.CurrentRow.Cells[5].Value);
             if (objSaleUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     SALEmetroGrid1.Sort(SALEmetroGrid1.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryUpdateSaleAbonement =
                         new OleDbCommand(
                             "update Продажа_абонемента set Идсотрудник=@idemployee, Идспортсмен=@idsportsmen, Идабонемент=@idabonement, Дата_начала=@datezero,Дата_окончания=@dateend where идпродажа=" +
@@ -4499,7 +4365,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     queryUpdateSaleAbonement.Parameters.AddWithValue("dateend",
                         Convert.ToDateTime(objSaleUpdate.metroDateTime2.Text));
                     queryUpdateSaleAbonement.ExecuteNonQuery();
-                    connection.Close();
                     UpdSale();
                 }
 
@@ -4507,7 +4372,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -4530,7 +4395,6 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(SALEmetroGrid1.CurrentRow != null, "Таблица пуста");
                         idSale = Convert.ToInt32(SALEmetroGrid1.CurrentRow.Cells[0].Value);
@@ -4538,14 +4402,13 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                                                     WHERE идпродажа=" + idSale + "", connection);
                         queryDeleteSaleAbonement.ExecuteNonQuery();
                         UpdSale();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -4560,12 +4423,10 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.UpdSale();
-            string path = Directory.GetCurrentDirectory() + @"\" + "report/SALE.docx";
+            string path = Directory.GetCurrentDirectory() + @"\" + "report/SALE.xlsx";
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Workbook ExcelWorkBook;
-            Worksheet ExcelWorkSheet;
-            ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
+            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook = excelApp.Workbooks.Add(System.Reflection.Missing.Value);
+            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet = (Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
             ExcelWorkSheet.StandardWidth = 17;
             ExcelWorkSheet.Name = "Продажи";
             excelApp.Cells[1, 1] = "Сотрудник";
@@ -4633,7 +4494,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                         {
                             MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-                            HelperLog.Write(exception.Message);
+                            HelperLog.Write(exception.ToString());
                         }
                 }
             }
@@ -4644,10 +4505,9 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             MetroMessageBox.Show(this, "\nОжидайте отчет формируется", "Формирование отчета",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             string path = Directory.GetCurrentDirectory() + @"\" + "report/SALE.docx";
-            var wordapp = new Microsoft.Office.Interop.Word.Application();
-            wordapp.Visible = true;
-            var doc = wordapp.Documents.Add(Visible: true);
-            var range = doc.Range();
+            Microsoft.Office.Interop.Word.Application wordapp = new Microsoft.Office.Interop.Word.Application { Visible = true };
+            Microsoft.Office.Interop.Word.Document doc = wordapp.Documents.Add(Visible: true);
+            Microsoft.Office.Interop.Word.Range range = doc.Range();
             try
             {
                 Microsoft.Office.Interop.Word.Table table = doc.Tables.Add(range, SALEmetroGrid1.RowCount + 1, 6);
@@ -4665,12 +4525,12 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                     Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 for (int i = 1; i < SALEmetroGrid1.RowCount + 1; i++)
                 {
-                    table.Cell(i + 1, 1).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[1].Value.ToString();
-                    table.Cell(i + 1, 2).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[2].Value.ToString();
-                    table.Cell(i + 1, 3).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[3].Value.ToString();
-                    table.Cell(i + 1, 4).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[4].Value.ToString();
-                    table.Cell(i + 1, 5).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[5].Value.ToString();
-                    table.Cell(i + 1, 6).Range.Text = EMPLmetroGrid1.Rows[i - 1].Cells[6].Value.ToString();
+                    table.Cell(i + 1, 1).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[1].Value.ToString();
+                    table.Cell(i + 1, 2).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[2].Value.ToString();
+                    table.Cell(i + 1, 3).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[3].Value.ToString();
+                    table.Cell(i + 1, 4).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[4].Value.ToString();
+                    table.Cell(i + 1, 5).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[5].Value.ToString();
+                    table.Cell(i + 1, 6).Range.Text = SALEmetroGrid1.Rows[i - 1].Cells[6].Value.ToString();
                 }
 
                 try
@@ -4724,7 +4584,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                             {
                                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
-                                HelperLog.Write(exception.Message);
+                                HelperLog.Write(exception.ToString());
                             }
                     }
                 }
@@ -4733,7 +4593,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
 
@@ -4741,7 +4601,7 @@ FROM Абонемент INNER JOIN Продажа_абонемента ON Або
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4817,7 +4677,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4825,7 +4685,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 string date1 = SALEmetroDateTime2.Value.ToString("MM/dd/yyyy").Replace('.', '/');
@@ -4864,7 +4724,7 @@ WHERE Продажа_абонемента.Дата_начала Between #{date1}
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4872,7 +4732,7 @@ WHERE Продажа_абонемента.Дата_начала Between #{date1}
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 if (Convert.ToInt32(SALEmetroTextBox3.Text) < Convert.ToInt32(SALEmetroTextBox2.Text))
@@ -4910,7 +4770,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -4955,7 +4815,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -4998,7 +4858,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
             }
         }
@@ -5007,7 +4867,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
         {
             try
             {
-                var selectConnection = new OleDbConnection(conString);
+                var selectConnection = new OleDbConnection(ConnectionDb.conString());
                 selectConnection.Open();
                 var dataSet = new DataSet();
                 var adapter = new OleDbDataAdapter(
@@ -5038,7 +4898,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -5053,7 +4913,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -5100,7 +4960,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -5130,7 +4990,7 @@ ON Абонемент.Идабонемент = Продажа_абонемент
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 

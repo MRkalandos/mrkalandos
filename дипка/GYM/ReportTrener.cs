@@ -10,10 +10,6 @@ namespace GYM
     {
         private const string TitleException = "Ошибка";
 
-        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                   Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
-                                   "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-
         public ReportTrener()
         {
             InitializeComponent();
@@ -24,7 +20,7 @@ namespace GYM
         {
             try
             {
-                var connection = new OleDbConnection(conString);
+                var connection = new OleDbConnection(ConnectionDb.conString());
                 connection.Open();
                 var adapter = new OleDbDataAdapter(@"select * from тренер", connection);
                 adapter.Fill(RepTrener.Тренер);
@@ -35,7 +31,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -61,7 +57,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

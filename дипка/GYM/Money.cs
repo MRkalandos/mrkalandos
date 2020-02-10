@@ -15,14 +15,7 @@ namespace GYM
         private int _idMoney = 0;
         public DataTable dataTableMoney;
 
-        public string conString = (@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                   Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
-                                   "/ISgym.mdb;Jet OLEDB:Database Password=316206");
-        
-        public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                                Directory.GetParent(Directory.GetCurrentDirectory())
-                                                                    .Parent?.FullName +
-                                                                "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+        public OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
 
         public OleDbDataAdapter dataAdapterMoney;
 
@@ -49,7 +42,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -68,7 +61,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -78,7 +71,6 @@ namespace GYM
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
             var objMoneyAdd = new ModMoney
             {
                 textBox1 = {Text = ""}, Text = @"Добавить зарплату", button1 = {Text = @"Добавить"},
@@ -93,34 +85,31 @@ namespace GYM
                                                         VALUES(@money)", connection);
                     queryAddMoney.Parameters.AddWithValue("money", objMoneyAdd.textBox1.Text);
                     queryAddMoney.ExecuteNonQuery();
-                    connection.Close();
-                    UpdateMoney();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
-                    FocusMe();
                     connection.Close();
+                    UpdateMoney();
+                    FocusMe();
+                    
                 }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            connection.Close();
             var objMoneyUpdate = new ModMoney {Text = @"Редактировать зарплату", button1 = {Text = @"Редактировать"}};
-            Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
             _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
             objMoneyUpdate.metroLabel1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value);
             objMoneyUpdate.textBox1.Text = Convert.ToString(dataGridView1.CurrentRow.Cells[1].Value);
             if (objMoneyUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryUpdateMoney =
@@ -129,25 +118,24 @@ namespace GYM
                             connection);
                     queryUpdateMoney.Parameters.AddWithValue("money", objMoneyUpdate.textBox1.Text);
                     queryUpdateMoney.ExecuteNonQuery();
-                    connection.Close();
-                    UpdateMoney();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
-                    FocusMe();
                     connection.Close();
+                    UpdateMoney();
+                    FocusMe();
                 }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MetroFramework.MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
+            if (DialogResult.Yes == MetroMessageBox.Show(this, "\nУдалить запись?", "Удалить?",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
             {
                 try
@@ -159,7 +147,6 @@ namespace GYM
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(dataGridView1.CurrentRow != null, "Таблица пуста");
                         _idMoney = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
@@ -167,19 +154,18 @@ namespace GYM
                                                     WHERE идзарплата=" + _idMoney + "", connection);
                         queryDeleteMoney.ExecuteNonQuery();
                         dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-                        UpdateMoney();
-                        connection.Close();
                     }
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
+                    UpdateMoney();
                     connection.Close();
                 }
             }
@@ -203,7 +189,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -255,8 +241,7 @@ namespace GYM
 
         private void Money_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //var headForm=new HeadForm();
-           
+       
         }
 
         private void Money_Click(object sender, EventArgs e)

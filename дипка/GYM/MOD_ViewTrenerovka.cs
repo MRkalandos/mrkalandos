@@ -8,10 +8,7 @@ namespace GYM
 {
     public partial class ModViewTrenerovka : MetroFramework.Forms.MetroForm
     {
-        private readonly OleDbConnection _connection = new OleDbConnection(
-            @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-            Directory.GetParent(Directory.GetCurrentDirectory()).Parent?.FullName +
-            "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
 
         private const string TitleException = "Ошибка";
 
@@ -65,17 +62,16 @@ namespace GYM
                 }
                 else
                 {
-                    _connection.Open();
+                    connection.Open();
                     var queryFindClone = new OleDbCommand(@"select *  
                                                                       from [Вид_тренировки] 
                                                                       where название=@name 
                                                                       and идвидтренировка <> " +
-                                                          Convert.ToInt32(metroLabel1.Text) + "", _connection);
+                                                          Convert.ToInt32(metroLabel1.Text) + "", connection);
                     queryFindClone.Parameters.AddWithValue("name", textBox1.Text);
                     queryFindClone.ExecuteNonQuery();
                     if (queryFindClone.ExecuteScalar() != null)
                     {
-                        _connection.Close();
                         MetroMessageBox.Show(this, "\nТакой вид тренировки уже существует",
                             TitleException, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -89,11 +85,11 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
-                _connection.Close();
+                connection.Close();
                 FocusMe();
             }
         }
@@ -123,7 +119,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

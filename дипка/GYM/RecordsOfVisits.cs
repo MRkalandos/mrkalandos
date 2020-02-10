@@ -17,10 +17,7 @@ namespace GYM
         public int idvisit;
         public DataTable dataTableVisits;
 
-        public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                                Directory.GetParent(Directory.GetCurrentDirectory())
-                                                                    .Parent?.FullName +
-                                                                "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
 
         public OleDbDataAdapter dataAdapterVisits;
 
@@ -55,7 +52,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -74,7 +71,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
@@ -96,14 +93,12 @@ namespace GYM
                 {
                     try
                     {
-                        connection.Close();
                         connection.Open();
                         Debug.Assert(VISITSGrid.CurrentRow != null, "Таблица пуста");
                         var idVisit = Convert.ToInt32(VISITSGrid.CurrentRow.Cells[0].Value);
                         var queryDeleteVisit = new OleDbCommand(@"DELETE FROM учет_посещений 
                                                     WHERE идпосещений=" + idVisit + "", connection);
                         queryDeleteVisit.ExecuteNonQuery();
-                        connection.Close();
                         VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
                         UpdateVisits();
                     }
@@ -111,7 +106,7 @@ namespace GYM
                     {
                         MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                        HelperLog.Write(exception.Message);
+                        HelperLog.Write(exception.ToString());
                     }
                     finally
                     {
@@ -140,12 +135,10 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             objVisiTeAdd.metroComboBox1.DataSource = list.ToList();
             objVisiTeAdd.metroComboBox1.DisplayMember = "Value";
             objVisiTeAdd.metroComboBox1.ValueMember = "Key";
-            connection.Close();
             if (objVisiTeAdd.ShowDialog() == DialogResult.OK)
                 try
                 {
                     VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryInsertVisit = new OleDbCommand(@"INSERT INTO [учет_посещений]
                                                         ( Дата,Идпродажа)
                                                         VALUES(@sdate,@idsale)", connection);
@@ -154,18 +147,17 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                     queryInsertVisit.Parameters.AddWithValue("idsale",
                         Convert.ToInt32(objVisiTeAdd.metroComboBox1.SelectedValue.ToString()));
                     queryInsertVisit.ExecuteNonQuery();
-                    connection.Close();
-                    UpdateVisits();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
+                    UpdateVisits();
                     connection.Close();
                 }
         }
@@ -173,7 +165,7 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
         private void metroButton2_Click(object sender, EventArgs e)
         {
             var objVisiteUpdate = new MOD_VISITS();
-            connection.Close();
+           
             objVisiteUpdate.Text = @"Редактировать посещение";
             objVisiteUpdate.metroTile1.Text = @"Редактировать";
             Debug.Assert(VISITSGrid.CurrentRow != null, "Таблица пуста");
@@ -194,14 +186,12 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             objVisiteUpdate.metroComboBox1.DataSource = list.ToList();
             objVisiteUpdate.metroComboBox1.DisplayMember = "Value";
             objVisiteUpdate.metroComboBox1.ValueMember = "Key";
-            connection.Close();
             objVisiteUpdate.metroComboBox1.SelectedValue = VISITSGrid.CurrentRow.Cells[6].Value;
             if (objVisiteUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
+                  
                     VISITSGrid.Sort(VISITSGrid.Columns[1], ListSortDirection.Ascending);
-                    connection.Open();
                     var queryUpdateVisit =
                         new OleDbCommand(
                             "update Учет_посещений set дата=@date, идпродажа=@idsale where идпосещений=" + idvisit +
@@ -211,19 +201,18 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
                     queryUpdateVisit.Parameters.AddWithValue("idsale",
                         Convert.ToInt32(objVisiteUpdate.metroComboBox1.SelectedValue));
                     queryUpdateVisit.ExecuteNonQuery();
-                    connection.Close();
-                    UpdateVisits();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
                     connection.Close();
+                    UpdateVisits();
                 }
         }
 
@@ -245,7 +234,7 @@ FROM Спортсмен INNER JOIN Продажа_абонемента ON Спо
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

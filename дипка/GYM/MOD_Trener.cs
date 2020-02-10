@@ -8,6 +8,7 @@ namespace GYM
 {
     public partial class ModTrener : MetroFramework.Forms.MetroForm
     {
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
         private const string TitleException = "Ошибка";
         readonly Inputaccuracy _inputaccuracy = new Inputaccuracy();
 
@@ -39,10 +40,6 @@ namespace GYM
                 }
                 else
                 {
-                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                             ?.FullName +
-                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                     connection.Open();
                     var queryFindClone = new OleDbCommand(@"select *  
                                                                       from [тренер] 
@@ -53,7 +50,6 @@ namespace GYM
                     queryFindClone.ExecuteNonQuery();
                     if (queryFindClone.ExecuteScalar() != null)
                     {
-                        connection.Close();
                         MetroMessageBox.Show(this, "\nТакой пароль уже существует", TitleException,
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -67,12 +63,13 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
 
             }
             finally
             {
                 FocusMe();
+                connection.Close();
             }
         }
 
@@ -97,7 +94,7 @@ namespace GYM
                     MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено", TitleException,
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     metroTextBox6.Text = Path.GetFileName(fileName);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -188,7 +185,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

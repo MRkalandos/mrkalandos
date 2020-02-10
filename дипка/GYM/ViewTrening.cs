@@ -11,10 +11,7 @@ namespace GYM
 {
     public partial class ViewTrening : MetroFramework.Forms.MetroForm
     {
-        public OleDbConnection connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                                Directory.GetParent(Directory.GetCurrentDirectory())
-                                                                    .Parent?.FullName +
-                                                                "/ISgym.mdb;Jet OLEDB:Database Password=316206");
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
 
         public DataTable dataTableViewTrening;
         private const string TitleException = "Ошибка";
@@ -45,7 +42,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -60,7 +57,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 
@@ -78,9 +75,7 @@ namespace GYM
                     }
                     else
                     {
-                        connection.Close();
                         connection.Open();
-                        Debug.Assert(ViewmetroGrid1.CurrentRow != null, "Таблица пуста");
                         var idViewTrening = Convert.ToInt32(ViewmetroGrid1.CurrentRow.Cells[0].Value);
                         var queryDeleteViewTtrening = new OleDbCommand(@"DELETE FROM Вид_тренировки 
                                                                          WHERE идвидтренировка=" + idViewTrening + "",
@@ -94,7 +89,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
@@ -106,7 +101,6 @@ namespace GYM
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            Debug.Assert(ViewmetroGrid1.CurrentRow != null, "Таблица пуста");
             var objViewTreningAdd = new ModViewTrenerovka
             {
                 textBox1 = {Text = ""}, Text = @"Добавить тренировку", button1 = {Text = @"Добавить"},
@@ -121,16 +115,16 @@ namespace GYM
                                                                        VALUES(@name)", connection);
                     queryAddViewTtrening.Parameters.AddWithValue("name", objViewTreningAdd.textBox1.Text);
                     queryAddViewTtrening.ExecuteNonQuery();
-                    UpdateViewTrening();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
+                    UpdateViewTrening();
                     connection.Close();
                     FocusMe();
                 }
@@ -138,7 +132,7 @@ namespace GYM
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-            connection.Close();
+            
             var objViewTreningUpdate = new ModViewTrenerovka
             {
                 Text = @"Редактировать тренировку", button1 = {Text = @"Редактировать"}
@@ -150,7 +144,6 @@ namespace GYM
             if (objViewTreningUpdate.ShowDialog() == DialogResult.OK)
                 try
                 {
-                    connection.Close();
                     ViewmetroGrid1.Sort(ViewmetroGrid1.Columns[1], ListSortDirection.Ascending);
                     connection.Open();
                     var queryUpdateViewTrening =
@@ -159,19 +152,18 @@ namespace GYM
                             connection);
                     queryUpdateViewTrening.Parameters.AddWithValue("name", objViewTreningUpdate.textBox1.Text);
                     queryUpdateViewTrening.ExecuteNonQuery();
-                    connection.Close();
-                    UpdateViewTrening();
                 }
                 catch (Exception exception)
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     connection.Close();
                     FocusMe();
+                    UpdateViewTrening();
                 }
         }
 
@@ -196,7 +188,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
         }
 

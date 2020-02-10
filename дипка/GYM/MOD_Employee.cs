@@ -11,6 +11,7 @@ namespace GYM
 {
     public partial class ModEmployee : MetroForm
     {
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
         private const string TitleException = "Ошибка";
         Inputaccuracy _inputaccuracy = new Inputaccuracy();
 
@@ -43,10 +44,6 @@ namespace GYM
             {
                 try
                 {
-                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                             ?.FullName +
-                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                     connection.Open();
                     var queryFindCloneEmployee = new OleDbCommand(@"select *   from [сотрудник]    
                                                                    where пароль=@pass and
@@ -56,7 +53,6 @@ namespace GYM
                     queryFindCloneEmployee.ExecuteNonQuery();
                     if (queryFindCloneEmployee.ExecuteScalar() != null)
                     {
-                        connection.Close();
                         MetroMessageBox.Show(this, "\nТакой пароль уже существует", TitleException,
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -69,11 +65,12 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
+                    connection.Close();
                 }
             }
         }
@@ -99,7 +96,7 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, "\nПапка задействована, фото может быть не установлено",
                         TitleException, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                     metroTextBox6.Text = Path.GetFileName(fileName);
                 }
                 finally
@@ -188,7 +185,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {

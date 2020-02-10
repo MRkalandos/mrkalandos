@@ -9,8 +9,8 @@ namespace GYM
 {
     public partial class ModMoney : MetroForm
     {
+        public static OleDbConnection connection = new OleDbConnection(ConnectionDb.conString());
         private const string TitleException = "Ошибка";
-
         public ModMoney()
         {
             InitializeComponent();
@@ -56,10 +56,6 @@ namespace GYM
             {
                 try
                 {
-                    var connection = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" +
-                                                         Directory.GetParent(Directory.GetCurrentDirectory()).Parent
-                                                             ?.FullName +
-                                                         "/ISgym.mdb;Jet OLEDB:Database Password=316206");
                     connection.Open();
                     var sss1 = new OleDbCommand(@"select зарплата  
                                                  from [зарплата_сотрудника] 
@@ -70,7 +66,6 @@ namespace GYM
                     sss1.ExecuteNonQuery();
                     if (sss1.ExecuteScalar() != null)
                     {
-                        connection.Close();
                         MetroMessageBox.Show(this, "\nТакая зарплата уже существует", "Корректность",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -83,11 +78,12 @@ namespace GYM
                 {
                     MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    HelperLog.Write(exception.Message);
+                    HelperLog.Write(exception.ToString());
                 }
                 finally
                 {
                     FocusMe();
+                    connection.Close();
                 }
             }
         }
@@ -115,7 +111,7 @@ namespace GYM
             {
                 MetroMessageBox.Show(this, exception.Message, TitleException, MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                HelperLog.Write(exception.Message);
+                HelperLog.Write(exception.ToString());
             }
             finally
             {
